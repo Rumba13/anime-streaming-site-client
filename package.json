@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:architecture": "npx steiger -w ./src"
+    "eslint": "eslint --fix .",
+    "lint:architecture": "npx steiger -w ./src",
+    "lint": "npm run eslint && npx steiger ./src"
   },
   "dependencies": {
     "-": "^0.0.1",
