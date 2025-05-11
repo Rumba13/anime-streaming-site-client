@@ -1,9 +1,9 @@
 import "./home-page.scss";
-import {Logo} from "../../../shared/ui/logo";
+import {DefaultLayout} from "../../../shared/ui/default-layout";
+import {Search} from "../../../features/search";
 
 export function HomePage() {
-    return <div className="home-page">
-        <Logo/>
-        HomePage
-    </div>
+    return <DefaultLayout SearchSlot={Search}>
+        HomePage content
+    </DefaultLayout>
 }

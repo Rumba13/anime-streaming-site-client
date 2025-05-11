@@ -20,7 +20,12 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@styles/*": ["src/app/styles/*"]
+      "@styles/*": [
+        "src/app/styles/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ]
     }
   },
   "include": [
