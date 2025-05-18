@@ -1,0 +1,25 @@
+@use "@styles/variables.scss" as *;
+
+.navigation-item {
+  position: relative;
+  color: rgb(255 255 255 / 65%);
+  font-family: $primary-font-family;
+  font-size: 20px;
+
+  &.active {
+    color: #ffffff;
+
+    &::before {
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+      background: #ffffff;
+      content: "";
+      transform: translateX(-50%);
+    }
+  }
+}

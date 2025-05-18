@@ -1,15 +1,12 @@
 @use "@styles/variables.scss" as *;
 
 .search {
-  .search__icon {
-
-  }
   .search__title {
-    font-size: 13px;
-    font-family: $primary-font-family;
-    margin-left: 8px;
-    margin-right: 12px;
     align-self: end;
-    color: rgba(255, 255, 255, 0.7);
+    margin-right: 12px;
+    margin-left: 8px;
+    color: rgb(255 255 255 / 70%);
+    font-family: $primary-font-family;
+    font-size: 13px;
   }
 }

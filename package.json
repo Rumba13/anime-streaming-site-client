@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+
     "eslint": "eslint --fix .",
-    "lint:architecture": "npx steiger -w ./src",
-    "lint": "npm run eslint && npx steiger ./src"
+    "steiger": "npx steiger -w ./src",
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "stylelint:fix": "npx stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
     "-": "^0.0.1",
@@ -31,6 +33,11 @@
     "globals": "^15.15.0",
     "sass-embedded": "^1.87.0",
     "steiger": "^0.5.6",
+    "stylelint": "^16.19.1",
+    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-order": "^7.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",

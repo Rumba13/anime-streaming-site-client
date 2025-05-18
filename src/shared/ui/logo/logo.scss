@@ -2,22 +2,22 @@
 
 .logo {
   display: flex;
-  flex-direction: column;
   width: fit-content;
+  flex-direction: column;
   padding: 8px;
 
   .logo__title {
-    font-size: 24px;
     color: $primary-color;
     font-family: $highlight-font-family;
+    font-size: 24px;
     text-align: center;
   }
 
   .logo__slogan {
-    font-size: 12px;
+    margin-left: 10px;
     color: $primary-color;
     font-family: $primary-font-family;
+    font-size: 12px;
     text-align: center;
-    margin-left: 10px;
   }
 }
