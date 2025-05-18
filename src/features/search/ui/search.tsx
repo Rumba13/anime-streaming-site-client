@@ -1,5 +1,5 @@
 import "./search.scss"
-import {GradientBorderedButton} from "../../../shared/ui/gradient-bordered-button/gradient-bordered-button.tsx";
+import {GradientBorderedButton} from "../../../shared/ui/gradient-bordered-button";
 import SearchIcon from "../../../assets/images/search.svg?react";
 
 export function Search() {
