@@ -3,4 +3,9 @@
   align-items: center;
   margin-right: 45px;
   gap: 45px;
+
+  .navigation-item__icon {
+    color: currentColor;
+    margin-left: 7px;
+  }
 }

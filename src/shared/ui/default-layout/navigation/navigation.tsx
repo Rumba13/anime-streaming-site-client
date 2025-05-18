@@ -1,20 +1,15 @@
 import "./navigation.scss";
 import {NavigationItem} from "../navigation-item/navigation-item.tsx";
-import {useLocation} from "react-router-dom";
 import {ROUTES} from "../../../lib/routes.ts";
+import ArrowIcon from "@src/assets/images/arrow.svg?react"
 
 export function Navigation() {
-    const {pathname} = useLocation()
 
     return <nav className="navigation">
-        <NavigationItem isActive={pathname === ROUTES.HOME_PAGE}>
-            Home
+        <NavigationItem title="Home" link={ROUTES.HOME_PAGE}/>
+        <NavigationItem title="Browse" link={ROUTES.SEARCH_PAGE}>
+            <ArrowIcon className="navigation-item__icon"/>
         </NavigationItem>
-        <NavigationItem isActive={pathname === ROUTES.SEARCH_PAGE}>
-            Browse
-        </NavigationItem>
-        <NavigationItem isActive={pathname === ROUTES.TRAILERS_PAGE}>
-            Trailers
-        </NavigationItem>
+        <NavigationItem title="Trailers" link={ROUTES.TRAILERS_PAGE}/>
     </nav>
 }
