@@ -19,5 +19,10 @@ export default defineConfig({
                 experimentalDecorators: true
             }
         }
+    },
+    resolve: {
+        alias: {
+            '@src': '/src'
+        }
     }
 })

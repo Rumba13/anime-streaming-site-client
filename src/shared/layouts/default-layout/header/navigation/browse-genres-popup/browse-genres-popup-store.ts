@@ -8,7 +8,7 @@ export class BrowseGenresPopupStore {
         document.addEventListener("click", () => this.setIsOpened(false))
     }
 
-    public isOpened: boolean = true;
+    public isOpened: boolean = false;
 
     public setIsOpened = (isOpened: boolean) => {
         setTimeout(() => this.isOpened = isOpened, 0)

@@ -6,6 +6,7 @@ import {observer} from "mobx-react";
 import {BrowseGenresPopupStore} from "./browse-genres-popup/browse-genres-popup-store.ts";
 import {ROUTES} from "../../../../lib/routes.ts";
 import {BrowseGenresPopup} from "./browse-genres-popup/browse-genres-popup.tsx";
+import clsx from "clsx/lite";
 
 export const Navigation = observer(() => {
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
@@ -19,7 +20,8 @@ export const Navigation = observer(() => {
 
     return <nav className="navigation">
         <NavigationItem title="Home" link={ROUTES.HOME_PAGE}/>
-        <NavigationItem title="Browse" link={ROUTES.SEARCH_PAGE} onClick={handleBrowserClick}>
+        <NavigationItem className={clsx(browseGenresPopupStore.isOpened && "highlight")} title="Browse"
+                        link={ROUTES.SEARCH_PAGE} onClick={handleBrowserClick}>
             <ArrowIcon className="navigation-item__icon"/>
             <BrowseGenresPopup/>
         </NavigationItem>
