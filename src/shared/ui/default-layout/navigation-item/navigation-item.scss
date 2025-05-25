@@ -7,6 +7,10 @@
   font-size: 20px;
   transition: color $fast-animation-time;
 
+  .navigation-item__title {
+
+  }
+
   &.active {
     color: #ffffff;
 

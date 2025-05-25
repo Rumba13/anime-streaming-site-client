@@ -11,7 +11,6 @@ type PropsType = {
 export function DefaultLayout({children, SearchSlot}: PropsType) {
     return <div className="default-layout">
         <Header SearchSlot={SearchSlot}/>
-
         {children}
         <Footer/>
     </div>

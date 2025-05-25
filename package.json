@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-
     "eslint": "eslint --fix .",
     "steiger": "npx steiger -w ./src",
     "stylelint": "npx stylelint \"**/*.scss\"",
@@ -15,12 +14,19 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@swc/plugin-styled-components": "^7.1.5",
     "clsx": "^2.1.1",
+    "inversify": "^6.2.2",
+    "inversify-react": "^1.2.0",
+    "mobx": "^6.13.7",
+    "mobx-react": "^9.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.6.0",
+    "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.27.1",
     "@eslint/js": "^9.21.0",
     "@feature-sliced/steiger-plugin": "^0.5.5",
     "@types/react": "^19.0.10",

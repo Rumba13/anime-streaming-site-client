@@ -1,0 +1,12 @@
+.browse-genres {
+  position: absolute;
+  background: #000000;
+  padding: 10px;
+  visibility: hidden;
+  opacity: 0;
+
+  &.opened {
+    opacity: 1;
+    visibility: visible;
+  }
+}

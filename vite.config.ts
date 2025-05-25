@@ -3,7 +3,11 @@ import react from '@vitejs/plugin-react-swc'
 import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
-    plugins: [react(), svgr()],
+    plugins: [
+        react({
+            tsDecorators:true
+        }), svgr()
+    ],
     resolve: {
         alias: {
             '@styles': '/src/app/styles',
@@ -13,5 +17,13 @@ export default defineConfig({
     server: {
         port: 3000,
         open: true
+    },
+    esbuild: {
+        target: "es2020",
+        tsconfigRaw: {
+            compilerOptions: {
+                experimentalDecorators: true
+            }
+        }
     }
 })
