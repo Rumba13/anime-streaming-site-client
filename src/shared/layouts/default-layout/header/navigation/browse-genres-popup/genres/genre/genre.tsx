@@ -1,5 +1,5 @@
 import "./genre.scss";
-import {Genre as GenreType} from "../../../api/types/genre.ts";
+import {Genre as GenreType} from "../../../../../../../types/genre.ts";
 
 type PropsType = GenreType;
 

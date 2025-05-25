@@ -1,10 +1,10 @@
 import "./header.scss";
 import {FC} from "react";
-import {Logo} from "../../logo";
-import {Navigation} from "../navigation/navigation.tsx";
-import {ShowProfile} from "../show-profile/show-profile.tsx";
-import {ShowSubscriptionPlans} from "../show-subscription-plans/show-subscription-plans.tsx";
-import {ShowFavoritesButton} from "../show-favorites-button/show-favorites-button.tsx";
+import {Navigation} from "./navigation/navigation.tsx";
+import {ShowFavoritesButton} from "./show-favorites-button/show-favorites-button.tsx";
+import {ShowProfile} from "./show-profile/show-profile.tsx";
+import {ShowSubscriptionPlans} from "./show-subscription-plans/show-subscription-plans.tsx";
+import {Logo} from "../../../ui";
 
 type PropsType = {
     SearchSlot: FC

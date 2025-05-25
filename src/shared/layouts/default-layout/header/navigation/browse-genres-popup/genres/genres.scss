@@ -2,8 +2,8 @@
 
 .genres {
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
 
   & .genres__title {
     color: $weak-font-color;
@@ -17,10 +17,10 @@
 
   & .genres-container {
     display: grid;
-    grid-template: 1fr 1fr 1fr  1fr 1fr / 1fr 1fr 1fr;
-    row-gap: 40px;
     margin-top: 20px;
     margin-bottom: 5px;
+    grid-template: 1fr 1fr 1fr  1fr 1fr / 1fr 1fr 1fr;
+    row-gap: 40px;
 
 
 

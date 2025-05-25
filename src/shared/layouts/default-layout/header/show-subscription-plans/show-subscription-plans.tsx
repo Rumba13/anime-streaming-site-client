@@ -1,6 +1,6 @@
 import "./show-subscription-plans.scss";
-import {GradientBorderedButton} from "../../gradient-bordered-button/gradient-bordered-button.tsx";
-import CrownIcon from "../../../../assets/images/crown.svg?react"
+import CrownIcon from "../../../../../assets/images/crown.svg?react"
+import {GradientBorderedButton} from "../../../../ui";
 
 export function ShowSubscriptionPlans() {
     return <GradientBorderedButton className="show-subscription-plans-button">

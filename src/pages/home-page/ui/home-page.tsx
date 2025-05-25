@@ -1,6 +1,6 @@
 import "./home-page.scss";
-import {DefaultLayout} from "../../../shared/ui/default-layout";
 import {Search} from "../../../features/search";
+import {DefaultLayout} from "../../../shared/layouts";
 
 export function HomePage() {
     return <DefaultLayout SearchSlot={Search}>

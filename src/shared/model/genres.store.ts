@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {inject, injectable} from "inversify";
-import {GenresService} from "../../../api/genres-service.ts";
-import {Genre} from "../../../api/types/genre.ts";
+import {GenresService} from "../api";
+import {Genre} from "../types";
 
 @injectable()
 export class GenresStore {

@@ -1,6 +1,6 @@
 import "./show-profile.scss";
-import {GradientBorderedButton} from "../../gradient-bordered-button/gradient-bordered-button.tsx";
-import UserIcon from "../../../../assets/images/user.svg?react"
+import UserIcon from "../../../../../assets/images/user.svg?react"
+import {GradientBorderedButton} from "../../../../ui";
 
 export function ShowProfile() {
 

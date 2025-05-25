@@ -3,9 +3,9 @@ import {useInjection} from "inversify-react";
 import {BrowseGenresPopupStore} from "./browse-genres-popup-store.ts";
 import clsx from "clsx/lite";
 import {observer} from "mobx-react";
-import {Genres} from "../genres/genres.tsx";
-import {VerticalLine} from "../../vertical-line/vertical-line.tsx";
-import {ROUTES} from "../../../lib/routes.ts";
+import {Genres} from "./genres/genres.tsx";
+import {ROUTES} from "../../../../../lib/routes.ts";
+import {VerticalLine} from "../../../../../ui";
 
 export const BrowseGenresPopup = observer(() => {
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);

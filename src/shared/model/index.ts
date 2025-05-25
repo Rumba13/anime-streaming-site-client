@@ -1,0 +1,1 @@
+export {GenresStore} from "./genres.store.ts"

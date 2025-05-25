@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "eslint": "eslint --fix .",
     "steiger": "npx steiger -w ./src",
+    "steiger:fix": "npx steiger -w ./src --fix",
     "stylelint": "npx stylelint \"**/*.scss\"",
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix"
   },

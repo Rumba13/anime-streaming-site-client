@@ -1,11 +1,11 @@
 import "./genres.scss";
 import {useEffect} from "react";
 import {useInjection} from "inversify-react";
-import {GenresStore} from "./genres.store.ts";
+import {GenresStore} from "../../../../../../model";
 import {match, P} from "ts-pattern";
 import {observer} from "mobx-react";
-import {Loading} from "../../loading/ui/loading.tsx";
-import {Genre} from "../genre/genre.tsx";
+import {Genre} from "./genre/genre.tsx";
+import {Loading} from "../../../../../../ui";
 
 
 export const Genres = observer(() => {
@@ -13,7 +13,7 @@ export const Genres = observer(() => {
 
     useEffect(() => {
         void genresStore.loadGenres()
-    }, [])
+    }, [genresStore])
 
     const content = match(genresStore)
         .with({isLoading: true}, () => <Loading/>)

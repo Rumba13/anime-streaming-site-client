@@ -1,6 +1,6 @@
 import "./show-favorites-button.scss";
-import FavoriteIcon from '../../../../assets/images/favorites.svg?react';
-import {GradientBorderedButton} from "../../gradient-bordered-button/gradient-bordered-button.tsx";
+import FavoriteIcon from '../../../../../assets/images/favorites.svg?react';
+import {GradientBorderedButton} from "../../../../ui";
 
 export function ShowFavoritesButton() {
     return <GradientBorderedButton className="show-favorites-button">
