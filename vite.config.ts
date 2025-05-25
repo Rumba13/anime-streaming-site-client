@@ -8,12 +8,6 @@ export default defineConfig({
             tsDecorators:true
         }), svgr()
     ],
-    resolve: {
-        alias: {
-            '@styles': '/src/app/styles',
-            '@src': '/src/'
-        }
-    },
     server: {
         port: 3000,
         open: true
