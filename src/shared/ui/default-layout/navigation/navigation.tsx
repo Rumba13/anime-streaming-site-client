@@ -10,13 +10,16 @@ import {observer} from "mobx-react";
 export const Navigation = observer(() => {
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
+    const handleBrowserClick = (e: React.MouseEvent) => {
+        browseGenresPopupStore.open(e);
+        if (!browseGenresPopupStore.isOpened) {
+            e.preventDefault()
+        }
+    }
+
     return <nav className="navigation">
         <NavigationItem title="Home" link={ROUTES.HOME_PAGE}/>
-        <NavigationItem className="navigation-item--browse" title="Browse" link={ROUTES.SEARCH_PAGE} onClick={(e) => {
-            browseGenresPopupStore.setIsOpened(true);
-
-            e.preventDefault()
-        }}>
+        <NavigationItem title="Browse" link={ROUTES.SEARCH_PAGE} onClick={handleBrowserClick}>
             <ArrowIcon className="navigation-item__icon"/>
             <BrowseGenresPopup/>
         </NavigationItem>

@@ -1,0 +1,13 @@
+@use "@styles/variables.scss" as *;
+
+.genre {
+  display: block;
+  font-family: $item-font-family;
+  font-size: 16px;
+  transition: color $very-fast-animation-time;
+
+  &:hover {
+    color: white;
+  }
+
+}

@@ -23,7 +23,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.6.0",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "ts-pattern": "^5.7.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.27.1",

@@ -5,12 +5,17 @@ import {injectable} from "inversify";
 export class BrowseGenresPopupStore {
     constructor() {
         makeAutoObservable(this);
+        document.addEventListener("click", () => this.setIsOpened(false))
     }
 
-     public isOpened: boolean = false;
+    public isOpened: boolean = true;
 
     public setIsOpened = (isOpened: boolean) => {
-        console.log(this.isOpened,isOpened)
-        this.isOpened = isOpened;
+        setTimeout(() => this.isOpened = isOpened, 0)
+    }
+
+    public open(event: React.MouseEvent) {
+        event.stopPropagation();
+        this.setIsOpened(true);
     }
 }

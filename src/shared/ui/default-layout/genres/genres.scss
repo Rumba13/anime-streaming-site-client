@@ -1,0 +1,28 @@
+@use "@styles/variables.scss" as *;
+
+.genres {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  & .genres__title {
+    color: $weak-font-color;
+    font-size: 18px;
+  }
+
+  & .loading {
+    align-self: center;
+    margin: auto 0;
+  }
+
+  & .genres-container {
+    display: grid;
+    grid-template: 1fr 1fr 1fr  1fr 1fr / 1fr 1fr 1fr;
+    row-gap: 40px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+
+
+  }
+}

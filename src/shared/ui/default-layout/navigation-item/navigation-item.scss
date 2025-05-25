@@ -7,9 +7,7 @@
   font-size: 20px;
   transition: color $fast-animation-time;
 
-  .navigation-item__title {
 
-  }
 
   &.active {
     color: #ffffff;
@@ -29,6 +27,10 @@
   }
 
   &:hover {
-    color: #ffffff;
+    .navigation-item__title,
+    .navigation-item__icon {
+      color: #ffffff;
+
+    }
   }
 }
