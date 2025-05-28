@@ -19,30 +19,6 @@
     visibility: visible;
   }
 
-  & .featured {
-    & .featured__title {
-      color: $weak-font-color;
-      font-size: 18px;
-    }
-
-    & .featured-container {
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
-      gap: 25px 20px;
-
-      & .featured__item {
-        display: inline;
-        font-family: $item-font-family;
-        font-size: 16px;
-        transition: color $very-fast-animation-time;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
-  }
 
   & .vertical-line {
     margin: 0 20px 0 40px;

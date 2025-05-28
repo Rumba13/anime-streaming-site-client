@@ -1,0 +1,26 @@
+@use "/src/app/styles/variables.scss" as *;
+
+.quick-navigation {
+  & .quick-navigation__title {
+    color: $weak-font-color;
+    font-size: 18px;
+  }
+
+  & .quick-navigation-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 25px 20px;
+
+    & .quick-navigation__item {
+      display: inline;
+      font-family: $item-font-family;
+      font-size: 16px;
+      transition: color $very-fast-animation-time;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
