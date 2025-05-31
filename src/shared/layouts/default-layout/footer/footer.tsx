@@ -5,10 +5,16 @@ import {CompanyInfo} from "./company-info/company-info.tsx";
 import {AccountActions} from "./account-actions/account-actions.tsx";
 import {HorizontalLine} from "../../../ui/horizontal-line/horizontal-line.tsx";
 import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button.tsx";
+import {FC} from "react";
 
-export function Footer() {
+type PropsType = {
+    LanguageSelectorSlot: FC
+}
+
+
+export function Footer({LanguageSelectorSlot}:PropsType) {
+
     return <footer className="footer">
-
         <div className="footer__links">
             <QuickNavigation/>
             <SocialLinks/>
@@ -19,7 +25,7 @@ export function Footer() {
         <HorizontalLine/>
         <div className="footer__bottom">
             <p className="footer__copyright">© 2025 Epic Anime. All Rights Reserved</p>
-            {/*<LanguageSelector/>*/}
+            <LanguageSelectorSlot/>
         </div>
     </footer>
 }

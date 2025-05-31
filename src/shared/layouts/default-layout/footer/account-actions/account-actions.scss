@@ -1,12 +1,11 @@
 @use "/src/app/styles/variables" as *;
 
 .account-actions {
-
   .account-actions__title {
     display: block;
-    font-size: 24px;
-    font-family: $third-font-family;
     margin-bottom: 26px;
+    font-family: $third-font-family;
+    font-size: 24px;
   }
 
   .account-actions-list {

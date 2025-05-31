@@ -8,12 +8,13 @@ type PropsType = {
     children: ReactNode,
     SearchSlot: FC,
     className?: string,
+    LanguageSelectorSlot: FC
 }
 
-export function DefaultLayout({children, SearchSlot, className}: PropsType) {
+export function DefaultLayout({children, SearchSlot, className, LanguageSelectorSlot}: PropsType) {
     return <div className={clsx("default-layout", className)}>
         <Header SearchSlot={SearchSlot}/>
         {children}
-        <Footer/>
+        <Footer LanguageSelectorSlot={LanguageSelectorSlot}/>
     </div>
 }

@@ -2,11 +2,11 @@
 
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1;
   width: 100%;
   max-width: $content-width;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 auto;
 
   .header__middle {
