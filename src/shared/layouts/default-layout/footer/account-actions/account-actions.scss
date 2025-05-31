@@ -1,0 +1,21 @@
+@use "/src/app/styles/variables" as *;
+
+.account-actions {
+
+  .account-actions__title {
+    display: block;
+    font-size: 24px;
+    font-family: $third-font-family;
+    margin-bottom: 26px;
+  }
+
+  .account-actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px 20px;
+
+    .account-actions__item a {
+      font-size: 18px;
+    }
+  }
+}

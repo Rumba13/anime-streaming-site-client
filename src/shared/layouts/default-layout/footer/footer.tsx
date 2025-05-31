@@ -1,8 +1,8 @@
 import "./footer.scss";
 import {QuickNavigation} from "../../../ui/quick-navigation";
-import {SocialLinks} from "./connect-with-us/social-links.tsx";
-import {CompanyInfo} from "./company-info/company-info.tsx";
 import {SocialLinks} from "./social-links/social-links.tsx";
+import {CompanyInfo} from "./company-info/company-info.tsx";
+import {AccountActions} from "./account-actions/account-actions.tsx";
 import {HorizontalLine} from "../../../ui/horizontal-line/horizontal-line.tsx";
 import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button.tsx";
 
@@ -13,7 +13,7 @@ export function Footer() {
             <QuickNavigation/>
             <SocialLinks/>
             <CompanyInfo/>
-            <SocialLinks/>
+            <AccountActions/>
         </div>
         <ScrollToTopButton/>
         <HorizontalLine/>

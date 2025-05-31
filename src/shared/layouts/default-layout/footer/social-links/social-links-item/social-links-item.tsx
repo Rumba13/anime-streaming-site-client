@@ -1,4 +1,4 @@
-import "./connect-with-us-item.scss";
+import "./social-links-item.scss";
 import {GradientBorderedButton} from "../../../../../ui";
 import {JSX} from "react";
 
@@ -8,7 +8,7 @@ type PropsType = {
     link: string,
 }
 
-export function ConnectWithUsItem({title, icon, link}: PropsType) {
+export function SocialLinksItem({title, icon, link}: PropsType) {
     return <div className="connect-with-us-item">
         <GradientBorderedButton className="connect-with-us-item__icon">
             {icon}
