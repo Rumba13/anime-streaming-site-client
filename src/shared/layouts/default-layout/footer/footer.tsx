@@ -1,21 +1,25 @@
 import "./footer.scss";
 import {QuickNavigation} from "../../../ui/quick-navigation";
-import {ConnectWithUs} from "./connect-with-us/connect-with-us.tsx";
-import {AboutUs} from "./about-us/about-us.tsx";
-import {AccountActions} from "./account-actions/account-actions.tsx";
+import {SocialLinks} from "./connect-with-us/social-links.tsx";
+import {CompanyInfo} from "./company-info/company-info.tsx";
+import {SocialLinks} from "./social-links/social-links.tsx";
 import {HorizontalLine} from "../../../ui/horizontal-line/horizontal-line.tsx";
 import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button.tsx";
 
 export function Footer() {
     return <footer className="footer">
 
-        <div className="footer__container">
+        <div className="footer__links">
             <QuickNavigation/>
-            <ConnectWithUs/>
-            <AboutUs/>
-            <AccountActions/>
+            <SocialLinks/>
+            <CompanyInfo/>
+            <SocialLinks/>
         </div>
         <ScrollToTopButton/>
-        <HorizontalLine />
+        <HorizontalLine/>
+        <div className="footer__bottom">
+            <p className="footer__copyright">© 2025 Epic Anime. All Rights Reserved</p>
+            {/*<LanguageSelector/>*/}
+        </div>
     </footer>
 }

@@ -1,14 +1,12 @@
 @use "/src/app/styles/variables" as *;
 
 .footer {
-
   padding-bottom: 30px;
-
   width: 100%;
   max-width: $content-width;
   margin: 0 auto;
 
-  .footer__container {
+  .footer__links {
     display: flex;
     justify-content: space-between;
   }
@@ -31,5 +29,10 @@
   }
   .horizontal-line {
     margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .footer__copyright {
+    font-size: 18px;
+    font-family: $third-font-family;
   }
 }

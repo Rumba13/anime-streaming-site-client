@@ -1,7 +1,7 @@
-import "./about-us.scss";
+import "./company-info.scss";
 import {ListItem} from "../../../../ui/list-item/list-item.tsx";
 
-export function AboutUs() {
+export function CompanyInfo() {
     return <div className="about-us">
         <span className="about-us__title">叙 Epic Anime</span>
         <ul className="about-us__list">

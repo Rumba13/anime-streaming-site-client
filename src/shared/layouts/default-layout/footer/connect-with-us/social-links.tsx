@@ -5,7 +5,7 @@ import TwitterLogo from "../../../../../assets/images/twitter.svg?react"
 import InstagramLogo from "../../../../../assets/images/instagram.svg?react"
 import YoutubeLogo from "../../../../../assets/images/youtube.svg?react"
 
-export function ConnectWithUs() {
+export function SocialLinks() {
     return <div className="connect-with-us">
         <span className="connect-with-us__title">Connect with us</span>
         <ul className="connect-with-us__list">
