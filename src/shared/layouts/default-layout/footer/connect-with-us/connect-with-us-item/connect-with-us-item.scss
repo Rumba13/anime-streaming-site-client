@@ -1,0 +1,30 @@
+@use "/src/app/styles/variables" as *;
+
+.connect-with-us-item {
+  display: flex;
+
+  .connect-with-us-item__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .connect-with-us-item__title {
+    align-self: center;
+    margin-left: 10px;
+    font-family: $third-font-family;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: color $very-fast-animation-time;
+  }
+
+  &:hover {
+    .connect-with-us-item__title {
+      color: $weak-font-color;
+    }
+
+    .connect-with-us-item__icon::after {
+        background: $active-secondary-color;
+        inset: 0;
+    }
+  }
+}

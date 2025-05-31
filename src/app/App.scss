@@ -1,5 +1,11 @@
+@use "/src/app/styles/index" as *;
+
 #root {
   padding-top: 20px;
   background-color: #000000;
   color: #ffffff;
+}
+
+html {
+@include hide-scrollbar;
 }

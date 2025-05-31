@@ -3,7 +3,7 @@ import {Search} from "../../../features/search";
 import {DefaultLayout} from "../../../shared/layouts";
 
 export function HomePage() {
-    return <DefaultLayout SearchSlot={Search}>
-        HomePage content
+    return <DefaultLayout className="home-page" SearchSlot={Search}>
+        <div className="content">home-page</div>
     </DefaultLayout>
 }

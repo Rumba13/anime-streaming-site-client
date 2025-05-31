@@ -1,0 +1,35 @@
+@use "/src/app/styles/variables" as *;
+
+.footer {
+
+  padding-bottom: 30px;
+
+  width: 100%;
+  max-width: $content-width;
+  margin: 0 auto;
+
+  .footer__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .quick-navigation {
+    .quick-navigation__title {
+      color: white;
+      font-family: $third-font-family;
+      font-size: 24px;
+      margin-bottom: 26px;
+
+    }
+
+    .quick-navigation__item {
+      a {
+        font-family: $third-font-family;
+        font-size: 18px;
+      }
+    }
+  }
+  .horizontal-line {
+    margin-top: 20px;
+  }
+}

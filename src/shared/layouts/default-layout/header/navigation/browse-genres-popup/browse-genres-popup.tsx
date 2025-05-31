@@ -5,13 +5,13 @@ import clsx from "clsx/lite";
 import {observer} from "mobx-react";
 import {Genres} from "./genres/genres.tsx";
 import {VerticalLine} from "../../../../../ui";
-import {QuickNavigation} from "./quick-navigation/quick-navigation.tsx";
+import {QuickNavigation} from "../../../../../ui/quick-navigation";
 
 export const BrowseGenresPopup = observer(() => {
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
     return <div className={clsx("browse-genres", browseGenresPopupStore.isOpened && "opened")}>
-        <QuickNavigation/>
+        <QuickNavigation title="Featured"/>
         <VerticalLine/>
         <Genres/>
     </div>

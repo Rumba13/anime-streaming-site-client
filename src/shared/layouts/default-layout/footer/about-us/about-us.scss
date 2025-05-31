@@ -1,0 +1,20 @@
+@use "/src/app/styles/variables" as *;
+
+.about-us {
+
+  .about-us__title {
+    display: block;
+    color: $primary-color;
+    font-family: $secondary-font-family;
+    font-size: 24px;
+    margin-bottom: 26px;
+  }
+  .about-us__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .about-us__item a {
+    font-size: 18px;
+  }
+}
