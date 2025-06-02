@@ -22,9 +22,10 @@
 
     .select__option {
       font-family: $third-font-family;
-      font-size: 16px;
+      font-size: 18px;
       transition: background-color $fast-animation-time;
       padding: 6px 10px;
+      white-space: nowrap;
 
       &:hover {
         background-color:$active-secondary-color;
