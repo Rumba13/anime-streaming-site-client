@@ -5,11 +5,11 @@ import {useState} from "react";
 const languageOptions:SelectOption[] = [
     {
         value:"ru",
-        label:"ru",
+        label:"RUSSIAN (RU)",
     },
     {
         value:"en",
-        label:"en",
+        label:"ENGLISH (UK)",
     }
 ]
 

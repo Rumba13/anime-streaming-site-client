@@ -9,26 +9,87 @@ type PropsType = {
     onSelect: (selectedOption: SelectOption) => void,
 }
 
-export function Select({options, selectedOption, onSelect}: PropsType) {
-    const [isOpened, setIsOpened] = useState(false);
-    const openSelect = () => setIsOpened(true);
-    const closeSelect = () => setIsOpened(false);
+    export function Select({options, selectedOption, onSelect}: PropsType) {
+        const [isOpened, setIsOpened] = useState(false);
+        const [selectedIndex, setSelectedIndex] = useState(0);
+        const closeSelect = () => setIsOpened(false);
 
-    useEffect(() => {
-        document.addEventListener("click", closeSelect);
-    }, [])
+        const updateSelectedIndex = () => setSelectedIndex(options.findIndex(option => option.value === selectedOption.value));
 
-    const visibleOptions = options.map((option) => (
-        <li className="select__option" onClick={() => onSelect(option)}>
-            {option.label}
-        </li>
-    ))
+        const handleOpenSelect = () => {
+            updateSelectedIndex()
+            setIsOpened(true)
+        };
 
-    return <div className={clsx("select", isOpened && "opened")} onClick={e => e.stopPropagation()}>
-        <div className="select__title" onClick={openSelect}>{selectedOption.label}▼</div>
+        const handleOptionSelect = (selectedOption: SelectOption) => {
+            onSelect(selectedOption)
+            closeSelect();
+        }
 
-        <ul className="select__options">
-            {visibleOptions}
-        </ul>
-    </div>
-}
+        const handleKeyDown = (e: React.KeyboardEvent) => {
+            if (!isOpened) return
+
+            switch (e.key) {
+                case "ArrowDown": {
+                    e.preventDefault();
+                    if (selectedIndex !== -1 && selectedIndex !== options.length - 1) {
+                        setSelectedIndex(selectedIndex => selectedIndex + 1)
+                    }
+                    break
+                }
+                case "ArrowUp": {
+                    e.preventDefault();
+                    if (selectedIndex !== -1 && selectedIndex !== 0) {
+                        setSelectedIndex(selectedIndex => selectedIndex - 1)
+                    }
+                    break
+                }
+                case "Enter": {
+                    e.preventDefault();
+                    handleOptionSelect(options[selectedIndex]);
+                    break
+                }
+                case "Escape":
+                    closeSelect();
+                    break;
+            }
+        }
+
+        useEffect(() => {
+            document.addEventListener("click", closeSelect);
+
+            return () => document.removeEventListener("click", closeSelect);
+        }, [])
+
+        const renderOptions = options.map((option, index) => (
+            <li
+                className={clsx("select__option", index === selectedIndex && "select__option--selected")}
+                onClick={() => {
+                    setSelectedIndex(index)
+                    handleOptionSelect(option)
+                }}
+                id={`option-${option.value}`}
+                role="option"
+                aria-selected={selectedOption.value === option.value}
+            >
+                {option.label}
+            </li>
+        ))
+
+        return <div className={clsx("select", isOpened && "opened")} onClick={e => e.stopPropagation()}>
+            <button
+                className="select__title"
+                aria-haspopup="listbox"
+                aria-expanded={isOpened}
+                aria-controls="select-dropdown"
+                onClick={handleOpenSelect}
+                onKeyDown={handleKeyDown}>
+                {selectedOption.label}
+                <span aria-hidden="true">▼</span>
+            </button>
+
+            <ul className="select__options">
+                {renderOptions}
+            </ul>
+        </div>
+    }
