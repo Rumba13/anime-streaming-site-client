@@ -19,10 +19,9 @@
     display: grid;
     margin-top: 20px;
     margin-bottom: 5px;
+    margin-right: 20px;
     grid-template: 1fr 1fr 1fr  1fr 1fr / 1fr 1fr 1fr;
     row-gap: 40px;
-
-
-
+    column-gap: 40px;
   }
 }

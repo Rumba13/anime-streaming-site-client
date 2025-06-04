@@ -1,2 +1,2 @@
 export {Select} from "./select.tsx"
-export type {SelectOption} from "./select-option.ts"
+export type {SelectOptionType} from "./select-option-type.ts"

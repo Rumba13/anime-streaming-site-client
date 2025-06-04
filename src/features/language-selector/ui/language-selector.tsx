@@ -1,10 +1,10 @@
 import "./language-selector.scss";
-import {Select, SelectOption} from "../../../shared/ui/select";
+import {Select, SelectOptionType} from "../../../shared/ui/select";
 import {useTranslation} from "react-i18next";
 
 export function LanguageSelector() {
     const {i18n,t} = useTranslation();
-    const languageOptions: SelectOption[] = [
+    const languageOptions: SelectOptionType[] = [
         {
             value: "ru",
             label: t("RUSSIAN"),
@@ -17,7 +17,7 @@ export function LanguageSelector() {
 
     const selectedOption = languageOptions.find(({value}) => value === i18n.language)!
 
-    const handleSelect = ({value}: SelectOption) => {
+    const handleSelect = ({value}: SelectOptionType) => {
         void i18n.changeLanguage(value)
     }
 

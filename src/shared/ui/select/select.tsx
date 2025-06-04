@@ -1,95 +1,125 @@
 import "./select.scss";
-import {SelectOption} from "./select-option.ts";
-import {useEffect, useState} from "react";
+import {SelectOptionType} from "./select-option-type.ts";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import clsx from "clsx/lite";
 
-type PropsType = {
-    options: SelectOption[],
-    selectedOption: SelectOption,
-    onSelect: (selectedOption: SelectOption) => void,
+type SelectOptionProps = {
+    isActive: boolean;
+    isSelected: boolean;
+    onClick: (event: React.MouseEvent<HTMLLIElement>) => void;
+    title: string
+    value: string
 }
 
-    export function Select({options, selectedOption, onSelect}: PropsType) {
-        const [isOpened, setIsOpened] = useState(false);
-        const [selectedIndex, setSelectedIndex] = useState(0);
-        const closeSelect = () => setIsOpened(false);
+function SelectOption({isSelected, isActive, title, value, onClick}: SelectOptionProps) {
+    return <li
+        className={clsx("select__option", isActive && "select__option--selected")}
+        key={value}
+        onClick={onClick}
+        id={`option-${value}`}
+        role="option"
+        aria-selected={isSelected}
+    >
+        {title}
+    </li>
+}
 
-        const updateSelectedIndex = () => setSelectedIndex(options.findIndex(option => option.value === selectedOption.value));
+type SelectProps = {
+    options: SelectOptionType[],
+    selectedOption: SelectOptionType,
+    onSelect: (selectedOption: SelectOptionType) => void,
+}
 
-        const handleOpenSelect = () => {
-            updateSelectedIndex()
-            setIsOpened(true)
-        };
+export function Select({options, selectedOption, onSelect}: SelectProps) {
+    const [isOpened, setIsOpened] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const closeSelect = () => setIsOpened(false);
+    const selectRef = useRef<HTMLDivElement>(null);
 
-        const handleOptionSelect = (selectedOption: SelectOption) => {
-            onSelect(selectedOption)
-            closeSelect();
-        }
+    useEffect(() => {
+        setActiveIndex(options.findIndex(option => option.value === selectedOption.value))
+    }, [options, selectedOption.value,]);
 
-        const handleKeyDown = (e: React.KeyboardEvent) => {
-            if (!isOpened) return
-
-            switch (e.key) {
-                case "ArrowDown": {
-                    e.preventDefault();
-                    if (selectedIndex !== -1 && selectedIndex !== options.length - 1) {
-                        setSelectedIndex(selectedIndex => selectedIndex + 1)
-                    }
-                    break
-                }
-                case "ArrowUp": {
-                    e.preventDefault();
-                    if (selectedIndex !== -1 && selectedIndex !== 0) {
-                        setSelectedIndex(selectedIndex => selectedIndex - 1)
-                    }
-                    break
-                }
-                case "Enter": {
-                    e.preventDefault();
-                    handleOptionSelect(options[selectedIndex]);
-                    break
-                }
-                case "Escape":
-                    closeSelect();
-                    break;
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!selectRef.current?.contains(target)) {
+                closeSelect();
             }
         }
 
-        useEffect(() => {
-            document.addEventListener("click", closeSelect);
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, [])
 
-            return () => document.removeEventListener("click", closeSelect);
-        }, [])
+    const handleOptionSelect = useCallback((selectedOption: SelectOptionType) => {
+        onSelect(selectedOption)
+        closeSelect();
+    }, [onSelect, closeSelect])
 
-        const renderOptions = options.map((option, index) => (
-            <li
-                className={clsx("select__option", index === selectedIndex && "select__option--selected")}
-                onClick={() => {
-                    setSelectedIndex(index)
-                    handleOptionSelect(option)
-                }}
-                id={`option-${option.value}`}
-                role="option"
-                aria-selected={selectedOption.value === option.value}
-            >
-                {option.label}
-            </li>
-        ))
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (!isOpened) return
 
-        return <div className={clsx("select", isOpened && "opened")} onClick={e => e.stopPropagation()}>
-            <button
-                className="select__title"
-                aria-haspopup="listbox"
-                aria-expanded={isOpened}
-                aria-controls="select-dropdown"
-                onClick={handleOpenSelect}
-                onKeyDown={handleKeyDown}>
-                {selectedOption.label}
-                <span aria-hidden="true">▼</span>
-            </button>
-
-            <ul className="select__options">
-                {renderOptions}
-            </ul>
-        </div>
+        switch (e.key) {
+            case "ArrowDown": {
+                e.preventDefault();
+                if (activeIndex !== -1 && activeIndex !== options.length - 1) {
+                    setActiveIndex(activeIndex => activeIndex + 1)
+                }
+                break
+            }
+            case "ArrowUp": {
+                e.preventDefault();
+                if (activeIndex > 0) {
+                    setActiveIndex(activeIndex => activeIndex - 1)
+                }
+                break
+            }
+            case "Enter":
+            case " ": {
+                e.preventDefault();
+                handleOptionSelect(options[activeIndex]);
+                break
+            }
+            case "Escape":
+            case "Tab":
+                closeSelect();
+                break;
+        }
     }
+
+    const optionsContent = useMemo(() => {
+        if(options.length === 0) {
+            return <></>
+        }
+
+        return options.map((option, index) => <SelectOption
+            isActive={index === activeIndex}
+            isSelected={selectedOption.value === option.value}
+            onClick={() => {
+                setActiveIndex(index)
+                handleOptionSelect(option)
+            }}
+            title={option.label}
+            value={option.value}/>
+        )
+    }, [options, selectedOption.value, setActiveIndex, handleOptionSelect, activeIndex])
+
+    return <div className={clsx("select", isOpened && "opened")} ref={selectRef}>
+        <button
+            className="select__trigger"
+            aria-haspopup="listbox"
+            aria-controls="select-dropdown"
+            aria-expanded={isOpened}
+            aria-activedescendant={isOpened ? `option-${options[activeIndex]?.value}` : undefined}
+            onClick={() => setIsOpened(true)}
+            onKeyDown={handleKeyDown}>
+            {selectedOption.label}
+            <span className="select__arrow" aria-hidden="true">▼</span>
+        </button>
+
+        <ul className="select__options">
+            {optionsContent}
+        </ul>
+    </div>
+}
