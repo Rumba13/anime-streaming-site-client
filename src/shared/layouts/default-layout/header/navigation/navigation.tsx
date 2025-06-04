@@ -7,8 +7,10 @@ import {BrowseGenresPopupStore} from "./browse-genres-popup/browse-genres-popup-
 import {ROUTES} from "../../../../lib/routes.ts";
 import {BrowseGenresPopup} from "./browse-genres-popup/browse-genres-popup.tsx";
 import clsx from "clsx/lite";
+import {useTranslation} from "react-i18next";
 
 export const Navigation = observer(() => {
+    const { t } = useTranslation();
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
     const handleBrowserClick = (e: React.MouseEvent) => {
@@ -19,12 +21,16 @@ export const Navigation = observer(() => {
     }
 
     return <nav className="navigation">
-        <NavigationItem title="Home" link={ROUTES.HOME_PAGE}/>
-        <NavigationItem className={clsx(browseGenresPopupStore.isOpened && "highlight")} title="Browse"
-                        link={ROUTES.SEARCH_PAGE} onClick={handleBrowserClick}>
+        <NavigationItem title={t('Home')} link={ROUTES.HOME_PAGE}/>
+        <NavigationItem
+            className={clsx(browseGenresPopupStore.isOpened && "highlight")}
+            title={t('Browse')}
+            link={ROUTES.SEARCH_PAGE}
+            onClick={handleBrowserClick}
+        >
             <ArrowIcon className="navigation-item__icon"/>
             <BrowseGenresPopup/>
         </NavigationItem>
-        <NavigationItem title="Trailers" link={ROUTES.TRAILERS_PAGE}/>
+        <NavigationItem title={t('Trailers')} link={ROUTES.TRAILERS_PAGE}/>
     </nav>
 })

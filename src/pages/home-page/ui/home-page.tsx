@@ -5,6 +5,6 @@ import {LanguageSelector} from "../../../features/language-selector";
 
 export function HomePage() {
     return <DefaultLayout className="home-page" SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
-        <div className="content">home-page</div>
+        <div className="content"></div>
     </DefaultLayout>
 }

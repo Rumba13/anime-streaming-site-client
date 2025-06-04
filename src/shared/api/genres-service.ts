@@ -1,4 +1,4 @@
-import {Genre} from "../types/genre.ts";
+import {Genre} from "../types";
 import {injectable} from "inversify";
 import {wait} from "../lib/wait.ts";
 

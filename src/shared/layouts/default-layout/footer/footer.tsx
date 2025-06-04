@@ -13,7 +13,6 @@ type PropsType = {
 
 
 export function Footer({LanguageSelectorSlot}:PropsType) {
-
     return <footer className="footer">
         <div className="footer__links">
             <QuickNavigation/>

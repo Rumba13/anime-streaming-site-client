@@ -1,0 +1,16 @@
+export type GenreType =
+    | 'Action'
+    | 'Adventure'
+    | 'Comedy'
+    | 'Drama'
+    | 'Fantasy'
+    | 'Magical'
+    | 'Romance'
+    | 'Shounen'
+    | 'Shoujo'
+    | 'Supernatural'
+    | 'Thriller'
+    | 'Psychological'
+    | 'Sports'
+    | 'Historical'
+    | 'School';

@@ -8,7 +8,7 @@
     "emitDecoratorMetadata": true,
     "module": "ESNext",
     "skipLibCheck": true,
-
+    "resolveJsonModule": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

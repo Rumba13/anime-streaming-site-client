@@ -6,10 +6,12 @@ import {match, P} from "ts-pattern";
 import {observer} from "mobx-react";
 import {Genre} from "./genre/genre.tsx";
 import {Loading} from "../../../../../../ui";
+import {useTranslation} from "react-i18next";
 
 
 export const Genres = observer(() => {
     const genresStore = useInjection(GenresStore)
+    const {t} = useTranslation()
 
     useEffect(() => {
         void genresStore.loadGenres()
@@ -24,7 +26,7 @@ export const Genres = observer(() => {
         .exhaustive()
 
     return <div className="genres">
-        <span className="genres__title">Genres</span>
+        <span className="genres__title">{t("Genres")}</span>
         {content}
     </div>
 })
