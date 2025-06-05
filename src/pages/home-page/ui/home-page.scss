@@ -1,5 +1,9 @@
+@use "/src/app/styles/variables" as *;
+
 .home-page {
   & .content {
-    height: 70vh;
+    max-width: $content-width;
+    margin: 0 auto;
+
   }
 }
