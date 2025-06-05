@@ -5,6 +5,11 @@
   flex: 1;
   flex-direction: column;
 
+  &.genres--loading {
+    width: 200px;
+    margin-right: 20px;
+  }
+
   & .genres__title {
     color: $weak-font-color;
     font-size: 18px;
@@ -13,6 +18,7 @@
   & .loading {
     align-self: center;
     margin: auto 0;
+    padding: 10px;
   }
 
   & .genres-container {

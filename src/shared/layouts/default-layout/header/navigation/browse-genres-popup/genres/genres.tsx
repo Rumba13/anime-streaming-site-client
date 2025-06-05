@@ -7,6 +7,7 @@ import {observer} from "mobx-react";
 import {Genre} from "./genre/genre.tsx";
 import {Loading} from "../../../../../../ui";
 import {useTranslation} from "react-i18next";
+import clsx from "clsx/lite";
 
 
 export const Genres = observer(() => {
@@ -25,7 +26,7 @@ export const Genres = observer(() => {
             {genres.map(genre => <Genre {...genre}/>)}</div>)
         .exhaustive()
 
-    return <div className="genres">
+    return <div className={clsx("genres",genresStore.isLoading && "genres--loading")}>
         <span className="genres__title">{t("Genres")}</span>
         {content}
     </div>

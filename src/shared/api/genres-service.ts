@@ -5,7 +5,7 @@ import {wait} from "../lib/wait.ts";
 @injectable()
 export class GenresService {
     async loadGenres(): Promise<Genre[]> {
-        await wait(2500)
+        await wait(1200)
         
         return [
             {name: "Action", id: "1"},
