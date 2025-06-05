@@ -1,6 +1,6 @@
 import "./select.scss";
 import {SelectOptionType} from "./select-option-type.ts";
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import { useEffect, useMemo, useRef, useState} from "react";
 import clsx from "clsx/lite";
 
 type SelectOptionProps = {
@@ -19,6 +19,7 @@ function SelectOption({isSelected, isActive, title, value, onClick}: SelectOptio
         id={`option-${value}`}
         role="option"
         aria-selected={isSelected}
+        aria-label={title}
     >
         {title}
     </li>
@@ -33,12 +34,12 @@ type SelectProps = {
 export function Select({options, selectedOption, onSelect}: SelectProps) {
     const [isOpened, setIsOpened] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-    const closeSelect = () => setIsOpened(false);
+    const closeSelect = () => setIsOpened(false)
     const selectRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setActiveIndex(options.findIndex(option => option.value === selectedOption.value))
-    }, [options, selectedOption.value,]);
+    }, [options, selectedOption.value]);
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -52,10 +53,10 @@ export function Select({options, selectedOption, onSelect}: SelectProps) {
         return () => document.removeEventListener("click", handleClickOutside);
     }, [])
 
-    const handleOptionSelect = useCallback((selectedOption: SelectOptionType) => {
+    const handleOptionSelect = (selectedOption: SelectOptionType) => {
         onSelect(selectedOption)
         closeSelect();
-    }, [onSelect, closeSelect])
+    }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (!isOpened) return
@@ -85,11 +86,19 @@ export function Select({options, selectedOption, onSelect}: SelectProps) {
             case "Tab":
                 closeSelect();
                 break;
+            case "Home":
+                e.preventDefault();
+                setActiveIndex(0);
+                break
+            case "End":
+                e.preventDefault();
+                setActiveIndex(options.length - 1);
+                break
         }
     }
 
     const optionsContent = useMemo(() => {
-        if(options.length === 0) {
+        if (options.length === 0) {
             return <></>
         }
 
