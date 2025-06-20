@@ -3,12 +3,13 @@ import {Search} from "../../../features/search";
 import {DefaultLayout} from "../../../shared/layouts";
 import {LanguageSelector} from "../../../features/language-selector";
 import {WelcomeSection} from "./welcome-section/welcome-section.tsx";
+import {ExploreMoreSection} from "./explore-more-section/explore-more-section.tsx";
 
 export function HomePage() {
     return <DefaultLayout className="home-page" SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
         <div className="content">
             <WelcomeSection/>
-            <span className="arrow">→</span>
+            <ExploreMoreSection/>
         </div>
     </DefaultLayout>
 }
