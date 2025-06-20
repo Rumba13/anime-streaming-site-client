@@ -1,7 +1,9 @@
 import "./review-preview.scss";
 import {Review} from "../../../../../shared/types";
+import { useTranslation } from "react-i18next";
 
 export function ReviewPreview() {
+    const { t } = useTranslation();
 
     const review: Review = {
         title: "Major 'One Piece' Revelation Unveiled!\"",
@@ -9,9 +11,9 @@ export function ReviewPreview() {
     }
 
     return <div className="review-preview">
-        <h2 className="review-preview__title">Epic Feed</h2>
+        <h2 className="review-preview__title">{t("Epic Feed")}</h2>
         <h3 className="review-preview__sub-title">{review.title}</h3>
         <p className="review-preview__content">{review.content}</p>
-        <a className="review-preview__link" href="">Read More</a>
+        <a className="review-preview__link" href="">{t("Read More")}</a>
     </div>
 }

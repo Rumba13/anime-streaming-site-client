@@ -5,20 +5,23 @@ import {NavigateButton} from "../../../../shared/ui/navigate-button/navigate-but
 import TriangleIcon from "../../../../assets/images/triangle.svg?react"
 import DiagonalArrowIcon from "../../../../assets/images/diagonal-arrow.svg?react"
 import {ReviewPreview} from "./review-preview/review-preview.tsx";
+import { useTranslation } from "react-i18next";
 
 export function WelcomeSection() {
+    const { t } = useTranslation();
+
     return <section className="welcome-section">
         <div className="welcome-section__left">
-            <span className="welcome-section__title">Welcome to
+            <span className="welcome-section__title">{t("Welcome to")}
                 <span className="welcome-section__highlight"> EpicAnime</span>
             </span>
             <span className="welcome-section__sub-title">
-                Embark on a Journey of Endless Stories and Epic Adventures.
+                {t("Embark on a Journey of Endless Stories and Epic Adventures.")}
             </span>
             <div className="welcome-section__buttons">
-                <NavigateButton className="welcome-section__button" title="Explore Now" href="#"
+                <NavigateButton className="welcome-section__button" title={t("Explore Now")} href="#"
                                 icon={<DiagonalArrowIcon/>}/>
-                <NavigateButton className="welcome-section__button--red" title="Start Watching" href="#"
+                <NavigateButton className="welcome-section__button--red" title={t("Start Watching")} href="#"
                                 icon={<TriangleIcon/>}/>
             </div>
             <ReviewPreview/>
