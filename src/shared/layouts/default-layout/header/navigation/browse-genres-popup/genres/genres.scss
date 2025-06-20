@@ -17,17 +17,16 @@
 
   & .loading {
     align-self: center;
-    margin: auto 0;
     padding: 10px;
+    margin: auto 0;
   }
 
   & .genres-container {
     display: grid;
     margin-top: 20px;
-    margin-bottom: 5px;
     margin-right: 20px;
+    margin-bottom: 5px;
+    gap: 40px;
     grid-template: 1fr 1fr 1fr  1fr 1fr / 1fr 1fr 1fr;
-    row-gap: 40px;
-    column-gap: 40px;
   }
 }

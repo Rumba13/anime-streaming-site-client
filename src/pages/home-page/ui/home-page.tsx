@@ -8,6 +8,7 @@ export function HomePage() {
     return <DefaultLayout className="home-page" SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
         <div className="content">
             <WelcomeSection/>
+            <span className="arrow">→</span>
         </div>
     </DefaultLayout>
 }

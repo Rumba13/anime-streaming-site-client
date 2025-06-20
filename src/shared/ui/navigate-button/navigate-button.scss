@@ -1,0 +1,21 @@
+@use "/src/app/styles/variables" as *;
+
+.navigate-button {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: $background-color;
+  font-family: $primary-font-family;
+  font-size: 16px;
+  text-align: center;
+
+  & .navigate-button__title {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    filter: brightness(85%);
+  }
+}

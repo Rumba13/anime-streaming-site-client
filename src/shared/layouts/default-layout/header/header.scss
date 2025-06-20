@@ -1,6 +1,7 @@
 @use "/src/app/styles/variables" as *;
 
 .header {
+  z-index: 2;
   display: flex;
   width: 100%;
   max-width: $content-width;
@@ -8,7 +9,6 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  z-index: 2;
 
   .header__middle {
     display: flex;
