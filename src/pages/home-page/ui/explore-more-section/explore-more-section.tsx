@@ -11,7 +11,6 @@ export function ExploreMoreSection() {
     return <section className="explore-more-section">
         <img className="explore-more-section__image" src={ExploreMoreImage} alt={"ExploreMoreImage"}/>
         <h2 className="explore-more-section__title">{t("Wondering What's Beyond?")}</h2>
-
         <NavigateButton className="welcome-section__button" title={t("Explore Now")} href="#"
                         icon={<DiagonalArrowIcon/>}/>
     </section>

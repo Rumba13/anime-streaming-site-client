@@ -9,6 +9,7 @@ import {container} from "./container.ts";
 
 
 function App() {
+
     return <Provider container={container} key={container.id}>
         <RouterProvider router={router}/>
     </Provider>

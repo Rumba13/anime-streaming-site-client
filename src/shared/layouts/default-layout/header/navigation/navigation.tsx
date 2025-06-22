@@ -13,11 +13,11 @@ export const Navigation = observer(() => {
     const { t } = useTranslation();
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
-    const handleBrowserClick = (e: React.MouseEvent) => {
-        browseGenresPopupStore.open(e);
+    const handleOpenPopupClick = (e: React.MouseEvent) => {
         if (!browseGenresPopupStore.isOpened) {
             e.preventDefault()
         }
+        browseGenresPopupStore.open(e);
     }
 
     return <nav className="navigation">
@@ -26,7 +26,7 @@ export const Navigation = observer(() => {
             className={clsx(browseGenresPopupStore.isOpened && "highlight")}
             title={t('Browse')}
             link={ROUTES.SEARCH_PAGE}
-            onClick={handleBrowserClick}
+            onClick={handleOpenPopupClick}
         >
             <ArrowIcon className="navigation-item__icon"/>
             <BrowseGenresPopup/>

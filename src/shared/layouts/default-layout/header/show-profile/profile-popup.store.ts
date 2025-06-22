@@ -1,9 +1,9 @@
-import {makeObservable, override} from "mobx";
 import {injectable} from "inversify";
-import {BasePopupStore} from "../../../../../model/base-popup.store.ts";
+import {BasePopupStore} from "../../../../model/base-popup.store.ts";
+import {makeObservable, override} from "mobx";
 
 @injectable()
-export class BrowseGenresPopupStore extends BasePopupStore {
+export class ProfilePopupStore extends BasePopupStore {
     constructor() {
         super();
         makeObservable(this, {
