@@ -1,7 +1,6 @@
-import "./select.scss";
 import {SelectOptionType} from "./select-option-type.ts";
 import { useEffect, useMemo, useRef, useState} from "react";
-import clsx from "clsx/lite";
+import {selectContainerStyle, selectOptionsStyle, selectOptionStyle, selectTriggerStyle} from "./select.styles.ts";
 
 type SelectOptionProps = {
     isActive: boolean;
@@ -13,7 +12,7 @@ type SelectOptionProps = {
 
 function SelectOption({isSelected, isActive, title, value, onClick}: SelectOptionProps) {
     return <li
-        className={clsx("select__option", isActive && "select__option--selected")}
+        css={selectOptionStyle(isActive)}
         key={value}
         onClick={onClick}
         id={`option-${value}`}
@@ -110,24 +109,26 @@ export function Select({options, selectedOption, onSelect}: SelectProps) {
                 handleOptionSelect(option)
             }}
             title={option.label}
-            value={option.value}/>
+            value={option.value}
+            key={option.value}
+        />
         )
     }, [options, selectedOption.value, setActiveIndex, handleOptionSelect, activeIndex])
 
-    return <div className={clsx("select", isOpened && "opened")} ref={selectRef}>
+    return <div css={selectContainerStyle} ref={selectRef}>
         <button
-            className="select__trigger"
+            css={selectTriggerStyle}
             aria-haspopup="listbox"
             aria-controls="select-dropdown"
             aria-expanded={isOpened}
             aria-activedescendant={isOpened ? `option-${options[activeIndex]?.value}` : undefined}
-            onClick={() => setIsOpened(true)}
+            onClick={() => setIsOpened(isOpened => !isOpened)}
             onKeyDown={handleKeyDown}>
             {selectedOption.label}
-            <span className="select__arrow" aria-hidden="true">▼</span>
+            <span aria-hidden="true">▼</span>
         </button>
 
-        <ul className="select__options">
+        <ul css={selectOptionsStyle(isOpened)}>
             {optionsContent}
         </ul>
     </div>

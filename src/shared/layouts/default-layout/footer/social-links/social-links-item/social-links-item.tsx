@@ -1,6 +1,7 @@
-import "./social-links-item.scss";
+import "./social-links-item.styles.ts";
 import {GradientBorderedButton} from "../../../../../ui";
 import {JSX} from "react";
+import {socialLinksItem, socialLinksItemIcon, socialLinksItemTitle} from "./social-links-item.styles.ts";
 
 type PropsType = {
     icon: JSX.Element,
@@ -9,11 +10,11 @@ type PropsType = {
 }
 
 export function SocialLinksItem({title, icon, link}: PropsType) {
-    return <div className="connect-with-us-item">
-        <GradientBorderedButton className="connect-with-us-item__icon">
+    return <div css={socialLinksItem}>
+        <GradientBorderedButton css={socialLinksItemIcon}>
             {icon}
         </GradientBorderedButton>
-        <a className="connect-with-us-item__title" href={link}>
+        <a css={socialLinksItemTitle} href={link}>
             {title}
         </a>
     </div>

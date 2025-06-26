@@ -6,12 +6,14 @@ import {
 import {router} from "./routes.ts";
 import {Provider} from "inversify-react";
 import {container} from "./container.ts";
+import {ThemeProvider} from "./theme/theme-provider.tsx";
 
 
 function App() {
-
     return <Provider container={container} key={container.id}>
-        <RouterProvider router={router}/>
+        <ThemeProvider>
+            <RouterProvider router={router}/>
+        </ThemeProvider>
     </Provider>
 }
 

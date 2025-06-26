@@ -1,0 +1,40 @@
+import {AnimeImages} from "./anime-images.ts";
+
+export type Anime = {
+    mal_id: number;
+    url: string;
+    images: AnimeImages;
+    trailer: string;
+    approved: boolean;
+    titles: Title[];
+    title: string;
+    title_english: string | null;
+    title_japanese: string;
+    title_synonyms: string[];
+    type: string;
+    source: string;
+    episodes: number | null;
+    status: string;
+    airing: boolean;
+    aired: string;
+    duration: string;
+    rating: string;
+    score: number | null;
+    scored_by: number | null;
+    rank: number;
+    popularity: number;
+    members: number;
+    favorites: number;
+    synopsis: string;
+    background: string;
+    season: string | null;
+    year: number | null;
+    broadcast: string;
+    producers: string[];
+    licensors: string[];
+    studios: string[];
+    genres: string[];
+    explicit_genres: string[];
+    themes: string[];
+    demographics: string[];
+}

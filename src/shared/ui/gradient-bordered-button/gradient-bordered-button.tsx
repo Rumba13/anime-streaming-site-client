@@ -1,14 +1,19 @@
-import "./gradient-bordered-button.scss";
-import {HTMLAttributes, ReactNode} from "react";
-import clsx from "clsx/lite";
+import { HTMLAttributes, ReactNode } from "react";
+import { gradientBorderedButton } from "./gradient-bordered-button.styles";
+import { Interpolation, Theme } from "@emotion/react";
 
 type PropsType = {
-    children: ReactNode,
-} & HTMLAttributes<HTMLButtonElement>
+    children: ReactNode;
+    styles?: Interpolation<Theme>;
+} & HTMLAttributes<HTMLButtonElement>;
 
-export function GradientBorderedButton({children, className, ...buttonProps}: PropsType) {
-    return <button className={clsx("gradient-bordered-button", className)} {...buttonProps} >
-        {children}
-    </button>
+export function GradientBorderedButton({ children, styles, ...buttonProps }: PropsType) {
+    return (
+        <button
+            css={(theme) => [styles,gradientBorderedButton(theme), ]}
+            {...buttonProps}
+        >
+            {children}
+        </button>
+    );
 }
-

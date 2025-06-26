@@ -1,18 +1,18 @@
-import "./scroll-to-top-button.scss";
+import "./scroll-to-top-button.styles.ts";
 import {GradientBorderedButton} from "../../../../ui";
 import ArrowIcon from "../../../../../assets/images/narrow-arrow.svg?react"
+import {scrollToTopButton} from "./scroll-to-top-button.styles.ts";
 
 export function ScrollToTopButton() {
-
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             left: 0,
-            behavior: 'smooth' // This enables smooth scrolling
+            behavior: 'smooth'
         });
     }
 
-    return <GradientBorderedButton className="scroll-to-top-button" onClick={scrollToTop} >
+    return <GradientBorderedButton styles={scrollToTopButton} onClick={scrollToTop} >
         <ArrowIcon/>
     </GradientBorderedButton>
 }

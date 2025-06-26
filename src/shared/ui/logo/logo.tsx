@@ -1,13 +1,13 @@
-import "./logo.scss";
+import "./logo.styles.ts";
 import {ROUTES} from "../../lib/routes.ts";
 import {HTMLAttributes} from "react";
-import clsx from "clsx/lite";
+import {logo, logoSlogan, logoTitle} from "./logo.styles.ts";
 
 type PropsType = {} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href'>
 
 export function Logo({...anchorProps}: PropsType) {
-    return <a {...anchorProps} className={clsx("logo", anchorProps.className)} href={ROUTES.HOME_PAGE}>
-        <span className="logo__title">叙 Epic Anime</span>
-        <span className="logo__slogan">Laugh, Watch, Repeat!</span>
+    return <a css={logo} {...anchorProps} href={ROUTES.HOME_PAGE}>
+        <span css={logoTitle}>叙 Epic Anime</span>
+        <span css={logoSlogan}>Laugh, Watch, Repeat!</span>
     </a>
 }

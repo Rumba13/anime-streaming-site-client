@@ -1,5 +1,10 @@
-import "./vertical-line.scss";
+import {verticalLine} from "./vertical-line.styles.ts";
+import {Interpolation, Theme} from "@emotion/react";
 
-export function VerticalLine() {
-    return <div className="vertical-line"></div>
+type PropsType = {
+    styles: Interpolation<Theme>
+}
+
+export function VerticalLine({styles}:PropsType) {
+    return <div css={[verticalLine,styles]}></div>
 }

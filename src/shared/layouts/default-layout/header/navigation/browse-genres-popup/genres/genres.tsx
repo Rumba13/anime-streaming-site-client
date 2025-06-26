@@ -1,4 +1,4 @@
-import "./genres.scss";
+import "./genres.styles.ts";
 import {useEffect} from "react";
 import {useInjection} from "inversify-react";
 import {GenresStore} from "../../../../../../model";
@@ -7,7 +7,13 @@ import {observer} from "mobx-react";
 import {Genre} from "./genre/genre.tsx";
 import {Loading} from "../../../../../../ui";
 import {useTranslation} from "react-i18next";
-import clsx from "clsx/lite";
+import {
+    genresContainerStyles,
+    genresLoadingSpinnerStyles,
+    genresLoadingStyles,
+    genresStyles,
+    genresTitleStyles
+} from "./genres.styles.ts";
 
 
 export const Genres = observer(() => {
@@ -19,15 +25,15 @@ export const Genres = observer(() => {
     }, [genresStore])
 
     const content = match(genresStore)
-        .with({isLoading: true}, () => <Loading/>)
+        .with({isLoading: true}, () => <Loading styles={genresLoadingSpinnerStyles}/>)
         .with({isError: true}, () => <>Error</>)
         .with({genres: undefined}, () => <></>)
-        .with({genres: P.array()}, ({genres}) => <div className="genres-container">
+        .with({genres: P.array()}, ({genres}) => <div css={genresContainerStyles}>
             {genres.map(genre => <Genre {...genre}/>)}</div>)
         .exhaustive()
 
-    return <div className={clsx("genres",genresStore.isLoading && "genres--loading")}>
-        <span className="genres__title">{t("Genres")}</span>
+    return <div css={[genresStyles, genresStore.isLoading && genresLoadingStyles ]}>
+        <span css={genresTitleStyles}>{t("Genres")}</span>
         {content}
     </div>
 })

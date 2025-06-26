@@ -1,15 +1,16 @@
-import "./list-item.scss"
+import "./list-item.styles.ts"
 import {ReactNode} from "react";
-import clsx from "clsx/lite";
+import {listItemLink} from "./list-item.styles.ts";
+import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
     children: ReactNode
     link: string,
-    className?: string
+    styles?: Interpolation<Theme>
 }
 
-export function ListItem({link, children, className}: PropsType) {
-    return <li className={clsx("list-item", className)}>
-        <a className="list-item__link" href={link}>{children}</a>
+export function ListItem({link, children,styles}: PropsType) {
+    return <li css={styles}>
+        <a css={listItemLink} href={link}>{children}</a>
     </li>
 }

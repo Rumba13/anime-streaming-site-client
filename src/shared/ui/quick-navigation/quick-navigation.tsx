@@ -1,24 +1,36 @@
-import "./quick-navigation.scss";
+import "./quick-navigation.styles.ts";
 import {ROUTES} from "../../lib/routes.ts";
 import {ListItem} from "../list-item/list-item.tsx";
 import {useTranslation} from "react-i18next";
+import {
+    quickNavigation,
+    quickNavigationItem,
+    quickNavigationList,
+    quickNavigationTitle
+} from "./quick-navigation.styles.ts";
+import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
-    title?: string
+    title?: string,
+    style?: Interpolation<Theme>,
+    titleStyle?: Interpolation<Theme>,
+    listStyle?: Interpolation<Theme>,
+    listItemStyle?: Interpolation<Theme>,
 }
 
-export function QuickNavigation({title}: PropsType) {
-    const { t } = useTranslation();
+export function QuickNavigation({title, style, titleStyle, listStyle, listItemStyle}: PropsType) {
+    const {t} = useTranslation();
 
-    return <div className="quick-navigation">
-        <span className="quick-navigation__title">{title || t('Quick Navigation')}</span>
-        <ul className="quick-navigation-list">
-            <ListItem className="quick-navigation__item" link="1">{t('Browse Popular')}</ListItem>
-            <ListItem className="quick-navigation__item" link="2">{t('Browse News')}</ListItem>
-            <ListItem className="quick-navigation__item" link="3">{t('Interviews')}</ListItem>
-            <ListItem className="quick-navigation__item" link="4">{t('Guides')}</ListItem>
-            <ListItem className="quick-navigation__item" link="5">{t('Announcements')}</ListItem>
-            <ListItem className="quick-navigation__item" link={ROUTES.TRAILERS_PAGE}>{t('Trailers')}</ListItem>
+    return <div css={[quickNavigation, style]}>
+        <span css={[quickNavigationTitle, titleStyle]}>{title || t('Quick Navigation')}</span>
+        <ul css={[quickNavigationList, listStyle]}>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="1">{t('Browse Popular')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="2">{t('Browse News')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="3">{t('Interviews')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="4">{t('Guides')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="5">{t('Announcements')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]}
+                      link={ROUTES.TRAILERS_PAGE}>{t('Trailers')}</ListItem>
         </ul>
     </div>
 }

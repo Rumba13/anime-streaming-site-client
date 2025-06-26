@@ -1,13 +1,13 @@
-import "./navigation.scss";
-import {NavigationItem} from "../navigation-item/navigation-item.tsx";
+import "./navigation.styles.ts";
+import {NavigationItem} from "./navigation-item/navigation-item.tsx";
 import ArrowIcon from "@src/assets/images/arrow.svg?react"
 import {useInjection} from "inversify-react";
 import {observer} from "mobx-react";
 import {BrowseGenresPopupStore} from "./browse-genres-popup/browse-genres-popup-store.ts";
 import {ROUTES} from "../../../../lib/routes.ts";
 import {BrowseGenresPopup} from "./browse-genres-popup/browse-genres-popup.tsx";
-import clsx from "clsx/lite";
 import {useTranslation} from "react-i18next";
+import {navigationItemHighlightStyles, navigationItemIconStyles, navigationStyles} from "./navigation.styles.ts";
 
 export const Navigation = observer(() => {
     const { t } = useTranslation();
@@ -20,15 +20,15 @@ export const Navigation = observer(() => {
         browseGenresPopupStore.open(e);
     }
 
-    return <nav className="navigation">
+    return <nav css={navigationStyles}>
         <NavigationItem title={t('Home')} link={ROUTES.HOME_PAGE}/>
         <NavigationItem
-            className={clsx(browseGenresPopupStore.isOpened && "highlight")}
+            styles={browseGenresPopupStore.isOpened && navigationItemHighlightStyles}
             title={t('Browse')}
             link={ROUTES.SEARCH_PAGE}
             onClick={handleOpenPopupClick}
         >
-            <ArrowIcon className="navigation-item__icon"/>
+            <ArrowIcon css={navigationItemIconStyles}/>
             <BrowseGenresPopup/>
         </NavigationItem>
         <NavigationItem title={t('Trailers')} link={ROUTES.TRAILERS_PAGE}/>
