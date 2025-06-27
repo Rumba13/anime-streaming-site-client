@@ -7,6 +7,7 @@ import {JikanStatusStore} from "../features/jikan-status";
 import {ProfilePopupStore} from "../shared/layouts/default-layout/header/show-profile/profile-popup.store.ts";
 import {ThemeStore} from "./theme/theme.store.ts";
 import {AnimationsSwitchStore} from "../features/animations-switch";
+import {WelcomeBannersStore} from "../pages/home-page/ui/welcome-section/welcome-banners.store.ts";
 
 export const container = new Container();
 container.bind<BrowseGenresPopupStore>(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -17,3 +18,4 @@ container.bind<JikanStatusStore>(JikanStatusStore).toSelf().inSingletonScope()
 container.bind<ProfilePopupStore>(ProfilePopupStore).toSelf().inSingletonScope()
 container.bind<ThemeStore>(ThemeStore).toSelf().inSingletonScope()
 container.bind<AnimationsSwitchStore>(AnimationsSwitchStore).toSelf().inSingletonScope()
+container.bind<WelcomeBannersStore>(WelcomeBannersStore).toSelf().inSingletonScope()

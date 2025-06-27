@@ -18,8 +18,6 @@ export class AnimeService {
                     limit: 1
                 }
             });
-            console.log(await this.loadBanners())
-
             return response.status === 200;
         } catch (error) {
             console.log(error);
@@ -33,7 +31,9 @@ export class AnimeService {
             const pagination: JikanPagination<Anime> = (await this.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
                     order_by: "popularity",
-                    sort: "asc"
+                    sort: "asc",
+                    limit: "12",
+                    // q: "one"
                 }
             })).data;
 

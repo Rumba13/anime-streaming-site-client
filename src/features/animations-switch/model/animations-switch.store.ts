@@ -1,10 +1,17 @@
 import {injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
+import {makePersistable} from "mobx-persist-store";
 
 @injectable()
 export class AnimationsSwitchStore {
     constructor() {
         makeAutoObservable(this);
+
+        void makePersistable(this, {
+            name: "AnimationsSwitchStore",
+            properties: ["isAnimationsEnabled"],
+            storage: window.localStorage
+        })
     }
 
     public isAnimationsEnabled: boolean = true;
