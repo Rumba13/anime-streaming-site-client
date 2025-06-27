@@ -7,6 +7,7 @@ import {ProfilePopupStore} from "./profile-popup.store.ts";
 import {observer} from "mobx-react";
 import {useEffect, useRef} from "react";
 import {profile, profileTitle, showProfileButton, showProfileButtonWrapper} from "./show-profile.styles.ts";
+import {AnimationsSwitch} from "../../../../../features/animations-switch";
 
 export const ShowProfile = observer(() => {
     const profilePopupStore = useInjection(ProfilePopupStore)
@@ -24,6 +25,7 @@ export const ShowProfile = observer(() => {
         <div css={profile(profilePopupStore.isOpened)} ref={popupRef}>
             <h2 css={profileTitle}>Profile</h2>
             <JikanStatus/>
+            <AnimationsSwitch/>
         </div>
     </div>
 })

@@ -9,17 +9,7 @@ export const sectionStyle = () => css`
     height: 100vh;
     margin-bottom: 130px;
     column-gap: 30px;
-
-    &::before {
-        position: absolute;
-        z-index: -1;
-        inset: -64px 0 0;
-        background: url('/src/assets/images/background-gradient.svg'),
-        url("/src/assets/images/background-1.png") no-repeat center -50px;
-        content: '';
-        filter: blur(0.5px);
-        transform: rotate(15deg);
-    }
+    
 `;
 
 export const leftSectionStyle = css`
@@ -84,6 +74,7 @@ export const iconWrapperStyle = css`
 export const iconStyle = css`
   width: 100%;
   max-height: 70vh;
+    
   @media (max-width: 900px) {
     width: 70%;
     max-width: 300px;
@@ -97,4 +88,90 @@ export const iconStyle = css`
 export const titleIconStyle = css`
   width: 356px;
   align-self: center;
+`;
+const masonryGap = "60px"
+const masonryMargin = "70px"
+
+export const imageEvenColumnStyle = css`
+   padding-top: ${masonryMargin};
+`;
+
+
+export const backgroundWrapperStyle = css`
+    position: absolute;
+    display: flex;
+    height: fit-content;
+    filter: blur(0.5px);
+    transform: rotate(15deg);
+    z-index: -1;
+    inset: 0;
+    left: 80px;
+`;
+
+export const backgroundStyle = css`
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    column-gap: ${masonryGap};
+    height: 1160px;
+    margin-top: -300px;
+    margin-left: 100px;
+    margin-bottom: 0;
+    overflow: hidden;
+    
+    &:before {
+        content: '';
+        position: absolute;
+        inset: -300px 0 0 0;
+        background: url('/src/assets/images/background-gradient.svg');
+    }
+`;
+
+const masonryImageHeight = "450px";
+
+export const imageColumnStyle = css`
+    display: flex;
+    flex-direction: column;
+    gap: ${masonryGap};
+`;
+
+
+export const backgroundImageStyle = css`
+    width: 300px !important;
+    max-width: 300px !important;
+    min-width: 300px !important;
+    height: ${masonryImageHeight} !important;
+    min-height: ${masonryImageHeight} !important;
+    max-height: ${masonryImageHeight} !important;
+    flex-shrink: 0;
+`;
+
+export const wrapperStyle = css`
+    position: relative;
+    z-index: -1;
+    display: flex;
+    gap: ${masonryGap};
+`;
+
+export const animatedWrapperStyle = css`
+    will-change: transform;
+    animation: move-background 20s infinite linear;
+    transform: translateZ(0);
+    
+    @keyframes move-background {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(calc(-1 * (${masonryImageHeight} + ${masonryGap}) * 3));
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+`;
+
+export const pausedAnimatedWrapperStyle = css`
+    animation-play-state: paused;
 `;

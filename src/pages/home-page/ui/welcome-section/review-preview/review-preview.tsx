@@ -1,8 +1,13 @@
 import {reviewPreviewStyle, reviewPreviewTitle, reviewPreviewSubTitle, reviewPreviewContent, reviewPreviewLink} from "./review-preview.styles.ts";
 import {Review} from "../../../../../shared/types";
 import { useTranslation } from "react-i18next";
+import {Interpolation, Theme} from "@emotion/react";
 
-export function ReviewPreview() {
+type PropsType = {
+    styles?:Interpolation<Theme>
+}
+
+export function ReviewPreview({styles}:PropsType) {
     const { t } = useTranslation();
 
     const review: Review = {
@@ -10,7 +15,7 @@ export function ReviewPreview() {
         content: "Creator Eiichiro Oda reveals a game-changing event in 'One Piece'! What's next for Luffy and the crew? Dive into the latest scoop on the beloved series."
     }
 
-    return <div css={reviewPreviewStyle}>
+    return <div css={[reviewPreviewStyle,styles]}>
         <h2 css={reviewPreviewTitle}>{t("Epic Feed")}</h2>
         <h3 css={reviewPreviewSubTitle}>{review.title}</h3>
         <p css={reviewPreviewContent}>{review.content}</p>
