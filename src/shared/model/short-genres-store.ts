@@ -4,7 +4,7 @@ import {GenresService} from "../api";
 import {Genre} from "../types";
 
 @injectable()
-export class GenresStore {
+export class ShortGenresStore {
     constructor(
         @inject(GenresService)
         public readonly genresService: GenresService,
@@ -12,7 +12,8 @@ export class GenresStore {
         makeAutoObservable(this)
     }
 
-    public genres?: Genre[];
+    public mainGenres?: Genre[];
+    public setGenres = (genres?: Genre[]) => this.mainGenres = genres;
     public isLoading: boolean = false;
     public isError: boolean = false;
 
@@ -23,7 +24,7 @@ export class GenresStore {
         this.setIsLoading(true)
 
         try {
-            this.genres = await this.genresService.loadGenres();
+            this.setGenres(await this.genresService.loadMainGenres())
         } catch (err) {
             console.error(err);
             this.setIsError(true)

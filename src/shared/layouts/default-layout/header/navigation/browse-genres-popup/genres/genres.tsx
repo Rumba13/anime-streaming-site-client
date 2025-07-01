@@ -1,7 +1,7 @@
 import "./genres.styles.ts";
 import {useEffect} from "react";
 import {useInjection} from "inversify-react";
-import {GenresStore} from "../../../../../../model";
+import {ShortGenresStore} from "../../../../../../model";
 import {match, P} from "ts-pattern";
 import {observer} from "mobx-react";
 import {Genre} from "./genre/genre.tsx";
@@ -17,7 +17,7 @@ import {
 
 
 export const Genres = observer(() => {
-    const genresStore = useInjection(GenresStore)
+    const genresStore = useInjection(ShortGenresStore)
     const {t} = useTranslation()
 
     useEffect(() => {
@@ -27,10 +27,10 @@ export const Genres = observer(() => {
     const content = match(genresStore)
         .with({isLoading: true}, () => <Loading styles={genresLoadingSpinnerStyles}/>)
         .with({isError: true}, () => <>Error</>)
-        .with({genres: undefined}, () => <></>)
-        .with({genres: P.array()}, ({genres}) => <div css={genresContainerStyles}>
-            {genres.map(genre => <Genre {...genre}/>)}</div>)
-        .exhaustive()
+        .with({mainGenres: undefined}, () => <></>)
+        .with({mainGenres: P.array(), isLoading: false, isError: false}, ({mainGenres}) => <div css={genresContainerStyles}>
+            {mainGenres.map(genre => <Genre key={genre.mal_id} {...genre}/>)}</div>)
+        .exhaustive();
 
     return <div css={[genresStyles, genresStore.isLoading && genresLoadingStyles ]}>
         <span css={genresTitleStyles}>{t("Genres")}</span>

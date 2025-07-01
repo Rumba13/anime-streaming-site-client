@@ -52,6 +52,7 @@ export const WelcomeBackground = observer(() => {
             <div
                 css={[wrapperStyle, animatedWrapperStyle, !animationsSwitchStore.isAnimationsEnabled && pausedAnimatedWrapperStyle]}>
                 {columns.map(({images, delay}, index) => <div
+                    key={delay}
                     css={[imageColumnStyle, index % 2 === 0 && imageEvenColumnStyle]}>
                     <BannerColumn delay={`${delay}ms`} isBannersShown={isBannersShown} images={images}/>
                 </div>)}

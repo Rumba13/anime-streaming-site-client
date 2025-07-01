@@ -1,1 +1,1 @@
-export {GenresStore} from "./genres.store.ts"
+export {ShortGenresStore} from "./short-genres-store.ts"

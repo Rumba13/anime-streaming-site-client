@@ -1,28 +1,79 @@
-import {Genre} from "../types";
+import {Genre, GenreType} from "../types";
 import {injectable} from "inversify";
-import {wait} from "../lib/wait.ts";
+import {inject} from "inversify";
+import {JikanClient} from "./jikan-client.ts";
+
+type GetAnimeGenresResponse = {
+    data: Genre[];
+}
 
 @injectable()
 export class GenresService {
+    constructor(
+        @inject(JikanClient)
+        private readonly jikanClient: JikanClient
+    ) {
+
+    }
+
+    private filteredOutGenres: GenreType[] = [
+        "Adult Cast",
+        "Avant Garde",
+        "Award Winning",
+        "Boys Love",
+        "CGDCT",
+        "Childcare",
+        "Crossdressing",
+        "Delinquents",
+        "Ecchi",
+        "Educational",
+        "Erotica",
+        "Harem",
+        "Hentai",
+        "Idols (Female)",
+        "Idols (Male)",
+        "Gore",
+        "Pets",
+        "Josei",
+        "Love Status Quo",
+        "Magical Sex Shift",
+        "Mahou Shoujo",
+        "Gag Humor",
+        "Iyashikei",
+        "Otaku Culture",
+        "Reverse Harem",
+        "Performing Arts",
+        "High Stakes Game",
+        "Girls Love",
+        "Showbiz"
+    ]
+    private mainGenres: GenreType[] = [
+        "Action",
+        "Fantasy",
+        "Horror",
+        "Adventure",
+        "Romance",
+        "Psychological",
+        "Comedy",
+        "Shounen",
+        "Sports",
+        "Drama",
+        "Shoujo",
+        "Historical",
+        "Fantasy",
+        "Supernatural",
+        "School"
+    ]
+
     async loadGenres(): Promise<Genre[]> {
-        await wait(1200)
-        
-        return [
-            {name: "Action", id: "1"},
-            {name: "Magical", id: "2"},
-            {name: "Thriller", id: "3"},
-            {name: "Adventure", id: "4"},
-            {name: "Romance", id: "5"},
-            {name: "Psychological", id: "6"},
-            {name: "Comedy", id: "7"},
-            {name: "Shounen", id: "8"},
-            {name: "Sports", id: "9"},
-            {name: "Drama", id: "10"},
-            {name: "Shoujo", id: "11"},
-            {name: "Historical", id: "12"},
-            {name: "Fantasy", id: "13"},
-            {name: "Supernatural", id: "14"},
-            {name: "School", id: "15"},
-        ];
+        let genres: Genre[] = (await this.jikanClient.connection.get<GetAnimeGenresResponse>("/genres/anime")).data.data;
+        genres = genres.filter(({name}) => !this.filteredOutGenres.includes(name));
+        return genres
+    }
+
+    async loadMainGenres(): Promise<Genre[]> {
+        let genres: Genre[] = (await this.jikanClient.connection.get<GetAnimeGenresResponse>("/genres/anime")).data.data;
+        genres = genres.filter(({name}) => this.mainGenres.includes(name));
+        return genres
     }
 }

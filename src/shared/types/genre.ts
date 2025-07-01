@@ -2,6 +2,8 @@ import {ID} from "./id.ts";
 import {GenreType} from "./genre-type.ts";
 
 export type Genre = {
-    id: ID,
+    mal_id: ID,
     name: GenreType
+    url:string;
+    count: number;
 }

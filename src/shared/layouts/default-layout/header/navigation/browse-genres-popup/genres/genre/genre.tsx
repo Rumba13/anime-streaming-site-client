@@ -5,8 +5,8 @@ import {genreStyles} from "./genre.styles.ts";
 
 type PropsType = GenreType;
 
-export function Genre({name, id}: PropsType) {
+export function Genre({name, mal_id}: PropsType) {
     const {t} = useTranslation();
 
-    return <a css={genreStyles} href={id}>{t(name)}</a>
+    return <a css={genreStyles} href={mal_id}>{t(name)}</a>
 }

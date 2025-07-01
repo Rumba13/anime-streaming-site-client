@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {AnimeService} from "../../../shared/api/anime-service.ts";
+import {JikanClient} from "../../../shared/api/jikan-client.ts";
 
 @injectable()
 export class JikanStatusStore {
@@ -15,8 +15,8 @@ export class JikanStatusStore {
     }
 
     constructor(
-        @inject(AnimeService)
-        public readonly animeService: AnimeService,
+        @inject(JikanClient)
+        public readonly jikanClient: JikanClient,
     ) {
         makeAutoObservable(this);
 
@@ -24,7 +24,7 @@ export class JikanStatusStore {
     }
 
     public async checkStatus() {
-        const status = await this.animeService.checkJikanApiStatus();
+        const status = await this.jikanClient.checkJikanApiStatus();
         this.setStatus(status)
     }
 }

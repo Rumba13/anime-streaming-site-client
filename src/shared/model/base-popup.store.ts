@@ -5,6 +5,8 @@ export class BasePopupStore {
     private popupRef: HTMLElement | null = null;
     private cleanupHandler?: () => void;
 
+    static activePopup: BasePopupStore | null = null;
+
     constructor() {
         makeObservable(this, {
             isOpened: observable,
@@ -43,10 +45,19 @@ export class BasePopupStore {
 
     public open = (event: React.MouseEvent) => {
         event.stopPropagation();
+
+        if (BasePopupStore.activePopup && BasePopupStore.activePopup !== this) {
+            BasePopupStore.activePopup.close();
+        }
+
+        BasePopupStore.activePopup = this;
         this.setIsOpened(true);
     };
 
     public close = () => {
+        if (BasePopupStore.activePopup === this) {
+            BasePopupStore.activePopup = null;
+        }
         this.setIsOpened(false);
     };
 
