@@ -1,4 +1,4 @@
-import {makeObservable, override} from "mobx";
+import {action, makeObservable, observable, override} from "mobx";
 import {injectable} from "inversify";
 import {BasePopupStore} from "../../../../../model/base-popup.store.ts";
 
@@ -12,7 +12,9 @@ export class BrowseGenresPopupStore extends BasePopupStore {
             close: override,
             dispose: override,
             setIsOpened: override,
-            setPopupRef:override
+            setPopupRef:override,
+            wasOpened: override,
+            setWasOpened: override,
         })
     }
 }

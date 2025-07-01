@@ -1,33 +1,35 @@
 import {css, keyframes, Theme} from "@emotion/react";
 
+const hiddenStyles = css`
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+`
+const openedStyles = css`
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+`
+
 export const fadeIn = keyframes`
     from {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(20px);
+        ${hiddenStyles}
     }
     to {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0px);
+        ${openedStyles}
     }
 `
 
 export const fadeOut = keyframes`
     from {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0px);
-
+        ${openedStyles}
     }
     to {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(20px);
+        ${hiddenStyles}
     }
 `
 
-export const popupStyles = (isOpened:boolean) => (theme:Theme) => css`
+export const popupStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Theme) => css`
     position: absolute;
     top: calc(100% + 5px);
     padding: 20px 0 20px 30px;
@@ -35,5 +37,7 @@ export const popupStyles = (isOpened:boolean) => (theme:Theme) => css`
     border-radius: 20px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
-    animation: ${isOpened ? fadeIn: fadeOut} ${theme.fastAnimationTime} forwards;
+    animation: ${isOpened ? fadeIn : wasOpened ? fadeOut: "none"} ${theme.fastAnimationTime} forwards;
+    will-change: opacity, transform;
+    ${hiddenStyles}
 `

@@ -18,7 +18,7 @@ export const BasePopup = observer(({popupStore, children,styles}: PropsType) => 
         return popupStore.dispose;
     }, []);
 
-    return <div ref={popupRef} css={[popupStyles(popupStore.isOpened),styles]}>
+    return <div ref={popupRef} css={[popupStyles(popupStore.isOpened, popupStore.wasOpened),styles]}>
         {children}
     </div>
 })

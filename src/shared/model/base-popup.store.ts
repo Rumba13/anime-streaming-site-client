@@ -2,6 +2,15 @@ import {action, flow, makeObservable, observable} from "mobx";
 
 export class BasePopupStore {
     public isOpened: boolean = false;
+    public setIsOpened = (isOpened: boolean) => {
+        this.isOpened = isOpened;
+    };
+
+    public wasOpened: boolean = false;
+    public setWasOpened = (wasOpened: boolean) => {
+        this.wasOpened = wasOpened;
+    };
+
     private popupRef: HTMLElement | null = null;
     private cleanupHandler?: () => void;
 
@@ -10,6 +19,8 @@ export class BasePopupStore {
     constructor() {
         makeObservable(this, {
             isOpened: observable,
+            wasOpened: observable,
+            setWasOpened: action,
             open: action,
             close: action,
             setIsOpened: action,
@@ -52,6 +63,7 @@ export class BasePopupStore {
 
         BasePopupStore.activePopup = this;
         this.setIsOpened(true);
+        this.setWasOpened(true);
     };
 
     public close = () => {
@@ -61,7 +73,5 @@ export class BasePopupStore {
         this.setIsOpened(false);
     };
 
-    public setIsOpened = (isOpened: boolean) => {
-        this.isOpened = isOpened;
-    };
+
 }

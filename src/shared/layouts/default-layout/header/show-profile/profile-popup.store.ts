@@ -12,7 +12,9 @@ export class ProfilePopupStore extends BasePopupStore {
             close: override,
             dispose: override,
             setIsOpened: override,
-            setPopupRef:override
+            setPopupRef:override,
+            wasOpened: override,
+            setWasOpened: override,
         })
     }
 }
