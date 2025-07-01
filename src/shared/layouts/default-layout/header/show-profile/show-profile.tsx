@@ -6,7 +6,13 @@ import {useInjection} from "inversify-react";
 import {ProfilePopupStore} from "./profile-popup.store.ts";
 import {observer} from "mobx-react";
 import {useEffect, useRef} from "react";
-import {profile, profileTitle, showProfileButton, showProfileButtonWrapper} from "./show-profile.styles.ts";
+import {
+    noBackgroundStyles,
+    profile,
+    profileTitle,
+    showProfileButton,
+    showProfileButtonWrapper
+} from "./show-profile.styles.ts";
 import {AnimationsSwitch} from "../../../../../features/animations-switch";
 
 export const ShowProfile = observer(() => {
@@ -24,8 +30,9 @@ export const ShowProfile = observer(() => {
         </GradientBorderedButton>
         <div css={profile(profilePopupStore.isOpened)} ref={popupRef}>
             <h2 css={profileTitle}>Profile</h2>
-            <JikanStatus/>
-            <AnimationsSwitch/>
+
+            <JikanStatus styles={noBackgroundStyles}/>
+            <AnimationsSwitch styles={noBackgroundStyles}/>
         </div>
     </div>
 })

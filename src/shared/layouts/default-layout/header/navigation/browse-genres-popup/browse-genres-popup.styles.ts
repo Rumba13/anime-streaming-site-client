@@ -9,7 +9,8 @@ export const browseGenresStyles = (theme: Theme) => css`
     padding: 20px 0 20px 30px;
     border: 1px solid ${theme.borderColor};
     border-radius: 20px;
-    background-color: ${theme.backgroundColor};
+    background-color: ${theme.modalBackgroundColor};
+    backdrop-filter: blur(5px);
     opacity: 0;
     visibility: hidden;
 `;

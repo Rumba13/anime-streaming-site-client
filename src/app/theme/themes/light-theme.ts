@@ -3,6 +3,7 @@ export const lightTheme = {
     activeSecondaryColor: '#343434',
     backgroundColor: '#dcdcdc',
     borderColor: '#666666',
+    modalBackgroundColor: "",
     weakFontColor: '#8D8D8D',
     primaryFontFamily: 'Nunito',
     secondaryFontFamily: 'Limelight',
