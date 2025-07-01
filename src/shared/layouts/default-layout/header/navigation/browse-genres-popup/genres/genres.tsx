@@ -28,7 +28,7 @@ export const Genres = observer(() => {
         .with({isLoading: true}, () => <Loading styles={genresLoadingSpinnerStyles}/>)
         .with({isError: true}, () => <>Error</>)
         .with({mainGenres: undefined}, () => <></>)
-        .with({mainGenres: P.array(), isLoading: false, isError: false}, ({mainGenres}) => <div css={genresContainerStyles}>
+        .with({mainGenres: P.array()}, ({mainGenres}) => <div css={genresContainerStyles}>
             {mainGenres.map(genre => <Genre key={genre.mal_id} {...genre}/>)}</div>)
         .exhaustive();
 

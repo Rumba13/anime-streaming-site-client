@@ -9,19 +9,10 @@ export const showProfileButtonWrapper = css`
   position: relative;
 `;
 
-export const profile = (isOpened:boolean) => (theme: Theme) => css`
-    position: absolute;
-    top: calc(100% + 5px);
+export const profile = () => css`
     padding: 5px;
     right: 0;
-    z-index: 300;
     width: 300px;
-    background-color: ${theme.modalBackgroundColor};
-    visibility: ${isOpened ? "visible" : "hidden"};
-    border: 1px solid ${theme.borderColor};
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-
 `;
 
 export const profileTitle = (theme: Theme) => css`
@@ -33,6 +24,6 @@ export const profileTitle = (theme: Theme) => css`
   text-align: center;
 `;
 
-export const noBackgroundStyles = (theme: Theme) => css`
+export const noBackgroundStyles = () => css`
     background-color: rgba(0,0,0,0);
 `;

@@ -1,4 +1,4 @@
-import { css, Theme } from "@emotion/react";
+import {css, Theme} from "@emotion/react";
 
 export const browseGenresStyles = (theme: Theme) => css`
     position: absolute;
@@ -11,13 +11,6 @@ export const browseGenresStyles = (theme: Theme) => css`
     border-radius: 20px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
-    opacity: 0;
-    visibility: hidden;
-`;
-
-export const browseGenresOpenedStyles =  css`
-    opacity: 1;
-    visibility: visible;
 `;
 
 export const verticalLineStyles =  css`

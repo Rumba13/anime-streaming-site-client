@@ -4,6 +4,7 @@ export const genresStyles = css`
     display: flex;
     flex: 1;
     flex-direction: column;
+    min-width: 100px;
 `;
 
 export const genresLoadingStyles = css`

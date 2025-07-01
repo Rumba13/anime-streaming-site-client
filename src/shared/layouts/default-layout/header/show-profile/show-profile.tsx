@@ -5,7 +5,6 @@ import {JikanStatus} from "../../../../../features/jikan-status";
 import {useInjection} from "inversify-react";
 import {ProfilePopupStore} from "./profile-popup.store.ts";
 import {observer} from "mobx-react";
-import {useEffect, useRef} from "react";
 import {
     noBackgroundStyles,
     profile,
@@ -14,25 +13,21 @@ import {
     showProfileButtonWrapper
 } from "./show-profile.styles.ts";
 import {AnimationsSwitch} from "../../../../../features/animations-switch";
+import {BasePopup} from "../../../../ui/base-popup/base-popup.tsx";
 
 export const ShowProfile = observer(() => {
     const profilePopupStore = useInjection(ProfilePopupStore)
-    const popupRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        profilePopupStore.setPopupRef(popupRef.current);
-        return profilePopupStore.dispose;
-    }, []);
 
     return <div css={showProfileButtonWrapper}>
         <GradientBorderedButton css={showProfileButton} onClick={profilePopupStore.open}>
             <UserIcon/>
         </GradientBorderedButton>
-        <div css={profile(profilePopupStore.isOpened)} ref={popupRef}>
+
+        <BasePopup styles={profile} popupStore={profilePopupStore}>
             <h2 css={profileTitle}>Profile</h2>
 
             <JikanStatus styles={noBackgroundStyles}/>
             <AnimationsSwitch styles={noBackgroundStyles}/>
-        </div>
+        </BasePopup>
     </div>
 })
