@@ -1,0 +1,12 @@
+<svg
+        width="20"
+        height="20"
+        viewBox="30 25 40 50"
+        xmlns="http://www.w3.org/2000/svg"
+>
+    <path
+            d="M40,30 Q40,25 45,25 L70,45 Q75,50 70,55 L45,75 Q40,75 40,70 L40,30"
+            fill="currentColor"
+            stroke="currentColor"
+    />
+</svg>

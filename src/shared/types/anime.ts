@@ -1,4 +1,6 @@
 import {AnimeImages} from "./anime-images.ts";
+import {Genre} from "./genre.ts";
+import {PgRating} from "./pg-rating.ts";
 
 export type Anime = {
     mal_id: number;
@@ -6,7 +8,7 @@ export type Anime = {
     images: AnimeImages;
     trailer: string;
     approved: boolean;
-    titles: Title[];
+    titles: string[];
     title: string;
     title_english: string | null;
     title_japanese: string;
@@ -16,9 +18,13 @@ export type Anime = {
     episodes: number | null;
     status: string;
     airing: boolean;
-    aired: string;
+    aired: {
+        from: string;
+        to: string;
+        string:string;
+    };
     duration: string;
-    rating: string;
+    rating: PgRating;
     score: number | null;
     scored_by: number | null;
     rank: number;
@@ -33,7 +39,7 @@ export type Anime = {
     producers: string[];
     licensors: string[];
     studios: string[];
-    genres: string[];
+    genres: Genre[];
     explicit_genres: string[];
     themes: string[];
     demographics: string[];

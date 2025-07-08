@@ -16,7 +16,7 @@ export class GenresService {
 
     }
 
-    private filteredOutGenres: GenreType[] = [
+    private adultGenres: GenreType[] = [
         "Adult Cast",
         "Avant Garde",
         "Award Winning",
@@ -67,7 +67,7 @@ export class GenresService {
 
     async loadGenres(): Promise<Genre[]> {
         let genres: Genre[] = (await this.jikanClient.connection.get<GetAnimeGenresResponse>("/genres/anime")).data.data;
-        genres = genres.filter(({name}) => !this.filteredOutGenres.includes(name));
+        genres = genres.filter(({name}) => !this.adultGenres.includes(name));
         return genres
     }
 
