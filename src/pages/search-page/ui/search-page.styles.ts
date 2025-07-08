@@ -1,4 +1,5 @@
 import {css, Theme} from "@emotion/react";
+import {AnimeCardType} from "../../../features/anime-card-switch/model/anime-card-type.ts";
 
 export const searchPageContentStyles = (theme: Theme) => css`
     display: grid;
@@ -25,17 +26,25 @@ export const searchBarStyles = (theme:Theme) => css`
     grid-area: search-bar;
     background-color: ${theme.backgroundColor};
     height: 40px;
-    padding: 5px 10px;
     border-radius: 5px;
 `
-export const animeList = () => css`
-    display: grid;
+export const animeList = (layout:AnimeCardType) => css`
     gap: 20px;
     grid-area: anime-list;
-    grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
+
     min-width: 100%;
     width:100%;
     height: 100%;
     padding-bottom: 500px;
+    
+    ${layout === "Mini" ? css`
+    display: grid;
+                grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
+            ` : 
+            css`
+                display: flex;
+                flex-direction: column;
+
+            `}
 `

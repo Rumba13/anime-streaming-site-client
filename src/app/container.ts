@@ -9,6 +9,7 @@ import {ThemeStore} from "./theme/theme.store.ts";
 import {AnimationsSwitchStore} from "../features/animations-switch";
 import {WelcomeBannersStore} from "../pages/home-page/ui/welcome-section/welcome-banners.store.ts";
 import {JikanClient} from "../shared/api/jikan-client.ts";
+import {AnimeCardSwitchStore} from "../features/anime-card-switch/model/anime-card-switch.store.ts";
 
 export const container = new Container();
 container.bind<BrowseGenresPopupStore>(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -21,3 +22,4 @@ container.bind<ThemeStore>(ThemeStore).toSelf().inSingletonScope()
 container.bind<AnimationsSwitchStore>(AnimationsSwitchStore).toSelf().inSingletonScope()
 container.bind<WelcomeBannersStore>(WelcomeBannersStore).toSelf().inSingletonScope()
 container.bind<JikanClient>(JikanClient).toSelf().inSingletonScope()
+container.bind<AnimeCardSwitchStore>(AnimeCardSwitchStore).toSelf().inSingletonScope()
