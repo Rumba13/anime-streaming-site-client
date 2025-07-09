@@ -1,3 +1,4 @@
+import React, {useEffect, useRef, useState} from "react";
 import {
     animePopup,
     titleStyles,
@@ -21,6 +22,8 @@ type PropsType = {
     genres: Genre[]
 }
 
+type PopupPositionType = 'right' | 'left'
+
 export function AnimeMiniCardPopup({
                                        synopsis,
                                        title,
@@ -31,7 +34,28 @@ export function AnimeMiniCardPopup({
                                        genres,
                                        airedFrom
                                    }: PropsType) {
-    return <div css={animePopup}>
+    const popupRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState<PopupPositionType>('left');
+
+    useEffect(() => {
+        const handlePosition = () => {
+            const popup = popupRef.current;
+            if (!popup) return;
+            const rect = popup.getBoundingClientRect();
+
+            if (rect.right > window.innerWidth) {
+                setPosition('right');
+            } else if (rect.left < 0) {
+                setPosition('left');
+            }
+        };
+
+        handlePosition();
+        window.addEventListener('resize', handlePosition);
+        return () => window.removeEventListener('resize', handlePosition);
+    }, []);
+
+    return <div ref={popupRef} css={animePopup(position === "left")}>
         <h3 css={titleStyles}>{title}</h3>
         <span css={synopsisStyles}>{synopsis}</span>
 
@@ -42,17 +66,18 @@ export function AnimeMiniCardPopup({
                 css={informationValue}>{titleSynonyms.join(", ")}</span></span>}
             <span css={informationField}>Aired: <span css={informationValue}>{airedFrom}</span></span>
             <span css={informationField}>Status: <span css={informationValue}>{status}</span></span>
-            <span css={informationField}>Genres: <span css={informationValue}>{genres.map(({name}) => name).join(", ")}</span></span>
+            <span css={informationField}>Genres: <span
+                css={informationValue}>{genres.map(({name}) => name).join(", ")}</span></span>
         </p>
 
         <div css={actionsStyles}>
-        <a css={watchNowButtonStyles} href={ROUTES.WATCH_ANIME_PAGE_WATCH(animeId)}>
-            <PlayButtonIcon/>
-            <span>Watch now</span>
-        </a>
-        <button css={openUserActionButtonStyles}>
-            <PlusIcon/>
-        </button>
+            <a css={watchNowButtonStyles} href={ROUTES.WATCH_ANIME_PAGE_WATCH(animeId)}>
+                <PlayButtonIcon/>
+                <span>Watch now</span>
+            </a>
+            <button css={openUserActionButtonStyles}>
+                <PlusIcon/>
+            </button>
         </div>
     </div>
 }

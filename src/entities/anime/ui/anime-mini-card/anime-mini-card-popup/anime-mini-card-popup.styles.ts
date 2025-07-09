@@ -1,10 +1,9 @@
 import {css, Theme} from "@emotion/react"
 
-export const animePopup = (theme: Theme) => css`
+export const animePopup = (isLeft: boolean) => (theme: Theme) => css`
     position: absolute;
     z-index: 100;
     top: 50%;
-    left: 50%;
     opacity: 0;
     background: ${theme.modalBackgroundColor};
     transition: opacity ${theme.mediumAnimationTime};
@@ -21,6 +20,8 @@ export const animePopup = (theme: Theme) => css`
         opacity: 1;
         visibility: visible;
     }
+
+    ${isLeft ? leftPosition : rightPosition}
 `
 export const titleStyles = (theme: Theme) => css`
     font-size: 18px;
@@ -50,13 +51,12 @@ export const watchNowButtonStyles = (theme: Theme) => css`
     transition: background ${theme.fastAnimationTime};
     flex-grow: 1;
     justify-content: center;
-    
+
     &:hover {
         background-color: ${theme.primaryColor};
     }
 
-    
-    
+
     & svg {
         width: 15px;
         height: 15px;
@@ -89,7 +89,7 @@ export const openUserActionButtonStyles = (theme: Theme) => css`
     width: 44px;
     justify-content: center;
     transition: background ${theme.fastAnimationTime};
-    
+
     & > svg {
         color: white;
         width: 12px;
@@ -106,8 +106,16 @@ export const actionsStyles = (theme: Theme) => css`
     display: flex;
     align-items: center;
     gap: 10px;
-    
+
 `
+
+export const rightPosition = css`
+    right: 50%;
+`;
+
+export const leftPosition = css`
+    left: 50%;
+`;
 
 
 

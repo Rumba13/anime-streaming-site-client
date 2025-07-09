@@ -1,12 +1,12 @@
 import {css, Theme} from "@emotion/react";
 
-export const animeMiniCardStyles = (theme:Theme) => css`
+export const animeMiniCardStyles = () => css`
     width: auto;
     aspect-ratio: 211 / 347;
 `
-export const bottomStyles = (theme:Theme) => css`
+export const bottomStyles = () => css`
 `
-export const imageStyles = (theme:Theme) => css`
+export const imageStyles = () => css`
     height: 100%;
     width: 100%;
     object-fit: cover;

@@ -35,7 +35,6 @@ export const animeList = (layout:AnimeCardType) => css`
     min-width: 100%;
     width:100%;
     height: 100%;
-    padding-bottom: 500px;
     
     ${layout === "Mini" ? css`
     display: grid;
@@ -48,3 +47,6 @@ export const animeList = (layout:AnimeCardType) => css`
 
             `}
 `
+export const paginationStyles = (theme:Theme) => css`
+    align-self: center;
+`;

@@ -35,13 +35,14 @@ export class AnimeService {
         }
     }
 
-    async search(genres: ID[]): Promise<JikanPagination<Anime> | null> {
+    async search(genres: ID[], page:number): Promise<JikanPagination<Anime> | null> {
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
                     order_by: "popularity",
                     sort: "asc",
                     genres: genres.join(','),
+                    page
                 }
             })).data;
 
