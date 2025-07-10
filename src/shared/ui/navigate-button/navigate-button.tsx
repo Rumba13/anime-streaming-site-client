@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 type PropsType = {
     title?: string;
-    href?: string;
+    href: string;
     icon: React.ReactNode;
     styles?: Interpolation<Theme>;
 }

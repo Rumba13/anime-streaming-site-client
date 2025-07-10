@@ -4,6 +4,7 @@ import {makeAutoObservable} from "mobx";
 import {JikanPagination} from "../../../shared/types/jikan-pagination.ts";
 import {Anime} from "../../../shared/types/anime.ts";
 import {ID} from "../../../shared/types";
+import {scrollToTop} from "../../../shared/ui/scroll-to-top.ts";
 
 type SearchParams = {
     genreIds?: ID[];
@@ -30,6 +31,7 @@ export class SearchAnimeStore {
         this.setIsLoading(true);
         try {
             this.setPagination(await this.animeService.search(genreIds, page, excludedGenreIds))
+            scrollToTop()
         } catch (err) {
             console.error(err);
         } finally {

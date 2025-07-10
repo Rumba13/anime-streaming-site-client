@@ -1,6 +1,7 @@
 import {paginationContainer, paginationButton, paginationButtonActive} from "./pagination.styles";
 import {Interpolation, Theme} from "@emotion/react";
 import {observer} from "mobx-react";
+import {scrollToTop} from "../scroll-to-top.ts";
 
 interface PaginationProps {
     currentPage: number;
@@ -59,6 +60,12 @@ export const Pagination = observer(({
     const visiblePages = getVisiblePages();
     const paginationItems = generatePaginationItems(visiblePages);
 
+    const handlePaginationItemClick = (item: PaginationItem) => {
+        if (typeof item.item === "number") {
+            onPageChange(item.item)
+        }
+    }
+
     return (
         <nav css={[paginationContainer, styles]} aria-label="Pagination">
             {paginationItems.map((item) => (
@@ -69,7 +76,7 @@ export const Pagination = observer(({
                         item.item === currentPage && paginationButtonActive(theme)
                     ]}
                     aria-current={item.item === currentPage ? "page" : undefined}
-                    onClick={() => typeof item.item === "number" && onPageChange(item.item)}
+                    onClick={() => handlePaginationItemClick(item)}
                     disabled={item.item === currentPage}
                 >
                     {item.item}
