@@ -3,6 +3,7 @@ import {JikanPagination} from "../types/jikan-pagination.ts";
 import {Anime} from "../types/anime.ts";
 import {JikanClient} from "./jikan-client.ts";
 import {ID} from "../types";
+import {SearchAnimeRequest} from "../types/search-anime-request.ts";
 
 @injectable()
 export class AnimeService {
@@ -43,8 +44,8 @@ export class AnimeService {
                     sort: "asc",
                     genres: genres.join(','),
                     genres_exclude: genresToExclude.join(','),
-                    page
-                }
+                    page,
+                } as SearchAnimeRequest
             })).data;
 
             return pagination
