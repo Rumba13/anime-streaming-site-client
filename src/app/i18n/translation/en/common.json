@@ -120,5 +120,9 @@
   "Villainess": "Villainess",
   "Josei": "Josei",
   "Kids": "Kids",
-  "Seinen": "Seinen"
+  "Seinen": "Seinen",
+  "Select Genres": "Select genres",
+  "Select Excluded Genres": "Select excluded genres",
+  "Nothing Found": "Nothing Found"
+
 }

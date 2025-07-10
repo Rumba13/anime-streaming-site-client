@@ -37,7 +37,7 @@ export const popupStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Th
     border-radius: 20px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
-    animation: ${isOpened ? fadeIn : wasOpened ? fadeOut: "none"} ${theme.fastAnimationTime} forwards;
+    animation: ${isOpened ? fadeIn : (  wasOpened ? fadeOut: "none")} ${theme.fastAnimationTime} forwards;
     will-change: opacity, transform;
     ${hiddenStyles}
 `

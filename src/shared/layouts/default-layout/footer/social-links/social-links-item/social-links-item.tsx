@@ -2,6 +2,7 @@ import "./social-links-item.styles.ts";
 import {GradientBorderedButton} from "../../../../../ui";
 import {JSX} from "react";
 import {socialLinksItem, socialLinksItemIcon, socialLinksItemTitle} from "./social-links-item.styles.ts";
+import { Link } from "react-router-dom";
 
 type PropsType = {
     icon: JSX.Element,
@@ -14,8 +15,8 @@ export function SocialLinksItem({title, icon, link}: PropsType) {
         <GradientBorderedButton css={socialLinksItemIcon}>
             {icon}
         </GradientBorderedButton>
-        <a css={socialLinksItemTitle} href={link}>
+        <Link css={socialLinksItemTitle} to={link}>
             {title}
-        </a>
+        </Link>
     </div>
 }

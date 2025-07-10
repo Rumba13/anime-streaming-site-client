@@ -3,7 +3,7 @@ import {horizontalLine} from "./horizontal-line.styles.ts";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
-    styles: Interpolation<Theme>
+    styles?: Interpolation<Theme>
 }
 
 export function HorizontalLine({styles}: PropsType) {

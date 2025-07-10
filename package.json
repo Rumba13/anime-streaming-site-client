@@ -20,6 +20,7 @@
     "@swc/plugin-styled-components": "^7.1.5",
     "@types/i18next": "^12.1.0",
     "@types/react-i18next": "^7.8.3",
+    "antd": "^5.26.4",
     "axios": "^1.10.0",
     "axios-rate-limit": "^1.4.0",
     "clsx": "^2.1.1",

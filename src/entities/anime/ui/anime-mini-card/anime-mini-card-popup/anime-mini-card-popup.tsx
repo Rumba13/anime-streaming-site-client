@@ -10,6 +10,7 @@ import {ROUTES} from "../../../../../shared/lib/routes.ts";
 import PlayButtonIcon from "../../../../../assets/images/play-icon.svg?react"
 import {Genre} from "../../../../../shared/types";
 import PlusIcon from "../../../../../assets/images/plus.svg?react"
+import {Link} from "react-router-dom";
 
 type PropsType = {
     synopsis: string;
@@ -71,10 +72,10 @@ export function AnimeMiniCardPopup({
         </p>
 
         <div css={actionsStyles}>
-            <a css={watchNowButtonStyles} href={ROUTES.WATCH_ANIME_PAGE_WATCH(animeId)}>
+            <Link css={watchNowButtonStyles} to={ROUTES.WATCH_ANIME_PAGE_WATCH(animeId)}>
                 <PlayButtonIcon/>
                 <span>Watch now</span>
-            </a>
+            </Link>
             <button css={openUserActionButtonStyles}>
                 <PlusIcon/>
             </button>

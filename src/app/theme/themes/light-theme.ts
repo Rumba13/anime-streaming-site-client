@@ -4,6 +4,8 @@ export const lightTheme = {
     backgroundColor: '#dcdcdc',
     borderColor: '#666666',
     weakColor: "dark",
+    thirdColor: "#424242",
+
     modalBackgroundColor: "",
     weakFontColor: '#8D8D8D',
     primaryFontFamily: 'Nunito',

@@ -120,5 +120,8 @@
   "Villainess": "Злодейка",
   "Josei": "Дзёсей",
   "Kids": "Детское",
-  "Seinen": "Сэйнэн"
+  "Seinen": "Сэйнэн",
+  "Select Genres": "Выбрать жанры",
+  "Select Excluded Genres": "Исключить жанры",
+  "Nothing Found": "Ничего не найдено"
 }

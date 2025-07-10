@@ -1,6 +1,7 @@
 export const darkTheme = {
     primaryColor: '#2ECC71',
     activeSecondaryColor: '#343434',
+    thirdColor: "#424242",
     backgroundColor: '#131313',
     weakColor: "rgba(255,255,255,0.4)",
     modalBackgroundColor: 'rgba(19,19,19,0.9)',

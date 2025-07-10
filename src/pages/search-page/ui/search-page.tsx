@@ -2,48 +2,76 @@ import {DefaultLayout} from "../../../shared/layouts";
 import {Search} from "../../../features/search";
 import {LanguageSelector} from "../../../features/language-selector";
 import {
-    animeList,
-    filtersStyles,
+    animeListStyles,
+    filtersStyles, loadingStyles,
     paginationStyles,
     searchBarStyles,
     searchPageContentStyles
 } from "./search-page.styles.ts";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useInjection} from "inversify-react";
-import {AnimeService} from "../../../shared/api/anime-service.ts";
-import {Anime} from "../../../shared/types/anime.ts";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {Filters} from "./filters/filters.tsx";
 import {AnimeCardSwitchStore} from "../../../features/anime-card-switch/model/anime-card-switch.store.ts";
 import {observer} from "mobx-react";
 import {AnimeCardSwitcher} from "../../../features/anime-card-switch/ui/anime-card-switcher.tsx";
 import {Pagination} from "../../../shared/ui/pagination/pagination.tsx";
-import {JikanPagination} from "../../../shared/types/jikan-pagination.ts";
+import {SearchAnimeStore} from "../../../features/search/model/search-anime.store.ts";
+import {match, P} from "ts-pattern";
+import {Loading} from "../../../shared/ui";
+import {useTranslation} from "react-i18next";
+
+const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
+
+    const search = (searchParams: URLSearchParams) => {
+        const genresString = searchParams.get(URL_PARAMS.GENRES);
+        const excludedGenresString = searchParams.get(URL_PARAMS.EXCLUDE_GENRES);
+        const page = searchParams.get(URL_PARAMS.PAGE) ? Number(searchParams.get(URL_PARAMS.PAGE)) : 1;
+
+        const genreIds = genresString ? genresString.split(",").map(Number) : [];
+        const excludedGenreIds = excludedGenresString ? excludedGenresString.split(",").map(Number) : [];
+
+        void searchAnimeStore.search({
+            page,
+            genreIds,
+            excludedGenreIds
+        })
+    }
+    return {search}
+}
 
 export const SearchPage = observer(() => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const animeService = useInjection(AnimeService);
-    const [pagination, setPagination] = useState<JikanPagination<Anime> | null>(null);
     const animeCardSwitchStore = useInjection(AnimeCardSwitchStore);
-    let pageString = searchParams.get(URL_PARAMS.PAGE);
+    const searchAnimeStore = useInjection(SearchAnimeStore);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const {search} = useAnimeSearch(searchAnimeStore);
+    const {t} = useTranslation();
+
+    const pageString = searchParams.get(URL_PARAMS.PAGE);
+    const currentPage = pageString ? Number(pageString) : 1;
 
     useEffect(() => {
-        const genresString = searchParams.get(URL_PARAMS.GENRES);
-        pageString = searchParams.get(URL_PARAMS.PAGE);
-
-        if (!genresString) return;
-
-        const genreIds = genresString.split(",");
-
-        void animeService.search(genreIds, pageString ? + pageString : 1).then(result => {
-            if (!result) return;
-            setPagination(result);
-        })
-
+        search(searchParams);
     }, [searchParams])
 
+    const handlePageChange = (page: number) => {
+        const currentParams = Object.fromEntries(searchParams.entries());
+        const updatedParams = {...currentParams, [URL_PARAMS.PAGE]: page.toString()};
+        setSearchParams(updatedParams);
+    }
+
     const AnimeCard = animeCardSwitchStore.getCardComponent();
+
+    const content = match(searchAnimeStore)
+        .with({isLoading: true}, () => <Loading styles={loadingStyles}/>)
+        .with({isLoading: false, pagination: {data: []}}, () => <>{t("Nothing Found")}</>)
+        .with({isLoading: false, pagination: P.not(null)}, ({pagination}) =>
+            <>{pagination.data.map(anime => <AnimeCard {...anime} />)}</>
+        )
+        .with({isLoading: false}, () => <>Error</>)
+        .exhaustive();
+
 
     return <DefaultLayout SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
         <div css={searchPageContentStyles}>
@@ -51,18 +79,11 @@ export const SearchPage = observer(() => {
             <div css={searchBarStyles}>
                 <AnimeCardSwitcher/>
             </div>
-            <div css={animeList(animeCardSwitchStore.currentAnimeCardType)}>
-                {pagination?.data?.map(anime => <AnimeCard {...anime} />)}
+            <div css={animeListStyles(animeCardSwitchStore.currentAnimeCardType === "Horizontal" || searchAnimeStore.isLoading)}>
+                {content}
             </div>
-
         </div>
-        <Pagination styles={paginationStyles} currentPage={pageString ? +pageString : 1} totalPages={Math.floor((pagination?.pagination?.items?.total || 1) / (pagination?.pagination?.items?.per_page || 1))}
-                    onPageChange={(page) => {
-                        const currentParams = Object.fromEntries(searchParams.entries());
-
-                        const updatedParams = {...currentParams, ...{[URL_PARAMS.PAGE]: page.toString()}};
-
-                        setSearchParams(updatedParams);
-                    }}/>
+        <Pagination styles={paginationStyles} onPageChange={handlePageChange} currentPage={currentPage}
+                    totalPages={searchAnimeStore.getTotalPageCount()}/>
     </DefaultLayout>
 })

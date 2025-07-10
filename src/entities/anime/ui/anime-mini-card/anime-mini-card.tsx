@@ -11,6 +11,8 @@ import {ROUTES} from "../../../../shared/lib/routes.ts";
 import {pgRatingToAgeMap} from "../../../../shared/lib/pg-rating-to-age-map.ts";
 import {AnimeMiniCardPopup} from "./anime-mini-card-popup/anime-mini-card-popup.tsx";
 import dayjs from "dayjs";
+import {dateFormat} from "../../../../shared/lib/date-format.ts";
+import {Link} from "react-router-dom";
 
 type PropsType = Anime
 
@@ -29,19 +31,21 @@ export function AnimeMiniCard({
                               }: PropsType) {
     const parseDuration = (duration: string) => duration.replace("per ep", "");
 
+    const ageRestriction = pgRatingToAgeMap[rating];
+
     return <div css={animeMiniCardStyles}>
         <div css={imageWrapperStyles}>
             <img css={imageStyles} src={images.webp.large_image_url} alt=""/>
             <PlayButtonIcon css={playButtonStyles}/>
-            <span css={ratingStyles}>{pgRatingToAgeMap[rating]}</span>
+            {ageRestriction && <span css={ratingStyles}>{ageRestriction}</span>}
             <AnimeMiniCardPopup synopsis={synopsis} title={title} animeId={mal_id.toString()} genres={genres}
-                                japaneseTitle={title_japanese} titleSynonyms={title_synonyms} airedFrom={dayjs(aired.from).format("MMMM DD, YYYY")} status={status}/>
+                                japaneseTitle={title_japanese} titleSynonyms={title_synonyms} airedFrom={dayjs(aired.from).format(dateFormat)} status={status}/>
         </div>
         <div css={bottomStyles}>
             <h3 css={titleStyle}>
-                <a css={titleLinkStyle} href={ROUTES.WATCH_ANIME_PAGE_WATCH(mal_id.toString())} title={title}>
+                <Link css={titleLinkStyle} to={ROUTES.WATCH_ANIME_PAGE_WATCH(mal_id)} title={title}>
                     {title}
-                </a>
+                </Link>
             </h3>
             <span css={typeStyles}>{type}</span>
             <span css={pointStyles}></span>

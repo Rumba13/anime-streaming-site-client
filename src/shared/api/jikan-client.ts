@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {injectable} from "inversify";
 import rateLimit from "axios-rate-limit";
 
@@ -8,13 +8,43 @@ export const jikanClient = axios.create({
     baseURL: SERVER_URL_DEV,
 });
 
+interface RetryConfig extends AxiosRequestConfig {
+    retryCount?: number;
+}
+
 @injectable()
 export class JikanClient {
     private readonly baseUrl: string = "https://api.jikan.moe/v4/";
+    private readonly maxRetries: number = 4;
+    private readonly initialDelay: number = 1000;
 
     public readonly connection = rateLimit(axios.create({baseURL: this.baseUrl}), {
         maxRPS: 3
-    })
+    });
+
+    constructor() {
+        this.connection.interceptors.response.use(
+            (response: AxiosResponse) => response,
+            async (error: AxiosError) => {
+                if (error.response?.status !== 429) {
+                    return Promise.reject(error);
+                }
+
+                const config = error.config as RetryConfig;
+                let retryCount = config.retryCount || 0;
+
+                if (retryCount >= this.maxRetries) {
+                    return Promise.reject(error);
+                }
+
+                retryCount++;
+                const delay = this.initialDelay * Math.pow(2, retryCount - 1);
+
+                await new Promise(resolve => setTimeout(resolve, delay));
+                return this.connection({...config, retryCount} as RetryConfig);
+            }
+        );
+    }
 
     async checkJikanApiStatus(): Promise<boolean> {
         try {

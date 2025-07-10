@@ -1,6 +1,7 @@
 import "./navigate-button.styles.ts";
 import {navigateButton, navigateButtonTitle} from "./navigate-button.styles.ts";
 import {Interpolation, Theme} from "@emotion/react";
+import {Link} from "react-router-dom";
 
 type PropsType = {
     title?: string;
@@ -10,11 +11,11 @@ type PropsType = {
 }
 
 export function NavigateButton({title, href,styles, icon}: PropsType) {
-    return <a css={[navigateButton, styles]} href={href}>
+    return <Link css={[navigateButton, styles]} to={href}>
         <span css={navigateButtonTitle}>
             {title}
-        </span>
         {icon}
-    </a>
+        </span>
+    </Link>
 
 }

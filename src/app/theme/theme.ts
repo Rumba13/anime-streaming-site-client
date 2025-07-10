@@ -8,6 +8,7 @@ export type Theme = {
     weakFontColor: string;
     veryWeakFontColor: string,
     primaryFontFamily: string;
+    thirdColor: string,
     secondaryFontFamily: string;
     thirdFontFamily: string;
     mediumAnimationTime:string;

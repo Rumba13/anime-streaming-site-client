@@ -2,6 +2,7 @@ import {reviewPreviewStyle, reviewPreviewTitle, reviewPreviewSubTitle, reviewPre
 import {Review} from "../../../../../shared/types";
 import { useTranslation } from "react-i18next";
 import {Interpolation, Theme} from "@emotion/react";
+import {Link} from "react-router-dom";
 
 type PropsType = {
     styles?:Interpolation<Theme>
@@ -19,6 +20,6 @@ export function ReviewPreview({styles}:PropsType) {
         <h2 css={reviewPreviewTitle}>{t("Epic Feed")}</h2>
         <h3 css={reviewPreviewSubTitle}>{review.title}</h3>
         <p css={reviewPreviewContent}>{review.content}</p>
-        <a css={reviewPreviewLink} href="">{t("Read More")}</a>
+        <Link css={reviewPreviewLink} to="">{t("Read More")}</Link>
     </div>
 }

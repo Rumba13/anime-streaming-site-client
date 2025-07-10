@@ -9,6 +9,7 @@ export const searchPageContentStyles = (theme: Theme) => css`
         "filters anime-list";
 
     grid-template-columns: 400px 1fr;
+    grid-template-rows: auto 1fr;
     
     gap: 10px;
     min-height: 70vh;
@@ -28,25 +29,27 @@ export const searchBarStyles = (theme:Theme) => css`
     height: 40px;
     border-radius: 5px;
 `
-export const animeList = (layout:AnimeCardType) => css`
+export const animeListStyles = (isFlexLayout:boolean) => css`
     gap: 20px;
     grid-area: anime-list;
-
     min-width: 100%;
-    width:100%;
+    width: 100%;
     height: 100%;
-    
-    ${layout === "Mini" ? css`
-    display: grid;
-                grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
-            ` : 
-            css`
+
+    ${isFlexLayout ? css`
                 display: flex;
                 flex-direction: column;
+            ` :
+            css`
 
+                display: grid;
+                grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));;
             `}
 `
-export const paginationStyles = (theme:Theme) => css`
+export const paginationStyles = () => css`
     align-self: center;
+`;
+export const loadingStyles = () => css`
+margin: auto;
 `;

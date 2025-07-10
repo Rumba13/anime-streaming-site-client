@@ -1,6 +1,6 @@
 import "./navigation-item.styles.ts";
 import {MouseEvent, ReactNode} from "react";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {navigationItemActiveStyles, navigationItemStyles} from "./navigation-item.styles.ts";
 import {Interpolation, Theme} from "@emotion/react";
 
@@ -16,8 +16,12 @@ export function NavigationItem({children, title, link, onClick,styles}: PropsTyp
     const {pathname} = useLocation()
     const isActive = pathname === link;
 
-    return <div css={[navigationItemStyles, isActive && navigationItemActiveStyles,styles]} onClick={onClick}>
-        <a className="navigation-item__title" href={link}>{title}</a>
+    return <div css={[navigationItemStyles, isActive && navigationItemActiveStyles,styles]}>
+        <Link className="navigation-item__title" to={link}>
+          <span onClick={onClick}>
+            {title}
+          </span>
+        </Link>
         {children}
     </div>
 }
