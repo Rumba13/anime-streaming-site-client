@@ -4,6 +4,7 @@ import {Anime} from "../types/anime.ts";
 import {JikanClient} from "./jikan-client.ts";
 import {ID} from "../types";
 import {SearchAnimeRequest} from "../types/search-anime-request.ts";
+import {AnimeType} from "../types/anime-type.ts";
 
 @injectable()
 export class AnimeService {
@@ -36,7 +37,7 @@ export class AnimeService {
         }
     }
 
-    async search(genres: ID[], page:number, genresToExclude: ID[]): Promise<JikanPagination<Anime> | null> {
+    async search(genres: ID[], page:number, genresToExclude: ID[],type: AnimeType | null): Promise<JikanPagination<Anime> | null> {
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
@@ -45,6 +46,7 @@ export class AnimeService {
                     genres: genres.join(','),
                     genres_exclude: genresToExclude.join(','),
                     page,
+                    type
                 } as SearchAnimeRequest
             })).data;
 
