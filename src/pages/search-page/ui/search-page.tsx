@@ -69,9 +69,8 @@ export const SearchPage = observer(() => {
         .with({isLoading: false, pagination: P.not(null)}, ({pagination}) =>
             <>{pagination.data.map(anime => <AnimeCard {...anime} />)}</>
         )
-        .with({isLoading: false}, () => <>Error</>)
+        .with({isLoading: false}, () => <>{t("Error")}</>)
         .exhaustive();
-
 
     return <DefaultLayout SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
         <div css={searchPageContentStyles}>

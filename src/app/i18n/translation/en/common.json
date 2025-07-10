@@ -123,6 +123,10 @@
   "Seinen": "Seinen",
   "Select Genres": "Select genres",
   "Select Excluded Genres": "Select excluded genres",
-  "Nothing Found": "Nothing Found"
+  "Nothing Found": "Nothing Found",
+  "Select Genres Placeholder": "Select genres to search",
+  "Select Excluded Genres Placeholder": "Select genres to exclude",
+  "Search Button": "Search",
+  "Error": "Error"
 
 }

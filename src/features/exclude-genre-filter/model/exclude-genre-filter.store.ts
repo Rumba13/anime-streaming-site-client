@@ -18,7 +18,7 @@ export class ExcludeGenreFilterStore {
         if (genres) this.setSelectedGenres(genres.split(",").map(Number));
     }
 
-    public getStateToURLParams = () => {
+    public stateToURLParams = () => {
         const genres = this.selectedGenres.join(",")
 
         if (genres === "") {

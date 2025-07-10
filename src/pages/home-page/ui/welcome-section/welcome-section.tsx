@@ -21,6 +21,7 @@ import {
 } from "./welcome-section.styles.ts";
 import {observer} from "mobx-react";
 import {WelcomeBackground} from "./welcome-background/welcome-background.tsx";
+import {ROUTES} from "../../../../shared/lib/routes.ts";
 
 export const WelcomeSection = observer(() => {
     const {t} = useTranslation();
@@ -34,7 +35,7 @@ export const WelcomeSection = observer(() => {
                 <span css={titleStyle}>{title}<span css={highlightStyle}> EpicAnime</span></span>
                 <span css={subTitleStyle}>{subTitle}</span>
                 <div css={buttonsStyle}>
-                    <NavigateButton styles={buttonStyle} title={t("Explore Now")} href="#" icon={<DiagonalArrowIcon/>}/>
+                    <NavigateButton styles={buttonStyle} title={t("Explore Now")} href={ROUTES.SEARCH_PAGE} icon={<DiagonalArrowIcon/>}/>
                     <NavigateButton styles={[buttonStyle, buttonRedStyle]} title={t("Start Watching")} href="#"
                                     icon={<TriangleIcon/>}/>
                 </div>

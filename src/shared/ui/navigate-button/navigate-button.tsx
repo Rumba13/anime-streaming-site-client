@@ -14,8 +14,8 @@ export function NavigateButton({title, href,styles, icon}: PropsType) {
     return <Link css={[navigateButton, styles]} to={href}>
         <span css={navigateButtonTitle}>
             {title}
-        {icon}
         </span>
+        {icon}
     </Link>
 
 }

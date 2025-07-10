@@ -1,19 +1,32 @@
-import {Select, SelectProps} from "antd"
+import {Select} from "antd"
 import {useInjection} from "inversify-react";
 import {GenreFilterStore} from "../model/genre-filter.store.ts";
 import {Genre, ID} from "../../../shared/types";
 import {selectGenresStyles} from "./select-genres.styles.ts";
 import {GenresStore} from "../../../entities/genre/model/genres.store.ts";
 import {observer} from "mobx-react";
+import {genresToSelectOptions} from "../../../shared/lib/genres-to-select-options.tsx";
+import { useTranslation } from "react-i18next";
 
-export const SelectGenres = observer(() => {
+type PropsType = {
+    genreIdsToHide: ID[];
+}
+
+export const SelectGenres = observer(({genreIdsToHide}:PropsType) => {
     const genresStore = useInjection(GenresStore);
     const genreFilterStore = useInjection(GenreFilterStore)
+    const filteredGenres: Genre[] = genresStore.genres.filter(({mal_id}) => !genreIdsToHide.includes(mal_id));
+    const { t } = useTranslation();
 
-    const options: SelectProps['options'] = genresStore.genres.map(({mal_id, name}) => ({label: name, value: mal_id}));
-    const selectedOptions:Genre[] = !genresStore.isLoading ?  genreFilterStore.selectedGenres.map(genresStore.getGenreById)
-        .filter(item => typeof item !== "undefined") : [];
+    const getSelectedGenres = (): Genre[] => {
+        if (genresStore.isLoading) return []
 
+        return genreFilterStore.selectedGenres.map(genresStore.getGenreById)
+            .filter(item => item !== undefined)
+    }
+
+    const options = genresToSelectOptions(filteredGenres);
+    const selectedOptions = genresToSelectOptions(getSelectedGenres())
 
     return <Select
             css={selectGenresStyles}
@@ -21,10 +34,9 @@ export const SelectGenres = observer(() => {
             allowClear
             optionFilterProp="label"
             loading={genresStore.isLoading}
-            value={selectedOptions.map(({mal_id,name}) => ({label: name, value: mal_id}))}
-            placeholder="По каким жанрам искать"
-            onChange={(selectedGenres: ID[]) => genreFilterStore.setSelectedGenres(selectedGenres)}
+            value={selectedOptions}
+            placeholder={t("Select Genres Placeholder")}
+            onChange={genreFilterStore.setSelectedGenres}
             options={options}
         />
-
 })

@@ -123,5 +123,9 @@
   "Seinen": "Сэйнэн",
   "Select Genres": "Выбрать жанры",
   "Select Excluded Genres": "Исключить жанры",
-  "Nothing Found": "Ничего не найдено"
+  "Nothing Found": "Ничего не найдено",
+  "Select Genres Placeholder": "По каким жанрам искать",
+  "Select Excluded Genres Placeholder": "Какие жанры исключить",
+  "Search Button": "Поиск",
+  "Error": "Ошибка"
 }

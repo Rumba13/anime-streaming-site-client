@@ -1,18 +1,33 @@
-import {Select, SelectProps} from "antd"
+import {Select} from "antd"
 import {useInjection} from "inversify-react";
 import {Genre, ID} from "../../../shared/types";
 import {GenresStore} from "../../../entities/genre/model/genres.store.ts";
 import {observer} from "mobx-react";
 import {selectExcludeGenresStyles} from "./exclude-genre-filter.styles.ts";
 import {ExcludeGenreFilterStore} from "../model/exclude-genre-filter.store.ts";
+import {genresToSelectOptions} from "../../../shared/lib/genres-to-select-options.tsx";
+import { useTranslation } from "react-i18next";
 
-export const SelectExcludeGenres = observer(() => {
+type PropsType = {
+    genreIdsToHide: ID[]
+}
+
+export const SelectExcludeGenres = observer(({genreIdsToHide}: PropsType) => {
     const genresStore = useInjection(GenresStore);
     const excludeGenreFilterStore = useInjection(ExcludeGenreFilterStore)
+    const { t } = useTranslation();
 
-    const options: SelectProps['options'] = genresStore.genres.map(({mal_id, name}) => ({label: name, value: mal_id}));
-    const selectedOptions:Genre[] = !genresStore.isLoading ?  excludeGenreFilterStore.selectedGenres.map(genresStore.getGenreById)
-        .filter(item => typeof item !== "undefined") : [];
+    const filteredGenres: Genre[] = genresStore.genres.filter(({mal_id}) => !genreIdsToHide.includes(mal_id));
+
+    const getSelectedGenres = (): Genre[] => {
+        if (genresStore.isLoading) return []
+
+        return excludeGenreFilterStore.selectedGenres.map(genresStore.getGenreById)
+            .filter(item => item !== undefined)
+    }
+
+    const selectedOptions = genresToSelectOptions(getSelectedGenres())
+    const options = genresToSelectOptions(filteredGenres);
 
     return <Select
         css={selectExcludeGenresStyles}
@@ -20,10 +35,9 @@ export const SelectExcludeGenres = observer(() => {
         optionFilterProp="label"
         allowClear
         loading={genresStore.isLoading}
-        value={selectedOptions.map(({mal_id,name}) => ({label: name, value: mal_id}))}
+        value={selectedOptions}
         placeholder="Какие жанры исключить"
-        onChange={(selectedGenres: ID[]) => excludeGenreFilterStore.setSelectedGenres(selectedGenres)}
+        onChange={excludeGenreFilterStore.setSelectedGenres}
         options={options}
     />
-
 })
