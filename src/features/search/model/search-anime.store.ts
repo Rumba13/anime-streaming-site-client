@@ -26,6 +26,9 @@ export class SearchAnimeStore {
     public isLoading: boolean = false;
     public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
 
+    public isFirstLoad: boolean = true;
+    public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
+
 
     public async search({excludedGenreIds = [], genreIds = [], page = 1}: SearchParams) {
         this.setIsLoading(true);
@@ -36,8 +39,8 @@ export class SearchAnimeStore {
             console.error(err);
         } finally {
             this.setIsLoading(false);
+            this.setIsFirstLoad(false);
         }
-
     }
     public getTotalPageCount() {
         return Math.ceil((this.pagination?.pagination.items.total || 1) / (this.pagination?.pagination?.items?.per_page || 1));

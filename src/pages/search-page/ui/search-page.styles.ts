@@ -29,7 +29,7 @@ export const searchBarStyles = (theme:Theme) => css`
     height: 40px;
     border-radius: 5px;
 `
-export const animeListStyles = (isFlexLayout:boolean) => css`
+export const animeListStyles = (isFlexLayout:boolean, isDarkened:boolean) => (theme:Theme) => css`
     gap: 20px;
     grid-area: anime-list;
     min-width: 100%;
@@ -46,6 +46,18 @@ export const animeListStyles = (isFlexLayout:boolean) => css`
                 grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));;
             `}
+    
+    ${isDarkened && css`
+        position: relative;
+        
+        &:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,0,0,0.8);
+            transform: background ${theme.fastAnimationTime};
+        }
+    `}
 `
 export const paginationStyles = () => css`
     align-self: center;

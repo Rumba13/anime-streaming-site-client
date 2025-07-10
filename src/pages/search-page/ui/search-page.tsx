@@ -64,9 +64,12 @@ export const SearchPage = observer(() => {
     const AnimeCard = animeCardSwitchStore.getCardComponent();
 
     const content = match(searchAnimeStore)
-        .with({isLoading: true}, () => <Loading styles={loadingStyles}/>)
+        .with({isLoading: true, isFirstLoad:true}, () => <Loading styles={loadingStyles}/>)
         .with({isLoading: false, pagination: {data: []}}, () => <>{t("Nothing Found")}</>)
         .with({isLoading: false, pagination: P.not(null)}, ({pagination}) =>
+            <>{pagination.data.map(anime => <AnimeCard {...anime} />)}</>
+        )
+        .with({isLoading: true, pagination: P.not(null), isFirstLoad: false}, ({pagination}) =>
             <>{pagination.data.map(anime => <AnimeCard {...anime} />)}</>
         )
         .with({isLoading: false}, () => <>{t("Error")}</>)
@@ -78,7 +81,7 @@ export const SearchPage = observer(() => {
             <div css={searchBarStyles}>
                 <AnimeCardSwitcher/>
             </div>
-            <div css={animeListStyles(animeCardSwitchStore.currentAnimeCardType === "Horizontal" || searchAnimeStore.isLoading)}>
+            <div css={animeListStyles(animeCardSwitchStore.currentAnimeCardType === "Horizontal" || (searchAnimeStore.isLoading && searchAnimeStore.isFirstLoad), searchAnimeStore.isLoading && !searchAnimeStore.isFirstLoad)}>
                 {content}
             </div>
         </div>
