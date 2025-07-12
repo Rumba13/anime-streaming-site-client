@@ -1,13 +1,14 @@
-import {paginationStyles} from "../search-page.styles.ts";
 import {Pagination} from "../../../../shared/ui/pagination/pagination.tsx";
 import {useSearchParams} from "react-router-dom";
 import {URL_PARAMS} from "../../../../shared/lib/url-params.ts";
 import {observer} from "mobx-react";
-import {useEffect} from "react";
+import {paginationStyles} from "./search-page-pagination.styles.ts";
+import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
     totalPages: number;
     currentPage: number;
+    styles?: Interpolation<Theme>
 }
 
 const usePagination = () => {
@@ -22,13 +23,9 @@ const usePagination = () => {
     return {handlePageChange}
 }
 
-export const SearchPagePagination = observer(({currentPage, totalPages}:PropsType) => {
+export const SearchPagePagination = observer(({currentPage, totalPages, styles}: PropsType) => {
     const {handlePageChange} = usePagination();
 
-    useEffect(() => {
-
-    }, [totalPages]);
-
-    return <Pagination styles={paginationStyles} onPageChange={handlePageChange} currentPage={currentPage}
+    return <Pagination styles={[paginationStyles, styles]} onPageChange={handlePageChange} currentPage={currentPage}
                        totalPages={totalPages}/>
 })

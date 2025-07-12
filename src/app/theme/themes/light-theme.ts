@@ -5,6 +5,7 @@ export const lightTheme = {
     borderColor: '#666666',
     weakColor: "dark",
     thirdColor: "#424242",
+    smallBorderRadius: "6px",
 
     modalBackgroundColor: "",
     weakFontColor: '#8D8D8D',

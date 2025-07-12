@@ -5,11 +5,12 @@ export const searchPageContentStyles = (theme: Theme) => css`
 
     grid-template-areas: 
         "filters search-bar"
-        "filters anime-list";
+        "filters anime-list"
+        ". pagination";
 
     grid-template-columns: 400px 1fr;
-    grid-template-rows: auto 1fr;
-    
+    grid-template-rows: auto 1fr auto;
+
     gap: 10px;
     min-height: 70vh;
     max-width: ${theme.contentWidth};
@@ -19,18 +20,23 @@ export const searchPageContentStyles = (theme: Theme) => css`
 export const filtersStyles = (theme:Theme) => css`
     width: 400px;
     grid-area: filters;
+    border-radius: ${theme.smallBorderRadius};
     background-color: ${theme.backgroundColor};
+
 `
 
 export const searchBarStyles = (theme:Theme) => css`
     grid-area: search-bar;
-    background-color: ${theme.backgroundColor};
     height: 40px;
-    border-radius: 5px;
+    border-radius: ${theme.smallBorderRadius};
+    background-color: ${theme.backgroundColor};
+    
 `
-export const paginationStyles = () => css`
-    align-self: center;
-`;
 export const loadingStyles = () => css`
 margin: auto;
 `;
+export const paginationStyles = () => css`
+grid-area: pagination;
+    align-self: center;
+`;
+

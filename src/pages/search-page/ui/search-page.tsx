@@ -2,7 +2,7 @@ import {DefaultLayout} from "../../../shared/layouts";
 import {Search} from "../../../features/search";
 import {LanguageSelector} from "../../../features/language-selector";
 import {
-    filtersStyles,
+    filtersStyles, paginationStyles,
     searchBarStyles,
     searchPageContentStyles
 } from "./search-page.styles.ts";
@@ -42,7 +42,7 @@ export const SearchPage = observer(() => {
     const currentPage = parsePageFromUrlParams(searchParams)
 
     useEffect(() => {
-       void search(searchParams)
+        void search(searchParams)
     }, [searchParams]);
 
     return <DefaultLayout SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
@@ -50,9 +50,10 @@ export const SearchPage = observer(() => {
             <Filters styles={filtersStyles}/>
             <div css={searchBarStyles}><AnimeCardSwitcher/></div>
             <SearchResultsList searchAnimeStore={searchAnimeStore}/>
+            <SearchPagePagination
+                styles={paginationStyles}
+                currentPage={currentPage}
+                totalPages={searchAnimeStore.getTotalPageCount}/>
         </div>
-        <SearchPagePagination
-            currentPage={currentPage}
-            totalPages={searchAnimeStore.getTotalPageCount}/>
     </DefaultLayout>
 })

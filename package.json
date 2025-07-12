@@ -39,7 +39,8 @@
     "react-i18next": "^15.5.2",
     "react-router-dom": "^7.6.0",
     "reflect-metadata": "^0.2.2",
-    "ts-pattern": "^5.7.1"
+    "ts-pattern": "^5.7.1",
+    "use-deep-compare": "^1.3.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.27.1",

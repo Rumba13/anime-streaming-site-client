@@ -10,6 +10,8 @@ export const imageStyles = () => css`
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: inherit;
+    
 `
 export const titleStyle = (theme:Theme) => css`
     display: block;
@@ -39,6 +41,7 @@ export const imageWrapperStyles = (theme:Theme) => css`
     height: calc(100% - 50px);
     width: 100%;
     margin-bottom: 4px;
+    border-radius: 6px;
 
     &::after {
         content: "";
@@ -47,6 +50,7 @@ export const imageWrapperStyles = (theme:Theme) => css`
         background: linear-gradient(0deg, #2a2c31 0, #2A2C3100 40%);
         transition: opacity ${theme.mediumAnimationTime};
         opacity: 1;
+        border-radius: inherit;
     }
 
     &::before {
@@ -54,6 +58,7 @@ export const imageWrapperStyles = (theme:Theme) => css`
         position: absolute;
         inset: 0;
         transition: backdrop-filter ${theme.mediumAnimationTime};
+        border-radius: inherit;
     }
 
     &:hover {

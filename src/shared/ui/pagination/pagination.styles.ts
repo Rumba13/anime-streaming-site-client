@@ -5,7 +5,6 @@ export const paginationContainer = css`
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin: 24px 0;
 `;
 
 export const paginationButton = (theme: Theme) => css`

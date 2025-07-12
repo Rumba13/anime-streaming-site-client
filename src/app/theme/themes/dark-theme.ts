@@ -7,6 +7,7 @@ export const darkTheme = {
     modalBackgroundColor: 'rgba(19,19,19,0.9)',
     borderColor: '#666666',
     weakFontColor: '#8D8D8D',
+    smallBorderRadius: "6px",
     veryWeakFontColor: '#bdbdbd',
     primaryFontFamily: 'Nunito',
     secondaryFontFamily: 'Limelight',
