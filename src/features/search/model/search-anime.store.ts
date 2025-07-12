@@ -1,11 +1,12 @@
 import {inject, injectable} from "inversify";
 import {AnimeService} from "../../../shared/api/anime-service.ts";
-import {computed, makeObservable, observable, override,action} from "mobx";
+import {computed, makeObservable, observable, override, action} from "mobx";
 import {JikanPagination} from "../../../shared/types/jikan-pagination.ts";
 import {Anime} from "../../../shared/types/anime.ts";
 import {scrollToTop} from "../../../shared/ui/scroll-to-top.ts";
 import {SearchDto} from "../../../shared/types/search-dto.ts";
 import {BaseLoadingStore} from "../../../shared/model/base-loading-store.ts";
+import {BaseError} from "../../../shared/model/base-error.ts";
 
 @injectable()
 export class SearchAnimeStore extends BaseLoadingStore {
@@ -25,10 +26,9 @@ export class SearchAnimeStore extends BaseLoadingStore {
             setIsError: override,
             getTotalPageCount: computed,
             pagination: observable,
-            setPagination:action,
+            setPagination: action,
             isFirstLoad: observable,
-            setIsFirstLoad:action,
-            animeService: observable,
+            setIsFirstLoad: action,
         });
     }
 
@@ -38,7 +38,7 @@ export class SearchAnimeStore extends BaseLoadingStore {
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
 
-    public async search({excludedGenreIds, genreIds, page,type}: SearchDto) {
+    public async search({excludedGenreIds, genreIds, page, type}: SearchDto) {
         this.setIsLoading(true);
 
         try {
@@ -47,13 +47,18 @@ export class SearchAnimeStore extends BaseLoadingStore {
         } catch (err) {
             console.error(err);
             this.setIsError(true);
+
+            if (err instanceof BaseError) {
+                this.setError(err);
+            }
         } finally {
             this.setIsLoading(false);
             this.setIsFirstLoad(false);
         }
 
     }
-     get getTotalPageCount() {
+
+    get getTotalPageCount() {
         return this.pagination?.pagination.last_visible_page || 1;
     }
 }

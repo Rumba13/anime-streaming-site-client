@@ -51,11 +51,10 @@ export class AnimeService {
                 } as SearchAnimeRequest
             })).data;
 
-
             return pagination
         } catch (error) {
             console.log(error);
-            throw new BaseError("Search Error", "Network Error");
+            throw new BaseError("Search Error", "NetworkError");
         }
     }
 }

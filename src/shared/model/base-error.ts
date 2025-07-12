@@ -1,9 +1,11 @@
+import {ErrorType} from "../types/error-type.ts";
+
 export class BaseError extends Error {
-    public readonly type: string;
+    public readonly type: ErrorType;
 
     constructor(
         message: string,
-        type: string,
+        type: ErrorType,
     ) {
         super(message);
         this.type = type;
@@ -14,6 +16,7 @@ export class BaseError extends Error {
     public toJSON() {
         return {
             type: this.type,
+            message: this.message,
             stack: this.stack
         };
     }

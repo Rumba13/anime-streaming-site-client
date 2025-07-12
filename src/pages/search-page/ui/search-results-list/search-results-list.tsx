@@ -8,6 +8,8 @@ import {SearchAnimeStore} from "../../../../features/search/model/search-anime.s
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
 import {Anime} from "../../../../shared/types/anime.ts";
+import {ErrorMessage} from "../../../../shared/ui/error-message/error-message.tsx";
+import {PatternError} from "../../../../shared/model/errors.ts";
 
 type SearchResultPropsType = {
     data: Anime[];
@@ -40,9 +42,10 @@ export const SearchResultsList = observer(({searchAnimeStore}:PropsType) => {
         .with({isLoading: false, pagination: P.not(null)}, ({pagination}) =>
             <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
         )
-        .with({isLoading: false}, () => <>{t("Error")}</>)
-        .with({isError: true}, () => <>{t("Error")}</>)
-        .exhaustive();
+        .with({isError: true, error: P.not(null)}, ({error}) => {
+            return <ErrorMessage error={error}/>
+        })
+        .otherwise(() => <ErrorMessage error={new PatternError("Pattern matching error in search results")}/>);
 
     return  <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })

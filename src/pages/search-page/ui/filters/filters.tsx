@@ -9,7 +9,6 @@ import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
 import {AnimeTypeFilter} from "../../../../features/anime-type-filter";
 import {AnimeTypeFilterStore} from "../../../../features/anime-type-filter/model/anime-type-filter.store.ts";
-import {URL_PARAMS} from "../../../../shared/lib/url-params.ts";
 
 type PropsType = {
     styles?: Interpolation<Theme>
