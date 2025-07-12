@@ -16,7 +16,8 @@ export class GenresStore {
 
     public isLoading: boolean = false;
     public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
-
+    public isLoaded: boolean = false;
+    public setIsLoaded = (isLoaded: boolean) => this.isLoaded = isLoaded;
 
     public async loadGenres() {
         this.setIsLoading(true)
@@ -24,6 +25,7 @@ export class GenresStore {
         try {
             const genres: Genre[] = await this.genresService.loadGenres();
             this.setGenres(genres)
+            this.setIsLoaded(true);
         } catch (e) {
             console.error(e)
         } finally {

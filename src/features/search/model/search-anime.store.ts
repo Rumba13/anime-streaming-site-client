@@ -1,48 +1,59 @@
 import {inject, injectable} from "inversify";
 import {AnimeService} from "../../../shared/api/anime-service.ts";
-import {makeAutoObservable} from "mobx";
+import {computed, makeObservable, observable, override,action} from "mobx";
 import {JikanPagination} from "../../../shared/types/jikan-pagination.ts";
 import {Anime} from "../../../shared/types/anime.ts";
-import {ID} from "../../../shared/types";
 import {scrollToTop} from "../../../shared/ui/scroll-to-top.ts";
-
-type SearchParams = {
-    genreIds?: ID[];
-    excludedGenreIds?: ID[];
-    page?: number;
-}
+import {SearchDto} from "../../../shared/types/search-dto.ts";
+import {BaseLoadingStore} from "../../../shared/model/base-loading-store.ts";
 
 @injectable()
-export class SearchAnimeStore {
+export class SearchAnimeStore extends BaseLoadingStore {
     constructor(
         @inject(AnimeService) private readonly animeService: AnimeService,
     ) {
-        makeAutoObservable(this);
+        super()
+
+        makeObservable(this, {
+            error: override,
+            isError: override,
+            isLoaded: override,
+            setError: override,
+            setIsLoaded: override,
+            setIsLoading: override,
+            isLoading: override,
+            setIsError: override,
+            getTotalPageCount: computed,
+            pagination: observable,
+            setPagination:action,
+            isFirstLoad: observable,
+            setIsFirstLoad:action,
+            animeService: observable,
+        });
     }
 
     public pagination: JikanPagination<Anime> | null = null;
     public setPagination = (pagination: JikanPagination<Anime> | null) => this.pagination = pagination;
 
-    public isLoading: boolean = false;
-    public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
-
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
 
-
-    public async search({excludedGenreIds = [], genreIds = [], page = 1}: SearchParams) {
+    public async search({excludedGenreIds, genreIds, page,type}: SearchDto) {
         this.setIsLoading(true);
+
         try {
-            this.setPagination(await this.animeService.search(genreIds, page, excludedGenreIds))
+            this.setPagination(await this.animeService.search(genreIds, page, excludedGenreIds, type))
             scrollToTop()
         } catch (err) {
             console.error(err);
+            this.setIsError(true);
         } finally {
             this.setIsLoading(false);
             this.setIsFirstLoad(false);
         }
+
     }
-    public getTotalPageCount() {
-        return Math.ceil((this.pagination?.pagination.items.total || 1) / (this.pagination?.pagination?.items?.per_page || 1));
+     get getTotalPageCount() {
+        return this.pagination?.pagination.last_visible_page || 1;
     }
 }

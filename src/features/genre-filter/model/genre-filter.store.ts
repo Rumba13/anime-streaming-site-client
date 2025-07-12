@@ -1,12 +1,16 @@
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import { ID} from "../../../shared/types";
+import {ID} from "../../../shared/types";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
+import {GenresStore, parseGenreIdsFromUrl} from "../../../entities/genre";
 
 @injectable()
 export class GenreFilterStore {
 
-    constructor() {
+    constructor(
+        @inject(GenresStore)
+        private genresStore: GenresStore,
+    ) {
         makeAutoObservable(this)
     }
 
@@ -14,9 +18,12 @@ export class GenreFilterStore {
     public selectedGenres: ID[] = [];
     public setSelectedGenres = (genres: ID[]) => this.selectedGenres = genres;
 
-    public setStateFromURLParams = (urlParams:URLSearchParams) => {
-        const genres = urlParams.get(URL_PARAMS.GENRES)
-        if(genres) this.setSelectedGenres(genres.split(",").map(Number));
+    public setStateFromURLParams = (urlParams: URLSearchParams) => {
+        const genres = parseGenreIdsFromUrl(urlParams, this.genresStore)
+
+        if (!genres) return;
+
+        this.setSelectedGenres(genres);
     }
 
     public stateToURLParams = () => {

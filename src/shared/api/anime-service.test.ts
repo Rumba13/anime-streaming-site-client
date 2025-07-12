@@ -175,7 +175,7 @@ describe("Anime Service", () => {
             jikanClientMock = createJikanClientMock(MOCK_SEARCH_RESULTS_BY_GENRES);
             setupContainer(jikanClientMock);
 
-            const searchedAnime = await animeService.search(["1"]);
+            const searchedAnime = await animeService.search([1], 1, [], null);
 
             if (searchedAnime === null || searchedAnime.data.length === 0) throw new Error("Result is null");
 

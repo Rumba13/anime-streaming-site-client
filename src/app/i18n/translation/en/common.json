@@ -127,6 +127,14 @@
   "Select Genres Placeholder": "Select genres to search",
   "Select Excluded Genres Placeholder": "Select genres to exclude",
   "Search Button": "Search",
-  "Error": "Error"
-
+  "Error": "Error",
+  "TV Series": "TV Series",
+  "ONA": "ONA",
+  "OVA": "OVA",
+  "Movie": "Movie",
+  "Special": "Special",
+  "PV": "PV",
+  "CM": "CM",
+  "TV Special": "TV Special",
+  "Select Anime Types": "Select anime types"
 }

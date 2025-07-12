@@ -11,9 +11,10 @@ import {WelcomeBannersStore} from "../pages/home-page/ui/welcome-section/welcome
 import {JikanClient} from "../shared/api/jikan-client.ts";
 import {AnimeCardSwitchStore} from "../features/anime-card-switch/model/anime-card-switch.store.ts";
 import {GenreFilterStore} from "../features/genre-filter";
-import {GenresStore} from "../entities/genre/model/genres.store.ts";
+import {GenresStore} from "../entities/genre";
 import {ExcludeGenreFilterStore} from "../features/exclude-genre-filter";
 import {SearchAnimeStore} from "../features/search/model/search-anime.store.ts";
+import {AnimeTypeFilterStore} from "../features/anime-type-filter/model/anime-type-filter.store.ts";
 
 export const container = new Container();
 container.bind<BrowseGenresPopupStore>(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -31,3 +32,4 @@ container.bind<GenreFilterStore>(GenreFilterStore).toSelf().inSingletonScope()
 container.bind<GenresStore>(GenresStore).toSelf().inSingletonScope()
 container.bind<ExcludeGenreFilterStore>(ExcludeGenreFilterStore).toSelf().inSingletonScope()
 container.bind<SearchAnimeStore>(SearchAnimeStore).toSelf().inSingletonScope()
+container.bind<AnimeTypeFilterStore>(AnimeTypeFilterStore).toSelf().inSingletonScope()

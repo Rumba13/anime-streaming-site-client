@@ -127,5 +127,15 @@
   "Select Genres Placeholder": "По каким жанрам искать",
   "Select Excluded Genres Placeholder": "Какие жанры исключить",
   "Search Button": "Поиск",
-  "Error": "Ошибка"
+  "Error": "Ошибка",
+  "TV Series": "ТВ-сериал",
+  "ONA": "ONА",
+  "OVA": "ОВА",
+  "Movie": "Фильм",
+  "Special": "Спешл",
+  "PV": "ПВ",
+  "CM": "КМ",
+  "TV Special": "ТВ-спешл",
+  "Select Anime Types": "Выбрать виды"
+
 }

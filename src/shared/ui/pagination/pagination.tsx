@@ -1,7 +1,6 @@
 import {paginationContainer, paginationButton, paginationButtonActive} from "./pagination.styles";
 import {Interpolation, Theme} from "@emotion/react";
 import {observer} from "mobx-react";
-import {scrollToTop} from "../scroll-to-top.ts";
 
 interface PaginationProps {
     currentPage: number;
@@ -21,7 +20,10 @@ export const Pagination = observer(({
                                         onPageChange,
                                         styles
                                     }: PaginationProps) => {
+
     if (totalPages <= 1) return null;
+
+
 
     const getVisiblePages = (): number[] => {
         const potentialPages = [

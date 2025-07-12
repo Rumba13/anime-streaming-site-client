@@ -1,0 +1,1 @@
+export type AnimeStatus = "airing" | "complete" | "upcoming";
