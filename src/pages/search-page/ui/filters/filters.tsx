@@ -48,7 +48,9 @@ export const Filters = observer(({styles}: PropsType) => {
         genreFilterStore.selectedGenres,
         excludeGenreFilterStore.selectedGenres,
         animeTypeFilterStore.selectedAnimeType,
-        orderByStore.orderBy]);
+        orderByStore.orderBy,
+        orderByStore.sortType
+    ]);
 
     return <div css={[styles]}>
         <div css={filterWrapperStyles}>

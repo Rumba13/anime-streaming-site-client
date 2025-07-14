@@ -38,10 +38,10 @@ export class SearchAnimeStore extends BaseLoadingStore {
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
 
-    public async search({excludedGenreIds, genreIds, page, type,orderBy}: SearchDto) {
+    public async search(searchDto: SearchDto) {
         this.setIsLoading(true);
         try {
-            this.setPagination(await this.animeService.search(genreIds, page, excludedGenreIds, type, orderBy))
+            this.setPagination(await this.animeService.search(searchDto))
             scrollToTop()
         } catch (err) {
             console.error(err);

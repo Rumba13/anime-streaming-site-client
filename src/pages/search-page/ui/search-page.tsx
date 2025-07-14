@@ -22,7 +22,10 @@ import {parseExcludeGenresFromUrl} from "../../../features/exclude-genre-filter/
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
 import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
 import {OrderByStore} from "../../../features/order-by";
-import {parseOrderByFromUrlParams} from "../../../features/order-by/model/parse-order-by-from-url-params.ts";
+import {parseOrderByFromUrlParams} from "../../../shared/lib/parse-order-by-from-url-params/parse-order-by-from-url-params.ts";
+import {
+    parseSortTypeFromUrlParams
+} from "../../../shared/lib/parse-sort-type-from-url-params/parse-sort-type-from-url-params.ts";
 
 const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
     const search = (async (searchParams: URLSearchParams) => {
@@ -31,9 +34,9 @@ const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
             type: parseAnimeTypeFromUrl(searchParams),
             genreIds: parseGenreIdsFromUrl(searchParams),
             excludedGenreIds: parseExcludeGenresFromUrl(searchParams),
-            orderBy: parseOrderByFromUrlParams(searchParams)
+            orderBy: parseOrderByFromUrlParams(searchParams),
+            sortType: parseSortTypeFromUrlParams(searchParams)
         }
-
 
         await searchAnimeStore.search(searchDto);
     })

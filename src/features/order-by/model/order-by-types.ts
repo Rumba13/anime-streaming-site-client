@@ -1,6 +1,6 @@
 import {OrderBy} from "../../../shared/types/order-by.ts";
 
-export const orderByOptions: OrderBy[] = [
+export const orderByTypes: OrderBy[] = [
     "mal_id",
     "title",
     "start_date",

@@ -147,5 +147,7 @@
   "Order By Rank": "Ранг",
   "Order By Popularity": "Популярность",
   "Order By Members": "Участники",
-  "Order By Favorites": "Избранные"
+  "Order By Favorites": "Избранные",
+  "Descending": "По убыванию",
+  "Ascending": "По возрастанию"
 }

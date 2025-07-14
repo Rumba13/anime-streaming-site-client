@@ -1,7 +1,7 @@
-import {orderByOptions} from "./order-by-options.ts";
+import {orderByTypes} from "./order-by-types.ts";
 import {OrderBy} from "../../../shared/types/order-by.ts";
 
 
 export const isOrderByType = (value:string) => {
-    return orderByOptions.includes(value as OrderBy);
+    return orderByTypes.includes(value as OrderBy);
 }

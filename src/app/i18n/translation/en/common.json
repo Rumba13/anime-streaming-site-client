@@ -147,5 +147,7 @@
   "Order By Rank": "Rank",
   "Order By Popularity": "Popularity",
   "Order By Members": "Members",
-  "Order By Favorites": "Favorites"
+  "Order By Favorites": "Favorites",
+  "Descending": "Descending",
+  "Ascending": "Ascending"
 }
