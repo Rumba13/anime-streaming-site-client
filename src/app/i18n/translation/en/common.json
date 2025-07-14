@@ -136,5 +136,16 @@
   "PV": "PV",
   "CM": "CM",
   "TV Special": "TV Special",
-  "Select Anime Types": "Select anime types"
+  "Select Anime Types": "Select anime types",
+  "Order By Mal Id": "ID",
+  "Order By Title": "Title",
+  "Order By Start Date": "Start Date",
+  "Order By End Date": "End Date",
+  "Order By Episodes": "Episodes Count",
+  "Order By Score": "Score",
+  "Order By Scored By": "Scored By",
+  "Order By Rank": "Rank",
+  "Order By Popularity": "Popularity",
+  "Order By Members": "Members",
+  "Order By Favorites": "Favorites"
 }

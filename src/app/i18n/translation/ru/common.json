@@ -136,6 +136,16 @@
   "PV": "ПВ",
   "CM": "КМ",
   "TV Special": "ТВ-спешл",
-  "Select Anime Types": "Выбрать виды"
-
+  "Select Anime Types": "Выбрать виды",
+  "Order By Mal Id": "ID",
+  "Order By Title": "Название",
+  "Order By Start Date": "Дата выпуска",
+  "Order By End Date": "Дата завершения",
+  "Order By Episodes": "Количество эпизодов",
+  "Order By Score": "Рейтинг",
+  "Order By Scored By": "Количество оценок",
+  "Order By Rank": "Ранг",
+  "Order By Popularity": "Популярность",
+  "Order By Members": "Участники",
+  "Order By Favorites": "Избранные"
 }

@@ -17,7 +17,7 @@ export const searchPageContentStyles = (theme: Theme) => css`
     width: 100%;
     margin: 20px auto 0;
 `
-export const filtersStyles = (theme:Theme) => css`
+export const filtersStyles = (theme: Theme) => css`
     width: 400px;
     grid-area: filters;
     border-radius: ${theme.smallBorderRadius};
@@ -25,18 +25,25 @@ export const filtersStyles = (theme:Theme) => css`
 
 `
 
-export const searchBarStyles = (theme:Theme) => css`
+export const searchBarStyles = (theme: Theme) => css`
+    display: flex;
     grid-area: search-bar;
     height: 40px;
     border-radius: ${theme.smallBorderRadius};
     background-color: ${theme.backgroundColor};
-    
+
 `
 export const loadingStyles = () => css`
-margin: auto;
+    margin: auto;
 `;
 export const paginationStyles = () => css`
-grid-area: pagination;
+    grid-area: pagination;
+    align-self: center;
+`;
+
+export const orderByStyles = () => css`
+    margin-left: auto;
+    width: max-content;
     align-self: center;
 `;
 

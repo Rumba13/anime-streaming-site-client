@@ -2,7 +2,7 @@ import {DefaultLayout} from "../../../shared/layouts";
 import {Search} from "../../../features/search";
 import {LanguageSelector} from "../../../features/language-selector";
 import {
-    filtersStyles, paginationStyles,
+    filtersStyles, orderByStyles, paginationStyles,
     searchBarStyles,
     searchPageContentStyles
 } from "./search-page.styles.ts";
@@ -20,6 +20,9 @@ import {parseAnimeTypeFromUrl} from "../../../entities/anime-type";
 import {parseGenreIdsFromUrl} from "../../../entities/genre";
 import {parseExcludeGenresFromUrl} from "../../../features/exclude-genre-filter/lib/parse-exclude-genres-from-url.ts";
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
+import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
+import {OrderByStore} from "../../../features/order-by";
+import {parseOrderByFromUrlParams} from "../../../features/order-by/model/parse-order-by-from-url-params.ts";
 
 const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
     const search = (async (searchParams: URLSearchParams) => {
@@ -28,7 +31,9 @@ const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
             type: parseAnimeTypeFromUrl(searchParams),
             genreIds: parseGenreIdsFromUrl(searchParams),
             excludedGenreIds: parseExcludeGenresFromUrl(searchParams),
+            orderBy: parseOrderByFromUrlParams(searchParams)
         }
+
 
         await searchAnimeStore.search(searchDto);
     })
@@ -37,6 +42,8 @@ const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
+    const orderByStore = useInjection(OrderByStore);
+
     const [searchParams] = useSearchParams();
     const {search} = useAnimeSearch(searchAnimeStore);
     const currentPage = parsePageFromUrlParams(searchParams)
@@ -48,7 +55,10 @@ export const SearchPage = observer(() => {
     return <DefaultLayout SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
         <div css={searchPageContentStyles}>
             <Filters styles={filtersStyles}/>
-            <div css={searchBarStyles}><AnimeCardSwitcher/></div>
+            <div css={searchBarStyles}>
+                <AnimeCardSwitcher/>
+                <OrderBySelect styles={orderByStyles} orderByStore={orderByStore}/>
+            </div>
             <SearchResultsList searchAnimeStore={searchAnimeStore}/>
             <SearchPagePagination
                 styles={paginationStyles}

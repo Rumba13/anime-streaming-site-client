@@ -10,6 +10,7 @@ import {observer} from "mobx-react";
 import {AnimeTypeFilter} from "../../../../features/anime-type-filter";
 import {AnimeTypeFilterStore} from "../../../../features/anime-type-filter/model/anime-type-filter.store.ts";
 import {useDeepCompareEffect} from "use-deep-compare";
+import {OrderByStore} from "../../../../features/order-by";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -19,6 +20,8 @@ export const Filters = observer(({styles}: PropsType) => {
     const genreFilterStore = useInjection(GenreFilterStore)
     const excludeGenreFilterStore = useInjection(ExcludeGenreFilterStore)
     const animeTypeFilterStore = useInjection(AnimeTypeFilterStore)
+    const orderByStore = useInjection(OrderByStore)
+
     const [searchParams, setSearchParams] = useSearchParams();
 
     const {t} = useTranslation();
@@ -28,6 +31,7 @@ export const Filters = observer(({styles}: PropsType) => {
             ...genreFilterStore.stateToURLParams(),
             ...excludeGenreFilterStore.stateToURLParams(),
             ...animeTypeFilterStore.stateToURLParams(),
+            ...orderByStore.stateToURLParams()
         })
     }
 
@@ -35,11 +39,16 @@ export const Filters = observer(({styles}: PropsType) => {
         genreFilterStore.setStateFromURLParams(searchParams)
         excludeGenreFilterStore.setStateFromURLParams(searchParams)
         animeTypeFilterStore.setStateFromURLParams(searchParams)
+        orderByStore.setStateFromURLParams(searchParams)
     }, [searchParams])
 
     useDeepCompareEffect(() => {
         handleSearch();
-    }, [genreFilterStore.selectedGenres, excludeGenreFilterStore.selectedGenres, animeTypeFilterStore.selectedAnimeType]);
+    }, [
+        genreFilterStore.selectedGenres,
+        excludeGenreFilterStore.selectedGenres,
+        animeTypeFilterStore.selectedAnimeType,
+        orderByStore.orderBy]);
 
     return <div css={[styles]}>
         <div css={filterWrapperStyles}>
