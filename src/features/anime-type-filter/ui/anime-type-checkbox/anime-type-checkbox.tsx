@@ -1,6 +1,12 @@
 import {AnimeTypeCard} from "../../../../entities/anime-type";
 import {AnimeType} from "../../../../shared/types/anime-type.ts";
-import {checkboxInputStyles, checkboxLabelStyles} from "./anime-type-checkbox.styles";
+import {
+    checkboxInputStyles,
+    checkboxLabelStyles,
+    checkboxStyles,
+    checkboxWrapperStyles
+} from "./anime-type-checkbox.styles";
+import CheckboxMark from "../../../../assets/images/checkbox-mark.svg?react"
 
 type PropsType = {
     animeType: AnimeType;
@@ -9,7 +15,7 @@ type PropsType = {
 }
 
 export const AnimeTypeCheckbox = ({animeType, isSelected, onSelect}: PropsType) => {
-    return <div>
+    return <div css={checkboxWrapperStyles}>
         <input
             type="checkbox"
             id={`anime-type-${animeType}`}
@@ -21,6 +27,9 @@ export const AnimeTypeCheckbox = ({animeType, isSelected, onSelect}: PropsType) 
             htmlFor={`anime-type-${animeType}`}
             css={checkboxLabelStyles}
         >
+            <div css={checkboxStyles}>
+                {isSelected && <CheckboxMark/>}
+            </div>
             <AnimeTypeCard animeType={animeType} isHighlighted={isSelected}/>
         </label>
     </div>

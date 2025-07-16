@@ -48,7 +48,7 @@ export class AnimeService {
                      orderBy,
                      page,
         query
-                 }: SearchDto): Promise<JikanPagination<Anime> | null> {
+                 }: SearchDto, signal?: AbortSignal): Promise<JikanPagination<Anime> | null> {
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
@@ -59,7 +59,8 @@ export class AnimeService {
                     page,
                     type: type ? type : undefined,
                     q: query
-                } as SearchAnimeRequest
+                } as SearchAnimeRequest,
+                signal
             })).data;
 
             return pagination

@@ -41,8 +41,9 @@ export function AnimeMiniCard({
 
     const animeDuration = duration.replace("per ep", "");
 
-    const animeImage = isImageLoaded ? getAnimeImage(images) : (isLoadingShown ? LoadingIcon : BLACK_IMAGE);
+    const shouldShownImageLoading = false;
 
+    const animeImage = shouldShownImageLoading ? (isImageLoaded ? getAnimeImage(images) : (isLoadingShown ? LoadingIcon : BLACK_IMAGE)): getAnimeImage(images);
 
     useEffect(() => {
         setIsLoadingShown(false);

@@ -1,9 +1,8 @@
-import {inject, injectable} from "inversify";
+import { injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {ID} from "../../../shared/types";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {parseExcludeGenresFromUrl} from "../lib/parse-exclude-genres-from-url.ts";
-import {GenresStore} from "../../../entities/genre";
 import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 
 @injectable()
