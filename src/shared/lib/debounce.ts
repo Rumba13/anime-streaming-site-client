@@ -1,10 +1,13 @@
-export function debounce<T extends (...args) => never>(cb: T, wait = 20) {
-    let timeOut: number | null = null;
+export function debounce(callee, timeoutMs) {
+    return function perform(...args) {
+        let previousCall = debounce.lastCall
 
-    const callable = (...args: ReturnType<T>) => {
-        if (timeOut !== null) clearTimeout(timeOut);
-        timeOut = setTimeout(() => cb(...args), wait);
-    };
+        debounce.lastCall = Date.now()
 
-    return callable;
+        if (previousCall && debounce.lastCall - previousCall <= timeoutMs) {
+            clearTimeout(debounce.lastCallTimer)
+        }
+
+        debounce.lastCallTimer = setTimeout(() => callee(...args), timeoutMs)
+    }
 }

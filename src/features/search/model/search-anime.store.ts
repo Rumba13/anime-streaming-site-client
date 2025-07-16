@@ -24,7 +24,7 @@ export class SearchAnimeStore extends BaseLoadingStore {
             setIsLoading: override,
             isLoading: override,
             setIsError: override,
-            getTotalPageCount: computed,
+            totalPageCount: computed,
             pagination: observable,
             setPagination: action,
             isFirstLoad: observable,
@@ -40,8 +40,10 @@ export class SearchAnimeStore extends BaseLoadingStore {
 
     public async search(searchDto: SearchDto) {
         this.setIsLoading(true);
+
         try {
-            this.setPagination(await this.animeService.search(searchDto))
+            const pagination = await this.animeService.search(searchDto);
+            this.setPagination(pagination)
             scrollToTop()
         } catch (err) {
             console.error(err);
@@ -57,7 +59,7 @@ export class SearchAnimeStore extends BaseLoadingStore {
 
     }
 
-    get getTotalPageCount() {
+    get totalPageCount() {
         return this.pagination?.pagination.last_visible_page || 1;
     }
 }

@@ -16,6 +16,8 @@ import {ExcludeGenreFilterStore} from "../features/exclude-genre-filter";
 import {SearchAnimeStore} from "../features/search/model/search-anime.store.ts";
 import {AnimeTypeFilterStore} from "../features/anime-type-filter/model/anime-type-filter.store.ts";
 import {OrderByStore} from "../features/order-by";
+import {SearchQueryStore} from "../features/search/model/search-query.store.ts";
+import {UrlSyncStoreService} from "../shared/lib/url-sync-store/url-sync-store-service.ts";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -35,3 +37,6 @@ container.bind(ExcludeGenreFilterStore).toSelf().inSingletonScope()
 container.bind(SearchAnimeStore).toSelf().inSingletonScope()
 container.bind(AnimeTypeFilterStore).toSelf().inSingletonScope()
 container.bind(OrderByStore).toSelf().inSingletonScope()
+container.bind(SearchQueryStore).toSelf().inSingletonScope()
+container.bind(UrlSyncStoreService).toSelf().inSingletonScope()
+

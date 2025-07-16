@@ -9,10 +9,7 @@ type PropsType = {
 
 export function GradientBorderedButton({ children, styles, ...buttonProps }: PropsType) {
     return (
-        <button
-            css={(theme) => [styles,gradientBorderedButton(theme), ]}
-            {...buttonProps}
-        >
+        <button css={[gradientBorderedButton, styles]}{...buttonProps}>
             {children}
         </button>
     );

@@ -9,5 +9,6 @@ export type SearchDto = {
     page: number;
     type: AnimeType | null;
     orderBy:OrderBy | null,
-    sortType:SortType | null
+    sortType:SortType | null,
+    query: string | null
 }

@@ -3,9 +3,10 @@ import {makeAutoObservable} from "mobx";
 import {AnimeType} from "../../../shared/types/anime-type.ts";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {parseAnimeTypeFromUrl} from "../../../entities/anime-type";
+import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 
 @injectable()
-export class AnimeTypeFilterStore {
+export class AnimeTypeFilterStore implements URLSyncStore {
     constructor() {
         makeAutoObservable(this);
     }
@@ -27,8 +28,8 @@ export class AnimeTypeFilterStore {
         this.setSelectedAnimeType(animeType);
     }
     public stateToURLParams = () => {
-        if (!this.selectedAnimeType) return;
+        if (!this.selectedAnimeType) return new URLSearchParams({});
 
-        return {[URL_PARAMS.ANIME_TYPE]: this.selectedAnimeType};
+        return new URLSearchParams({[URL_PARAMS.ANIME_TYPE]: this.selectedAnimeType});
     }
 }

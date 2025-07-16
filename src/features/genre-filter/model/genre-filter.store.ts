@@ -1,11 +1,12 @@
-import {inject, injectable} from "inversify";
+import { injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {ID} from "../../../shared/types";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {parseGenreIdsFromUrl} from "../../../entities/genre";
+import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 
 @injectable()
-export class GenreFilterStore {
+export class GenreFilterStore implements URLSyncStore {
 
     constructor() {
         makeAutoObservable(this)
@@ -26,9 +27,9 @@ export class GenreFilterStore {
         const genres = this.selectedGenres.join(",")
 
         if (genres === "") {
-            return {};
+            return new URLSearchParams({});
         } else {
-            return {[URL_PARAMS.GENRES]: genres}
+            return new URLSearchParams({[URL_PARAMS.GENRES]: genres})
         }
     }
 }

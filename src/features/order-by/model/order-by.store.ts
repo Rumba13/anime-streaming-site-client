@@ -9,9 +9,10 @@ import {
 import {
     parseSortTypeFromUrlParams
 } from "../../../shared/lib/parse-sort-type-from-url-params/parse-sort-type-from-url-params.ts";
+import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 
 @injectable()
-export class OrderByStore {
+export class OrderByStore implements URLSyncStore{
     constructor() {
         makeAutoObservable(this);
     }
@@ -31,9 +32,9 @@ export class OrderByStore {
     }
 
     public stateToURLParams = () => {
-        return {
+        return new URLSearchParams({
             [URL_PARAMS.ORDER_BY]: this.orderBy,
             [URL_PARAMS.SORT_TYPE]: this.sortType
-        }
+        })
     }
 }

@@ -1,6 +1,15 @@
 import {css, Theme} from "@emotion/react"
 
-export const animePopup = (isLeft: boolean) => (theme: Theme) => css`
+export const rightPositionStyles = css`
+    right: 50%;
+`;
+
+export const leftPositionStyles = css`
+    left: 50%;
+`;
+
+
+export const animePopupStyles = (isLeft: boolean) => (theme: Theme) => css`
     position: absolute;
     z-index: 100;
     top: 50%;
@@ -21,7 +30,7 @@ export const animePopup = (isLeft: boolean) => (theme: Theme) => css`
         visibility: visible;
     }
 
-    ${isLeft ? leftPosition : rightPosition}
+    ${isLeft ? leftPositionStyles : rightPositionStyles}
 `
 export const titleStyles = (theme: Theme) => css`
     font-size: 18px;
@@ -64,7 +73,7 @@ export const watchNowButtonStyles = (theme: Theme) => css`
         margin-bottom: 1px;
     }
 `
-export const informationField = (theme: Theme) => css`
+export const informationFieldStyles = (theme: Theme) => css`
     display: block;
     font-family: ${theme.primaryFontFamily};
     font-size: 14px;
@@ -72,7 +81,7 @@ export const informationField = (theme: Theme) => css`
     font-weight: 400;
 `
 
-export const informationValue = (theme: Theme) => css`
+export const informationValueStyles = () => css`
     font-weight: 600;
     color: white;
 `
@@ -101,7 +110,7 @@ export const openUserActionButtonStyles = (theme: Theme) => css`
     }
 `
 
-export const actionsStyles = (theme: Theme) => css`
+export const actionsStyles = () => css`
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -109,16 +118,8 @@ export const actionsStyles = (theme: Theme) => css`
 
 `
 
-export const rightPosition = css`
-    right: 50%;
+export const animeInformationStyles = css`
 `;
-
-export const leftPosition = css`
-    left: 50%;
-`;
-
-
-
 
 
 

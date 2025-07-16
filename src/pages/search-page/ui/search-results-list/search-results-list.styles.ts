@@ -20,13 +20,13 @@ export const searchResultListStyles = (isFlexLayout:boolean, isDarkened:boolean)
     
     ${isDarkened && css`
         position: relative;
-        
-        &:after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0,0,0,0.8);
-            transform: background ${theme.fastAnimationTime};
-        }
+
+        // &:after {
+        //     content: "";
+        //     position: absolute;
+        //     inset: 0;
+        //     background-color: rgba(0,0,0,0.8);
+        //     transform: background ${theme.fastAnimationTime};
+        // }
     `}
 `

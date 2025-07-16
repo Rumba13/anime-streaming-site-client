@@ -46,7 +46,8 @@ export class AnimeService {
                      sortType,
                      type,
                      orderBy,
-                     page
+                     page,
+        query
                  }: SearchDto): Promise<JikanPagination<Anime> | null> {
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
@@ -57,6 +58,7 @@ export class AnimeService {
                     genres_exclude: excludedGenreIds.length > 0 ? excludedGenreIds.join(',') : undefined,
                     page,
                     type: type ? type : undefined,
+                    q: query
                 } as SearchAnimeRequest
             })).data;
 

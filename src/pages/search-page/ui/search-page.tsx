@@ -1,12 +1,10 @@
 import {DefaultLayout} from "../../../shared/layouts";
-import {Search} from "../../../features/search";
 import {LanguageSelector} from "../../../features/language-selector";
 import {
     filtersStyles, orderByStyles, paginationStyles,
     searchBarStyles,
     searchPageContentStyles
 } from "./search-page.styles.ts";
-import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useInjection} from "inversify-react";
 import {Filters} from "./filters/filters.tsx";
@@ -15,47 +13,17 @@ import {AnimeCardSwitcher} from "../../../features/anime-card-switch/ui/anime-ca
 import {SearchAnimeStore} from "../../../features/search/model/search-anime.store.ts";
 import {SearchResultsList} from "./search-results-list/search-results-list.tsx";
 import {parsePageFromUrlParams} from "../../../shared/lib/parse-page-from-url-params/parse-page-from-url-params.ts";
-import {SearchDto} from "../../../shared/types/search-dto.ts";
-import {parseAnimeTypeFromUrl} from "../../../entities/anime-type";
-import {parseGenreIdsFromUrl} from "../../../entities/genre";
-import {parseExcludeGenresFromUrl} from "../../../features/exclude-genre-filter/lib/parse-exclude-genres-from-url.ts";
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
 import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
 import {OrderByStore} from "../../../features/order-by";
-import {parseOrderByFromUrlParams} from "../../../shared/lib/parse-order-by-from-url-params/parse-order-by-from-url-params.ts";
-import {
-    parseSortTypeFromUrlParams
-} from "../../../shared/lib/parse-sort-type-from-url-params/parse-sort-type-from-url-params.ts";
-
-const useAnimeSearch = (searchAnimeStore: SearchAnimeStore) => {
-    const search = (async (searchParams: URLSearchParams) => {
-        const searchDto: SearchDto = {
-            page: parsePageFromUrlParams(searchParams),
-            type: parseAnimeTypeFromUrl(searchParams),
-            genreIds: parseGenreIdsFromUrl(searchParams),
-            excludedGenreIds: parseExcludeGenresFromUrl(searchParams),
-            orderBy: parseOrderByFromUrlParams(searchParams),
-            sortType: parseSortTypeFromUrlParams(searchParams)
-        }
-
-        await searchAnimeStore.search(searchDto);
-    })
-    return {search}
-}
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
     const orderByStore = useInjection(OrderByStore);
-
     const [searchParams] = useSearchParams();
-    const {search} = useAnimeSearch(searchAnimeStore);
     const currentPage = parsePageFromUrlParams(searchParams)
 
-    useEffect(() => {
-        void search(searchParams)
-    }, [searchParams]);
-
-    return <DefaultLayout SearchSlot={Search} LanguageSelectorSlot={LanguageSelector}>
+    return <DefaultLayout SearchSlot={() => <></>} LanguageSelectorSlot={LanguageSelector}>
         <div css={searchPageContentStyles}>
             <Filters styles={filtersStyles}/>
             <div css={searchBarStyles}>
@@ -66,7 +34,7 @@ export const SearchPage = observer(() => {
             <SearchPagePagination
                 styles={paginationStyles}
                 currentPage={currentPage}
-                totalPages={searchAnimeStore.getTotalPageCount}/>
+                totalPages={searchAnimeStore.totalPageCount}/>
         </div>
     </DefaultLayout>
 })

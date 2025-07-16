@@ -8,12 +8,20 @@ import {
     subTitle,
     titlesStyles
 } from "./anime-card.styles.ts";
+import {getAnimeImage} from "../get-anime-image.ts";
+import {useState} from "react";
 
 type PropsType = Anime
 
 export function AnimeCard({title, title_synonyms,synopsis, genres, images}: PropsType) {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
     return <div css={animeCardStyles}>
-        <img css={imageStyles} src={images.webp.large_image_url} alt="Anime Image"/>
+        <img
+            css={imageStyles(isImageLoaded)}
+            src={getAnimeImage(images)}
+            alt="Anime Image"
+            onLoad={() => setIsImageLoaded(true)}
+        />
 
         <div css={cardLeft}>
 

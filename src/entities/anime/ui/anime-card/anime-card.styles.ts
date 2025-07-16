@@ -22,10 +22,12 @@ export const descriptionStyles  = (theme:Theme) => css`
     font-family: ${theme.primaryFontFamily};
     margin-top: 10px;
 `
-export const imageStyles = css`
+export const imageStyles = (isImageLoaded?: boolean) => css`
     object-fit: cover;
     width: 200px;
     margin-right: 10px;
+    opacity: ${isImageLoaded === undefined ? 1 : isImageLoaded ? 1 : 0};
+    transition: opacity 0.4s;
 `
 export const cardLeft = css`
     display: flex;

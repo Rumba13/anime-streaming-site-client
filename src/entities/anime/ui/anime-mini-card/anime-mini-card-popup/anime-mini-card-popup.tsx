@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
+import {RefObject, useEffect, useRef, useState} from "react";
 import {
-    animePopup,
+    animePopupStyles,
     titleStyles,
     synopsisStyles,
     watchNowButtonStyles,
-    informationField, informationValue, openUserActionButtonStyles, actionsStyles
+    informationFieldStyles, informationValueStyles, openUserActionButtonStyles, actionsStyles, animeInformationStyles
 } from "./anime-mini-card-popup.styles.ts";
 import {ROUTES} from "../../../../../shared/lib/routes.ts";
 import PlayButtonIcon from "../../../../../assets/images/play-icon.svg?react"
@@ -25,6 +25,30 @@ type PropsType = {
 
 type PopupPositionType = 'right' | 'left'
 
+const usePopupPosition = (popupRef: RefObject<HTMLDivElement | null>) => {
+    const [popupPosition, setPopupPosition] = useState<PopupPositionType>('left');
+
+    useEffect(() => {
+        const handlePopupPosition = () => {
+            const popup = popupRef.current;
+            if (!popup) return;
+            const rect = popup.getBoundingClientRect();
+
+            if (rect.right > window.innerWidth) {
+                setPopupPosition('right');
+            } else if (rect.left < 0) {
+                setPopupPosition('left');
+            }
+        };
+
+        handlePopupPosition();
+        window.addEventListener('resize', handlePopupPosition);
+        return () => window.removeEventListener('resize', handlePopupPosition);
+    }, []);
+
+    return {popupPosition}
+}
+
 export function AnimeMiniCardPopup({
                                        synopsis,
                                        title,
@@ -36,43 +60,35 @@ export function AnimeMiniCardPopup({
                                        airedFrom
                                    }: PropsType) {
     const popupRef = useRef<HTMLDivElement>(null);
-    const [position, setPosition] = useState<PopupPositionType>('left');
+    const {popupPosition} = usePopupPosition(popupRef)
 
-    useEffect(() => {
-        const handlePosition = () => {
-            const popup = popupRef.current;
-            if (!popup) return;
-            const rect = popup.getBoundingClientRect();
+    const formattedGenres = genres.map(({name}) => name).join(", ");
+    const formattedTitleSynonyms = titleSynonyms.join(", ")
 
-            if (rect.right > window.innerWidth) {
-                setPosition('right');
-            } else if (rect.left < 0) {
-                setPosition('left');
-            }
-        };
-
-        handlePosition();
-        window.addEventListener('resize', handlePosition);
-        return () => window.removeEventListener('resize', handlePosition);
-    }, []);
-
-    return <div ref={popupRef} css={animePopup(position === "left")}>
+    return <div ref={popupRef} css={animePopupStyles(popupPosition === "left")}>
         <h3 css={titleStyles}>{title}</h3>
         <span css={synopsisStyles}>{synopsis}</span>
 
-        <p>
-            <span css={informationField}>Japanese: <span css={informationValue}>{japaneseTitle}</span></span>
-
-            {titleSynonyms.length > 0 && <span css={informationField}>Synonyms: <span
-                css={informationValue}>{titleSynonyms.join(", ")}</span></span>}
-            <span css={informationField}>Aired: <span css={informationValue}>{airedFrom}</span></span>
-            <span css={informationField}>Status: <span css={informationValue}>{status}</span></span>
-            <span css={informationField}>Genres: <span
-                css={informationValue}>{genres.map(({name}) => name).join(", ")}</span></span>
+        <p css={animeInformationStyles}>
+            <span css={informationFieldStyles}>
+                Japanese:<span css={informationValueStyles}>{japaneseTitle}</span>
+            </span>
+            {titleSynonyms.length > 0 && <span css={informationFieldStyles}>
+                Synonyms: <span css={informationValueStyles}>{formattedTitleSynonyms}</span>
+            </span>}
+            <span css={informationFieldStyles}>
+                Aired: <span css={informationValueStyles}>{airedFrom}</span>
+            </span>
+            <span css={informationFieldStyles}>
+                Status: <span css={informationValueStyles}>{status}</span>
+            </span>
+            <span css={informationFieldStyles}>
+                Genres: <span css={informationValueStyles}>{formattedGenres}</span>
+            </span>
         </p>
 
         <div css={actionsStyles}>
-            <Link css={watchNowButtonStyles} to={ROUTES.WATCH_ANIME_PAGE_WATCH(animeId)}>
+            <Link css={watchNowButtonStyles} to={ROUTES.WATCH_ANIME_PAGE_WATCH(+animeId)}>
                 <PlayButtonIcon/>
                 <span>Watch now</span>
             </Link>

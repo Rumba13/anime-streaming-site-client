@@ -1,12 +1,43 @@
-import {GradientBorderedButton} from "../../../shared/ui";
 import SearchIcon from "../../../assets/images/search.svg?react";
-import {searchTitle} from "./search.styles.ts";
+import {searchStyles, searchField} from "./search.styles.ts";
 import {useTranslation} from "react-i18next";
+import {Interpolation, Theme} from "@emotion/react";
+import React from "react";
+import {useInjection} from "inversify-react";
+import {SearchQueryStore} from "../model/search-query.store.ts";
+import {observer} from "mobx-react";
 
-export function Search() {
-    const {t} = useTranslation();
-    return <GradientBorderedButton>
-        <SearchIcon width={18} height={18}/>
-        <span css={searchTitle}>{t("Search Button")}</span>
-    </GradientBorderedButton>
+type PropsType = {
+    styles?: Interpolation<Theme>
+    onSearch?: (searchTerm: string) => void;
 }
+
+export const Search = observer(({styles, onSearch}: PropsType) => {
+    const {t} = useTranslation();
+    const searchQueryStore = useInjection(SearchQueryStore)
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            onSearch?.(searchQueryStore.searchQuery);
+        }
+    }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        searchQueryStore.setSearchQuery(event.target.value);
+    }
+
+    return (
+        <label css={[searchStyles, styles]} htmlFor="search">
+            <SearchIcon width={18} height={18}/>
+            <input
+                css={searchField}
+                id="search"
+                type="text"
+                placeholder={t("Search Button")}
+                value={searchQueryStore.searchQuery}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+        </label>
+    )
+})
