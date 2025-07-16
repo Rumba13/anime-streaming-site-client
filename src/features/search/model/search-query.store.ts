@@ -1,12 +1,14 @@
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {parseSearchQueryFromUrlParams} from "../lib/parse-search-query-from-url-params.ts";
 import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
+import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 
 @injectable()
 export class SearchQueryStore implements URLSyncStore {
-    constructor() {
+    constructor(
+        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
+    ) {
         makeAutoObservable(this);
     }
 
@@ -14,7 +16,7 @@ export class SearchQueryStore implements URLSyncStore {
     public setSearchQuery = (searchQuery:string) => this.searchQuery = searchQuery;
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {
-        const searchQuery = parseSearchQueryFromUrlParams(urlParams)
+        const searchQuery = this.urlSearchParamsParser.parseQuery(urlParams)
 
         if (!searchQuery) return;
 

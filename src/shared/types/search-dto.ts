@@ -10,5 +10,7 @@ export type SearchDto = {
     type: AnimeType | null;
     orderBy:OrderBy | null,
     sortType:SortType | null,
-    query: string | null
+    query: string | null,
+    minRating: number | null,
+    maxRating: number | null,
 }

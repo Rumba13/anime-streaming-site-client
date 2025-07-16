@@ -12,16 +12,17 @@ import {observer} from "mobx-react";
 import {AnimeCardSwitcher} from "../../../features/anime-card-switch/ui/anime-card-switcher.tsx";
 import {SearchAnimeStore} from "../../../features/search/model/search-anime.store.ts";
 import {SearchResultsList} from "./search-results-list/search-results-list.tsx";
-import {parsePageFromUrlParams} from "../../../shared/lib/parse-page-from-url-params/parse-page-from-url-params.ts";
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
 import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
 import {OrderByStore} from "../../../features/order-by";
+import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
+    const urlSearchParamsParser= useInjection(URLSearchParamsParser);
     const orderByStore = useInjection(OrderByStore);
     const [searchParams] = useSearchParams();
-    const currentPage = parsePageFromUrlParams(searchParams)
+    const currentPage = urlSearchParamsParser.parsePage(searchParams)
 
     return <DefaultLayout SearchSlot={() => <></>} LanguageSelectorSlot={LanguageSelector}>
         <div css={searchPageContentStyles}>

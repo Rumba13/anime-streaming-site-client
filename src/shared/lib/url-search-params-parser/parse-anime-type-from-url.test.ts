@@ -1,11 +1,16 @@
 import {describe, expect, it, vi} from "vitest";
-import {parseAnimeTypeFromUrl} from "./parse-anime-type-from-url.ts";
+import {URLSearchParamsParser} from "./url-search-params-parser.ts";
+import {Container} from "inversify";
 
 describe("parse anime type from url", () => {
     let urlSearchParams: URLSearchParams;
 
-    function createMockUrlSearchParams(returnValue:string|null):URLSearchParams {
-        const mockUrlSearchParams:Partial<URLSearchParams> = {
+    const container = new Container();
+    container.bind(URLSearchParamsParser).toSelf().inSingletonScope();
+    const {parseType} = container.get(URLSearchParamsParser)
+
+    function createMockUrlSearchParams(returnValue: string | null): URLSearchParams {
+        const mockUrlSearchParams: Partial<URLSearchParams> = {
             get: vi.fn().mockReturnValue(returnValue)
         }
         return mockUrlSearchParams as URLSearchParams;
@@ -13,25 +18,25 @@ describe("parse anime type from url", () => {
 
     it("should parse anime type", () => {
         urlSearchParams = createMockUrlSearchParams("movie")
-        const animeType = parseAnimeTypeFromUrl(urlSearchParams);
+        const animeType = parseType(urlSearchParams);
 
         expect(animeType).toEqual("movie");
     })
     it("should return null when url params contains invalid anime type", () => {
         urlSearchParams = createMockUrlSearchParams("invalid anime type")
-        const animeType = parseAnimeTypeFromUrl(urlSearchParams);
+        const animeType = parseType(urlSearchParams);
 
         expect(animeType).toEqual(null);
     })
     it("should return null when url params is null", () => {
         urlSearchParams = createMockUrlSearchParams(null)
-        const animeType = parseAnimeTypeFromUrl(urlSearchParams);
+        const animeType = parseType(urlSearchParams);
 
         expect(animeType).toEqual(null);
     })
     it("should return null when url params is empty string", () => {
         urlSearchParams = createMockUrlSearchParams("")
-        const animeType = parseAnimeTypeFromUrl(urlSearchParams);
+        const animeType = parseType(urlSearchParams);
 
         expect(animeType).toEqual(null);
     })

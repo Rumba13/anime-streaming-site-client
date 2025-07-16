@@ -1,6 +1,6 @@
 import {css, Theme} from "@emotion/react";
 
-export const animeTypeCardStyles = (isHighlighted:boolean) =>  (theme: Theme) => css`
+export const animeTypeCardStyles = () =>  (theme: Theme) => css`
     width: fit-content;
     min-width: 35px;
     transition: opacity ${theme.fastAnimationTime};

@@ -14,41 +14,12 @@ import {OrderByStore} from "../../../../features/order-by";
 import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search/model/search-query.store.ts";
 import {SearchAnimeStore} from "../../../../features/search/model/search-anime.store.ts";
-import {SearchDto} from "../../../../shared/types/search-dto.ts";
-import {parsePageFromUrlParams} from "../../../../shared/lib/parse-page-from-url-params/parse-page-from-url-params.ts";
-import {parseAnimeTypeFromUrl} from "../../../../entities/anime-type";
-import {parseGenreIdsFromUrl} from "../../../../entities/genre";
-import {
-    parseExcludeGenresFromUrl
-} from "../../../../features/exclude-genre-filter/lib/parse-exclude-genres-from-url.ts";
-import {
-    parseOrderByFromUrlParams
-} from "../../../../shared/lib/parse-order-by-from-url-params/parse-order-by-from-url-params.ts";
-import {
-    parseSortTypeFromUrlParams
-} from "../../../../shared/lib/parse-sort-type-from-url-params/parse-sort-type-from-url-params.ts";
-import {parseSearchQueryFromUrlParams} from "../../../../features/search/lib/parse-search-query-from-url-params.ts";
 import {debounce} from "../../../../shared/lib/debounce.ts";
 import {UrlSyncStoreService} from "../../../../shared/lib/url-sync-store/url-sync-store-service.ts";
+import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 
 type PropsType = {
     styles?: Interpolation<Theme>
-}
-
-const useSearch = (searchAnimeStore: SearchAnimeStore) => {
-    const search = (async (searchParams: URLSearchParams) => {
-        const searchDto: SearchDto = {
-            page: parsePageFromUrlParams(searchParams),
-            type: parseAnimeTypeFromUrl(searchParams),
-            genreIds: parseGenreIdsFromUrl(searchParams),
-            excludedGenreIds: parseExcludeGenresFromUrl(searchParams),
-            orderBy: parseOrderByFromUrlParams(searchParams),
-            sortType: parseSortTypeFromUrlParams(searchParams),
-            query: parseSearchQueryFromUrlParams(searchParams)
-        }
-        await searchAnimeStore.search(searchDto);
-    })
-    return {search}
 }
 
 export const Filters = observer(({styles}: PropsType) => {
@@ -59,10 +30,14 @@ export const Filters = observer(({styles}: PropsType) => {
     const searchQueryStore = useInjection(SearchQueryStore)
     const searchAnimeStore = useInjection(SearchAnimeStore);
     const urlSyncStoreService = useInjection(UrlSyncStoreService);
+    const urlSearchParamsParser = useInjection(URLSearchParamsParser);
 
-    const {search} = useSearch(searchAnimeStore);
     const [searchParams, setSearchParams] = useSearchParams();
     const {t} = useTranslation();
+
+    const search = async (searchParams: URLSearchParams) => {
+        await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
+    }
 
     useEffect(() => {
         const debouncedSearch = debounce(search, 200);
