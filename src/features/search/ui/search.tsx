@@ -1,5 +1,5 @@
 import SearchIcon from "../../../assets/images/search.svg?react";
-import {searchStyles, searchField} from "./search.styles.ts";
+import {searchStyles, searchField, iconStyles} from "./search.styles.ts";
 import {useTranslation} from "react-i18next";
 import {Interpolation, Theme} from "@emotion/react";
 import React from "react";
@@ -28,7 +28,7 @@ export const Search = observer(({styles, onSearch}: PropsType) => {
 
     return (
         <label css={[searchStyles, styles]} htmlFor="search">
-            <SearchIcon width={18} height={18}/>
+            <SearchIcon css={iconStyles} width={18} height={18}/>
             <input
                 css={searchField}
                 id="search"

@@ -17,6 +17,9 @@ import {SearchAnimeStore} from "../../../../features/search/model/search-anime.s
 import {debounce} from "../../../../shared/lib/debounce.ts";
 import {UrlSyncStoreService} from "../../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {RatingFilterStore} from "../../../../features/rating-filter/model/rating-filter.store.ts";
+import {RatingRange} from "../../../../features/rating-filter/ui/rating-range.tsx";
+import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter/model/anime-status-filter.store.ts";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -31,6 +34,8 @@ export const Filters = observer(({styles}: PropsType) => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
     const urlSyncStoreService = useInjection(UrlSyncStoreService);
     const urlSearchParamsParser = useInjection(URLSearchParamsParser);
+    const ratingFilterStore = useInjection(RatingFilterStore);
+    const animeStatusFilterStore = useInjection(AnimeStatusFilterStore);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const {t} = useTranslation();
@@ -49,7 +54,9 @@ export const Filters = observer(({styles}: PropsType) => {
         excludeGenreFilterStore,
         animeTypeFilterStore,
         orderByStore,
-        searchQueryStore
+        searchQueryStore,
+        ratingFilterStore,
+        animeStatusFilterStore
     ])
 
     useEffect(() => {
@@ -64,7 +71,10 @@ export const Filters = observer(({styles}: PropsType) => {
         animeTypeFilterStore.selectedAnimeType,
         orderByStore.orderBy,
         orderByStore.sortType,
-        searchQueryStore.searchQuery
+        searchQueryStore.searchQuery,
+        ratingFilterStore.minimalRating,
+        ratingFilterStore.maximumRating,
+        animeStatusFilterStore.animeStatus
     ]);
 
     return <div css={[styles]}>
@@ -82,6 +92,11 @@ export const Filters = observer(({styles}: PropsType) => {
         <div css={filterWrapperStyles}>
             <span css={filterTitleStyles}>{t("Select Anime Types")}</span>
             <AnimeTypeFilter/>
+        </div>
+
+        <div css={filterWrapperStyles}>
+            <span css={filterTitleStyles}>{t("Select Rating")}</span>
+            <RatingRange ratingFilterStore={ratingFilterStore}/>
         </div>
     </div>
 })

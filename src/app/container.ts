@@ -19,6 +19,8 @@ import {OrderByStore} from "../features/order-by";
 import {SearchQueryStore} from "../features/search/model/search-query.store.ts";
 import {UrlSyncStoreService} from "../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URLSearchParamsParser} from "../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {RatingFilterStore} from "../features/rating-filter/model/rating-filter.store.ts";
+import {AnimeStatusFilterStore} from "../features/anime-status-filter/model/anime-status-filter.store.ts";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -41,4 +43,6 @@ container.bind(OrderByStore).toSelf().inSingletonScope()
 container.bind(SearchQueryStore).toSelf().inSingletonScope()
 container.bind(UrlSyncStoreService).toSelf().inSingletonScope()
 container.bind(URLSearchParamsParser).toSelf().inSingletonScope()
+container.bind(RatingFilterStore).toSelf().inSingletonScope()
+container.bind(AnimeStatusFilterStore).toSelf().inSingletonScope()
 

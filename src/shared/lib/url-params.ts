@@ -5,5 +5,8 @@ export const URL_PARAMS = {
     ANIME_TYPE: "type",
     ORDER_BY: "order_by",
     SORT_TYPE: "sort",
-    QUERY: "q"
+    QUERY: "q",
+    MINIMAL_RATING: "min_rate",
+    MAXIMUM_RATING: "max_rate",
+    ANIME_STATUS: "status",
 }

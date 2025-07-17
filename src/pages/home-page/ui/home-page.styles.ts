@@ -1,10 +1,15 @@
 import {css, Theme} from "@emotion/react";
 
-export const homePageContent = (theme: Theme) => css`
+export const homePageContentStyles = (theme: Theme) => css`
     max-width: ${theme.contentWidth};
     margin: 0 auto;
 `
 
-export const exploreMoreSection = () => css`
+export const exploreMoreSectionStyles = () => css`
     margin-bottom: 60px;
 `
+
+export const searchStyles = () => css`
+    width: 120px;
+`
+

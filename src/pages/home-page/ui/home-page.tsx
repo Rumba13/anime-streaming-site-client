@@ -4,7 +4,7 @@ import {DefaultLayout} from "../../../shared/layouts";
 import {LanguageSelector} from "../../../features/language-selector";
 import {WelcomeSection} from "./welcome-section/welcome-section.tsx";
 import {ExploreMoreSection} from "./explore-more-section/explore-more-section.tsx";
-import {exploreMoreSection, homePageContent} from "./home-page.styles.ts";
+import {exploreMoreSectionStyles, homePageContentStyles, searchStyles} from "./home-page.styles.ts";
 import {ROUTES} from "../../../shared/lib/routes.ts";
 import {useNavigate} from "react-router-dom";
 
@@ -15,10 +15,11 @@ export function HomePage() {
         void navigate(ROUTES.SEARCH_PAGE_SEARCH_QUERY(searchValue));
     }
 
-    return <DefaultLayout SearchSlot={() => <Search onSearch={handleSearch}/>} LanguageSelectorSlot={LanguageSelector}>
-        <div css={homePageContent}>
+    return <DefaultLayout SearchSlot={() => <Search styles={searchStyles} onSearch={handleSearch}/>}
+                          LanguageSelectorSlot={LanguageSelector}>
+        <div css={homePageContentStyles}>
             <WelcomeSection/>
-            <ExploreMoreSection styles={exploreMoreSection}/>
+            <ExploreMoreSection styles={exploreMoreSectionStyles}/>
         </div>
     </DefaultLayout>
 }

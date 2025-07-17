@@ -17,7 +17,7 @@ export class OrderByStore implements URLSyncStore{
     public orderBy: OrderBy = "popularity";
     public setOrderBy = (orderBy: OrderBy) => this.orderBy = orderBy;
 
-    public sortType: SortType = "desc";
+    public sortType: SortType = "asc";
     public setSortType = (sortType: SortType) => this.sortType = sortType;
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {

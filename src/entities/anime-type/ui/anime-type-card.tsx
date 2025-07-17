@@ -9,7 +9,7 @@ type PropsType = {
     onClick?: (animeType: AnimeType) => void;
 }
 
-export const AnimeTypeCard = ({animeType,isHighlighted,onClick}:PropsType) => {
+export const AnimeTypeCard = ({animeType,onClick}:PropsType) => {
     const {t} = useTranslation();
 
     return <div css={animeTypeCardStyles} onClick={() => onClick?.(animeType)}>

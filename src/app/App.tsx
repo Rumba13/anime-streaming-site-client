@@ -29,6 +29,21 @@ const genresStore = container.get<GenresStore>(GenresStore);
                     token: {
                         colorPrimary: darkTheme.primaryColor,
                     },
+                    components: {
+                        Slider: {
+                            trackBg: darkTheme.primaryColor, // track background color
+                            trackHoverBg: darkTheme.primaryColor, // hover state
+                            handleColor: darkTheme.primaryColor, // handle color
+                            handleActiveColor: darkTheme.primaryColor, // active handle color
+                            dotActiveBorderColor: darkTheme.primaryColor, // active dot border color
+                       handleActiveOutlineColor: darkTheme.primaryColor,
+                            handleColorDisabled: darkTheme.primaryColor,
+                            handleLineWidth: "3px",
+                            handleLineWidthHover: "3px",
+                            handleSize: 11,
+                            handleSizeHover:11,
+                        }
+                    }
                 }}
             >
                 <NormalizeStyles/>
