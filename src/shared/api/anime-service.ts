@@ -49,8 +49,14 @@ export class AnimeService {
                      page,
                      query,
                      maxRating,
-                     minRating
+                     minRating,
+                     animeStatus
                  }: SearchDto, signal?: AbortSignal): Promise<JikanPagination<Anime> | null> {
+
+        const min_score = (minRating === 0 || minRating === null) ? undefined : minRating;
+        const max_score = (maxRating === 10 || maxRating === null) ? undefined : maxRating;
+        const status = animeStatus ? animeStatus : undefined;
+
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
@@ -62,8 +68,9 @@ export class AnimeService {
                     type: type ? type : undefined,
                     q: query,
                     sfw: true,
-                    max_score: maxRating,
-                    min_score: minRating
+                    max_score,
+                    min_score,
+                    status
                 } as SearchAnimeRequest,
                 signal
             })).data;
