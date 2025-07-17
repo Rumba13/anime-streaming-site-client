@@ -12,18 +12,32 @@ export const checkboxLabelStyles = css`
     align-items: center;
     cursor: pointer;
 `
-export const checkboxStyles = () => (theme:Theme) => css`
+export const checkboxStyles = (isSelected: boolean) => (theme: Theme) => css`
     border: 1px solid ${theme.borderColor};
     width: 14px;
     height: 14px;
-    border-radius: 4px;
+    border-radius: 9999px;
     cursor: pointer;
     position: relative;
 
     & > svg {
         position: absolute;
-        inset: -1px;
+        inset: 0;
     }
+
+    &:after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: inherit;
+
+        ${isSelected && css`
+            background-color: ${theme.primaryColor};
+        `}
+    }
+
+    
+
 `
-export const checkboxWrapperStyles = (theme:Theme) => css`
+export const checkboxWrapperStyles = (theme: Theme) => css`
 `

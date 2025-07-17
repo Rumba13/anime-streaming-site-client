@@ -20,6 +20,7 @@ import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-pa
 import {RatingFilterStore} from "../../../../features/rating-filter/model/rating-filter.store.ts";
 import {RatingRange} from "../../../../features/rating-filter/ui/rating-range.tsx";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter/model/anime-status-filter.store.ts";
+import {GenresStore} from "../../../../entities/genre";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -36,6 +37,7 @@ export const Filters = observer(({styles}: PropsType) => {
     const urlSearchParamsParser = useInjection(URLSearchParamsParser);
     const ratingFilterStore = useInjection(RatingFilterStore);
     const animeStatusFilterStore = useInjection(AnimeStatusFilterStore);
+    const genresStore = useInjection(GenresStore);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const {t} = useTranslation();
@@ -43,6 +45,10 @@ export const Filters = observer(({styles}: PropsType) => {
     const search = async (searchParams: URLSearchParams) => {
         await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
     }
+
+    useEffect(() => {
+        void genresStore.loadGenres();
+    }, []);
 
     useEffect(() => {
         const debouncedSearch = debounce(search, 200);

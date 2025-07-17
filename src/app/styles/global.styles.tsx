@@ -1,8 +1,8 @@
-import { Global, css } from '@emotion/react'
+import {Global, css} from '@emotion/react'
 import React from 'react'
 import {hideScrollbar} from "./hide-scrollbar.styles.ts";
 
-export const GlobalStyles: React.FC = () => (
+export const GlobalStyles = () =>
     <Global
         styles={css`
             #root {
@@ -14,6 +14,5 @@ export const GlobalStyles: React.FC = () => (
             html {
                 ${hideScrollbar}
             }
-    `}
-/>
-)
+        `}
+    />

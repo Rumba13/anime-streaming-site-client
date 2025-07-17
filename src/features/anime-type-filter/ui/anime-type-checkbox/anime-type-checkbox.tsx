@@ -27,8 +27,8 @@ export const AnimeTypeCheckbox = ({animeType, isSelected, onSelect}: PropsType) 
             htmlFor={`anime-type-${animeType}`}
             css={checkboxLabelStyles}
         >
-            <div css={checkboxStyles}>
-                {isSelected && <CheckboxMark/>}
+            <div css={checkboxStyles(isSelected)}>
+                {/*{isSelected && <CheckboxMark/>}*/}
             </div>
             <AnimeTypeCard animeType={animeType} isHighlighted={isSelected}/>
         </label>
