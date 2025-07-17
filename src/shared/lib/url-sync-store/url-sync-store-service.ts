@@ -1,16 +1,12 @@
 import {injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {SetURLSearchParams} from "react-router-dom";
-
-export interface URLSyncStore {
-    stateToURLParams: () => URLSearchParams
-    setStateFromURLParams: (urlParams: URLSearchParams) => void
-}
+import {FilterStoreI} from "../../types/filter-store.interface.ts";
 
 @injectable()
 export class UrlSyncStoreService {
-    private stores: URLSyncStore[] = [];
-    public setStores = (stores: URLSyncStore[]) => this.stores = stores;
+    private stores: FilterStoreI[] = [];
+    public setStores = (stores: FilterStoreI[]) => this.stores = stores;
 
     constructor() {
         makeAutoObservable(this)
@@ -29,6 +25,7 @@ export class UrlSyncStoreService {
 
         setSearchParams(urlParams);
     }
+
     public syncStoresFromURLParams(params: URLSearchParams) {
         this.stores.forEach(store => store.setStateFromURLParams(params));
     }

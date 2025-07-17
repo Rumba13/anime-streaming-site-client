@@ -2,7 +2,13 @@ import {Interpolation, Theme} from "@emotion/react";
 import {GenreFilterStore, SelectGenres} from "../../../../features/genre-filter";
 import {useInjection} from "inversify-react";
 import {useSearchParams} from "react-router-dom";
-import {filterTitleStyles, filterWrapperStyles, searchStyles} from "./filters.styles.ts";
+import {
+    filtersStyles,
+    filterTitleStyles,
+    filterWrapperStyles,
+    resetButtonStyles,
+    searchStyles
+} from "./filters.styles.ts";
 import {useEffect} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
@@ -15,12 +21,13 @@ import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search/model/search-query.store.ts";
 import {SearchAnimeStore} from "../../../../features/search/model/search-anime.store.ts";
 import {debounce} from "../../../../shared/lib/debounce.ts";
-import {UrlSyncStoreService} from "../../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 import {RatingFilterStore} from "../../../../features/rating-filter/model/rating-filter.store.ts";
 import {RatingRange} from "../../../../features/rating-filter/ui/rating-range.tsx";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter/model/anime-status-filter.store.ts";
 import {GenresStore} from "../../../../entities/genre";
+import {AnimeStatusSelect} from "../../../../features/anime-status-filter";
+import {FilterManager} from "../../lib/filter-manager.ts";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -33,11 +40,21 @@ export const Filters = observer(({styles}: PropsType) => {
     const orderByStore = useInjection(OrderByStore)
     const searchQueryStore = useInjection(SearchQueryStore)
     const searchAnimeStore = useInjection(SearchAnimeStore);
-    const urlSyncStoreService = useInjection(UrlSyncStoreService);
     const urlSearchParamsParser = useInjection(URLSearchParamsParser);
     const ratingFilterStore = useInjection(RatingFilterStore);
     const animeStatusFilterStore = useInjection(AnimeStatusFilterStore);
     const genresStore = useInjection(GenresStore);
+    const filterManager = useInjection(FilterManager);
+
+    filterManager.setFilters([
+        genreFilterStore,
+        excludeGenreFilterStore,
+        animeTypeFilterStore,
+        orderByStore,
+        searchQueryStore,
+        ratingFilterStore,
+        animeStatusFilterStore
+    ])
 
     const [searchParams, setSearchParams] = useSearchParams();
     const {t} = useTranslation();
@@ -55,22 +72,12 @@ export const Filters = observer(({styles}: PropsType) => {
         void debouncedSearch(searchParams)
     }, [searchParams]);
 
-    urlSyncStoreService.setStores([
-        genreFilterStore,
-        excludeGenreFilterStore,
-        animeTypeFilterStore,
-        orderByStore,
-        searchQueryStore,
-        ratingFilterStore,
-        animeStatusFilterStore
-    ])
-
     useEffect(() => {
-        urlSyncStoreService.syncStoresFromURLParams(searchParams);
+        filterManager.syncStoresFromURLParams(searchParams);
     }, [searchParams])
 
     useDeepCompareEffect(() => {
-        urlSyncStoreService.syncStoresToURLParams(setSearchParams)
+        filterManager.syncStoresToURLParams(setSearchParams)
     }, [
         genreFilterStore.selectedGenres,
         excludeGenreFilterStore.selectedGenres,
@@ -83,7 +90,7 @@ export const Filters = observer(({styles}: PropsType) => {
         animeStatusFilterStore.animeStatus
     ]);
 
-    return <div css={[styles]}>
+    return <div css={[filtersStyles, styles]}>
         <div css={[filterWrapperStyles, {margin: 0}]}>
             <Search styles={searchStyles}/>
         </div>
@@ -97,12 +104,20 @@ export const Filters = observer(({styles}: PropsType) => {
         </div>
         <div css={filterWrapperStyles}>
             <span css={filterTitleStyles}>{t("Select Anime Types")}</span>
-            <AnimeTypeFilter/>
+            <AnimeTypeFilter animeTypeFilterStore={animeTypeFilterStore}/>
         </div>
 
-        <div css={filterWrapperStyles}>
+        <div css={[filterWrapperStyles]}>
             <span css={filterTitleStyles}>{t("Select Rating")}</span>
             <RatingRange ratingFilterStore={ratingFilterStore}/>
         </div>
+        <div css={filterWrapperStyles}>
+            <span css={filterTitleStyles}>{t("Select Rating")}</span>
+            <AnimeStatusSelect animeStatusFilterStore={animeStatusFilterStore}/>
+        </div>
+
+        <button css={resetButtonStyles} onClick={filterManager.resetFilters}>
+            {t("Reset Filters")}
+        </button>
     </div>
 })

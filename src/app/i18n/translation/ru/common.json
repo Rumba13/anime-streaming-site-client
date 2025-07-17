@@ -150,5 +150,10 @@
   "Order By Members": "Участники",
   "Order By Favorites": "Избранные",
   "Descending": "По убыванию",
-  "Ascending": "По возрастанию"
+  "Ascending": "По возрастанию",
+  "Airing": "Онгоинг",
+  "Complete": "Завершён",
+  "Upcoming": "Анонс",
+  "Reset Filters": "Сбросить"
+
 }

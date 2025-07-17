@@ -150,5 +150,9 @@
   "Order By Members": "Members",
   "Order By Favorites": "Favorites",
   "Descending": "Descending",
-  "Ascending": "Ascending"
+  "Ascending": "Ascending",
+  "Airing": "Airing",
+  "Complete": "Complete",
+  "Upcoming": "Upcoming",
+  "Reset Filters": "Reset"
 }

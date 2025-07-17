@@ -22,7 +22,6 @@ export const filtersStyles = (theme: Theme) => css`
     grid-area: filters;
     border-radius: ${theme.smallBorderRadius};
     background-color: ${theme.backgroundColor};
-
 `
 
 export const searchBarStyles = (theme: Theme) => css`

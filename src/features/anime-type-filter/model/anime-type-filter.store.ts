@@ -2,11 +2,11 @@ import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {AnimeType} from "../../../shared/types/anime-type.ts";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
 
 @injectable()
-export class AnimeTypeFilterStore implements URLSyncStore {
+export class AnimeTypeFilterStore implements FilterStoreI {
     constructor(
         @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
     ) {
@@ -33,5 +33,8 @@ export class AnimeTypeFilterStore implements URLSyncStore {
         if (!this.selectedAnimeType) return new URLSearchParams({});
 
         return new URLSearchParams({[URL_PARAMS.ANIME_TYPE]: this.selectedAnimeType});
+    }
+    public resetFilter = () => {
+        this.setSelectedAnimeType(null);
     }
 }

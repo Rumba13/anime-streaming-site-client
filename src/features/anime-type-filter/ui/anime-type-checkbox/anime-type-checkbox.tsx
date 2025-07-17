@@ -6,7 +6,6 @@ import {
     checkboxStyles,
     checkboxWrapperStyles
 } from "./anime-type-checkbox.styles";
-import CheckboxMark from "../../../../assets/images/checkbox-mark.svg?react"
 
 type PropsType = {
     animeType: AnimeType;

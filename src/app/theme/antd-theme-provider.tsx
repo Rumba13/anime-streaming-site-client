@@ -27,6 +27,9 @@ export const AntdThemeProvider = ({theme, children}: PropsType) => {
                     handleLineWidthHover: "3px",
                     handleSize: 11,
                     handleSizeHover: 11,
+                },
+                Select: {
+
                 }
             }
         }}

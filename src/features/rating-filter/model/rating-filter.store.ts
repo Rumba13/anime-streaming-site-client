@@ -1,11 +1,11 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
 
 @injectable()
-export class RatingFilterStore implements URLSyncStore {
+export class RatingFilterStore implements FilterStoreI {
     constructor(
         @inject(URLSearchParamsParser) private readonly urlSearchParamsParser: URLSearchParamsParser,
     ) {
@@ -33,5 +33,8 @@ export class RatingFilterStore implements URLSyncStore {
         const maximalRating = this.urlSearchParamsParser.parseMaximumRating(searchParams);
 
         this.setRating(minimalRating, maximalRating);
+    }
+    public resetFilter = () => {
+        this.setRating(0, 10);
     }
 }

@@ -1,9 +1,6 @@
 import {AnimeStatus} from "../types/anime-status.ts";
-
-const animeStatusValues: AnimeStatus[] = [
-    "airing", "complete", "upcoming"
-]
+import {animeStatusList} from "./anime-status-list.ts";
 
 export const isAnimeStatus = (value: string) => {
-    return animeStatusValues.includes(value as AnimeStatus);
+    return animeStatusList.includes(value as AnimeStatus);
 }

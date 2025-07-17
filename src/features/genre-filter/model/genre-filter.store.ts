@@ -2,11 +2,11 @@ import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {ID} from "../../../shared/types";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {URLSyncStore} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
 import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
 
 @injectable()
-export class GenreFilterStore implements URLSyncStore {
+export class GenreFilterStore implements FilterStoreI {
     constructor(
         @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
     ) {
@@ -29,5 +29,8 @@ export class GenreFilterStore implements URLSyncStore {
         } else {
             return new URLSearchParams({[URL_PARAMS.GENRES]: genres})
         }
+    }
+    public resetFilter = () => {
+        this.setSelectedGenres([]);
     }
 }
