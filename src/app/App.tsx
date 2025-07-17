@@ -9,13 +9,14 @@ import {ThemeProvider} from "./theme/theme-provider.tsx";
 import {NormalizeStyles} from './styles/normalize.styles.tsx'
 import {GlobalStyles} from "./styles/global.styles.tsx";
 import {FontStyles} from "./styles/fonts.styles.tsx";
-import {ConfigProvider, theme} from "antd";
-import {darkTheme} from "./theme/themes/dark-theme.ts";
 import {useEffect} from "react";
 import {GenresStore} from "../entities/genre";
+import {AntdThemeProvider} from "./theme/antd-theme-provider.tsx";
+import {ThemeStore} from "./theme/theme.store.ts";
 
 function App() {
-const genresStore = container.get<GenresStore>(GenresStore);
+    const genresStore = container.get(GenresStore);
+    const themeStore = container.get(ThemeStore);
 
     useEffect(() => {
         void genresStore.loadGenres()
@@ -23,34 +24,12 @@ const genresStore = container.get<GenresStore>(GenresStore);
 
     return <Provider container={container} key={container.id}>
         <ThemeProvider>
-            <ConfigProvider
-                theme={{
-                    algorithm: theme.darkAlgorithm,
-                    token: {
-                        colorPrimary: darkTheme.primaryColor,
-                    },
-                    components: {
-                        Slider: {
-                            trackBg: darkTheme.primaryColor, // track background color
-                            trackHoverBg: darkTheme.primaryColor, // hover state
-                            handleColor: darkTheme.primaryColor, // handle color
-                            handleActiveColor: darkTheme.primaryColor, // active handle color
-                            dotActiveBorderColor: darkTheme.primaryColor, // active dot border color
-                       handleActiveOutlineColor: darkTheme.primaryColor,
-                            handleColorDisabled: darkTheme.primaryColor,
-                            handleLineWidth: "3px",
-                            handleLineWidthHover: "3px",
-                            handleSize: 11,
-                            handleSizeHover:11,
-                        }
-                    }
-                }}
-            >
+            <AntdThemeProvider theme={themeStore.getCurrentTheme()}>
                 <NormalizeStyles/>
                 <GlobalStyles/>
                 <FontStyles/>
                 <RouterProvider router={router}/>
-            </ConfigProvider>
+            </AntdThemeProvider>
         </ThemeProvider>
     </Provider>
 }

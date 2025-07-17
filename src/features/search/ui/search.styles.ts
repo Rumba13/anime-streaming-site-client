@@ -8,8 +8,10 @@ export const searchStyles = (theme: Theme) => css`
     display: flex;
     cursor: text;
     overflow: hidden;
+
     &:hover {
         border-color: ${theme.primaryColor};
+
         &::after {
         }
     }
@@ -28,15 +30,15 @@ export const searchField = (theme: Theme) => css`
     font-size: 14px;
     width: 100%;
     padding: 10px 15px 10px 10px;
-    
+
 `
 export const labelStyles = (theme: Theme) => css`
-   display: flex;
-    align-items: baseline;   
+    display: flex;
+    align-items: baseline;
 `
 
 export const iconStyles = (theme: Theme) => css`
-margin: 10px; 
+    margin: 10px;
     min-width: 18px;
 `
 
