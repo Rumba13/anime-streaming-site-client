@@ -15,16 +15,16 @@ type SearchResultPropsType = {
     data: Anime[];
     AnimeCard: React.FC<Anime>;
 }
-const SearchResults = ({data,AnimeCard}:SearchResultPropsType) =>  <>{data.map(anime => <AnimeCard {...anime} />)}</>
+const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map(anime => <AnimeCard key={anime.mal_id + anime.title} {...anime} />)}</>
 
 type PropsType = {
     searchAnimeStore: SearchAnimeStore;
 }
 
-export const SearchResultsList = observer(({searchAnimeStore}:PropsType) => {
+export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
     const animeCardSwitchStore = useInjection(AnimeCardSwitchStore);
-    const {isLoading,isFirstLoad} = searchAnimeStore
-    const {currentAnimeCardType,getCardComponent} = animeCardSwitchStore
+    const {isLoading, isFirstLoad} = searchAnimeStore
+    const {currentAnimeCardType, getCardComponent} = animeCardSwitchStore
     const {t} = useTranslation();
 
     const isFirstLoadingShown = isLoading && isFirstLoad
@@ -34,7 +34,7 @@ export const SearchResultsList = observer(({searchAnimeStore}:PropsType) => {
     const AnimeCard = getCardComponent();
 
     const content = match(searchAnimeStore)
-        .with({isLoading: true, isFirstLoad:true}, () => <Loading styles={loadingStyles}/>)
+        .with({isLoading: true, isFirstLoad: true}, () => <Loading styles={loadingStyles}/>)
         .with({isLoading: false, pagination: {data: []}}, () => <>{t("Nothing Found")}</>)
         .with({isLoading: true}, ({pagination}) =>
             <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>
@@ -47,5 +47,5 @@ export const SearchResultsList = observer(({searchAnimeStore}:PropsType) => {
         })
         .otherwise(() => <ErrorMessage error={new PatternError("Pattern matching error in search results")}/>);
 
-    return  <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
+    return <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })

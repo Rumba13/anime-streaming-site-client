@@ -15,13 +15,17 @@ export class UrlSyncStoreService {
     public syncStoresToURLParams(setSearchParams: SetURLSearchParams) {
         const urlParams = new URLSearchParams();
 
-        this.stores.forEach(store => {
+        for (const store of this.stores) {
+            if (store.isSyncedWithUrl) continue;
+
             const storeParams = store.stateToURLParams();
 
             storeParams.forEach((value, key) => {
                 urlParams.set(key, value);
             });
-        });
+
+            store.isSyncedWithUrl = true
+        }
 
         setSearchParams(urlParams);
     }

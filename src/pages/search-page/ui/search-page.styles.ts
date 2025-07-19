@@ -30,7 +30,6 @@ export const searchBarStyles = (theme: Theme) => css`
     height: 40px;
     border-radius: ${theme.smallBorderRadius};
     background-color: ${theme.backgroundColor};
-
 `
 export const loadingStyles = () => css`
     margin: auto;

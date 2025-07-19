@@ -14,7 +14,12 @@ export class GenreFilterStore implements FilterStoreI {
     }
 
     public selectedGenres: ID[] = [];
-    public setSelectedGenres = (genres: ID[]) => this.selectedGenres = genres;
+    public isSyncedWithUrl: boolean = false;
+    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
+    public setSelectedGenres = (genres: ID[]) => {
+        this.selectedGenres = genres;
+        this.setIsSyncedWithUrl(false);
+    }
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {
         const genres = this.urlSearchParamsParser.parseGenreIds(urlParams)

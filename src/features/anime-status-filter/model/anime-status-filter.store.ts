@@ -14,10 +14,13 @@ export class AnimeStatusFilterStore implements FilterStoreI {
         makeAutoObservable(this)
     }
 
+    public isSyncedWithUrl: boolean = false;
+    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
+
     public animeStatus: AnimeStatus | null = null;
     public setAnimeStatus = (animeStatus: AnimeStatus | null) => {
         this.animeStatus = animeStatus
-        console.log(animeStatus)
+        this.setIsSyncedWithUrl(false);
     };
 
     public stateToURLParams() {

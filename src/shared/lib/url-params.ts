@@ -9,4 +9,6 @@ export const URL_PARAMS = {
     MINIMAL_RATING: "min_rate",
     MAXIMUM_RATING: "max_rate",
     ANIME_STATUS: "status",
+    START_DATE: "from",
+    END_DATE: "to"
 }

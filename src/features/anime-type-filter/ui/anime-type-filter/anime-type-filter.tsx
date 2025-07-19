@@ -11,6 +11,7 @@ type PropsType = {
 export const AnimeTypeFilter = observer(({animeTypeFilterStore}:PropsType) => {
     return <div css={animeTypeFilterStyles}>
         {animeTypes.map(animeType => <AnimeTypeCheckbox
+            key={animeType}
             animeType={animeType}
             onSelect={animeTypeFilterStore.toggleSelectedAnimeType}
             isSelected={animeTypeFilterStore.selectedAnimeType === animeType}/>)}

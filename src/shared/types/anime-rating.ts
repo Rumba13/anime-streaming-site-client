@@ -1,1 +1,1 @@
-export type AnimeRating = "g" | "pg" | "pg13" | "pg17" | "r" | "rx";
+export type AnimeRating = "g" | "pg" | "pg13" | "r17" | "r" | "rx";

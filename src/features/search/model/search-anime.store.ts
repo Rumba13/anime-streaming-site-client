@@ -35,7 +35,7 @@ export class SearchAnimeStore extends BaseLoadingStore {
         });
     }
 
-    private readonly imageCountToPreload:number = 10;
+    private readonly IMAGE_COUNT_TO_PRELOAD:number = 10;
     private currentAbortController: AbortController | null = null;
 
     public pagination: JikanPagination<Anime> | null = null;
@@ -44,6 +44,14 @@ export class SearchAnimeStore extends BaseLoadingStore {
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
 
+    private preloadImages = async (pagination:JikanPagination<Anime> | null) => {
+        if (pagination && pagination.data) {
+            await Promise.all(
+                pagination.data.slice(0, this.IMAGE_COUNT_TO_PRELOAD).map(anime => preloadImage(getAnimeImage(anime.images)))
+            );
+        }
+    }
+
     public async search(searchDto: SearchDto) {
         if (this.currentAbortController) this.currentAbortController.abort();
 
@@ -51,14 +59,12 @@ export class SearchAnimeStore extends BaseLoadingStore {
         this.setIsLoading(true);
 
         try {
-            const pagination = await this.animeService.search(searchDto, this.currentAbortController.signal);
-            if (pagination && pagination.data) {
-                await Promise.all(
-                    pagination.data.slice(0, this.imageCountToPreload).map(anime => preloadImage(getAnimeImage(anime.images)))
-                );
-            }
-            this.setPagination(pagination)
             scrollToTop()
+            const pagination = await this.animeService.search(searchDto, this.currentAbortController.signal);
+
+            await this.preloadImages(pagination);
+
+            this.setPagination(pagination)
         } catch (err) {
             const error = err as Error;
             if (error?.name === 'CanceledError' || error?.name === 'AbortError') {

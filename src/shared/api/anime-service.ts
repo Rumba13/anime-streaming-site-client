@@ -8,6 +8,7 @@ import {AnimeType} from "../types/anime-type.ts";
 import {BaseError} from "../model/base-error.ts";
 import {OrderBy} from "../types/order-by.ts";
 import {SearchDto} from "../types/search-dto.ts";
+import {jikanDateFormat} from "../lib/jikan-date-format.ts";
 
 @injectable()
 export class AnimeService {
@@ -50,12 +51,18 @@ export class AnimeService {
                      query,
                      maxRating,
                      minRating,
-                     animeStatus
+                     animeStatus,
+                     animePgRating,
+                     startDate,
+                     endDate
                  }: SearchDto, signal?: AbortSignal): Promise<JikanPagination<Anime> | null> {
 
         const min_score = (minRating === 0 || minRating === null) ? undefined : minRating;
         const max_score = (maxRating === 10 || maxRating === null) ? undefined : maxRating;
         const status = animeStatus ? animeStatus : undefined;
+        const rating = animePgRating ? animePgRating : undefined;
+        const start_date = startDate ? startDate.format(jikanDateFormat) : undefined;
+        const end_date = endDate ? endDate.format(jikanDateFormat) : undefined;
 
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
@@ -70,7 +77,10 @@ export class AnimeService {
                     sfw: true,
                     max_score,
                     min_score,
-                    status
+                    status,
+                    rating,
+                    start_date,
+                    end_date,
                 } as SearchAnimeRequest,
                 signal
             })).data;

@@ -18,10 +18,18 @@ export class OrderByStore implements FilterStoreI {
     private readonly DEFAULT_SORT_TYPE: SortType = "asc"
 
     public orderBy: OrderBy = this.DEFAULT_ORDER_BY;
-    public setOrderBy = (orderBy: OrderBy) => this.orderBy = orderBy;
-
     public sortType: SortType = this.DEFAULT_SORT_TYPE;
-    public setSortType = (sortType: SortType) => this.sortType = sortType;
+    public isSyncedWithUrl: boolean = false;
+    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
+    public setOrderBy = (orderBy: OrderBy) => {
+        this.orderBy = orderBy;
+        this.setIsSyncedWithUrl(false);
+    }
+
+    public setSortType = (sortType: SortType) => {
+        this.sortType = sortType;
+        this.setIsSyncedWithUrl(false);
+    }
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {
         const orderBy = this.urlSearchParamsParser.parseOrderBy(urlParams)

@@ -3,6 +3,8 @@ import {AnimeType} from "./anime-type.ts";
 import {OrderBy} from "./order-by.ts";
 import {SortType} from "./sortType.ts";
 import {AnimeStatus} from "./anime-status.ts";
+import {AnimeRating} from "./anime-rating.ts";
+import {Dayjs} from "dayjs";
 
 export type SearchDto = {
     genreIds: ID[];
@@ -15,4 +17,8 @@ export type SearchDto = {
     minRating: number | null,
     maxRating: number | null,
     animeStatus: AnimeStatus | null,
+    animePgRating: AnimeRating | null
+    endDate: Dayjs | null
+    startDate: Dayjs | null
+
 }

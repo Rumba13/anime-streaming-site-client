@@ -9,7 +9,7 @@ import {
     resetButtonStyles,
     searchStyles
 } from "./filters.styles.ts";
-import {useEffect} from "react";
+import {useEffect, useMemo} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
@@ -28,6 +28,8 @@ import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter/m
 import {GenresStore} from "../../../../entities/genre";
 import {AnimeStatusSelect} from "../../../../features/anime-status-filter";
 import {FilterManager} from "../../lib/filter-manager.ts";
+import {AnimeDateFilterStore} from "../../../../features/anime-date-filter/model/anime-date-filter.store.ts";
+import {AnimeDateFilter} from "../../../../features/anime-date-filter";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -45,6 +47,7 @@ export const Filters = observer(({styles}: PropsType) => {
     const animeStatusFilterStore = useInjection(AnimeStatusFilterStore);
     const genresStore = useInjection(GenresStore);
     const filterManager = useInjection(FilterManager);
+    const animeDateFilterStore = useInjection(AnimeDateFilterStore);
 
     filterManager.setFilters([
         genreFilterStore,
@@ -53,7 +56,8 @@ export const Filters = observer(({styles}: PropsType) => {
         orderByStore,
         searchQueryStore,
         ratingFilterStore,
-        animeStatusFilterStore
+        animeStatusFilterStore,
+        animeDateFilterStore
     ])
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -67,8 +71,8 @@ export const Filters = observer(({styles}: PropsType) => {
         void genresStore.loadGenres();
     }, []);
 
+    const debouncedSearch = useMemo(() => debounce(search, 200), [searchAnimeStore, urlSearchParamsParser])
     useEffect(() => {
-        const debouncedSearch = debounce(search, 200);
         void debouncedSearch(searchParams)
     }, [searchParams]);
 
@@ -87,7 +91,9 @@ export const Filters = observer(({styles}: PropsType) => {
         searchQueryStore.searchQuery,
         ratingFilterStore.minimalRating,
         ratingFilterStore.maximumRating,
-        animeStatusFilterStore.animeStatus
+        animeStatusFilterStore.animeStatus,
+        animeDateFilterStore.startDate,
+        animeDateFilterStore.endDate,
     ]);
 
     return <div css={[filtersStyles, styles]}>
@@ -112,8 +118,12 @@ export const Filters = observer(({styles}: PropsType) => {
             <RatingRange ratingFilterStore={ratingFilterStore}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Rating")}</span>
+            <span css={filterTitleStyles}>{t("Select Status")}</span>
             <AnimeStatusSelect animeStatusFilterStore={animeStatusFilterStore}/>
+        </div>
+        <div css={filterWrapperStyles}>
+            <span css={filterTitleStyles}>{t("Select Dates")}</span>
+            <AnimeDateFilter animeDateFilterStore={animeDateFilterStore}/>
         </div>
 
         <button css={resetButtonStyles} onClick={filterManager.resetFilters}>

@@ -9,6 +9,7 @@ import {OrderBy} from "../../types/order-by.ts";
 import {MAX_RATING, MIN_RATING} from "../rating-constants.ts";
 import {AnimeStatus} from "../../types/anime-status.ts";
 import {isAnimeStatus} from "../is-anime-status.ts";
+import dayjs, {Dayjs} from "dayjs";
 
 @injectable()
 export class URLSearchParamsParser {
@@ -100,8 +101,22 @@ export class URLSearchParamsParser {
 
         return animeStatus as AnimeStatus
     }
+    public parseDates = (searchParams: URLSearchParams): (Dayjs | null)[] => {
+        const parseDate = (dateString: string | null): Dayjs | null => {
+            if (!dateString) return null;
+            const date = dayjs(dateString);
+            return date.isValid() ? date : null;
+        };
+
+        const startDate = parseDate(searchParams.get(URL_PARAMS.START_DATE));
+        const endDate = parseDate(searchParams.get(URL_PARAMS.END_DATE));
+
+        return [startDate, endDate];
+    }
 
     public parseSearchDto = (searchParams: URLSearchParams): SearchDto => {
+        const [startDate, endDate] = this.parseDates(searchParams)
+
         return {
             page: this.parsePage(searchParams),
             type: this.parseType(searchParams),
@@ -112,7 +127,10 @@ export class URLSearchParamsParser {
             query: this.parseQuery(searchParams),
             minRating: this.parseMinimalRating(searchParams),
             maxRating: this.parseMaximumRating(searchParams),
-            animeStatus: this.parseStatus(searchParams)
+            animeStatus: this.parseStatus(searchParams),
+            animePgRating: null,
+            startDate,
+            endDate,
         }
     }
 }

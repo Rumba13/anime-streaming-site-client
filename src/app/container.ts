@@ -22,6 +22,7 @@ import {URLSearchParamsParser} from "../shared/lib/url-search-params-parser/url-
 import {RatingFilterStore} from "../features/rating-filter/model/rating-filter.store.ts";
 import {AnimeStatusFilterStore} from "../features/anime-status-filter/model/anime-status-filter.store.ts";
 import {FilterManager} from "../pages/search-page/lib/filter-manager.ts";
+import {AnimeDateFilterStore} from "../features/anime-date-filter/model/anime-date-filter.store.ts";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -47,6 +48,7 @@ container.bind(URLSearchParamsParser).toSelf().inSingletonScope()
 container.bind(RatingFilterStore).toSelf().inSingletonScope()
 container.bind(AnimeStatusFilterStore).toSelf().inSingletonScope()
 container.bind(FilterManager).toSelf().inSingletonScope()
+container.bind(AnimeDateFilterStore).toSelf().inSingletonScope()
 
 
 

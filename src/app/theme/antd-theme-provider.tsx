@@ -13,6 +13,8 @@ export const AntdThemeProvider = ({theme, children}: PropsType) => {
             algorithm: antdTheme.darkAlgorithm,
             token: {
                 colorPrimary: theme.primaryColor,
+                motionDurationMid: theme.fastAnimationTime,
+                motionDurationSlow: theme.mediumAnimationTime,
             },
             components: {
                 Slider: {
@@ -29,6 +31,9 @@ export const AntdThemeProvider = ({theme, children}: PropsType) => {
                     handleSizeHover: 11,
                 },
                 Select: {
+
+                },
+                RangePicker: {
 
                 }
             }

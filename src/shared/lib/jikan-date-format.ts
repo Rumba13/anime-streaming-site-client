@@ -1,0 +1,1 @@
+export const jikanDateFormat = "YYYY-MM-DD"
