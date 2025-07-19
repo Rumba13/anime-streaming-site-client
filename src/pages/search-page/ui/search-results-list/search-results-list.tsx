@@ -15,7 +15,7 @@ type SearchResultPropsType = {
     data: Anime[];
     AnimeCard: React.FC<Anime>;
 }
-const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map(anime => <AnimeCard key={anime.mal_id + anime.title} {...anime} />)}</>
+const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map((anime, index) => <AnimeCard key={anime.mal_id + anime.title + index} {...anime} />)}</>
 
 type PropsType = {
     searchAnimeStore: SearchAnimeStore;

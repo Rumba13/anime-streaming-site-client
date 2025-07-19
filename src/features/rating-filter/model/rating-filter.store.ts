@@ -3,6 +3,7 @@ import {makeAutoObservable} from "mobx";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
+import {MAX_RATING, MIN_RATING} from "../../../shared/lib/rating-constants.ts";
 
 @injectable()
 export class RatingFilterStore implements FilterStoreI {
@@ -26,15 +27,17 @@ export class RatingFilterStore implements FilterStoreI {
 
     public stateToURLParams() {
         this.setIsSyncedWithUrl(true)
-        console.log({
-            [URL_PARAMS.MINIMAL_RATING]: String(this.minimalRating),
-            [URL_PARAMS.MAXIMUM_RATING]: String(this.maximumRating),
-        })
 
-        return new URLSearchParams({
-            [URL_PARAMS.MINIMAL_RATING]: String(this.minimalRating),
-            [URL_PARAMS.MAXIMUM_RATING]: String(this.maximumRating),
-        })
+        const urlParams = new URLSearchParams();
+
+        if (this.minimalRating && this.minimalRating !== MIN_RATING) {
+            urlParams.set(URL_PARAMS.MINIMAL_RATING, String(this.minimalRating))
+        }
+        if (this.maximumRating && this.maximumRating !== MAX_RATING) {
+            urlParams.set(URL_PARAMS.MAXIMUM_RATING, String(this.maximumRating))
+        }
+
+        return urlParams;
     }
 
     public setStateFromURLParams(searchParams: URLSearchParams) {
@@ -43,6 +46,7 @@ export class RatingFilterStore implements FilterStoreI {
 
         this.setRating(minimalRating, maximalRating);
     }
+
     public resetFilter = () => {
         this.setRating(0, 10);
     }

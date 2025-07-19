@@ -31,7 +31,6 @@ export class SearchAnimeStore extends BaseLoadingStore {
             setPagination: action,
             isFirstLoad: observable,
             setIsFirstLoad: action,
-            // currentAbortController не нужен в makeObservable
         });
     }
 
@@ -39,7 +38,11 @@ export class SearchAnimeStore extends BaseLoadingStore {
     private currentAbortController: AbortController | null = null;
 
     public pagination: JikanPagination<Anime> | null = null;
-    public setPagination = (pagination: JikanPagination<Anime> | null) => this.pagination = pagination;
+    public setPagination = (pagination: JikanPagination<Anime> | null) => {
+        this.pagination = pagination
+
+
+    };
 
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;

@@ -39,6 +39,7 @@ export function AnimeMiniCard({
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
     const [isLoadingShown, setIsLoadingShown] = useState<boolean>(false);
 
+
     const animeDuration = duration.replace("per ep", "");
 
     const shouldShownImageLoading = false;

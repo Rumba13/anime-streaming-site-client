@@ -16,7 +16,6 @@ export class UrlSyncStoreService {
         const urlParams = new URLSearchParams();
 
         for (const store of this.stores) {
-            if (store.isSyncedWithUrl) continue;
 
             const storeParams = store.stateToURLParams();
 
@@ -24,7 +23,6 @@ export class UrlSyncStoreService {
                 urlParams.set(key, value);
             });
 
-            store.isSyncedWithUrl = true
         }
 
         setSearchParams(urlParams);
