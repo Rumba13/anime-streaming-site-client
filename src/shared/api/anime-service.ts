@@ -1,12 +1,12 @@
 import {inject, injectable} from "inversify";
 import {JikanPagination} from "../types/jikan-pagination.ts";
-import {Anime} from "../types/anime.ts";
+import {Anime} from "../types/anime/anime.ts";
 import {JikanClient} from "./jikan-client.ts";
 import {BaseError} from "../model/base-error.ts";
 import {SearchDto} from "../types/search-dto.ts";
-import {jikanDateFormat} from "../lib/jikan-date-format.ts";
-import {DEFAULT_SORT_TYPE} from "../lib/default-sort-type.ts";
-import {DEFAULT_ORDER_BY} from "../lib/default-order-by.ts";
+import {jikanDateFormat} from "../lib/date-formats/jikan-date-format.ts";
+import {DEFAULT_SORT_TYPE} from "../lib/sort/default-sort-type.ts";
+import {DEFAULT_ORDER_BY} from "../lib/order-by/default-order-by.ts";
 import {MAX_RATING, MIN_RATING} from "../lib/rating-constants.ts";
 import {Dayjs} from "dayjs";
 

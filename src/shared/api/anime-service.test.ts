@@ -3,7 +3,7 @@ import {JikanClient} from "./jikan-client.ts";
 import {Container} from "inversify";
 import {AnimeService} from "./anime-service.ts";
 import {JikanPagination} from "../types/jikan-pagination.ts";
-import {Anime} from "../types/anime.ts";
+import {Anime} from "../types/anime/anime.ts";
 
 describe("Anime Service", () => {
     let container: Container;

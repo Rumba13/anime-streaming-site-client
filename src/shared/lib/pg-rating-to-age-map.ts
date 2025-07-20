@@ -1,4 +1,4 @@
-import {PgRating} from "../types/pg-rating.ts";
+import {PgRating} from "../types";
 
 export const pgRatingToAgeMap: Record<PgRating, string> = {
     "G - All Ages": "0+",

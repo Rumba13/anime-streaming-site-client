@@ -1,4 +1,4 @@
-import {AnimeStatus} from "../types/anime-status.ts";
+import {AnimeStatus} from "../../types/anime/anime-status.ts";
 
 export type animeStatusTranslationKeys = "Complete" | "Airing" | "Upcoming"
 

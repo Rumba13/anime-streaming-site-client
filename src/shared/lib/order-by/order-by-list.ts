@@ -1,6 +1,6 @@
-import {OrderBy} from "../types/order-by.ts";
+import {OrderBy} from "../../types";
 
-export const orderByTypes: OrderBy[] = [
+export const orderByList: OrderBy[] = [
     "mal_id",
     "title",
     "start_date",

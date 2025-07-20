@@ -8,10 +8,12 @@ import {Logo} from "../../../ui";
 import {headerMiddleStyles, headerRightStyles, headerStyles} from "./header.styles.ts";
 
 type PropsType = {
-    SearchSlot: FC
+    SearchSlot: FC,
+    JikanStatusSlot:FC
+    AnimationsSwitchSlot:FC
 }
 
-export function Header({SearchSlot}: PropsType) {
+export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot}: PropsType) {
     return <header css={headerStyles}>
         <Logo/>
 
@@ -22,7 +24,7 @@ export function Header({SearchSlot}: PropsType) {
 
         <div css={headerRightStyles}>
             <ShowFavoritesButton/>
-            <ShowProfile/>
+            <ShowProfile JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
             <ShowSubscriptionPlans/>
         </div>
     </header>

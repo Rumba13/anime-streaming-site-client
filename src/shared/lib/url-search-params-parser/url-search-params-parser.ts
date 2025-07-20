@@ -1,15 +1,15 @@
 import {injectable} from "inversify";
-import {SearchDto} from "../../types/search-dto.ts";
-import {isAnimeType} from "../../../entities/anime-type";
-import {isOrderByType} from "../is-order-by-type.ts";
-import {isSortType} from "../../../features/order-by/model/is-sort-type.ts";
+import {SearchDto} from "../../types";
+import {isOrderBy} from "../order-by/is-order-by.ts";
+import {isSortType} from "../sort/is-sort-type.ts";
 import {URL_PARAMS} from "../url-params.ts";
-import {SortType} from "../../types/sort-type.ts";
-import {OrderBy} from "../../types/order-by.ts";
+import {SortType} from "../../types";
+import {OrderBy} from "../../types";
 import {MAX_RATING, MIN_RATING} from "../rating-constants.ts";
-import {AnimeStatus} from "../../types/anime-status.ts";
-import {isAnimeStatus} from "../is-anime-status.ts";
+import {AnimeStatus} from "../../types";
+import {isAnimeStatus} from "../anime-status/is-anime-status.ts";
 import dayjs, {Dayjs} from "dayjs";
+import {isAnimeType} from "../anime-type/is-anime-type.ts";
 
 @injectable()
 export class URLSearchParamsParser {
@@ -55,7 +55,7 @@ export class URLSearchParamsParser {
     public parseOrderBy = (searchParams: URLSearchParams) => {
         const orderByType = searchParams.get(URL_PARAMS.ORDER_BY)
         if (!orderByType) return null;
-        if (!isOrderByType(orderByType)) return null;
+        if (!isOrderBy(orderByType)) return null;
         return orderByType as OrderBy;
     }
 

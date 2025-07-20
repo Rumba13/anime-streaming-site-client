@@ -7,6 +7,8 @@ import {ExploreMoreSection} from "./explore-more-section/explore-more-section.ts
 import {exploreMoreSectionStyles, homePageContentStyles, searchStyles} from "./home-page.styles.ts";
 import {ROUTES} from "../../../shared/lib";
 import {useNavigate} from "react-router-dom";
+import {JikanStatus} from "../../../features/jikan-status";
+import {AnimationsSwitch} from "../../../features/animations-switch";
 
 export function HomePage() {
     const navigate = useNavigate()
@@ -15,8 +17,13 @@ export function HomePage() {
         void navigate(ROUTES.SEARCH_PAGE_SEARCH_QUERY(searchValue));
     }
 
-    return <DefaultLayout SearchSlot={() => <Search styles={searchStyles} onSearch={handleSearch}/>}
-                          LanguageSelectorSlot={LanguageSelector}>
+    return <DefaultLayout
+        SearchSlot={() => <Search styles={searchStyles} onSearch={handleSearch}/>}
+                          LanguageSelectorSlot={LanguageSelector}
+        JikanStatusSlot={JikanStatus}
+
+        AnimationsSwitchSlot={AnimationsSwitch}
+    >
         <div css={homePageContentStyles}>
             <WelcomeSection/>
             <ExploreMoreSection styles={exploreMoreSectionStyles}/>

@@ -1,4 +1,4 @@
-import {SortType} from "../../../shared/types";
+import {SortType} from "../../types";
 
 export const sortTypes:SortType[] = [
     "asc",

@@ -1,7 +1,6 @@
 import "./show-profile.styles.ts";
 import UserIcon from "../../../../../assets/images/user.svg?react"
 import {GradientBorderedButton} from "../../../../ui";
-import {JikanStatus} from "../../../../../features/jikan-status";
 import {useInjection} from "inversify-react";
 import {ProfilePopupStore} from "./profile-popup.store.ts";
 import {observer} from "mobx-react";
@@ -12,10 +11,15 @@ import {
     showProfileButton,
     showProfileButtonWrapper
 } from "./show-profile.styles.ts";
-import {AnimationsSwitch} from "../../../../../features/animations-switch";
-import {BasePopup} from "../../../../ui/base-popup/base-popup.tsx";
+import {BasePopup} from "../../../../ui";
+import {FC} from "react";
 
-export const ShowProfile = observer(() => {
+type PropsType = {
+    JikanStatusSlot: FC,
+    AnimationsSwitchSlot: FC
+}
+
+export const ShowProfile = observer(({JikanStatusSlot,AnimationsSwitchSlot}:PropsType) => {
     const profilePopupStore = useInjection(ProfilePopupStore)
 
     return <div css={showProfileButtonWrapper}>
@@ -25,9 +29,8 @@ export const ShowProfile = observer(() => {
 
         <BasePopup styles={profile} popupStore={profilePopupStore}>
             <h2 css={profileTitle}>Profile</h2>
-
-            <JikanStatus styles={noBackgroundStyles}/>
-            <AnimationsSwitch styles={noBackgroundStyles}/>
+            <JikanStatusSlot styles={noBackgroundStyles}/>
+            <AnimationsSwitchSlot styles={noBackgroundStyles}/>
         </BasePopup>
     </div>
 })

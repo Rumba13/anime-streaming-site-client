@@ -1,4 +1,4 @@
-import {AnimeStatus} from "../types/anime-status.ts";
+import {AnimeStatus} from "../../types";
 
 export const animeStatusList: AnimeStatus[] = [
     "airing", "complete", "upcoming"

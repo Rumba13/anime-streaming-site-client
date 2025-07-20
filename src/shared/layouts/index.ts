@@ -1,1 +1,1 @@
-export {DefaultLayout, BrowseGenresPopupStore} from "./default-layout"
+export {DefaultLayout, BrowseGenresPopupStore,ProfilePopupStore} from "./default-layout"

@@ -5,9 +5,9 @@ export default defineConfig([
     ...fsd.configs.recommended,
     {
         rules: {
-            'fsd/insignificant-slice': 'off',
             'fsd/segments-by-purpose': 'off',
-            "fsd/repetitive-naming": "off"
+            "fsd/repetitive-naming": "off",
+            "fsd/inconsistent-naming": "off"
         },
     },
 ])

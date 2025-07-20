@@ -1,8 +1,8 @@
 import {animeTypeFilterStyles} from "./anime-type-filter.styles.ts";
-import {animeTypes} from "../../../../entities/anime-type";
 import {AnimeTypeFilterStore} from "../../model/anime-type-filter.store.ts";
 import {observer} from "mobx-react";
 import {AnimeTypeCheckbox} from "../anime-type-checkbox/anime-type-checkbox.tsx";
+import {animeTypes} from "../../../../shared/lib";
 
 type PropsType = {
     animeTypeFilterStore:AnimeTypeFilterStore

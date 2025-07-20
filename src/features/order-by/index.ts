@@ -1,3 +1,4 @@
 export {OrderByStore} from "./model/order-by.store.ts"
-export {orderByTypes} from "../../shared/lib/order-by-types.ts"
+export {orderByList} from "../../shared/lib"
 export {orderByTypeToTitle} from "./ui/order-by-type-to-title.ts"
+export {OrderBySelect} from "./ui/order-by-select.tsx"

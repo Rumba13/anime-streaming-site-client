@@ -4,7 +4,7 @@ import {ShortGenresStore} from "../shared/model";
 import {BrowseGenresPopupStore} from "../shared/layouts";
 import {AnimeService} from "../shared/api";
 import {JikanStatusStore} from "../features/jikan-status";
-import {ProfilePopupStore} from "../shared/layouts/default-layout";
+import {ProfilePopupStore} from "../shared/layouts";
 import {ThemeStore} from "./theme/theme.store.ts";
 import {AnimationsSwitchStore} from "../features/animations-switch";
 import {WelcomeBannersStore} from "../pages/home-page";

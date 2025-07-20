@@ -9,12 +9,21 @@ type PropsType = {
     children: ReactNode,
     SearchSlot: FC,
     styles?: Interpolation<Theme>,
-    LanguageSelectorSlot: FC
+    LanguageSelectorSlot: FC,
+    JikanStatusSlot: FC,
+    AnimationsSwitchSlot: FC
 }
 
-export function DefaultLayout({children, SearchSlot, styles, LanguageSelectorSlot}: PropsType) {
+export function DefaultLayout({
+                                  children,
+                                  SearchSlot,
+                                  styles,
+                                  LanguageSelectorSlot,
+                                  JikanStatusSlot,
+                                  AnimationsSwitchSlot
+                              }: PropsType) {
     return <div css={[defaultLayoutStyles, styles]}>
-        <Header SearchSlot={SearchSlot}/>
+        <Header SearchSlot={SearchSlot} JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
         {children}
         <Footer LanguageSelectorSlot={LanguageSelectorSlot}/>
     </div>

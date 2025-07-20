@@ -9,13 +9,15 @@ import {useSearchParams} from "react-router-dom";
 import {useInjection} from "inversify-react";
 import {Filters} from "./filters/filters.tsx";
 import {observer} from "mobx-react";
-import {AnimeCardSwitcher} from "../../../features/anime-card-switch/ui/anime-card-switcher.tsx";
-import {SearchAnimeStore} from "../../../features/search/model/search-anime.store.ts";
+import {AnimeCardSwitcher} from "../../../features/anime-card-switch";
+import {SearchAnimeStore} from "../../../features/search";
 import {SearchResultsList} from "./search-results-list/search-results-list.tsx";
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
-import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
+import {OrderBySelect} from "../../../features/order-by";
 import {OrderByStore} from "../../../features/order-by";
 import {URLSearchParamsParser} from "../../../shared/lib";
+import {JikanStatus} from "../../../features/jikan-status";
+import {AnimationsSwitch} from "../../../features/animations-switch";
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
@@ -24,7 +26,12 @@ export const SearchPage = observer(() => {
     const [searchParams] = useSearchParams();
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
 
-    return <DefaultLayout SearchSlot={() => <></>} LanguageSelectorSlot={LanguageSelector}>
+    return <DefaultLayout
+        SearchSlot={() => <></>}
+        LanguageSelectorSlot={LanguageSelector}
+        JikanStatusSlot={JikanStatus}
+        AnimationsSwitchSlot={AnimationsSwitch}
+    >
         <div css={searchPageContentStyles}>
             <Filters styles={filtersStyles}/>
             <div css={searchBarStyles}>
