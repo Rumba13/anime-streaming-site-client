@@ -2,15 +2,14 @@ import {inject, injectable} from "inversify";
 import {JikanPagination} from "../types/jikan-pagination.ts";
 import {Anime} from "../types/anime.ts";
 import {JikanClient} from "./jikan-client.ts";
-import {ID} from "../types";
 import {SearchAnimeRequest} from "../types/search-anime-request.ts";
-import {AnimeType} from "../types/anime-type.ts";
 import {BaseError} from "../model/base-error.ts";
-import {OrderBy} from "../types/order-by.ts";
 import {SearchDto} from "../types/search-dto.ts";
 import {jikanDateFormat} from "../lib/jikan-date-format.ts";
 import {DEFAULT_SORT_TYPE} from "../lib/default-sort-type.ts";
 import {DEFAULT_ORDER_BY} from "../lib/default-order-by.ts";
+import {MAX_RATING, MIN_RATING} from "../lib/rating-constants.ts";
+import {Dayjs} from "dayjs";
 
 @injectable()
 export class AnimeService {
@@ -43,53 +42,60 @@ export class AnimeService {
         }
     }
 
-    async search({
-                     excludedGenreIds,
-                     genreIds,
-                     sortType,
-                     type,
-                     orderBy,
-                     page,
-                     query,
-                     maxRating,
-                     minRating,
-                     animeStatus,
-                     animePgRating,
-                     startDate,
-                     endDate
-                 }: SearchDto, signal?: AbortSignal): Promise<JikanPagination<Anime> | null> {
+    async search(searchDto: SearchDto, signal?: AbortSignal): Promise<JikanPagination<Anime> | null> {
+        const {
+            excludedGenreIds,
+            genreIds,
+            sortType,
+            type: animeType,
+            orderBy,
+            page,
+            query,
+            maxRating,
+            minRating,
+            animeStatus,
+            animePgRating,
+            startDate,
+            endDate
+        } = searchDto;
 
-        const min_score = (minRating === 0 || minRating === null) ? undefined : minRating;
-        const max_score = (maxRating === 10 || maxRating === null) ? undefined : maxRating;
-        const status = animeStatus ? animeStatus : undefined;
-        const rating = animePgRating ? animePgRating : undefined;
-        const start_date = startDate ? startDate.format(jikanDateFormat) : undefined;
-        const end_date = endDate ? endDate.format(jikanDateFormat) : undefined;
+        const buildParam = <T>(value: T, defaultValue?: T): T | undefined =>
+            value === null || value === defaultValue ? undefined : value;
+
+        const buildParamWithNoUndefined = <T>(value: T, defaultValue?: T): T | undefined =>
+            value || defaultValue;
+
+        const buildDateParam = (date?: Dayjs | null): string | undefined =>
+            date ? date.format(jikanDateFormat) : undefined;
+
+        const buildGenreParam = (genres: number[]): string | undefined =>
+            genres.length > 0 ? genres.join(',') : undefined;
+
+        const params = {
+            order_by: buildParamWithNoUndefined(orderBy, DEFAULT_ORDER_BY),
+            sort: buildParamWithNoUndefined(sortType, DEFAULT_SORT_TYPE),
+            genres: buildGenreParam(genreIds),
+            genres_exclude: buildGenreParam(excludedGenreIds),
+            page,
+            type: buildParam(animeType),
+            q: query,
+            sfw: true,
+            max_score: buildParam(maxRating, MAX_RATING),
+            min_score: buildParam(minRating, MIN_RATING),
+            status: buildParam(animeStatus),
+            rating: buildParam(animePgRating),
+            start_date: buildDateParam(startDate),
+            end_date: buildDateParam(endDate),
+        };
 
         try {
-            const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
-                params: {
-                    order_by: orderBy || DEFAULT_ORDER_BY,
-                    sort: sortType || DEFAULT_SORT_TYPE,
-                    genres: genreIds.length > 0 ? genreIds.join(',') : undefined,
-                    genres_exclude: excludedGenreIds.length > 0 ? excludedGenreIds.join(',') : undefined,
-                    page,
-                    type: type ? type : undefined,
-                    q: query,
-                    sfw: true,
-                    max_score,
-                    min_score,
-                    status,
-                    rating,
-                    start_date,
-                    end_date,
-                } as SearchAnimeRequest,
-                signal
-            })).data;
-
-            return pagination
+            const response = await this.jikanClient.connection.get<JikanPagination<Anime>>(
+                "/anime",
+                { params, signal }
+            );
+            return response.data;
         } catch (error) {
-            console.log(error);
+            console.error("Search Error:", error);
             throw new BaseError("Search Error", "NetworkError");
         }
     }
