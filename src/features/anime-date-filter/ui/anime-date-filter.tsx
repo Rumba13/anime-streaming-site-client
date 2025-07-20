@@ -29,9 +29,10 @@ export const AnimeDateFilter = observer(({animeDateFilterStore}: PropsType) => {
     useEffect(() => {
         const [startYear, endYear] = sliderValue
 
-        void debouncedSetDates(
-            startYear ? dayjs().year(startYear).startOf('year') : null,
-            endYear ? dayjs().year(endYear).endOf('year') : null)
+        const startDate = startYear && startYear !== MIN_YEAR ? dayjs().year(startYear).startOf('year') : null
+        const endDate = endYear && endYear !== MAX_YEAR ? dayjs().year(endYear).endOf('year') : null
+
+        void debouncedSetDates(startDate, endDate)
 
     }, [sliderValue])
 
