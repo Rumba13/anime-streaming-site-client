@@ -2,7 +2,6 @@ import {inject, injectable} from "inversify";
 import {JikanPagination} from "../types/jikan-pagination.ts";
 import {Anime} from "../types/anime.ts";
 import {JikanClient} from "./jikan-client.ts";
-import {SearchAnimeRequest} from "../types/search-anime-request.ts";
 import {BaseError} from "../model/base-error.ts";
 import {SearchDto} from "../types/search-dto.ts";
 import {jikanDateFormat} from "../lib/jikan-date-format.ts";
