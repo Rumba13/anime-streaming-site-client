@@ -1,4 +1,4 @@
-import {Anime} from "../../../../shared/types";
+import {Anime, AnimeImages} from "../../../../shared/types";
 import {
     animeMiniCardStyles,
     bottomStyles, durationStyles,
@@ -22,29 +22,13 @@ type PropsType = Anime
 
 const BLACK_IMAGE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='black'/%3E%3C/svg%3E";
 
-export function AnimeMiniCard({
-                                  title,
-                                  mal_id,
-                                  rating,
-                                  synopsis,
-                                  images,
-                                  genres,
-                                  duration,
-                                  type,
-                                  title_japanese,
-                                  title_synonyms,
-                                  aired,
-                                  status,
-                              }: PropsType) {
+const useAnimeImageLoading = (images: AnimeImages) => {
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
     const [isLoadingShown, setIsLoadingShown] = useState<boolean>(false);
 
-
-    const animeDuration = duration.replace("per ep", "");
-
     const shouldShownImageLoading = false;
 
-    const animeImage = shouldShownImageLoading ? (isImageLoaded ? getAnimeImage(images) : (isLoadingShown ? LoadingIcon : BLACK_IMAGE)): getAnimeImage(images);
+    const animeImage = shouldShownImageLoading ? (isImageLoaded ? getAnimeImage(images) : (isLoadingShown ? LoadingIcon : BLACK_IMAGE)) : getAnimeImage(images);
 
     useEffect(() => {
         setIsLoadingShown(false);
@@ -60,10 +44,34 @@ export function AnimeMiniCard({
         return () => clearTimeout(timeoutId);
     }, [images]);
 
+    return {
+        animeImage,
+        isImageLoaded,
+        isLoadingShown
+    }
+}
+
+export function AnimeMiniCard({
+                                  title,
+                                  mal_id,
+                                  rating,
+                                  synopsis,
+                                  images,
+                                  genres,
+                                  duration,
+                                  type,
+                                  title_japanese,
+                                  title_synonyms,
+                                  aired,
+                                  status,
+                              }: PropsType) {
+    const animeDuration = duration.replace("per ep", "");
+
+    const {animeImage} = useAnimeImageLoading(images);
 
     return <div css={animeMiniCardStyles}>
         <div css={imageWrapperStyles(true)}>
-            <img css={imageStyles(isImageLoaded)} src={animeImage} alt=""/>
+            <img css={imageStyles} src={animeImage} alt=""/>
             <PlayButtonIcon css={playButtonStyles}/>
             <AgeRestriction pgRating={rating}/>
             <AnimeMiniCardPopup synopsis={synopsis} title={title} animeId={mal_id.toString()} genres={genres}

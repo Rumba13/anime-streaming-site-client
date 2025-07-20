@@ -8,7 +8,6 @@ export const leftPositionStyles = css`
     left: 50%;
 `;
 
-
 export const animePopupStyles = (isLeft: boolean) => (theme: Theme) => css`
     position: absolute;
     z-index: 100;

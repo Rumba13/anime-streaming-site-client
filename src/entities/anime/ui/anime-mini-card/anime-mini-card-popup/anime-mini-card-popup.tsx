@@ -1,4 +1,4 @@
-import {RefObject, useEffect, useRef, useState} from "react";
+import {RefObject, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {
     animePopupStyles,
     titleStyles,
@@ -33,10 +33,9 @@ const usePopupPosition = (popupRef: RefObject<HTMLDivElement | null>) => {
             const popup = popupRef.current;
             if (!popup) return;
             const rect = popup.getBoundingClientRect();
-
             if (rect.right > window.innerWidth) {
                 setPopupPosition('right');
-            } else if (rect.left < 0) {
+            } else  {
                 setPopupPosition('left');
             }
         };
@@ -44,7 +43,7 @@ const usePopupPosition = (popupRef: RefObject<HTMLDivElement | null>) => {
         handlePopupPosition();
         window.addEventListener('resize', handlePopupPosition);
         return () => window.removeEventListener('resize', handlePopupPosition);
-    }, []);
+    }, [window.innerWidth]);
 
     return {popupPosition}
 }

@@ -6,6 +6,7 @@ export const filtersStyles = (theme: Theme) => css`
     display: flex;
     flex-direction: column;
     height: fit-content;
+    margin-bottom: 170px;
 `
 
 export const filterTitleStyles = (theme: Theme) => css`

@@ -6,7 +6,7 @@ export const animeMiniCardStyles = () => css`
 `
 export const bottomStyles = () => css`
 `
-export const imageStyles = (isImageLoaded: boolean) => css`
+export const imageStyles = () => css`
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -30,11 +30,12 @@ export const titleLinkStyle = (theme: Theme) => css`
     &:hover {
         color: ${theme.primaryColor};
     }
+
     transition: color ${theme.fastAnimationTime};
 }
 
 `
-export const imageWrapperStyles = (isBottomGradientShown:boolean) => (theme: Theme) => css`
+export const imageWrapperStyles = (isBottomGradientShown: boolean) => (theme: Theme) => css`
     position: relative;
     height: calc(100% - 50px);
     width: 100%;
@@ -52,7 +53,6 @@ export const imageWrapperStyles = (isBottomGradientShown:boolean) => (theme: The
             border-radius: inherit;
         }
     `}
-    
     &::before {
         content: "";
         position: absolute;
