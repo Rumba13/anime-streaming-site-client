@@ -1,6 +1,6 @@
-import {Pagination} from "../../../../shared/ui/pagination/pagination.tsx";
+import {Pagination} from "../../../../shared/ui";
 import {useSearchParams} from "react-router-dom";
-import {URL_PARAMS} from "../../../../shared/lib/url-params.ts";
+import {URL_PARAMS} from "../../../../shared/lib";
 import {observer} from "mobx-react";
 import {paginationStyles} from "./search-page-pagination.styles.ts";
 import {Interpolation, Theme} from "@emotion/react";

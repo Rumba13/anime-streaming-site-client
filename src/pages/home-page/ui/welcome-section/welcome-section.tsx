@@ -1,4 +1,4 @@
-import {NavigateButton} from "../../../../shared/ui/navigate-button/navigate-button.tsx";
+import {NavigateButton} from "../../../../shared/ui";
 import TriangleIcon from "../../../../assets/images/triangle.svg?react";
 import DiagonalArrowIcon from "../../../../assets/images/diagonal-arrow.svg?react";
 import {ReviewPreview} from "./review-preview/review-preview.tsx";
@@ -21,7 +21,7 @@ import {
 } from "./welcome-section.styles.ts";
 import {observer} from "mobx-react";
 import {WelcomeBackground} from "./welcome-background/welcome-background.tsx";
-import {ROUTES} from "../../../../shared/lib/routes.ts";
+import {ROUTES} from "../../../../shared/lib";
 
 export const WelcomeSection = observer(() => {
     const {t} = useTranslation();

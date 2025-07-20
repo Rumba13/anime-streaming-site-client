@@ -1,11 +1,11 @@
 import {Select} from "antd"
 import {useInjection} from "inversify-react";
 import {Genre, ID} from "../../../shared/types";
-import {GenresStore} from "../../../entities/genre/model/genres.store.ts";
+import {GenresStore} from "../../../entities/genre";
 import {observer} from "mobx-react";
 import {selectExcludeGenresStyles} from "./exclude-genre-filter.styles.ts";
 import {ExcludeGenreFilterStore} from "../model/exclude-genre-filter.store.ts";
-import {genresToSelectOptions} from "../../../shared/lib/genres-to-select-options.tsx";
+import {genresToSelectOptions} from "../../../shared/lib";
 import { useTranslation } from "react-i18next";
 
 type PropsType = {

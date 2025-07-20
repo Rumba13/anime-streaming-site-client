@@ -1,5 +1,5 @@
-import {PgRating} from "../../../../../shared/types/pg-rating.ts";
-import {pgRatingToAgeMap} from "../../../../../shared/lib/pg-rating-to-age-map.ts";
+import {PgRating} from "../../../../../shared/types";
+import {pgRatingToAgeMap} from "../../../../../shared/lib";
 import {ratingStyles} from "../anime-mini-card.styles.ts";
 
 type PropsType = {

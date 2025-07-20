@@ -1,5 +1,5 @@
-import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
-import {UrlSyncStoreService} from "../../../shared/lib/url-sync-store/url-sync-store-service.ts";
+import {FilterStoreI} from "../../../shared/types";
+import {UrlSyncStoreService} from "../../../shared/lib";
 import {SetURLSearchParams} from "react-router-dom";
 import {inject, injectable} from "inversify";
 

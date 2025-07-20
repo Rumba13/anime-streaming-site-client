@@ -4,9 +4,9 @@ import { Interpolation, Theme } from "@emotion/react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 import { orderByTypeToTitle } from "./order-by-type-to-title.ts";
-import { OrderBy } from "../../../shared/types/order-by.ts";
+import { OrderBy } from "../../../shared/types";
 import { observer } from "mobx-react";
-import { SortType } from "../../../shared/types/sortType.ts";
+import { SortType } from "../../../shared/types";
 
 type PropsType = {
     orderByStore: OrderByStore,

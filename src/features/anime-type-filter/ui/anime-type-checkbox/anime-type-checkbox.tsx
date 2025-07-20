@@ -1,5 +1,5 @@
 import {AnimeTypeCard} from "../../../../entities/anime-type";
-import {AnimeType} from "../../../../shared/types/anime-type.ts";
+import {AnimeType} from "../../../../shared/types";
 import {
     checkboxInputStyles,
     checkboxLabelStyles,

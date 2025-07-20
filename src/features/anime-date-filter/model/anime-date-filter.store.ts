@@ -1,10 +1,10 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {Dayjs} from "dayjs";
-import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
-import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {jikanDateFormat} from "../../../shared/lib/jikan-date-format.ts";
-import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {FilterStoreI} from "../../../shared/types";
+import {URL_PARAMS} from "../../../shared/lib";
+import {jikanDateFormat} from "../../../shared/lib";
+import {URLSearchParamsParser} from "../../../shared/lib";
 
 @injectable()
 export class AnimeDateFilterStore implements FilterStoreI {

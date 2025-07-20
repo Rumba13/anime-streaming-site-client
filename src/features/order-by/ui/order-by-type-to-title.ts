@@ -1,4 +1,4 @@
-import {OrderBy} from "../../../shared/types/order-by.ts";
+import {OrderBy} from "../../../shared/types";
 
 type OrderByTypeTranslationKeys =
     | "Order By Mal Id"

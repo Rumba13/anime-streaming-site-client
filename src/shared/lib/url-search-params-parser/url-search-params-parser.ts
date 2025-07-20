@@ -1,10 +1,10 @@
 import {injectable} from "inversify";
 import {SearchDto} from "../../types/search-dto.ts";
 import {isAnimeType} from "../../../entities/anime-type";
-import {isOrderByType} from "../../../features/order-by/model/is-order-by-type.ts";
+import {isOrderByType} from "../is-order-by-type.ts";
 import {isSortType} from "../../../features/order-by/model/is-sort-type.ts";
 import {URL_PARAMS} from "../url-params.ts";
-import {SortType} from "../../types/sortType.ts";
+import {SortType} from "../../types/sort-type.ts";
 import {OrderBy} from "../../types/order-by.ts";
 import {MAX_RATING, MIN_RATING} from "../rating-constants.ts";
 import {AnimeStatus} from "../../types/anime-status.ts";

@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {JikanClient} from "../../../shared/api/jikan-client.ts";
+import {JikanClient} from "../../../shared/api";
 
 @injectable()
 export class JikanStatusStore {

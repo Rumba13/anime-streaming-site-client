@@ -1,14 +1,14 @@
 import {inject, injectable} from "inversify";
-import {AnimeService} from "../../../shared/api/anime-service.ts";
+import {AnimeService} from "../../../shared/api";
 import {computed, makeObservable, observable, override, action} from "mobx";
-import {JikanPagination} from "../../../shared/types/jikan-pagination.ts";
-import {Anime} from "../../../shared/types/anime.ts";
+import {JikanPagination} from "../../../shared/types";
+import {Anime} from "../../../shared/types";
 import {scrollToTop} from "../../../shared/ui/scroll-to-top.ts";
-import {SearchDto} from "../../../shared/types/search-dto.ts";
-import {BaseLoadingStore} from "../../../shared/model/base-loading-store.ts";
-import {BaseError} from "../../../shared/model/base-error.ts";
-import {getAnimeImage} from "../../../entities/anime/ui/get-anime-image.ts";
-import {preloadImage} from "../../../shared/lib/preload-image.ts";
+import {SearchDto} from "../../../shared/types";
+import {BaseLoadingStore} from "../../../shared/model";
+import {BaseError} from "../../../shared/model";
+import {getAnimeImage} from "../../../entities/anime";
+import {preloadImage} from "../../../shared/lib";
 
 @injectable()
 export class SearchAnimeStore extends BaseLoadingStore {

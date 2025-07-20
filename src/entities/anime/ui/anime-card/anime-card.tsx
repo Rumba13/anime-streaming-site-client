@@ -1,4 +1,4 @@
-import {Anime} from "../../../../shared/types/anime.ts";
+import {Anime} from "../../../../shared/types";
 import {
     animeCardStyles,
     cardLeft,

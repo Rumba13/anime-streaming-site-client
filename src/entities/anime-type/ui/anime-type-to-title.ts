@@ -1,4 +1,4 @@
-import {AnimeType} from "../../../shared/types/anime-type.ts";
+import {AnimeType} from "../../../shared/types";
 
 type AnimeTypeTranslationKeys =
     "TV Series"

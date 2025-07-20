@@ -1,10 +1,10 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {AnimeStatus} from "../../../shared/types/anime-status.ts";
-import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
-import {isAnimeStatus} from "../../../shared/lib/is-anime-status.ts";
-import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
+import {AnimeStatus} from "../../../shared/types";
+import {URL_PARAMS} from "../../../shared/lib";
+import {URLSearchParamsParser} from "../../../shared/lib";
+import {isAnimeStatus} from "../../../shared/lib";
+import {FilterStoreI} from "../../../shared/types";
 
 @injectable()
 export class AnimeStatusFilterStore implements FilterStoreI {

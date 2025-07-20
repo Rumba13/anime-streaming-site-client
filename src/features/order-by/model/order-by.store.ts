@@ -1,12 +1,12 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {OrderBy} from "../../../shared/types/order-by.ts";
-import {SortType} from "../../../shared/types/sortType.ts";
-import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
-import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
-import {DEFAULT_ORDER_BY} from "../../../shared/lib/default-order-by.ts";
-import {DEFAULT_SORT_TYPE} from "../../../shared/lib/default-sort-type.ts";
+import {OrderBy} from "../../../shared/types";
+import {SortType} from "../../../shared/types";
+import {URL_PARAMS} from "../../../shared/lib";
+import {URLSearchParamsParser} from "../../../shared/lib";
+import {FilterStoreI} from "../../../shared/types";
+import {DEFAULT_ORDER_BY} from "../../../shared/lib";
+import {DEFAULT_SORT_TYPE} from "../../../shared/lib";
 
 @injectable()
 export class OrderByStore implements FilterStoreI {

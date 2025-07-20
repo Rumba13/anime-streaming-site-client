@@ -2,12 +2,6 @@ import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {injectable} from "inversify";
 import rateLimit from "axios-rate-limit";
 
-const SERVER_URL_DEV = "https://api.jikan.moe/v4/";
-
-export const jikanClient = axios.create({
-    baseURL: SERVER_URL_DEV,
-});
-
 interface RetryConfig extends AxiosRequestConfig {
     retryCount?: number;
 }

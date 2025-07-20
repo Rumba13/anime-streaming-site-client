@@ -6,7 +6,7 @@ import {
     watchNowButtonStyles,
     informationFieldStyles, informationValueStyles, openUserActionButtonStyles, actionsStyles, animeInformationStyles
 } from "./anime-mini-card-popup.styles.ts";
-import {ROUTES} from "../../../../../shared/lib/routes.ts";
+import {ROUTES} from "../../../../../shared/lib";
 import PlayButtonIcon from "../../../../../assets/images/play-icon.svg?react"
 import {Genre} from "../../../../../shared/types";
 import PlusIcon from "../../../../../assets/images/plus.svg?react"

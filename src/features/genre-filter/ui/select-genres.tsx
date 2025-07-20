@@ -5,7 +5,7 @@ import {Genre, ID} from "../../../shared/types";
 import {selectGenresStyles} from "./select-genres.styles.ts";
 import {GenresStore} from "../../../entities/genre";
 import {observer} from "mobx-react";
-import {genresToSelectOptions} from "../../../shared/lib/genres-to-select-options.tsx";
+import {genresToSelectOptions} from "../../../shared/lib";
 import { useTranslation } from "react-i18next";
 
 type PropsType = {

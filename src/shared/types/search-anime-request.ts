@@ -1,7 +1,7 @@
 import {AnimeType} from "./anime-type.ts";
 import {AnimeStatus} from "./anime-status.ts";
 import {AnimeRating} from "./anime-rating.ts";
-import {SortType} from "./sortType.ts";
+import {SortType} from "./sort-type.ts";
 import {OrderBy} from "./order-by.ts";
 import {JikanDate} from "./jikan-date.ts";
 

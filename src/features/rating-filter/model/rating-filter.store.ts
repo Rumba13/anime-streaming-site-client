@@ -1,9 +1,9 @@
 import {inject, injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
-import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
-import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
-import {MAX_RATING, MIN_RATING} from "../../../shared/lib/rating-constants.ts";
+import {URL_PARAMS} from "../../../shared/lib";
+import {URLSearchParamsParser} from "../../../shared/lib";
+import {FilterStoreI} from "../../../shared/types";
+import {MAX_RATING, MIN_RATING} from "../../../shared/lib";
 
 @injectable()
 export class RatingFilterStore implements FilterStoreI {

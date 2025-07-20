@@ -1,4 +1,4 @@
-import {AnimeType} from "../../../shared/types/anime-type.ts";
+import {AnimeType} from "../../../shared/types";
 import {animeTypes} from "../model/anime-types.ts";
 
 export const isAnimeType = (value: string): value is AnimeType => {

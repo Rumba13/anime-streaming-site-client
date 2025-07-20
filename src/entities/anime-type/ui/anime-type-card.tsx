@@ -1,4 +1,4 @@
-import {AnimeType} from "../../../shared/types/anime-type.ts";
+import {AnimeType} from "../../../shared/types";
 import {animeTypeCardStyles, titleStyles} from "./anime-type-card.styles.ts";
 import {animeTypeToTitle} from "./anime-type-to-title.ts";
 import {useTranslation} from "react-i18next";

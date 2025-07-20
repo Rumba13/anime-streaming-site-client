@@ -7,9 +7,9 @@ import {AnimeCardSwitchStore} from "../../../../features/anime-card-switch/model
 import {SearchAnimeStore} from "../../../../features/search/model/search-anime.store.ts";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
-import {Anime} from "../../../../shared/types/anime.ts";
-import {ErrorMessage} from "../../../../shared/ui/error-message/error-message.tsx";
-import {PatternError} from "../../../../shared/model/errors.ts";
+import {Anime} from "../../../../shared/types";
+import {ErrorMessage} from "../../../../shared/ui";
+import {PatternError} from "../../../../shared/model";
 
 type SearchResultPropsType = {
     data: Anime[];

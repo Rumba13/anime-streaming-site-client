@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { makeAutoObservable } from 'mobx';
-import { AnimeService } from '../../../../shared/api/anime-service.ts';
+import { AnimeService } from '../../../../shared/api';
 
 @injectable()
 export class WelcomeBannersStore {

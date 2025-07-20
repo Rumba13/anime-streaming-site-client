@@ -1,10 +1,10 @@
 import { exploreMoreSectionStyle, exploreMoreSectionImage, exploreMoreSectionTitle, exploreMoreSectionButton } from "./explore-more-section.styles.ts";
 import ExploreMoreImage from "../../../../assets/images/explore-more.png";
-import {NavigateButton} from "../../../../shared/ui/navigate-button/navigate-button.tsx";
+import {NavigateButton} from "../../../../shared/ui";
 import {useTranslation} from "react-i18next";
 import DiagonalArrowIcon from "../../../../assets/images/diagonal-arrow.svg?react"
 import {Interpolation, Theme} from "@emotion/react";
-import {ROUTES} from "../../../../shared/lib/routes.ts";
+import {ROUTES} from "../../../../shared/lib";
 
 type PropsType = {
     styles?: Interpolation<Theme>

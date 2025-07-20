@@ -1,4 +1,4 @@
-import {ROUTES} from "../shared/lib/routes.ts";
+import {ROUTES} from "../shared/lib";
 import {HomePage} from "../pages/home-page";
 import {NotFoundPage} from "../pages/not-found-page";
 import {createBrowserRouter} from "react-router-dom";

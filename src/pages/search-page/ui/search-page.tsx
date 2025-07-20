@@ -15,7 +15,7 @@ import {SearchResultsList} from "./search-results-list/search-results-list.tsx";
 import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
 import {OrderBySelect} from "../../../features/order-by/ui/order-by-select.tsx";
 import {OrderByStore} from "../../../features/order-by";
-import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {URLSearchParamsParser} from "../../../shared/lib";
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);

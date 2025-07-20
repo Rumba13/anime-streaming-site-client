@@ -21,7 +21,7 @@ import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search/model/search-query.store.ts";
 import {SearchAnimeStore} from "../../../../features/search/model/search-anime.store.ts";
 import {debounce} from "ts-debounce";
-import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
+import {URLSearchParamsParser} from "../../../../shared/lib";
 import {RatingFilterStore} from "../../../../features/rating-filter/model/rating-filter.store.ts";
 import {RatingRange} from "../../../../features/rating-filter/ui/rating-range.tsx";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter/model/anime-status-filter.store.ts";

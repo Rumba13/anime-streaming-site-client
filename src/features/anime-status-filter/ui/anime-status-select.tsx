@@ -1,9 +1,9 @@
 import {AnimeStatusFilterStore} from "../model/anime-status-filter.store.ts";
 import {observer} from "mobx-react";
-import {animeStatusList} from "../../../shared/lib/anime-status-list.ts";
-import {AnimeStatus} from "../../../shared/types/anime-status.ts";
-import {ToggleButtonGroup} from "../../../shared/ui/toggle-button-group/toggle-button-group.tsx";
-import {animeStatusToTranslationKey} from "../../../shared/lib/anime-status-to-translation-key.ts";
+import {animeStatusList} from "../../../shared/lib";
+import {AnimeStatus} from "../../../shared/types";
+import {ToggleButtonGroup} from "../../../shared/ui";
+import {animeStatusToTranslationKey} from "../../../shared/lib";
 import {useTranslation} from "react-i18next";
 
 type PropsType = {

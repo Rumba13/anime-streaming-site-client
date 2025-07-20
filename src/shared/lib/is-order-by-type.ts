@@ -1,5 +1,5 @@
 import {orderByTypes} from "./order-by-types.ts";
-import {OrderBy} from "../../../shared/types/order-by.ts";
+import {OrderBy} from "../types/order-by.ts";
 
 
 export const isOrderByType = (value:string) => {

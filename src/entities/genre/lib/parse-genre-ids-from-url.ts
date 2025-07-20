@@ -1,4 +1,4 @@
-import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
+import {URL_PARAMS} from "../../../shared/lib";
 import { ID} from "../../../shared/types";
 
 export function parseGenreIdsFromUrl(urlParams: URLSearchParams): ID[] {

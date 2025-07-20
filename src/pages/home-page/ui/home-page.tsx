@@ -5,7 +5,7 @@ import {LanguageSelector} from "../../../features/language-selector";
 import {WelcomeSection} from "./welcome-section/welcome-section.tsx";
 import {ExploreMoreSection} from "./explore-more-section/explore-more-section.tsx";
 import {exploreMoreSectionStyles, homePageContentStyles, searchStyles} from "./home-page.styles.ts";
-import {ROUTES} from "../../../shared/lib/routes.ts";
+import {ROUTES} from "../../../shared/lib";
 import {useNavigate} from "react-router-dom";
 
 export function HomePage() {
