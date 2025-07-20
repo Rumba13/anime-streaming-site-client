@@ -12,17 +12,14 @@ export class UrlSyncStoreService {
         makeAutoObservable(this)
     }
 
-    public syncStoresToURLParams(setSearchParams: SetURLSearchParams) {
+
+    public syncStoresToURLParams = (setSearchParams: SetURLSearchParams) => {
         const urlParams = new URLSearchParams();
 
         for (const store of this.stores) {
-
-            const storeParams = store.stateToURLParams();
-
-            storeParams.forEach((value, key) => {
+            store.stateToURLParams().forEach((value, key) => {
                 urlParams.set(key, value);
             });
-
         }
 
         setSearchParams(urlParams);

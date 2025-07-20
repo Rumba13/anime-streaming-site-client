@@ -14,11 +14,8 @@ export class AnimeTypeFilterStore implements FilterStoreI {
     }
 
     public selectedAnimeType: AnimeType | null = null;
-    public isSyncedWithUrl: boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
     public setSelectedAnimeType = (animeType: AnimeType | null) => {
         this.selectedAnimeType = animeType;
-        this.setIsSyncedWithUrl(false);
     }
 
     public toggleSelectedAnimeType = (animeType: AnimeType) => {

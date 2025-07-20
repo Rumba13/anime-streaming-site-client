@@ -20,11 +20,7 @@ export class AnimeDateFilterStore implements FilterStoreI {
     public setDates = (startDate: Dayjs | null, endDate: Dayjs | null) => {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.setIsSyncedWithUrl(false);
     }
-
-    public isSyncedWithUrl:boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl:boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
 
     public resetFilter = () => {
         this.setDates(null, null);
@@ -39,6 +35,7 @@ export class AnimeDateFilterStore implements FilterStoreI {
         if (this.endDate) {
             urlParams[URL_PARAMS.END_DATE] = this.endDate.format(jikanDateFormat);
         }
+
 
         return new URLSearchParams(urlParams);
     }

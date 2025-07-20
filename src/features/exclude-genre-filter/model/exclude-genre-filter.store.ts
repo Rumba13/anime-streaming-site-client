@@ -14,16 +14,16 @@ export class ExcludeGenreFilterStore implements FilterStoreI {
     }
 
     public selectedGenres: ID[] = [];
-    public isSyncedWithUrl: boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
     public setSelectedGenres = (genres: ID[]) => {
         this.selectedGenres = genres;
-        this.setIsSyncedWithUrl(false);
     }
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {
         const genres = this.urlSearchParamsParser.parseExcludedGenreIds(urlParams)
-        if (!genres) return;
+        if (!genres) {
+            return;
+        }
+
         this.setSelectedGenres(genres);
     }
 

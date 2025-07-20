@@ -39,8 +39,8 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
         .with({isLoading: true}, ({pagination}) =>
             <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>
         )
-        .with({isLoading: false, pagination: P.not(null)}, ({pagination}) =>
-            <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
+        .with({isLoading: false}, ({pagination}) =>
+            <SearchResults data={pagination?.data|| []} AnimeCard={AnimeCard}/>
         )
         .with({isError: true, error: P.not(null)}, ({error}) => {
             return <ErrorMessage error={error}/>

@@ -19,16 +19,12 @@ export class OrderByStore implements FilterStoreI {
 
     public orderBy: OrderBy = this.DEFAULT_ORDER_BY;
     public sortType: SortType = this.DEFAULT_SORT_TYPE;
-    public isSyncedWithUrl: boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
     public setOrderBy = (orderBy: OrderBy) => {
         this.orderBy = orderBy;
-        this.setIsSyncedWithUrl(false);
     }
 
     public setSortType = (sortType: SortType) => {
         this.sortType = sortType;
-        this.setIsSyncedWithUrl(false);
     }
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {

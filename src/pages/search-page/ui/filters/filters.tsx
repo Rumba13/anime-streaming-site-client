@@ -9,7 +9,7 @@ import {
     resetButtonStyles,
     searchStyles
 } from "./filters.styles.ts";
-import {useEffect, useMemo} from "react";
+import {useEffect} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
@@ -71,10 +71,15 @@ export const Filters = observer(({styles}: PropsType) => {
         void genresStore.loadGenres();
     }, []);
 
-    const debouncedSearch = useMemo(() => debounce(search, 200), [searchAnimeStore, urlSearchParamsParser])
+    const debouncedSearch = debounce(search, 200)
+
     useEffect(() => {
         void debouncedSearch(searchParams)
     }, [searchParams]);
+
+    useEffect(() => {
+        void search(searchParams)
+    }, []);
 
     useEffect(() => {
         filterManager.syncStoresFromURLParams(searchParams);

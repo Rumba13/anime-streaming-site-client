@@ -13,8 +13,6 @@ export class RatingFilterStore implements FilterStoreI {
         makeAutoObservable(this)
     }
 
-    public isSyncedWithUrl: boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
 
     public minimalRating: number | null = 0;
     public maximumRating: number | null = 10;
@@ -22,12 +20,9 @@ export class RatingFilterStore implements FilterStoreI {
     public setRating = (minimalRating: number | null, maximumRating: number | null) => {
         this.minimalRating = minimalRating;
         this.maximumRating = maximumRating;
-        this.setIsSyncedWithUrl(false);
     }
 
     public stateToURLParams() {
-        this.setIsSyncedWithUrl(true)
-
         const urlParams = new URLSearchParams();
 
         if (this.minimalRating && this.minimalRating !== MIN_RATING) {

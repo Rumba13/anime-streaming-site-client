@@ -13,11 +13,8 @@ export class SearchQueryStore implements FilterStoreI {
     }
 
     public searchQuery: string = "";
-    public isSyncedWithUrl: boolean = false;
-    public setIsSyncedWithUrl = (isSyncedWithUrl: boolean) => this.isSyncedWithUrl = isSyncedWithUrl;
     public setSearchQuery = (searchQuery: string) => {
         this.searchQuery = searchQuery;
-        this.setIsSyncedWithUrl(false);
     }
 
     public setStateFromURLParams = (urlParams: URLSearchParams) => {
