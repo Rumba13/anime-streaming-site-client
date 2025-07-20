@@ -9,7 +9,7 @@ import {
     resetButtonStyles,
     searchStyles
 } from "./filters.styles.ts";
-import {useEffect} from "react";
+import {useEffect, useMemo} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
@@ -20,7 +20,7 @@ import {OrderByStore} from "../../../../features/order-by";
 import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search/model/search-query.store.ts";
 import {SearchAnimeStore} from "../../../../features/search/model/search-anime.store.ts";
-import {debounce} from "../../../../shared/lib/debounce.ts";
+import {debounce} from "ts-debounce";
 import {URLSearchParamsParser} from "../../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 import {RatingFilterStore} from "../../../../features/rating-filter/model/rating-filter.store.ts";
 import {RatingRange} from "../../../../features/rating-filter/ui/rating-range.tsx";
@@ -71,7 +71,7 @@ export const Filters = observer(({styles}: PropsType) => {
         void genresStore.loadGenres();
     }, []);
 
-    const debouncedSearch = debounce(search, 200)
+    const debouncedSearch = useMemo(() => debounce(search, 200), [search])
 
     useEffect(() => {
         void debouncedSearch(searchParams)
