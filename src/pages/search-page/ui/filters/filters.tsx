@@ -75,6 +75,7 @@ export const Filters = observer(({styles}: PropsType) => {
 
     useEffect(() => {
         void debouncedSearch(searchParams)
+        return () => debouncedSearch.cancel();
     }, [searchParams]);
 
     useEffect(() => {

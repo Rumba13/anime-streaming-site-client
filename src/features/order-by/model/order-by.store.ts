@@ -5,6 +5,8 @@ import {SortType} from "../../../shared/types/sortType.ts";
 import {URL_PARAMS} from "../../../shared/lib/url-params.ts";
 import {URLSearchParamsParser} from "../../../shared/lib/url-search-params-parser/url-search-params-parser.ts";
 import {FilterStoreI} from "../../../shared/types/filter-store.interface.ts";
+import {DEFAULT_ORDER_BY} from "../../../shared/lib/default-order-by.ts";
+import {DEFAULT_SORT_TYPE} from "../../../shared/lib/default-sort-type.ts";
 
 @injectable()
 export class OrderByStore implements FilterStoreI {
@@ -14,11 +16,8 @@ export class OrderByStore implements FilterStoreI {
         makeAutoObservable(this);
     }
 
-    private readonly DEFAULT_ORDER_BY: OrderBy = "popularity"
-    private readonly DEFAULT_SORT_TYPE: SortType = "asc"
-
-    public orderBy: OrderBy = this.DEFAULT_ORDER_BY;
-    public sortType: SortType = this.DEFAULT_SORT_TYPE;
+    public orderBy: OrderBy = DEFAULT_ORDER_BY;
+    public sortType: SortType = DEFAULT_SORT_TYPE;
     public setOrderBy = (orderBy: OrderBy) => {
         this.orderBy = orderBy;
     }
@@ -36,13 +35,18 @@ export class OrderByStore implements FilterStoreI {
     }
 
     public stateToURLParams = () => {
-        return new URLSearchParams({
-            [URL_PARAMS.ORDER_BY]: this.orderBy,
-            [URL_PARAMS.SORT_TYPE]: this.sortType
-        })
+        const urlParams = new URLSearchParams();
+
+        if (this.orderBy !== DEFAULT_ORDER_BY) {
+            urlParams.set(URL_PARAMS.ORDER_BY, this.orderBy);
+        }
+        if (this.sortType !== DEFAULT_SORT_TYPE) {
+            urlParams.set(URL_PARAMS.SORT_TYPE, this.sortType);
+        }
+        return urlParams
     }
     public resetFilter = () => {
-        this.setOrderBy(this.DEFAULT_ORDER_BY);
-        this.setSortType(this.DEFAULT_SORT_TYPE);
+        this.setOrderBy(DEFAULT_ORDER_BY);
+        this.setSortType(DEFAULT_SORT_TYPE);
     }
 }

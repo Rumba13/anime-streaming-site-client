@@ -9,6 +9,8 @@ import {BaseError} from "../model/base-error.ts";
 import {OrderBy} from "../types/order-by.ts";
 import {SearchDto} from "../types/search-dto.ts";
 import {jikanDateFormat} from "../lib/jikan-date-format.ts";
+import {DEFAULT_SORT_TYPE} from "../lib/default-sort-type.ts";
+import {DEFAULT_ORDER_BY} from "../lib/default-order-by.ts";
 
 @injectable()
 export class AnimeService {
@@ -67,8 +69,8 @@ export class AnimeService {
         try {
             const pagination: JikanPagination<Anime> = (await this.jikanClient.connection.get<JikanPagination<Anime>>("/anime", {
                 params: {
-                    order_by: orderBy || "popularity",
-                    sort: sortType || "desc",
+                    order_by: orderBy || DEFAULT_ORDER_BY,
+                    sort: sortType || DEFAULT_SORT_TYPE,
                     genres: genreIds.length > 0 ? genreIds.join(',') : undefined,
                     genres_exclude: excludedGenreIds.length > 0 ? excludedGenreIds.join(',') : undefined,
                     page,
