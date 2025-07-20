@@ -23,6 +23,7 @@ import {RatingFilterStore} from "../features/rating-filter";
 import {AnimeStatusFilterStore} from "../features/anime-status-filter";
 import {FilterManager} from "../pages/search-page";
 import {AnimeDateFilterStore} from "../features/anime-date-filter";
+import {PageStore} from "../features/page";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -49,6 +50,7 @@ container.bind(RatingFilterStore).toSelf().inSingletonScope()
 container.bind(AnimeStatusFilterStore).toSelf().inSingletonScope()
 container.bind(FilterManager).toSelf().inSingletonScope()
 container.bind(AnimeDateFilterStore).toSelf().inSingletonScope()
+container.bind(PageStore).toSelf().inSingletonScope()
 
 
 

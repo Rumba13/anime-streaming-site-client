@@ -17,7 +17,6 @@ export class FilterManager {
         this.urlSyncStoreService.syncStoresFromURLParams(urlSearchParams)
     }
 
-
     public syncStoresToURLParams = (setURLSearchParams: SetURLSearchParams) => {
         this.urlSyncStoreService.syncStoresToURLParams(setURLSearchParams)
     }

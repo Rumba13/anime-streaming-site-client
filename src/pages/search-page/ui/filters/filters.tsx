@@ -21,7 +21,7 @@ import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search";
 import {SearchAnimeStore} from "../../../../features/search";
 import {debounce} from "ts-debounce";
-import {URLSearchParamsParser} from "../../../../shared/lib";
+import { URLSearchParamsParser} from "../../../../shared/lib";
 import {RatingFilterStore} from "../../../../features/rating-filter";
 import {RatingRange} from "../../../../features/rating-filter";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter";
@@ -30,6 +30,7 @@ import {AnimeStatusSelect} from "../../../../features/anime-status-filter";
 import {FilterManager} from "../../lib/filter-manager.ts";
 import {AnimeDateFilterStore} from "../../../../features/anime-date-filter";
 import {AnimeDateFilter} from "../../../../features/anime-date-filter";
+import {PageStore} from "../../../../features/page";
 
 type PropsType = {
     styles?: Interpolation<Theme>
@@ -48,6 +49,9 @@ export const Filters = observer(({styles}: PropsType) => {
     const genresStore = useInjection(GenresStore);
     const filterManager = useInjection(FilterManager);
     const animeDateFilterStore = useInjection(AnimeDateFilterStore);
+    const pageStore = useInjection(PageStore);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const {t} = useTranslation();
 
     filterManager.setFilters([
         genreFilterStore,
@@ -57,11 +61,9 @@ export const Filters = observer(({styles}: PropsType) => {
         searchQueryStore,
         ratingFilterStore,
         animeStatusFilterStore,
-        animeDateFilterStore
+        animeDateFilterStore,
+        pageStore
     ])
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    const {t} = useTranslation();
 
     const search = async (searchParams: URLSearchParams) => {
         await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
@@ -100,6 +102,7 @@ export const Filters = observer(({styles}: PropsType) => {
         animeStatusFilterStore.animeStatus,
         animeDateFilterStore.startDate,
         animeDateFilterStore.endDate,
+        pageStore.page
     ]);
 
     return <div css={[filtersStyles, styles]}>

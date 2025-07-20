@@ -1,7 +1,7 @@
 import {injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
 import {SetURLSearchParams} from "react-router-dom";
-import {FilterStoreI} from "../../types/filter-store.interface.ts";
+import {FilterStoreI} from "../../types";
 
 @injectable()
 export class UrlSyncStoreService {
