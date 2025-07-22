@@ -10,19 +10,12 @@ interface PaginationProps {
 }
 
 type PaginationItem = {
-    item: number | "...",
+    label: number | "...",
+    value: number | null,
     key: string,
 };
 
-export const Pagination = observer(({
-                                        currentPage,
-                                        totalPages,
-                                        onPageChange,
-                                        styles
-                                    }: PaginationProps) => {
-
-    if (totalPages <= 1) return null;
-
+const usePagination = (totalPages: number, currentPage: number) => {
 
     const getVisiblePages = (): number[] => {
         const potentialPages = [
@@ -44,45 +37,66 @@ export const Pagination = observer(({
             .sort((a, b) => a - b);
     };
 
-    const generatePaginationItems = (pages: number[]): PaginationItem[] => {
+    const generatePaginationItems = (visiblePages: number[]): PaginationItem[] => {
         const items: PaginationItem[] = [];
 
-        for (let i = 0; i < pages.length; i++) {
-            items.push({item: pages[i], key: pages[i].toString()});
+        for (let i = 0; i < visiblePages.length; i++) {
+            items.push({label: visiblePages[i], value: visiblePages[i], key: visiblePages[i].toString()});
 
-            if (i < pages.length - 1 && pages[i + 1] !== pages[i] + 1) {
-                items.push({item: "...", key: pages[i] + "..."});
+            if (i < visiblePages.length - 1 && visiblePages[i + 1] !== visiblePages[i] + 1) {
+                items.push({label: "...", value: null, key: visiblePages[i] + "..."});
             }
         }
 
         return items;
     };
 
-    const visiblePages = getVisiblePages();
-    const paginationItems = generatePaginationItems(visiblePages);
+    return {paginationItems: generatePaginationItems(getVisiblePages())}
+}
 
-    const handlePaginationItemClick = (item: PaginationItem) => {
-        if (typeof item.item === "number") {
-            onPageChange(item.item)
+export const Pagination = observer(({
+                                        currentPage,
+                                        totalPages,
+                                        onPageChange,
+                                        styles
+                                    }: PaginationProps) => {
+
+    if (totalPages <= 1) return null;
+
+    const {paginationItems} = usePagination(totalPages, currentPage)
+
+    const handlePaginationItemClick = (page: number | null) => {
+        if (typeof page === "number") {
+            onPageChange(page)
         }
     }
 
-    return (
-        <nav css={[paginationContainer, styles]} aria-label="Pagination">
-            {paginationItems.map((item) => (
-                <button
-                    key={item.key}
-                    css={(theme: Theme) => [
-                        paginationButton(theme),
-                        item.item === currentPage && paginationButtonActive(theme)
-                    ]}
-                    aria-current={item.item === currentPage ? "page" : undefined}
-                    onClick={() => handlePaginationItemClick(item)}
-                    disabled={item.item === currentPage}
-                >
-                    {item.item}
-                </button>
-            ))}
-        </nav>
-    );
+    return <nav css={[paginationContainer, styles]} aria-label="Pagination">
+        <button
+            css={[paginationButton(currentPage === 1)]}
+            onClick={() => handlePaginationItemClick(currentPage - 1)}
+            disabled={currentPage === 1}
+        >
+            &lt;
+        </button>
+        {paginationItems.map(item => (
+            <button
+                key={item.key}
+                css={[paginationButton(item.value === currentPage || item.value === null), item.value === currentPage && paginationButtonActive]}
+                aria-current={item.value === currentPage ? "page" : undefined}
+                onClick={() => handlePaginationItemClick(item.value)}
+                disabled={item.value === currentPage}
+            >
+                {item.label}
+            </button>
+        ))}
+
+        <button
+            css={[paginationButton(currentPage === totalPages)]}
+            onClick={() => handlePaginationItemClick(currentPage + 1)}
+            disabled={currentPage === totalPages}
+        >
+            &gt;
+        </button>
+    </nav>
 });
