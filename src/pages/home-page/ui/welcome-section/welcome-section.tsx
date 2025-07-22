@@ -48,3 +48,4 @@ export const WelcomeSection = observer(() => {
         </section>
     );
 })
+

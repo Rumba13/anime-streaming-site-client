@@ -24,7 +24,6 @@ export const Pagination = observer(({
     if (totalPages <= 1) return null;
 
 
-
     const getVisiblePages = (): number[] => {
         const potentialPages = [
             1,

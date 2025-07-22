@@ -2,8 +2,8 @@ import {describe, expect, it, vi} from "vitest";
 import {JikanClient} from "./jikan-client.ts";
 import {Container} from "inversify";
 import {AnimeService} from "./anime-service.ts";
-import {JikanPagination} from "../types/jikan-pagination.ts";
-import {Anime} from "../types/anime/anime.ts";
+import {JikanPagination} from "../types";
+import {Anime} from "../types";
 
 describe("Anime Service", () => {
     let container: Container;
@@ -170,12 +170,27 @@ describe("Anime Service", () => {
     })
     describe("search", () => {
 
-
         it("should contain searched genre", async () => {
             jikanClientMock = createJikanClientMock(MOCK_SEARCH_RESULTS_BY_GENRES);
             setupContainer(jikanClientMock);
 
-            const searchedAnime = await animeService.search([1], 1, [], null);
+            const searchedAnime = await animeService.search(
+                {
+                    page: 1,
+                    animePgRating: null,
+                    animeStatus: null,
+                    startDate: null,
+                    endDate: null,
+                    minRating: null,
+                    maxRating: null,
+                    orderBy: null,
+                    type: null,
+                    query: null,
+                    genreIds: [],
+                    sortType: null,
+                    excludedGenreIds: []
+                }
+            );
 
             if (searchedAnime === null || searchedAnime.data.length === 0) throw new Error("Result is null");
 
