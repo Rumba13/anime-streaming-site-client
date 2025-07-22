@@ -7,6 +7,7 @@ import {NormalizeStyles} from './styles/normalize.styles.tsx'
 import {GlobalStyles} from "./styles/global.styles.tsx";
 import {FontStyles} from "./styles/fonts.styles.tsx";
 import {Providers} from "./providers.tsx";
+import "./firebase.ts"
 
 function App() {
     return <Providers>
