@@ -11,8 +11,8 @@ import {
 export function ShowSubscriptionPlans() {
     const {t} = useTranslation()
 
-    return <GradientBorderedButton className={showSubscriptionPlansButton}>
-        <CrownIcon css={showSubscriptionPlansButtonIcon} width={20} height={15}/>
-        <span css={showSubscriptionPlansButtonTitle}>{t("Try Premium")}</span>
+    return <GradientBorderedButton css={showSubscriptionPlansButton}>
+        {/*<CrownIcon css={showSubscriptionPlansButtonIcon} width={20} height={15}/>*/}
+        <span css={showSubscriptionPlansButtonTitle}>Log In</span>
     </GradientBorderedButton>
 }
