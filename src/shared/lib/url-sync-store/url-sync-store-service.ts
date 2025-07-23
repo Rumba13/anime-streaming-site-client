@@ -4,7 +4,7 @@ import {SetURLSearchParams} from "react-router-dom";
 import {FilterStoreI} from "../../types";
 
 @injectable()
-export class UrlSyncStoreService {
+class UrlSyncStoreService {
     private stores: FilterStoreI[] = [];
     public setStores = (stores: FilterStoreI[]) => this.stores = stores;
 
@@ -29,3 +29,4 @@ export class UrlSyncStoreService {
         this.stores.forEach(store => store.setStateFromURLParams(params));
     }
 }
+export {UrlSyncStoreService}

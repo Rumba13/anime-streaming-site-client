@@ -1,6 +1,6 @@
 import {injectable} from "inversify";
 import {SearchDto} from "../../types";
-import {isOrderBy} from "../order-by/is-order-by.ts";
+import {isOrderBy} from "../order-by";
 import {isSortType} from "../sort/is-sort-type.ts";
 import {URL_PARAMS} from "../url-params.ts";
 import {SortType} from "../../types";
@@ -12,7 +12,7 @@ import dayjs, {Dayjs} from "dayjs";
 import {isAnimeType} from "../anime-type/is-anime-type.ts";
 
 @injectable()
-export class URLSearchParamsParser {
+class URLSearchParamsParser {
     public parsePage = (searchParams: URLSearchParams): number => {
         const pageString = searchParams.get(URL_PARAMS.PAGE)
         if (!pageString) return 1;
@@ -134,3 +134,5 @@ export class URLSearchParamsParser {
         }
     }
 }
+
+export {URLSearchParamsParser}

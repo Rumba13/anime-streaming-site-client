@@ -1,5 +1,5 @@
 import "./logo.styles.ts";
-import {ROUTES} from "../../lib/routes.ts";
+import {ROUTES} from "../../lib";
 import {HTMLAttributes} from "react";
 import {logo, logoSlogan, logoTitle} from "./logo.styles.ts";
 import {Link} from "react-router-dom";
