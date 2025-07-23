@@ -3,7 +3,7 @@ import {FC} from "react";
 import {Navigation} from "./navigation/navigation.tsx";
 import {ShowFavoritesButton} from "./show-favorites-button/show-favorites-button.tsx";
 import {ShowProfile} from "./show-profile/show-profile.tsx";
-import {ShowSubscriptionPlans} from "./show-subscription-plans/show-subscription-plans.tsx";
+import {ShowSubscriptionPlans} from "./show-subscription-plans/show-log-in-popup.tsx";
 import {Logo} from "../../../ui";
 import {headerMiddleStyles, headerRightStyles, headerStyles} from "./header.styles.ts";
 
