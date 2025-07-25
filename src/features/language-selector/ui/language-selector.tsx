@@ -1,4 +1,4 @@
-import "./language.styles.ts";
+import "./language.styles";
 import {Select, SelectOptionType} from "../../../shared/ui/select";
 import {useTranslation} from "react-i18next";
 

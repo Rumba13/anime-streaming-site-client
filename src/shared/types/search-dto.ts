@@ -1,9 +1,9 @@
-import {ID} from "./id.ts";
-import {AnimeType} from "./anime/anime-type.ts";
-import {OrderBy} from "./order-by.ts";
-import {SortType} from "./sort-type.ts";
-import {AnimeStatus} from "./anime/anime-status.ts";
-import {AnimeRating} from "./anime/anime-rating.ts";
+import {ID} from "./id";
+import {AnimeType} from "./anime/anime-type";
+import {OrderBy} from "./order-by";
+import {SortType} from "./sort-type";
+import {AnimeStatus} from "./anime/anime-status";
+import {AnimeRating} from "./anime/anime-rating";
 import {Dayjs} from "dayjs";
 
 export type SearchDto = {

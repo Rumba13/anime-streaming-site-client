@@ -1,4 +1,4 @@
-import {BaseError} from "./base-error.ts";
+import {BaseError} from "./base-error";
 
 export class PatternError extends BaseError {
     constructor(

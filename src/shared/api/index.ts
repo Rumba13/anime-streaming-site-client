@@ -1,3 +1,3 @@
-export {GenresService} from "./genres-service.ts"
-export {AnimeService} from "./anime-service.ts"
-export {JikanClient} from "./jikan-client.ts"
+export {GenresService} from "./genres-service"
+export {AnimeService} from "./anime-service"
+export {JikanClient} from "./jikan-client"

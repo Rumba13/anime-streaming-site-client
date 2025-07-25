@@ -1,3 +1,3 @@
-import {SortType} from "../../types/sort-type.ts";
+import {SortType} from "../../types";
 
 export const DEFAULT_SORT_TYPE: SortType = "asc"

@@ -1,7 +1,7 @@
-import "./navigation-item.styles.ts";
+import "./navigation-item.styles";
 import {MouseEvent, ReactNode} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {navigationItemActiveStyles, navigationItemStyles} from "./navigation-item.styles.ts";
+import {navigationItemActiveStyles, navigationItemStyles} from "./navigation-item.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

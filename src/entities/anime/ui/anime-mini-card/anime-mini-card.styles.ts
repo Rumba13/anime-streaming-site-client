@@ -23,6 +23,7 @@ export const titleStyle = (theme: Theme) => css`
     width: 100%;
     max-width: 100%;
     margin-bottom: 5px;
+    color: white;
 }
 
 `

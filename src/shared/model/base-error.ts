@@ -1,4 +1,4 @@
-import {ErrorType} from "../types/error-type.ts";
+import {ErrorType} from "../types";
 
 export class BaseError extends Error {
     public readonly type: ErrorType;

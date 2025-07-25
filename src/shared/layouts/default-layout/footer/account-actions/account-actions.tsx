@@ -1,12 +1,11 @@
-import "./account-actions.styles.ts"
-import {ListItem} from "../../../../ui/list-item/list-item.tsx";
+import {ListItem} from "../../../../ui";
 import {useTranslation} from "react-i18next";
 import {
     accountActionsItemStyles,
     accountActionsListStyles,
     accountActionsStyles,
     accountActionsTitleStyles
-} from "./account-actions.styles.ts";
+} from "./account-actions.styles";
 
 export function AccountActions() {
     const {t} = useTranslation()

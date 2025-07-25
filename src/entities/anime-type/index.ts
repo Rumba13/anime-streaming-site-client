@@ -1,1 +1,1 @@
-export {AnimeTypeCard} from "./ui/anime-type-card.tsx";
+export {AnimeTypeCard} from "./ui/anime-type-card";

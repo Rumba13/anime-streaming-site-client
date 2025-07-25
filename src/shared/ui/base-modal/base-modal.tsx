@@ -1,7 +1,7 @@
 import {observer} from "mobx-react";
 import {BasePopupStore} from "../../model";
 import {ReactNode, useEffect, useRef} from "react";
-import {popupStyles} from "./base-popup.styles.ts";
+import {popupStyles} from "./base-modal.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

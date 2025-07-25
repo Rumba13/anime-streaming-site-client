@@ -4,15 +4,15 @@ import {
     filtersStyles, orderByStyles, paginationStyles,
     searchBarStyles,
     searchPageContentStyles
-} from "./search-page.styles.ts";
+} from "./search-page.styles";
 import {useSearchParams} from "react-router-dom";
 import {useInjection} from "inversify-react";
-import {Filters} from "./filters/filters.tsx";
+import {Filters} from "./filters/filters";
 import {observer} from "mobx-react";
 import {AnimeCardSwitcher} from "../../../features/anime-card-switch";
 import {SearchAnimeStore} from "../../../features/search";
-import {SearchResultsList} from "./search-results-list/search-results-list.tsx";
-import {SearchPagePagination} from "./search-page-pagination/search-page-pagination.tsx";
+import {SearchResultsList} from "./search-results-list/search-results-list";
+import {SearchPagePagination} from "./search-page-pagination/search-page-pagination";
 import {OrderBySelect} from "../../../features/order-by";
 import {OrderByStore} from "../../../features/order-by";
 import {URLSearchParamsParser} from "../../../shared/lib";
@@ -25,6 +25,7 @@ export const SearchPage = observer(() => {
     const orderByStore = useInjection(OrderByStore);
     const [searchParams] = useSearchParams();
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
+
 
     return <DefaultLayout
         SearchSlot={() => <></>}

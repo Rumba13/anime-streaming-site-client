@@ -1,6 +1,6 @@
-import {AnimationsSwitchStore} from "../model/animations-switch.store.ts";
+import {AnimationsSwitchStore} from "../model/animations-switch.store";
 import {useInjection} from "inversify-react";
-import {animationsSwitchStyle, markStyle, statusStyle, titleStyle} from "./animation-switch.styles.ts";
+import {animationsSwitchStyle, markStyle, statusStyle, titleStyle} from "./animation-switch.styles";
 import {observer} from "mobx-react";
 import {Interpolation, Theme} from "@emotion/react";
 

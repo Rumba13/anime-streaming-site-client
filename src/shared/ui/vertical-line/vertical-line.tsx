@@ -1,4 +1,4 @@
-import {verticalLine} from "./vertical-line.styles.ts";
+import {verticalLine} from "./vertical-line.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

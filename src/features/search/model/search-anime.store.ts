@@ -3,7 +3,7 @@ import {AnimeService} from "../../../shared/api";
 import {computed, makeObservable, observable, override, action} from "mobx";
 import {JikanPagination} from "../../../shared/types";
 import {Anime} from "../../../shared/types";
-import {scrollToTop} from "../../../shared/ui/scroll-to-top.ts";
+import {scrollToTop} from "../../../shared/ui/scroll-to-top";
 import {SearchDto} from "../../../shared/types";
 import {BaseLoadingStore} from "../../../shared/model";
 import {BaseError} from "../../../shared/model";
@@ -11,9 +11,10 @@ import {getAnimeImage} from "../../../entities/anime";
 import {preloadImage} from "../../../shared/lib";
 
 @injectable()
-export class SearchAnimeStore extends BaseLoadingStore {
+class SearchAnimeStore extends BaseLoadingStore {
+    @inject(AnimeService) private readonly animeService!: AnimeService
+
     constructor(
-        @inject(AnimeService) private readonly animeService: AnimeService,
     ) {
         super()
 
@@ -40,8 +41,6 @@ export class SearchAnimeStore extends BaseLoadingStore {
     public pagination: JikanPagination<Anime> | null = null;
     public setPagination = (pagination: JikanPagination<Anime> | null) => {
         this.pagination = pagination
-
-
     };
 
     public isFirstLoad: boolean = true;
@@ -89,3 +88,4 @@ export class SearchAnimeStore extends BaseLoadingStore {
         return this.pagination?.pagination.last_visible_page || 1;
     }
 }
+export {SearchAnimeStore}

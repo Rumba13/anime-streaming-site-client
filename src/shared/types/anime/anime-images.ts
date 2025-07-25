@@ -1,4 +1,4 @@
-import {ImageSizes} from "../image-sizes.ts";
+import {ImageSizes} from "../image-sizes";
 
 export type AnimeImages = {
     jpg: ImageSizes,

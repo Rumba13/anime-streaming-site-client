@@ -1,7 +1,7 @@
-import "./company-info.styles.ts";
-import {ListItem} from "../../../../ui/list-item/list-item.tsx";
+import "./company-info.styles";
+import {ListItem} from "../../../../ui";
 import {useTranslation} from "react-i18next";
-import {aboutUsItemStyles, aboutUsListStyles, aboutUsTitleStyles} from "./company-info.styles.ts";
+import {aboutUsItemStyles, aboutUsListStyles, aboutUsTitleStyles} from "./company-info.styles";
 
 export function CompanyInfo() {
     const {t} = useTranslation()

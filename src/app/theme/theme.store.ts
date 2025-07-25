@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx';
-import {ThemeType} from "./theme-type.ts";
 import {injectable} from "inversify";
-import {themes} from "./themes/themes.ts";
+import {ThemeType} from "./theme-type";
+import {themes} from "./themes/themes";
 
 @injectable()
-export class ThemeStore {
+class ThemeStore {
 
     constructor() {
         makeAutoObservable(this);
@@ -17,4 +17,5 @@ export class ThemeStore {
 
     public getCurrentTheme = () => themes[this.currentThemeType];
 }
+export { ThemeStore }
 

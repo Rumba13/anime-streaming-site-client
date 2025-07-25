@@ -3,8 +3,8 @@ import {useInjection} from "inversify-react";
 import {Genre, ID} from "../../../shared/types";
 import {GenresStore} from "../../../entities/genre";
 import {observer} from "mobx-react";
-import {selectExcludeGenresStyles} from "./exclude-genre-filter.styles.ts";
-import {ExcludeGenreFilterStore} from "../model/exclude-genre-filter.store.ts";
+import {selectExcludeGenresStyles} from "./exclude-genre-filter.styles";
+import {ExcludeGenreFilterStore} from "../model/exclude-genre-filter.store";
 import {genresToSelectOptions} from "../../../shared/lib";
 import { useTranslation } from "react-i18next";
 

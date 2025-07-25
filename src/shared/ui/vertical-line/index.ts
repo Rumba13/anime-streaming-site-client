@@ -1,1 +1,1 @@
-export {VerticalLine} from "./vertical-line.tsx"
+export {VerticalLine} from "./vertical-line"

@@ -1,6 +1,6 @@
-import "./list-item.styles.ts"
+import "./list-item.styles"
 import {ReactNode} from "react";
-import {listItemLink} from "./list-item.styles.ts";
+import {listItemLink} from "./list-item.styles";
 import {Interpolation, Theme} from "@emotion/react";
 import {Link} from "react-router-dom";
 

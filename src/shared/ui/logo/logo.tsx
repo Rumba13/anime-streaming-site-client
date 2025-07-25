@@ -1,7 +1,7 @@
-import "./logo.styles.ts";
+import "./logo.styles";
 import {ROUTES} from "../../lib";
 import {HTMLAttributes} from "react";
-import {logo, logoSlogan, logoTitle} from "./logo.styles.ts";
+import {logo, logoSlogan, logoTitle} from "./logo.styles";
 import {Link} from "react-router-dom";
 
 type PropsType = {} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href'>

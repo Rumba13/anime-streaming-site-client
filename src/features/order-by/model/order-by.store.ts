@@ -9,10 +9,11 @@ import {DEFAULT_ORDER_BY} from "../../../shared/lib";
 import {DEFAULT_SORT_TYPE} from "../../../shared/lib";
 
 @injectable()
-export class OrderByStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
-    ) {
+class OrderByStore implements FilterStoreI {
+    @inject(URLSearchParamsParser)
+    private urlSearchParamsParser!: URLSearchParamsParser;
+
+    constructor() {
         makeAutoObservable(this);
     }
 
@@ -50,3 +51,4 @@ export class OrderByStore implements FilterStoreI {
         this.setSortType(DEFAULT_SORT_TYPE);
     }
 }
+export {OrderByStore}

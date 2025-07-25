@@ -1,10 +1,10 @@
-import "./genres.styles.ts";
+import "./genres.styles";
 import {useEffect} from "react";
 import {useInjection} from "inversify-react";
 import {ShortGenresStore} from "../../../../../../model";
 import {match, P} from "ts-pattern";
 import {observer} from "mobx-react";
-import {Genre} from "./genre/genre.tsx";
+import {Genre} from "./genre/genre";
 import {Loading} from "../../../../../../ui";
 import {useTranslation} from "react-i18next";
 import {
@@ -13,7 +13,7 @@ import {
     genresLoadingStyles,
     genresStyles,
     genresTitleStyles
-} from "./genres.styles.ts";
+} from "./genres.styles";
 
 
 export const Genres = observer(() => {

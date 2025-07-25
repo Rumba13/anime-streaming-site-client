@@ -2,7 +2,7 @@ import {Pagination} from "../../../../shared/ui";
 import {useSearchParams} from "react-router-dom";
 import {URL_PARAMS} from "../../../../shared/lib";
 import {observer} from "mobx-react";
-import {paginationStyles} from "./search-page-pagination.styles.ts";
+import {paginationStyles} from "./search-page-pagination.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

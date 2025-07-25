@@ -1,8 +1,8 @@
-import {RatingFilterStore} from "../model/rating-filter.store.ts";
+import {RatingFilterStore} from "../model/rating-filter.store";
 import {Slider} from "antd"
 import {MIN_RATING, MAX_RATING} from "../../../shared/lib";
 import {observer} from "mobx-react";
-import {ratingRangeStyles} from "./rating-range.styles.ts";
+import {ratingRangeStyles} from "./rating-range.styles";
 import {useEffect, useMemo, useState} from "react";
 import {debounce} from "ts-debounce"
 

@@ -1,7 +1,7 @@
 import {observer} from "mobx-react";
-import {container} from "../container.ts";
-import {ThemeStore} from "./theme.store.ts";
-import {themes} from "./themes/themes.ts";
+import {container} from "../container";
+import {ThemeStore} from "./theme.store";
+import {themes} from "./themes/themes";
 import {ThemeProvider as EmotionalThemeProvider} from "@emotion/react"
 
 export const ThemeProvider = observer(({children}: { children: React.ReactNode }) => {

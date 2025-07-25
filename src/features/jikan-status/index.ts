@@ -1,2 +1,2 @@
-export {JikanStatusStore} from "./model/jikan-status.store.ts"
-export {JikanStatus} from "./ui/jikan-status.tsx"
+export {JikanStatusStore} from "./model/jikan-status.store"
+export {JikanStatus} from "./ui/jikan-status"

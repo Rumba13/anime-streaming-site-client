@@ -1,10 +1,10 @@
-import "./footer.styles.ts";
-import {QuickNavigation} from "../../../ui/quick-navigation";
-import {SocialLinks} from "./social-links/social-links.tsx";
-import {CompanyInfo} from "./company-info/company-info.tsx";
-import {AccountActions} from "./account-actions/account-actions.tsx";
-import {HorizontalLine} from "../../../ui/horizontal-line/horizontal-line.tsx";
-import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button.tsx";
+import "./footer.styles";
+import {QuickNavigation} from "../../../ui";
+import {SocialLinks} from "./social-links/social-links";
+import {CompanyInfo} from "./company-info/company-info";
+import {AccountActions} from "./account-actions/account-actions";
+import {HorizontalLine} from "../../../ui";
+import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button";
 import {FC} from "react";
 import {
     footerBottomStyles,
@@ -12,7 +12,7 @@ import {
     footerLinksStyles,
     footerStyles,
     horizontalLineStyles, quickNavigationItemStyles, quickNavigationTitleStyles
-} from "./footer.styles.ts";
+} from "./footer.styles";
 
 type PropsType = {
     LanguageSelectorSlot: FC

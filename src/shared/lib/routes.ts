@@ -1,5 +1,5 @@
 import {ID} from "../types";
-import {URL_PARAMS} from "./url-params.ts";
+import {URL_PARAMS} from "./url-params";
 
 export const ROUTES = {
     HOME_PAGE: "/",

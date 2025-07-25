@@ -1,13 +1,13 @@
-import "./navigation.styles.ts";
-import {NavigationItem} from "./navigation-item/navigation-item.tsx";
+import "./navigation.styles";
+import {NavigationItem} from "./navigation-item/navigation-item";
 import ArrowIcon from "@src/assets/images/arrow.svg?react"
 import {useInjection} from "inversify-react";
 import {observer} from "mobx-react";
-import {BrowseGenresPopupStore} from "./browse-genres-popup/browse-genres-popup-store.ts";
-import {ROUTES} from "../../../../lib/routes.ts";
-import {BrowseGenresPopup} from "./browse-genres-popup/browse-genres-popup.tsx";
+import {BrowseGenresPopupStore} from "./browse-genres-popup/browse-genres-popup-store";
+import {ROUTES} from "../../../../lib";
+import {BrowseGenresPopup} from "./browse-genres-popup/browse-genres-popup";
 import {useTranslation} from "react-i18next";
-import {navigationItemHighlightStyles, navigationItemIconStyles, navigationStyles} from "./navigation.styles.ts";
+import {navigationItemHighlightStyles, navigationItemIconStyles, navigationStyles} from "./navigation.styles";
 
 export const Navigation = observer(() => {
     const { t } = useTranslation();

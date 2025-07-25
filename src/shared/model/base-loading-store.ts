@@ -1,5 +1,5 @@
 import {action, makeObservable, observable} from "mobx";
-import {BaseError} from "./base-error.ts";
+import {BaseError} from "./base-error";
 
 export class BaseLoadingStore {
     constructor() {

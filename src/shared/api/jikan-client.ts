@@ -7,7 +7,7 @@ interface RetryConfig extends AxiosRequestConfig {
 }
 
 @injectable()
-export class JikanClient {
+class JikanClient {
     private readonly baseUrl: string = "https://api.jikan.moe/v4/";
     private readonly maxRetries: number = 4;
     private readonly initialDelay: number = 1000;
@@ -55,3 +55,4 @@ export class JikanClient {
         }
     }
 }
+export { JikanClient }

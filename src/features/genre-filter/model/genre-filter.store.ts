@@ -6,10 +6,10 @@ import {URLSearchParamsParser} from "../../../shared/lib";
 import {FilterStoreI} from "../../../shared/types";
 
 @injectable()
-export class GenreFilterStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
-    ) {
+class GenreFilterStore implements FilterStoreI {
+    @inject(URLSearchParamsParser) private urlSearchParamsParser!: URLSearchParamsParser
+
+    constructor() {
         makeAutoObservable(this)
     }
 
@@ -38,3 +38,4 @@ export class GenreFilterStore implements FilterStoreI {
         this.setSelectedGenres([]);
     }
 }
+export {GenreFilterStore}

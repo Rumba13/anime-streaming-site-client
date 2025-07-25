@@ -5,7 +5,7 @@ import {BrowseGenresPopupStore} from "../shared/layouts";
 import {AnimeService} from "../shared/api";
 import {JikanStatusStore} from "../features/jikan-status";
 import {ProfilePopupStore} from "../shared/layouts";
-import {ThemeStore} from "./theme/theme.store.ts";
+import {ThemeStore} from "./theme/theme.store";
 import {AnimationsSwitchStore} from "../features/animations-switch";
 import {WelcomeBannersStore} from "../pages/home-page";
 import {JikanClient} from "../shared/api";
@@ -30,12 +30,12 @@ container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
 container.bind(GenresService).toSelf().inSingletonScope()
 container.bind(ShortGenresStore).toSelf().inSingletonScope()
 container.bind(AnimeService).toSelf().inSingletonScope()
+container.bind(JikanClient).toSelf().inSingletonScope()
 container.bind(JikanStatusStore).toSelf().inSingletonScope()
 container.bind(ProfilePopupStore).toSelf().inSingletonScope()
 container.bind(ThemeStore).toSelf().inSingletonScope()
 container.bind(AnimationsSwitchStore).toSelf().inSingletonScope()
 container.bind(WelcomeBannersStore).toSelf().inSingletonScope()
-container.bind(JikanClient).toSelf().inSingletonScope()
 container.bind(AnimeCardSwitchStore).toSelf().inSingletonScope()
 container.bind(GenreFilterStore).toSelf().inSingletonScope()
 container.bind(GenresStore).toSelf().inSingletonScope()
@@ -51,7 +51,6 @@ container.bind(AnimeStatusFilterStore).toSelf().inSingletonScope()
 container.bind(FilterManager).toSelf().inSingletonScope()
 container.bind(AnimeDateFilterStore).toSelf().inSingletonScope()
 container.bind(PageStore).toSelf().inSingletonScope()
-
 
 
 

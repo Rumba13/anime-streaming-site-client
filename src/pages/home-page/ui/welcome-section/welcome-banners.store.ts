@@ -3,14 +3,14 @@ import { makeAutoObservable } from 'mobx';
 import { AnimeService } from '../../../../shared/api';
 
 @injectable()
-export class WelcomeBannersStore {
+class WelcomeBannersStore {
     public banners: string[] = [];
     public isLoading = false;
 
-    constructor(
-        @inject(AnimeService)
-        public readonly animeService: AnimeService,
-    ) {
+    @inject(AnimeService)
+    public readonly animeService!: AnimeService;
+
+    constructor() {
         makeAutoObservable(this);
     }
 
@@ -40,3 +40,4 @@ export class WelcomeBannersStore {
         }
     }
 }
+export {WelcomeBannersStore}

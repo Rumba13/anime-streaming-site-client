@@ -1,4 +1,4 @@
-import { exploreMoreSectionStyle, exploreMoreSectionImage, exploreMoreSectionTitle, exploreMoreSectionButton } from "./explore-more-section.styles.ts";
+import { exploreMoreSectionStyle, exploreMoreSectionImage, exploreMoreSectionTitle, exploreMoreSectionButton } from "./explore-more-section.styles";
 import ExploreMoreImage from "../../../../assets/images/explore-more.png";
 import {NavigateButton} from "../../../../shared/ui";
 import {useTranslation} from "react-i18next";

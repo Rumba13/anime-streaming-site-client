@@ -4,10 +4,10 @@ import {
     backgroundWrapperStyle,
     backgroundWrapperVisibleStyle, imageColumnStyle, imageEvenColumnStyle, pausedAnimatedWrapperStyle,
     wrapperStyle
-} from "./welcome-background.styles.ts";
+} from "./welcome-background.styles";
 import {useInjection} from "inversify-react";
 import {AnimationsSwitchStore} from "../../../../../features/animations-switch";
-import {WelcomeBannersStore} from "../welcome-banners.store.ts";
+import {WelcomeBannersStore} from "../welcome-banners.store";
 import {useEffect, useState} from "react";
 import {observer} from "mobx-react";
 

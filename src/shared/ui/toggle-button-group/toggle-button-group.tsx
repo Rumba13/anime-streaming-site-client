@@ -1,8 +1,8 @@
-import {ToggleButtonGroupItem} from "./toggle-button-group-item/toggle-button-group-item.tsx";
-import {Option} from "../../types/option.ts";
+import {ToggleButtonGroupItem} from "./toggle-button-group-item";
+import {Option} from "../../types";
 import {Interpolation, Theme} from "@emotion/react";
 import {Key} from "react";
-import {toggleButtonGroupStyles} from "./toggle-button-group.styles.ts";
+import {toggleButtonGroupStyles} from "./toggle-button-group.styles";
 
 export type PropsType<ValueType> = {
     options: Option<ValueType>[];

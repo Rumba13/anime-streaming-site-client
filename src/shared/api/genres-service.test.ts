@@ -1,7 +1,7 @@
 import {describe, beforeEach, it, expect, vi} from "vitest";
 import {Container} from "inversify";
-import {GenresService} from "./genres-service.ts";
-import {JikanClient} from "./jikan-client.ts";
+import {GenresService} from "./genres-service";
+import {JikanClient} from "./jikan-client";
 import {Genre} from "../types";
 
 describe("GenresService", () => {

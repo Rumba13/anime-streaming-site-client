@@ -1,8 +1,8 @@
 import {Select} from "antd"
 import {useInjection} from "inversify-react";
-import {GenreFilterStore} from "../model/genre-filter.store.ts";
+import {GenreFilterStore} from "../model/genre-filter.store";
 import {Genre, ID} from "../../../shared/types";
-import {selectGenresStyles} from "./select-genres.styles.ts";
+import {selectGenresStyles} from "./select-genres.styles";
 import {GenresStore} from "../../../entities/genre";
 import {observer} from "mobx-react";
 import {genresToSelectOptions} from "../../../shared/lib";

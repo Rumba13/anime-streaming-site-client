@@ -1,7 +1,7 @@
 import {describe, expect, it, vi} from "vitest";
 import {Container} from "inversify";
-import {URLSearchParamsParser} from "./url-search-params-parser.ts";
-import {URL_PARAMS} from "../url-params.ts";
+import {URLSearchParamsParser} from "./url-search-params-parser";
+import {URL_PARAMS} from "../url-params";
 
 describe("parse dates from url params", () => {
     const container = new Container()

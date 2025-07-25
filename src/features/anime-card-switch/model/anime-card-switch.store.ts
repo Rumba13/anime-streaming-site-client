@@ -1,10 +1,10 @@
 import {injectable} from "inversify";
 import {makeAutoObservable} from "mobx";
-import {AnimeCardType} from "./anime-card-type.ts";
+import {AnimeCardType} from "./anime-card-type";
 import {AnimeCard, AnimeMiniCard} from "../../../entities/anime";
 
 @injectable()
-export class AnimeCardSwitchStore {
+class AnimeCardSwitchStore {
     constructor() {
         makeAutoObservable(this);
     }
@@ -14,3 +14,4 @@ export class AnimeCardSwitchStore {
 
     public getCardComponent = () => this.currentAnimeCardType === "Mini" ? AnimeMiniCard : AnimeCard;
 }
+export {AnimeCardSwitchStore}

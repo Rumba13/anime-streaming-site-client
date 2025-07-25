@@ -1,5 +1,5 @@
-import "./navigate-button.styles.ts";
-import {navigateButton, navigateButtonTitle} from "./navigate-button.styles.ts";
+import "./navigate-button.styles";
+import {navigateButton, navigateButtonTitle} from "./navigate-button.styles";
 import {Interpolation, Theme} from "@emotion/react";
 import {Link} from "react-router-dom";
 

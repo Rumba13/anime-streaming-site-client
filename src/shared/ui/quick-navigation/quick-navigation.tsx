@@ -1,13 +1,13 @@
-import "./quick-navigation.styles.ts";
-import {ROUTES} from "../../lib/routes.ts";
-import {ListItem} from "../list-item/list-item.tsx";
+import "./quick-navigation.styles";
+import {ROUTES} from "../../lib";
+import {ListItem} from "../list-item";
 import {useTranslation} from "react-i18next";
 import {
     quickNavigation,
     quickNavigationItem,
     quickNavigationList,
     quickNavigationTitle
-} from "./quick-navigation.styles.ts";
+} from "./quick-navigation.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

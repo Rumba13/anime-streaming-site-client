@@ -1,15 +1,15 @@
 import {injectable} from "inversify";
 import {SearchDto} from "../../types";
 import {isOrderBy} from "../order-by";
-import {isSortType} from "../sort/is-sort-type.ts";
-import {URL_PARAMS} from "../url-params.ts";
+import {isSortType} from "../sort/is-sort-type";
+import {URL_PARAMS} from "../url-params";
 import {SortType} from "../../types";
 import {OrderBy} from "../../types";
-import {MAX_RATING, MIN_RATING} from "../rating-constants.ts";
+import {MAX_RATING, MIN_RATING} from "../rating-constants";
 import {AnimeStatus} from "../../types";
-import {isAnimeStatus} from "../anime-status/is-anime-status.ts";
+import {isAnimeStatus} from "../anime-status/is-anime-status";
 import dayjs, {Dayjs} from "dayjs";
-import {isAnimeType} from "../anime-type/is-anime-type.ts";
+import {isAnimeType} from "../anime-type/is-anime-type";
 
 @injectable()
 class URLSearchParamsParser {

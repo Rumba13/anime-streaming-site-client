@@ -1,7 +1,7 @@
-import {darkTheme} from "./dark-theme.ts";
-import {ThemeType} from "../theme-type.ts";
-import {Theme} from "../theme.ts";
-import {lightTheme} from "./light-theme.ts";
+import {darkTheme} from "./dark-theme";
+import {ThemeType} from "../theme-type";
+import {Theme} from "../theme";
+import {lightTheme} from "./light-theme";
 
 export const themes: Record<ThemeType, Theme> = {
     dark: darkTheme,

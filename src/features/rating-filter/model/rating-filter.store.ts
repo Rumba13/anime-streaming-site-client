@@ -6,11 +6,12 @@ import {FilterStoreI} from "../../../shared/types";
 import {MAX_RATING, MIN_RATING} from "../../../shared/lib";
 
 @injectable()
-export class RatingFilterStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private readonly urlSearchParamsParser: URLSearchParamsParser,
-    ) {
-        makeAutoObservable(this)
+class RatingFilterStore implements FilterStoreI {
+    @inject(URLSearchParamsParser)
+    private readonly urlSearchParamsParser!: URLSearchParamsParser;
+
+    constructor() {
+        makeAutoObservable(this);
     }
 
 
@@ -46,3 +47,4 @@ export class RatingFilterStore implements FilterStoreI {
         this.setRating(0, 10);
     }
 }
+export {RatingFilterStore}

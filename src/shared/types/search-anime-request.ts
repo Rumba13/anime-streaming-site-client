@@ -1,9 +1,9 @@
-import {AnimeType} from "./anime/anime-type.ts";
-import {AnimeStatus} from "./anime/anime-status.ts";
-import {AnimeRating} from "./anime/anime-rating.ts";
-import {SortType} from "./sort-type.ts";
-import {OrderBy} from "./order-by.ts";
-import {JikanDate} from "./jikan-date.ts";
+import {AnimeType} from "./anime/anime-type";
+import {AnimeStatus} from "./anime/anime-status";
+import {AnimeRating} from "./anime/anime-rating";
+import {SortType} from "./sort-type";
+import {OrderBy} from "./order-by";
+import {JikanDate} from "./jikan-date";
 
 export type SearchAnimeRequest = {
     page?:number;

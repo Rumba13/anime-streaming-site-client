@@ -1,11 +1,11 @@
-import {RefObject, useEffect, useLayoutEffect, useRef, useState} from "react";
+import {RefObject, useEffect, useRef, useState} from "react";
 import {
     animePopupStyles,
     titleStyles,
     synopsisStyles,
     watchNowButtonStyles,
     informationFieldStyles, informationValueStyles, openUserActionButtonStyles, actionsStyles, animeInformationStyles
-} from "./anime-mini-card-popup.styles.ts";
+} from "./anime-mini-card-popup.styles";
 import {ROUTES} from "../../../../../shared/lib";
 import PlayButtonIcon from "../../../../../assets/images/play-icon.svg?react"
 import {Genre} from "../../../../../shared/types";

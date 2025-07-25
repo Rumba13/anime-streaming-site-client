@@ -1,7 +1,7 @@
-import "./scroll-to-top-button.styles.ts";
+import "./scroll-to-top-button.styles";
 import {GradientBorderedButton} from "../../../../ui";
 import ArrowIcon from "../../../../../assets/images/narrow-arrow.svg?react"
-import {scrollToTopButton} from "./scroll-to-top-button.styles.ts";
+import {scrollToTopButton} from "./scroll-to-top-button.styles";
 
 export function ScrollToTopButton() {
     const scrollToTop = () => {

@@ -1,9 +1,9 @@
 import {NavigateButton} from "../../../../shared/ui";
 import TriangleIcon from "../../../../assets/images/triangle.svg?react";
 import DiagonalArrowIcon from "../../../../assets/images/diagonal-arrow.svg?react";
-import {ReviewPreview} from "./review-preview/review-preview.tsx";
+import {ReviewPreview} from "./review-preview/review-preview";
 import {useTranslation} from "react-i18next";
-import {welcomeSectionVariants} from "./welcome-section-variants.ts";
+import {welcomeSectionVariants} from "./welcome-section-variants";
 import {
     buttonRedStyle,
     buttonsStyle,
@@ -18,9 +18,9 @@ import {
     subTitleStyle,
     titleIconStyle,
     titleStyle
-} from "./welcome-section.styles.ts";
+} from "./welcome-section.styles";
 import {observer} from "mobx-react";
-import {WelcomeBackground} from "./welcome-background/welcome-background.tsx";
+import {WelcomeBackground} from "./welcome-background/welcome-background";
 import {ROUTES} from "../../../../shared/lib";
 
 export const WelcomeSection = observer(() => {

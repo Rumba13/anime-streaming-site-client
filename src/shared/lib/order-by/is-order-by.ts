@@ -1,4 +1,4 @@
-import {orderByList} from "./order-by-list.ts";
+import {orderByList} from "./order-by-list";
 import {OrderBy} from "../../types";
 
 

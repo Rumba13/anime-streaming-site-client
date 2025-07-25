@@ -1,8 +1,8 @@
-import "./default-layout.styles.ts";
-import {Header} from "./header/header.tsx";
+import "./default-layout.styles";
+import {Header} from "./header/header";
 import {FC, ReactNode} from "react";
-import {Footer} from "./footer/footer.tsx";
-import {defaultLayoutStyles} from "./default-layout.styles.ts";
+import {Footer} from "./footer/footer";
+import {defaultLayoutStyles} from "./default-layout.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

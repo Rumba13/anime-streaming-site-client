@@ -1,6 +1,6 @@
-import {AnimeImages} from "./anime-images.ts";
-import {Genre} from "../genre.ts";
-import {PgRating} from "../pg-rating.ts";
+import {AnimeImages} from "./anime-images";
+import {Genre} from "../genre";
+import {PgRating} from "../pg-rating";
 
 export type Anime = {
     mal_id: number;

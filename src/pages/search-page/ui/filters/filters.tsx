@@ -8,7 +8,7 @@ import {
     filterWrapperStyles,
     resetButtonStyles,
     searchStyles
-} from "./filters.styles.ts";
+} from "./filters.styles";
 import {useEffect, useMemo} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
@@ -27,7 +27,7 @@ import {RatingRange} from "../../../../features/rating-filter";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter";
 import {GenresStore} from "../../../../entities/genre";
 import {AnimeStatusSelect} from "../../../../features/anime-status-filter";
-import {FilterManager} from "../../lib/filter-manager.ts";
+import {FilterManager} from "../../lib/filter-manager";
 import {AnimeDateFilterStore} from "../../../../features/anime-date-filter";
 import {AnimeDateFilter} from "../../../../features/anime-date-filter";
 import {PageStore} from "../../../../features/page";

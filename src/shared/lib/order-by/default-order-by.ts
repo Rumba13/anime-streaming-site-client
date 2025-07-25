@@ -1,3 +1,3 @@
-import {OrderBy} from "../../types/order-by.ts";
+import {OrderBy} from "../../types";
 
 export const DEFAULT_ORDER_BY: OrderBy = "popularity"

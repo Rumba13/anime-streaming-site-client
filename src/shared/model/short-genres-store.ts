@@ -4,12 +4,12 @@ import {GenresService} from "../api";
 import {Genre} from "../types";
 
 @injectable()
-export class ShortGenresStore {
-    constructor(
-        @inject(GenresService)
-        public readonly genresService: GenresService,
-    ) {
-        makeAutoObservable(this)
+class ShortGenresStore {
+    @inject(GenresService)
+    public readonly genresService!: GenresService;
+
+    constructor() {
+        makeAutoObservable(this);
     }
 
     public mainGenres?: Genre[];
@@ -33,3 +33,4 @@ export class ShortGenresStore {
         }
     }
 }
+export { ShortGenresStore }

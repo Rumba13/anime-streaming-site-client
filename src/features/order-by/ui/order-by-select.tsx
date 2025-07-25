@@ -1,9 +1,9 @@
-import { orderBySelectStyles } from "./order-by-select.styles.ts";
-import { OrderByStore } from "../model/order-by.store.ts";
+import { orderBySelectStyles } from "./order-by-select.styles";
+import { OrderByStore } from "../model/order-by.store";
 import { Interpolation, Theme } from "@emotion/react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { orderByTypeToTitle } from "./order-by-type-to-title.ts";
+import { orderByTypeToTitle } from "./order-by-type-to-title";
 import { OrderBy } from "../../../shared/types";
 import { observer } from "mobx-react";
 import { SortType } from "../../../shared/types";

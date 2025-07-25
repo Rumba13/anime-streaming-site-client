@@ -1,1 +1,1 @@
-export {PageStore}from"./model/page.store.ts"
+export {PageStore}from"./model/page.store"

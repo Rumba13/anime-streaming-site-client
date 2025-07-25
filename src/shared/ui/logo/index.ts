@@ -1,1 +1,1 @@
-export {Logo} from "./logo.tsx"
+export {Logo} from "./logo"

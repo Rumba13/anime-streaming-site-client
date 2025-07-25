@@ -1,6 +1,6 @@
-import {SelectOptionType} from "./select-option-type.ts";
+import {SelectOptionType} from "./select-option-type";
 import { useEffect, useMemo, useRef, useState} from "react";
-import {selectContainerStyle, selectOptionsStyle, selectOptionStyle, selectTriggerStyle} from "./select.styles.ts";
+import {selectContainerStyle, selectOptionsStyle, selectOptionStyle, selectTriggerStyle} from "./select.styles";
 
 type SelectOptionProps = {
     isActive: boolean;

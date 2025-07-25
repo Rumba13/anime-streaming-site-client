@@ -1,18 +1,16 @@
 import {Genre, GenreType} from "../types";
 import {injectable} from "inversify";
 import {inject} from "inversify";
-import {JikanClient} from "./jikan-client.ts";
+import {JikanClient} from "./jikan-client";
 
 type GetAnimeGenresResponse = {
     data: Genre[];
 }
 
 @injectable()
-export class GenresService {
-    constructor(
-        @inject(JikanClient)
-        private readonly jikanClient: JikanClient
-    ) {
+class GenresService {
+    @inject(JikanClient) private readonly jikanClient!: JikanClient
+    constructor() {
 
     }
 
@@ -77,3 +75,4 @@ export class GenresService {
         return genres
     }
 }
+export { GenresService }

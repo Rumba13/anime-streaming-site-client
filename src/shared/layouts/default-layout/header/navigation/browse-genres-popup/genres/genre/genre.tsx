@@ -1,8 +1,8 @@
-import "./genre.styles.ts";
-import {Genre as GenreType} from "../../../../../../../types/genre.ts";
+import "./genre.styles";
+import {Genre as GenreType} from "../../../../../../../types/genre";
 import {useTranslation} from "react-i18next";
-import {genreStyles} from "./genre.styles.ts";
-import {ROUTES} from "../../../../../../../lib/routes.ts";
+import {genreStyles} from "./genre.styles";
+import {ROUTES} from "../../../../../../../lib";
 import {Link} from "react-router-dom";
 
 type PropsType = GenreType;

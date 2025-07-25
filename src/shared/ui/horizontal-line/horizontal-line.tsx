@@ -1,5 +1,5 @@
-import "./horizontal-line.styles.ts";
-import {horizontalLine} from "./horizontal-line.styles.ts";
+import "./horizontal-line.styles";
+import {horizontalLine} from "./horizontal-line.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {

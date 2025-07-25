@@ -7,10 +7,10 @@ import {isAnimeStatus} from "../../../shared/lib";
 import {FilterStoreI} from "../../../shared/types";
 
 @injectable()
-export class AnimeStatusFilterStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser,
-    ) {
+class AnimeStatusFilterStore implements FilterStoreI {
+    @inject(URLSearchParamsParser) private urlSearchParamsParser!: URLSearchParamsParser
+
+    constructor() {
         makeAutoObservable(this)
     }
 
@@ -46,3 +46,4 @@ export class AnimeStatusFilterStore implements FilterStoreI {
         this.setAnimeStatus(null);
     }
 }
+export {AnimeStatusFilterStore}

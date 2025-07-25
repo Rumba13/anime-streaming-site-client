@@ -1,4 +1,4 @@
-import {reviewPreviewStyle, reviewPreviewTitle, reviewPreviewSubTitle, reviewPreviewContent, reviewPreviewLink} from "./review-preview.styles.ts";
+import {reviewPreviewStyle, reviewPreviewTitle, reviewPreviewSubTitle, reviewPreviewContent, reviewPreviewLink} from "./review-preview.styles";
 import {Review} from "../../../../../shared/types";
 import { useTranslation } from "react-i18next";
 import {Interpolation, Theme} from "@emotion/react";

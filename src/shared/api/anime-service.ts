@@ -1,22 +1,22 @@
 import {inject, injectable} from "inversify";
-import {JikanPagination} from "../types/jikan-pagination.ts";
-import {Anime} from "../types/anime/anime.ts";
-import {JikanClient} from "./jikan-client.ts";
-import {BaseError} from "../model/base-error.ts";
-import {SearchDto} from "../types/search-dto.ts";
-import {jikanDateFormat} from "../lib/date-formats/jikan-date-format.ts";
-import {DEFAULT_SORT_TYPE} from "../lib/sort/default-sort-type.ts";
-import {DEFAULT_ORDER_BY} from "../lib/order-by/default-order-by.ts";
-import {MAX_RATING, MIN_RATING} from "../lib/rating-constants.ts";
+import {JikanPagination} from "../types";
+import {Anime} from "../types";
+import {JikanClient} from "./jikan-client";
+import {BaseError} from "../model";
+import {SearchDto} from "../types";
+import {jikanDateFormat} from "../lib";
+import {DEFAULT_SORT_TYPE} from "../lib";
+import {DEFAULT_ORDER_BY} from "../lib";
+import {MAX_RATING, MIN_RATING} from "../lib";
 import {Dayjs} from "dayjs";
 
 @injectable()
-export class AnimeService {
+class AnimeService {
 
-    constructor(
-        @inject(JikanClient)
-        private readonly jikanClient: JikanClient
-    ) {
+    @inject(JikanClient)
+    private readonly jikanClient!: JikanClient;
+
+    constructor() {
 
     }
 
@@ -99,4 +99,5 @@ export class AnimeService {
         }
     }
 }
+export { AnimeService }
 

@@ -1,10 +1,10 @@
 import SearchIcon from "../../../assets/images/search.svg?react";
-import {searchStyles, searchField, iconStyles} from "./search.styles.ts";
+import {searchStyles, searchField, iconStyles} from "./search.styles";
 import {useTranslation} from "react-i18next";
 import {Interpolation, Theme} from "@emotion/react";
 import React from "react";
 import {useInjection} from "inversify-react";
-import {SearchQueryStore} from "../model/search-query.store.ts";
+import {SearchQueryStore} from "../model/search-query.store";
 import {observer} from "mobx-react";
 
 type PropsType = {

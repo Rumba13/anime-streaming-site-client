@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx";
 import {makePersistable} from "mobx-persist-store";
 
 @injectable()
-export class AnimationsSwitchStore {
+class AnimationsSwitchStore {
     constructor() {
         makeAutoObservable(this);
 
@@ -17,3 +17,4 @@ export class AnimationsSwitchStore {
     public isAnimationsEnabled: boolean = true;
     public setIsAnimationsEnabled = (isEnabled: boolean) => this.isAnimationsEnabled = isEnabled;
 }
+export { AnimationsSwitchStore }

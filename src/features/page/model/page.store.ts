@@ -4,11 +4,12 @@ import {makeAutoObservable} from "mobx";
 import {URL_PARAMS, URLSearchParamsParser} from "../../../shared/lib";
 
 @injectable()
-export class PageStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser
-    ) {
-        makeAutoObservable(this)
+class PageStore implements FilterStoreI {
+    @inject(URLSearchParamsParser)
+    private urlSearchParamsParser!: URLSearchParamsParser;
+
+    constructor() {
+        makeAutoObservable(this);
     }
 
     public page: number = 1;
@@ -30,3 +31,4 @@ export class PageStore implements FilterStoreI {
         this.setPage(page)
     }
 }
+export {PageStore}

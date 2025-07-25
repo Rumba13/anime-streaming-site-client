@@ -7,10 +7,10 @@ import {jikanDateFormat} from "../../../shared/lib";
 import {URLSearchParamsParser} from "../../../shared/lib";
 
 @injectable()
-export class AnimeDateFilterStore implements FilterStoreI {
-    constructor(
-        @inject(URLSearchParamsParser) private urlSearchParamsParser: URLSearchParamsParser
-    ) {
+class AnimeDateFilterStore implements FilterStoreI {
+    @inject(URLSearchParamsParser) private urlSearchParamsParser!: URLSearchParamsParser
+
+    constructor() {
         makeAutoObservable(this)
     }
 
@@ -45,3 +45,4 @@ export class AnimeDateFilterStore implements FilterStoreI {
         this.setDates(startDate, endDate);
     }
 }
+export {AnimeDateFilterStore}

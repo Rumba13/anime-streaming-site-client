@@ -1,4 +1,4 @@
-import {AnimeDateFilterStore} from "../model/anime-date-filter.store.ts";
+import {AnimeDateFilterStore} from "../model/anime-date-filter.store";
 import {Slider} from "antd";
 import dayjs from "dayjs";
 import {observer} from "mobx-react";

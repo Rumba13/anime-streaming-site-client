@@ -35,6 +35,8 @@ export const titleStyles = (theme: Theme) => css`
     font-size: 18px;
     font-family: ${theme.primaryFontFamily};
     font-weight: 700;
+    color: white;
+    
 `
 export const synopsisStyles = (theme: Theme) => css`
     display: -webkit-box;
@@ -45,6 +47,8 @@ export const synopsisStyles = (theme: Theme) => css`
     font-family: ${theme.thirdFontFamily};
     font-size: 12px;
     margin-bottom: 20px;
+    color: white;
+    
 
 `
 export const watchNowButtonStyles = (theme: Theme) => css`
@@ -59,6 +63,7 @@ export const watchNowButtonStyles = (theme: Theme) => css`
     transition: background ${theme.fastAnimationTime};
     flex-grow: 1;
     justify-content: center;
+    color: white;
 
     &:hover {
         background-color: ${theme.primaryColor};

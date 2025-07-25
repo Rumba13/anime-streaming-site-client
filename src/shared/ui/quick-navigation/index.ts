@@ -1,1 +1,1 @@
-export {QuickNavigation} from "./quick-navigation.tsx"
+export {QuickNavigation} from "./quick-navigation"

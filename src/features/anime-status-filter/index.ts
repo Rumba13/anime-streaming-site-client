@@ -1,2 +1,2 @@
-export {AnimeStatusSelect} from "./ui/anime-status-select.tsx"
-export {AnimeStatusFilterStore} from "./model/anime-status-filter.store.ts"
+export {AnimeStatusSelect} from "./ui/anime-status-select"
+export {AnimeStatusFilterStore} from "./model/anime-status-filter.store"

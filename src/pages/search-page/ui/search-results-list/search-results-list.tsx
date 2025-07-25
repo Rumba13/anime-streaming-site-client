@@ -1,7 +1,7 @@
-import {searchResultListStyles} from "./search-results-list.styles.ts";
+import {errorMessageStyles, nothingFoundStyles, searchResultListStyles} from "./search-results-list.styles";
 import {match, P} from "ts-pattern";
 import {Loading} from "../../../../shared/ui";
-import {loadingStyles} from "../search-page.styles.ts";
+import {loadingStyles} from "../search-page.styles";
 import {useInjection} from "inversify-react";
 import {AnimeCardSwitchStore} from "../../../../features/anime-card-switch";
 import {SearchAnimeStore} from "../../../../features/search";
@@ -10,12 +10,14 @@ import {observer} from "mobx-react";
 import {Anime} from "../../../../shared/types";
 import {ErrorMessage} from "../../../../shared/ui";
 import {PatternError} from "../../../../shared/model";
+import {FC} from "react";
 
 type SearchResultPropsType = {
     data: Anime[];
-    AnimeCard: React.FC<Anime>;
+    AnimeCard: FC<Anime>;
 }
-const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map((anime, index) => <AnimeCard key={anime.mal_id + anime.title + index} {...anime} />)}</>
+const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map((anime, index) => <AnimeCard
+    key={anime.mal_id + anime.title + index} {...anime} />)}</>
 
 type PropsType = {
     searchAnimeStore: SearchAnimeStore;
@@ -33,19 +35,29 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
 
     const AnimeCard = getCardComponent();
 
+    const loadingFirstState = {isLoading: true, isFirstLoad: true}
+    const subsequentLoadingState = {isLoading: true, isFirstLoad: false}
+    const nothingFoundState = {isLoading: false, pagination: {data: []}}
+    const errorState = {isError: true, error: P.not(null)}
+    const loadedState = {isLoading: false, pagination: P.not(null)}
+
     const content = match(searchAnimeStore)
-        .with({isLoading: true, isFirstLoad: true}, () => <Loading styles={loadingStyles}/>)
-        .with({isLoading: false, pagination: {data: []}}, () => <>{t("Nothing Found")}</>)
-        .with({isLoading: true}, ({pagination}) =>
-            <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>
+        .with(loadingFirstState, () =>
+            <Loading styles={loadingStyles}/>)
+        .with(subsequentLoadingState , ({pagination}) =>
+            <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
+        .with(loadedState, ({pagination}) =>
+            <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
         )
-        .with({isLoading: false}, ({pagination}) =>
-            <SearchResults data={pagination?.data|| []} AnimeCard={AnimeCard}/>
+        .with(nothingFoundState, () =>
+            <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
+        .with(errorState, ({error}) =>
+            <ErrorMessage styles={errorMessageStyles} error={error}/>
         )
-        .with({isError: true, error: P.not(null)}, ({error}) => {
-            return <ErrorMessage error={error}/>
-        })
-        .otherwise(() => <ErrorMessage error={new PatternError("Pattern matching error in search results")}/>);
+
+        .otherwise(() =>
+            <ErrorMessage styles={errorMessageStyles}
+                          error={new PatternError("Pattern matching error in search results")}/>);
 
     return <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })

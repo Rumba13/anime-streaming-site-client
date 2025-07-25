@@ -5,18 +5,18 @@ import {
     imageStyles,
     imageWrapperStyles, playButtonStyles, pointStyles, titleLinkStyle,
     titleStyle, typeStyles
-} from "./anime-mini-card.styles.ts";
+} from "./anime-mini-card.styles";
 import PlayButtonIcon from "../../../../assets/images/play-icon.svg?react"
 import {ROUTES} from "../../../../shared/lib";
-import {AnimeMiniCardPopup} from "./anime-mini-card-popup/anime-mini-card-popup.tsx";
+import {AnimeMiniCardPopup} from "./anime-mini-card-popup/anime-mini-card-popup";
 import dayjs from "dayjs";
 import {dateFormat} from "../../../../shared/lib";
 import {Link} from "react-router-dom";
-import {getAnimeImage} from "../get-anime-image.ts";
+import {getAnimeImage} from "../get-anime-image";
 import {useEffect, useState} from "react";
 import LoadingIcon from "../../../../assets/images/loading.gif"
 import {preloadImage} from "../../../../shared/lib";
-import {AgeRestriction} from "./age-restriction/age-restriction.tsx";
+import {AgeRestriction} from "./age-restriction/age-restriction";
 
 type PropsType = Anime
 

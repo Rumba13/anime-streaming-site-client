@@ -1,1 +1,1 @@
-export {GradientBorderedButton} from "./gradient-bordered-button.tsx"
+export {GradientBorderedButton} from "./gradient-bordered-button"

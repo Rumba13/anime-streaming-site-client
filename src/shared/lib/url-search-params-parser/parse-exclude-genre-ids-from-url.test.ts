@@ -1,6 +1,6 @@
 import {describe, expect, it, vi} from "vitest";
 import {Container} from "inversify";
-import {URLSearchParamsParser} from "./url-search-params-parser.ts";
+import {URLSearchParamsParser} from "./url-search-params-parser";
 
 describe("parse genre ids from url", () => {
 

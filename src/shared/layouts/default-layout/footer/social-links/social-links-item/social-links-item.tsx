@@ -1,7 +1,7 @@
-import "./social-links-item.styles.ts";
+import "./social-links-item.styles";
 import {GradientBorderedButton} from "../../../../../ui";
 import {JSX} from "react";
-import {socialLinksItem, socialLinksItemIcon, socialLinksItemTitle} from "./social-links-item.styles.ts";
+import {socialLinksItem, socialLinksItemIcon, socialLinksItemTitle} from "./social-links-item.styles";
 import { Link } from "react-router-dom";
 
 type PropsType = {

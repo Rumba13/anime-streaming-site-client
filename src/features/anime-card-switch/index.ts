@@ -1,3 +1,3 @@
-export {AnimeCardSwitchStore} from "./model/anime-card-switch.store.ts"
-export {AnimeCardSwitcher} from "./ui/anime-card-switcher.tsx"
+export {AnimeCardSwitchStore} from "./model/anime-card-switch.store"
+export {AnimeCardSwitcher} from "./ui/anime-card-switcher"
 

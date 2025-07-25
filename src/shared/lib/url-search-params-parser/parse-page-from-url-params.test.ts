@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {URLSearchParamsParser} from "./url-search-params-parser.ts";
+import {URLSearchParamsParser} from "./url-search-params-parser";
 import {Container} from "inversify";
 
 describe("parse page from url params", () => {

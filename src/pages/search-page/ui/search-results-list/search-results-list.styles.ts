@@ -20,13 +20,23 @@ export const searchResultListStyles = (isFlexLayout:boolean, isDarkened:boolean)
     
     ${isDarkened && css`
         position: relative;
+        cursor: wait;
 
         &:after {
             content: "";
             position: absolute;
             inset: 0;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             transform: background ${theme.fastAnimationTime};
         }
     `}
+`
+
+export const nothingFoundStyles = (theme:Theme) => css`
+  color: white;
+    font-family: ${theme.primaryFontFamily};
+`
+
+export const errorMessageStyles = (theme:Theme) => css`
+  color: white;
 `

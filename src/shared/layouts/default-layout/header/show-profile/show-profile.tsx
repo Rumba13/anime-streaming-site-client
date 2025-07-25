@@ -1,8 +1,8 @@
-import "./show-profile.styles.ts";
+import "./show-profile.styles";
 import UserIcon from "../../../../../assets/images/user.svg?react"
 import {GradientBorderedButton} from "../../../../ui";
 import {useInjection} from "inversify-react";
-import {ProfilePopupStore} from "./profile-popup.store.ts";
+import {ProfilePopupStore} from "./profile-popup.store";
 import {observer} from "mobx-react";
 import {
     noBackgroundStyles,
@@ -10,7 +10,7 @@ import {
     profileTitle,
     showProfileButton,
     showProfileButtonWrapper
-} from "./show-profile.styles.ts";
+} from "./show-profile.styles";
 import {BasePopup} from "../../../../ui";
 import {FC} from "react";
 

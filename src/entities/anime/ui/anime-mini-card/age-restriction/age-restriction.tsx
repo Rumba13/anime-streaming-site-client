@@ -1,6 +1,6 @@
 import {PgRating} from "../../../../../shared/types";
 import {pgRatingToAgeMap} from "../../../../../shared/lib";
-import {ratingStyles} from "../anime-mini-card.styles.ts";
+import {ratingStyles} from "../anime-mini-card.styles";
 
 type PropsType = {
     pgRating: PgRating

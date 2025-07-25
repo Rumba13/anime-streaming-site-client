@@ -1,4 +1,4 @@
-import {AnimeStatusFilterStore} from "../model/anime-status-filter.store.ts";
+import {AnimeStatusFilterStore} from "../model/anime-status-filter.store";
 import {observer} from "mobx-react";
 import {animeStatusList} from "../../../shared/lib";
 import {AnimeStatus} from "../../../shared/types";

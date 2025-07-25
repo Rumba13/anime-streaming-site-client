@@ -4,11 +4,12 @@ import {Genre, ID} from "../../../shared/types";
 import {GenresService} from "../../../shared/api";
 
 @injectable()
-export class GenresStore {
-    constructor(
-        @inject(GenresService) private genresService: GenresService,
-    ) {
-        makeAutoObservable(this)
+class GenresStore {
+    @inject(GenresService)
+    private genresService!: GenresService;
+
+    constructor() {
+        makeAutoObservable(this);
     }
 
     public genres: Genre[] = []
@@ -35,3 +36,4 @@ export class GenresStore {
 
     public getGenreById = (id: ID) => this.genres.find(({mal_id}) => mal_id === id);
 }
+export {GenresStore}

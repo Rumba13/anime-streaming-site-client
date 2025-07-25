@@ -1,13 +1,13 @@
-import './i18n/i18n.ts';
+import './i18n/i18n';
 import {
     RouterProvider,
 } from "react-router";
-import {router} from "./routes.ts";
-import {NormalizeStyles} from './styles/normalize.styles.tsx'
-import {GlobalStyles} from "./styles/global.styles.tsx";
-import {FontStyles} from "./styles/fonts.styles.tsx";
-import {Providers} from "./providers.tsx";
-import "./firebase.ts"
+import {router} from "./routes";
+import {NormalizeStyles} from './styles/normalize.styles'
+import {GlobalStyles} from "./styles/global.styles";
+import {FontStyles} from "./styles/fonts.styles";
+import {Providers} from "./providers";
+import "./firebase"
 
 function App() {
     return <Providers>

@@ -7,8 +7,8 @@ import {
     mainTitle,
     subTitle,
     titlesStyles
-} from "./anime-card.styles.ts";
-import {getAnimeImage} from "../get-anime-image.ts";
+} from "./anime-card.styles";
+import {getAnimeImage} from "../get-anime-image";
 import {useState} from "react";
 
 type PropsType = Anime

@@ -4,13 +4,13 @@ import {SetURLSearchParams} from "react-router-dom";
 import {inject, injectable} from "inversify";
 
 @injectable()
-export class FilterManager {
+class FilterManager {
     private filterStores: FilterStoreI[] = [];
 
-    constructor(
-        @inject(UrlSyncStoreService)
-        private readonly urlSyncStoreService: UrlSyncStoreService
-    ) {
+    @inject(UrlSyncStoreService)
+    private readonly urlSyncStoreService!: UrlSyncStoreService;
+
+    constructor() {
     }
 
     public syncStoresFromURLParams = (urlSearchParams: URLSearchParams) => {
@@ -28,3 +28,4 @@ export class FilterManager {
         this.filterStores.forEach(store => store.resetFilter());
     }
 }
+export {FilterManager}

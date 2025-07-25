@@ -1,1 +1,1 @@
-export {Loading} from "./loading.tsx"
+export {Loading} from "./loading"
