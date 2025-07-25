@@ -60,6 +60,7 @@ class SearchAnimeStore extends BaseLoadingStore {
         this.currentAbortController = new AbortController();
         this.setIsLoading(true);
 
+
         try {
             scrollToTop()
             const pagination = await this.animeService.search(searchDto, this.currentAbortController.signal);
@@ -69,12 +70,15 @@ class SearchAnimeStore extends BaseLoadingStore {
             this.setPagination(pagination)
         } catch (err) {
             const error = err as Error;
+
             if (error?.name === 'CanceledError' || error?.name === 'AbortError') {
                 return;
             }
+
             console.error(err);
             this.setIsError(true);
             if (err instanceof BaseError) {
+                console.log(err)
                 this.setError(err);
             }
         } finally {

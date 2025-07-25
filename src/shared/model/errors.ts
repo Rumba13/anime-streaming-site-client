@@ -7,3 +7,11 @@ export class PatternError extends BaseError {
         super(message, "PatternError");
     }
 }
+
+export class AbortError extends BaseError {
+    constructor(
+        message: string,
+    ) {
+        super(message, "AbortError");
+    }
+}

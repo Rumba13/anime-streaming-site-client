@@ -1,5 +1,5 @@
 export {ShortGenresStore} from "./short-genres-store"
 export {BaseError} from "./base-error"
-export {PatternError} from "./errors"
+export {PatternError,AbortError} from "./errors"
 export {BaseLoadingStore} from "./base-loading-store"
 export {BasePopupStore} from "./base-popup.store"

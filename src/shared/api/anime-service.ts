@@ -94,7 +94,17 @@ class AnimeService {
             );
             return response.data;
         } catch (error) {
-            console.error("Search Error:", error);
+
+            if(error instanceof Error)
+            {
+                if(error.name === "CanceledError")
+                {
+                    console.log("Request cancelled");
+                    return null;
+                }
+            }
+
+            console.error("[Anime Service] Search Error:", error);
             throw new BaseError("Search Error", "NetworkError");
         }
     }

@@ -36,25 +36,25 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
     const AnimeCard = getCardComponent();
 
     const loadingFirstState = {isLoading: true, isFirstLoad: true}
-    const subsequentLoadingState = {isLoading: true, isFirstLoad: false}
+    const subsequentLoadingState = {isLoading: true, isFirstLoad: false, pagination:P.not(null) }
+    const loadedState = {isLoading: false, pagination: P.not(null).and(P.not([]))}
     const nothingFoundState = {isLoading: false, pagination: {data: []}}
     const errorState = {isError: true, error: P.not(null)}
-    const loadedState = {isLoading: false, pagination: P.not(null)}
 
     const content = match(searchAnimeStore)
         .with(loadingFirstState, () =>
             <Loading styles={loadingStyles}/>)
-        .with(subsequentLoadingState , ({pagination}) =>
-            <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
-        .with(loadedState, ({pagination}) =>
-            <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
-        )
         .with(nothingFoundState, () =>
             <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
+        .with(subsequentLoadingState , ({pagination}) =>
+            <SearchResults data={pagination.data || []} AnimeCard={AnimeCard}/>)
+
+        .with(loadedState, ({pagination}) => {
+            return <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
+        })
         .with(errorState, ({error}) =>
             <ErrorMessage styles={errorMessageStyles} error={error}/>
         )
-
         .otherwise(() =>
             <ErrorMessage styles={errorMessageStyles}
                           error={new PatternError("Pattern matching error in search results")}/>);
