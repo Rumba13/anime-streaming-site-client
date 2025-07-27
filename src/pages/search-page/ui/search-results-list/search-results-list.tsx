@@ -48,7 +48,6 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
             <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
         .with(subsequentLoadingState , ({pagination}) =>
             <SearchResults data={pagination.data || []} AnimeCard={AnimeCard}/>)
-
         .with(loadedState, ({pagination}) => {
             return <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
         })

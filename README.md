@@ -19,6 +19,7 @@ Epic Anime is a modern web application for discovering, browsing, and watching a
 - **React 19** — Modern UI library for building interactive interfaces
 - **TypeScript** — Static typing for safer and more maintainable code
 - **MobX** — State management for predictable and reactive data flow
+- **Storybook** — Auto documentation and components testing
 - **InversifyJS** — Dependency injection for scalable and testable architecture
 - **Emotion** — CSS-in-JS for flexible and dynamic styling
 - **Vite** — Fast build tool and development server
