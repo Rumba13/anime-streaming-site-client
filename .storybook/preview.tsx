@@ -9,6 +9,7 @@ import {themes} from "storybook/theming"
 import {addons} from "storybook/manager-api";
 import {Provider} from "inversify-react";
 import {container} from "../src/app/container";
+import '../src/app/i18n/i18n';
 
 const preview: Preview = {
     parameters: {
