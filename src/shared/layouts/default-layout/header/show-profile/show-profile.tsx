@@ -5,18 +5,17 @@ import {useInjection} from "inversify-react";
 import {ProfilePopupStore} from "./profile-popup.store";
 import {observer} from "mobx-react";
 import {
-    noBackgroundStyles,
     profile,
     profileTitle,
     showProfileButton,
     showProfileButtonWrapper
 } from "./show-profile.styles";
 import {BasePopup} from "../../../../ui";
-import {FC} from "react";
+import { ReactNode} from "react";
 
 type PropsType = {
-    JikanStatusSlot: FC,
-    AnimationsSwitchSlot: FC
+    JikanStatusSlot: ReactNode,
+    AnimationsSwitchSlot: ReactNode
 }
 
 export const ShowProfile = observer(({JikanStatusSlot,AnimationsSwitchSlot}:PropsType) => {
@@ -29,8 +28,8 @@ export const ShowProfile = observer(({JikanStatusSlot,AnimationsSwitchSlot}:Prop
 
         <BasePopup styles={profile} popupStore={profilePopupStore}>
             <h2 css={profileTitle}>Profile</h2>
-            <JikanStatusSlot styles={noBackgroundStyles}/>
-            <AnimationsSwitchSlot styles={noBackgroundStyles}/>
+            {JikanStatusSlot}
+            {AnimationsSwitchSlot}
         </BasePopup>
     </div>
 })

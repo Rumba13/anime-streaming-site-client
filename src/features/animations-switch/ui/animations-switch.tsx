@@ -1,15 +1,14 @@
 import {AnimationsSwitchStore} from "../model/animations-switch.store";
-import {useInjection} from "inversify-react";
 import {animationsSwitchStyle, markStyle, statusStyle, titleStyle} from "./animation-switch.styles";
 import {observer} from "mobx-react";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
-    styles?: Interpolation<Theme>
+    styles?: Interpolation<Theme>,
+    animationsSwitchStore: AnimationsSwitchStore
 }
 
-export const AnimationsSwitch = observer(({styles}:PropsType) => {
-    const animationsSwitchStore = useInjection(AnimationsSwitchStore);
+export const AnimationsSwitch = observer(({styles,animationsSwitchStore}:PropsType) => {
 
     const handleToggle = () => {
         animationsSwitchStore.setIsAnimationsEnabled(!animationsSwitchStore.isAnimationsEnabled);

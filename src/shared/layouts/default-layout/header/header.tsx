@@ -1,5 +1,5 @@
 import "./header.styles";
-import {FC} from "react";
+import { ReactNode} from "react";
 import {Navigation} from "./navigation/navigation";
 import {ShowFavoritesButton} from "./show-favorites-button/show-favorites-button";
 import {ShowProfile} from "./show-profile/show-profile";
@@ -8,9 +8,9 @@ import {Logo} from "../../../ui";
 import {headerMiddleStyles, headerRightStyles, headerStyles} from "./header.styles";
 
 type PropsType = {
-    SearchSlot: FC,
-    JikanStatusSlot:FC
-    AnimationsSwitchSlot:FC
+    SearchSlot: ReactNode,
+    JikanStatusSlot:ReactNode
+    AnimationsSwitchSlot:ReactNode
 }
 
 export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot}: PropsType) {
@@ -19,7 +19,7 @@ export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot}: PropsT
 
         <div css={headerMiddleStyles}>
             <Navigation/>
-            <SearchSlot/>
+            {SearchSlot}
         </div>
 
         <div css={headerRightStyles}>

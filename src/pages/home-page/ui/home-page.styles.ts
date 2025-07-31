@@ -13,3 +13,7 @@ export const searchStyles = () => css`
     width: 120px;
 `
 
+export const noBackgroundStyles = () => css`
+    background-color: rgba(0,0,0,0);
+`;
+

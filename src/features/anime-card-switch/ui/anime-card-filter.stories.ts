@@ -1,6 +1,4 @@
 import {Meta, type StoryObj} from "@storybook/react-vite";
-import {AnimeDateFilter} from "./anime-date-filter";
-import {AnimeDateFilterStore} from "../model/anime-date-filter.store";
 import {AnimeCardSwitcher} from "./anime-card-switcher.tsx";
 
 const meta = {

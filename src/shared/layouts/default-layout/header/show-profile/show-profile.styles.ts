@@ -24,6 +24,3 @@ export const profileTitle = (theme: Theme) => css`
   text-align: center;
 `;
 
-export const noBackgroundStyles = () => css`
-    background-color: rgba(0,0,0,0);
-`;

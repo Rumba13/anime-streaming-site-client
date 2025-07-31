@@ -4,25 +4,27 @@ import {DefaultLayout} from "../../../shared/layouts";
 import {LanguageSelector} from "../../../features/language-selector";
 import {WelcomeSection} from "./welcome-section/welcome-section";
 import {ExploreMoreSection} from "./explore-more-section/explore-more-section";
-import {exploreMoreSectionStyles, homePageContentStyles, searchStyles} from "./home-page.styles";
+import {exploreMoreSectionStyles, homePageContentStyles, noBackgroundStyles, searchStyles} from "./home-page.styles";
 import {ROUTES} from "../../../shared/lib";
 import {useNavigate} from "react-router-dom";
 import {JikanStatus} from "../../../features/jikan-status";
-import {AnimationsSwitch} from "../../../features/animations-switch";
+import {AnimationsSwitch, AnimationsSwitchStore} from "../../../features/animations-switch";
+import {useInjection} from "inversify-react";
 
 export function HomePage() {
     const navigate = useNavigate()
+    const animationsSwitchStore = useInjection(AnimationsSwitchStore);
 
     const handleSearch = (searchValue: string) => {
         void navigate(ROUTES.SEARCH_PAGE_SEARCH_QUERY(searchValue));
     }
 
     return <DefaultLayout
-        SearchSlot={() => <Search styles={searchStyles} onSearch={handleSearch}/>}
-                          LanguageSelectorSlot={LanguageSelector}
-        JikanStatusSlot={JikanStatus}
-
-        AnimationsSwitchSlot={AnimationsSwitch}
+        SearchSlot={<Search styles={searchStyles} onSearch={handleSearch}/>}
+        LanguageSelectorSlot={<LanguageSelector/>}
+        JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}
+        AnimationsSwitchSlot={<AnimationsSwitch styles={noBackgroundStyles}
+                                                animationsSwitchStore={animationsSwitchStore}/>}
     >
         <div css={homePageContentStyles}>
             <WelcomeSection/>

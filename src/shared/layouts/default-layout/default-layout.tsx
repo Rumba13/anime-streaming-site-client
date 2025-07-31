@@ -1,17 +1,17 @@
 import "./default-layout.styles";
 import {Header} from "./header/header";
-import {FC, ReactNode} from "react";
+import {ReactNode} from "react";
 import {Footer} from "./footer/footer";
 import {defaultLayoutStyles} from "./default-layout.styles";
 import {Interpolation, Theme} from "@emotion/react";
 
 type PropsType = {
     children: ReactNode,
-    SearchSlot: FC,
+    SearchSlot: ReactNode,
     styles?: Interpolation<Theme>,
-    LanguageSelectorSlot: FC,
-    JikanStatusSlot: FC,
-    AnimationsSwitchSlot: FC
+    LanguageSelectorSlot: ReactNode,
+    JikanStatusSlot: ReactNode,
+    AnimationsSwitchSlot: ReactNode
 }
 
 export function DefaultLayout({

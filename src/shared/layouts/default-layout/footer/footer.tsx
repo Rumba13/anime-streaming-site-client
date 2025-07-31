@@ -5,7 +5,7 @@ import {CompanyInfo} from "./company-info/company-info";
 import {AccountActions} from "./account-actions/account-actions";
 import {HorizontalLine} from "../../../ui";
 import {ScrollToTopButton} from "./scroll-to-top-button/scroll-to-top-button";
-import {FC} from "react";
+import { ReactNode} from "react";
 import {
     footerBottomStyles,
     footerCopyrightStyles,
@@ -15,7 +15,7 @@ import {
 } from "./footer.styles";
 
 type PropsType = {
-    LanguageSelectorSlot: FC
+    LanguageSelectorSlot: ReactNode
 }
 
 export function Footer({LanguageSelectorSlot}: PropsType) {
@@ -30,7 +30,7 @@ export function Footer({LanguageSelectorSlot}: PropsType) {
         <HorizontalLine styles={horizontalLineStyles}/>
         <div css={footerBottomStyles}>
             <p css={footerCopyrightStyles}>© 2025 Epic Anime. All Rights Reserved</p>
-            <LanguageSelectorSlot/>
+            {LanguageSelectorSlot}
         </div>
     </footer>
 }

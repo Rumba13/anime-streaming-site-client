@@ -17,21 +17,23 @@ import {OrderBySelect} from "../../../features/order-by";
 import {OrderByStore} from "../../../features/order-by";
 import {URLSearchParamsParser} from "../../../shared/lib";
 import {JikanStatus} from "../../../features/jikan-status";
-import {AnimationsSwitch} from "../../../features/animations-switch";
+import {AnimationsSwitch, AnimationsSwitchStore} from "../../../features/animations-switch";
+import {noBackgroundStyles} from "../../home-page/ui/home-page.styles.ts";
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
-    const urlSearchParamsParser= useInjection(URLSearchParamsParser);
+    const urlSearchParamsParser = useInjection(URLSearchParamsParser);
     const orderByStore = useInjection(OrderByStore);
+    const animationsSwitchStore = useInjection(AnimationsSwitchStore);
     const [searchParams] = useSearchParams();
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
-
-
+//TODO make ss unnecessary
     return <DefaultLayout
-        SearchSlot={() => <></>}
-        LanguageSelectorSlot={LanguageSelector}
-        JikanStatusSlot={JikanStatus}
-        AnimationsSwitchSlot={AnimationsSwitch}
+        SearchSlot={<></>}
+        LanguageSelectorSlot={<LanguageSelector/>}
+        JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}
+        AnimationsSwitchSlot={<AnimationsSwitch styles={noBackgroundStyles}
+                                                animationsSwitchStore={animationsSwitchStore}/>}
     >
         <div css={searchPageContentStyles}>
             <Filters styles={filtersStyles}/>
