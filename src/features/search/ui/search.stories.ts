@@ -1,7 +1,6 @@
 import {Meta, type StoryObj} from "@storybook/react-vite";
 import {Search} from "./search.tsx";
 
-
 const meta = {
     component: Search,
     title: "Search",

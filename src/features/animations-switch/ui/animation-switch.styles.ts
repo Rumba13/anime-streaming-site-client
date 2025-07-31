@@ -8,7 +8,7 @@ export const animationsSwitchStyle = (theme: Theme) => css`
     border-radius: 6px;
     width: fit-content;
     cursor: pointer;
-    
+    color: white;
 `;
 
 export const markStyle = (isAnimationsEnabled: boolean) => (theme: Theme) => css`

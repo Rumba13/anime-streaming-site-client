@@ -11,8 +11,12 @@ export const GlobalStyles = () =>
 
             html {
                 background-color: #000000;
-                
+
                 ${hideScrollbar}
+            }
+
+            .ant-tooltip-inner {
+                text-align: center !important;
             }
         `}
     />

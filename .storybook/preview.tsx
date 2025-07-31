@@ -10,6 +10,7 @@ import {addons} from "storybook/manager-api";
 import {Provider} from "inversify-react";
 import {container} from "../src/app/container";
 import '../src/app/i18n/i18n';
+import {AntdThemeProvider} from "../src/app/theme/antd-theme-provider.tsx";
 
 const preview: Preview = {
     parameters: {
@@ -33,12 +34,15 @@ const preview: Preview = {
 
             return <Provider container={container} key={container.id}>
                 <ThemeProvider theme={darkTheme}>
+                    <AntdThemeProvider theme={darkTheme}>
+
                     <MemoryRouter>
                         <NormalizeStyles/>
                         <GlobalStyles/>
                         <FontStyles/>
                         <Story/>
                     </MemoryRouter>
+                    </AntdThemeProvider>
                 </ThemeProvider>
             </Provider>
         },

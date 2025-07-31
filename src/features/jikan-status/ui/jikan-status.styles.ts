@@ -7,6 +7,7 @@ export const jikanStatusStyle = (theme: Theme) => css`
     background-color: ${theme.backgroundColor};
     border-radius: 6px;
     width: fit-content;
+    color: white;
 `;
 
 export const jikanStatusTitle = (theme: Theme) => css`

@@ -1,6 +1,7 @@
 import {SelectOptionType} from "./select-option-type";
 import { useEffect, useMemo, useRef, useState} from "react";
 import {selectContainerStyle, selectOptionsStyle, selectOptionStyle, selectTriggerStyle} from "./select.styles";
+import {Interpolation, Theme} from "@emotion/react";
 
 type SelectOptionProps = {
     isActive: boolean;
@@ -28,9 +29,10 @@ type SelectProps = {
     options: SelectOptionType[],
     selectedOption: SelectOptionType,
     onSelect: (selectedOption: SelectOptionType) => void,
+    styles?: Interpolation<Theme>
 }
 
-export function Select({options, selectedOption, onSelect}: SelectProps) {
+export function Select({options, selectedOption, onSelect,styles}: SelectProps) {
     const [isOpened, setIsOpened] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const closeSelect = () => setIsOpened(false)
@@ -115,7 +117,7 @@ export function Select({options, selectedOption, onSelect}: SelectProps) {
         )
     }, [options, selectedOption.value, setActiveIndex, handleOptionSelect, activeIndex])
 
-    return <div css={selectContainerStyle} ref={selectRef}>
+    return <div css={[selectContainerStyle,styles]} ref={selectRef}>
         <button
             css={selectTriggerStyle}
             aria-haspopup="listbox"

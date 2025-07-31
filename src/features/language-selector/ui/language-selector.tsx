@@ -1,6 +1,7 @@
 import "./language.styles";
 import {Select, SelectOptionType} from "../../../shared/ui/select";
 import {useTranslation} from "react-i18next";
+import {languageSelectStyles} from "./language.styles.ts";
 
 export function LanguageSelector() {
     const {i18n,t} = useTranslation();
@@ -21,7 +22,9 @@ export function LanguageSelector() {
         void i18n.changeLanguage(value)
     }
 
-    return <Select onSelect={handleSelect}
+    return <Select
+        styles={languageSelectStyles}
+        onSelect={handleSelect}
                    selectedOption={selectedOption}
                    options={languageOptions}/>
 }
