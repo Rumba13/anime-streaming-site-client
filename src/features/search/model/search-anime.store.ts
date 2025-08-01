@@ -14,8 +14,7 @@ import {preloadImage} from "../../../shared/lib";
 class SearchAnimeStore extends BaseLoadingStore {
     @inject(AnimeService) private readonly animeService!: AnimeService
 
-    constructor(
-    ) {
+    constructor() {
         super()
 
         makeObservable(this, {
@@ -35,7 +34,7 @@ class SearchAnimeStore extends BaseLoadingStore {
         });
     }
 
-    private readonly IMAGE_COUNT_TO_PRELOAD:number = 10;
+    private readonly IMAGE_COUNT_TO_PRELOAD: number = 10;
     private currentAbortController: AbortController | null = null;
 
     public pagination: JikanPagination<Anime> | null = null;
@@ -46,7 +45,7 @@ class SearchAnimeStore extends BaseLoadingStore {
     public isFirstLoad: boolean = true;
     public setIsFirstLoad = (isFirstLoad: boolean) => this.isFirstLoad = isFirstLoad;
 
-    private preloadImages = async (pagination:JikanPagination<Anime> | null) => {
+    private preloadImages = async (pagination: JikanPagination<Anime> | null) => {
         if (pagination && pagination.data) {
             await Promise.all(
                 pagination.data.slice(0, this.IMAGE_COUNT_TO_PRELOAD).map(anime => preloadImage(getAnimeImage(anime.images)))
@@ -59,12 +58,11 @@ class SearchAnimeStore extends BaseLoadingStore {
 
         this.currentAbortController = new AbortController();
         this.setIsLoading(true);
-
+        this.setIsLoaded(false);
 
         try {
             scrollToTop()
             const pagination = await this.animeService.search(searchDto, this.currentAbortController.signal);
-
             await this.preloadImages(pagination);
 
             this.setPagination(pagination)
@@ -83,7 +81,9 @@ class SearchAnimeStore extends BaseLoadingStore {
             }
         } finally {
             this.setIsLoading(false);
+            this.setIsLoaded(true);
             this.setIsFirstLoad(false);
+
             this.currentAbortController = null;
         }
     }
@@ -92,4 +92,5 @@ class SearchAnimeStore extends BaseLoadingStore {
         return this.pagination?.pagination.last_visible_page || 1;
     }
 }
+
 export {SearchAnimeStore}

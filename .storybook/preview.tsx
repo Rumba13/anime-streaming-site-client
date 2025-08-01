@@ -35,7 +35,6 @@ const preview: Preview = {
             return <Provider container={container} key={container.id}>
                 <ThemeProvider theme={darkTheme}>
                     <AntdThemeProvider theme={darkTheme}>
-
                     <MemoryRouter>
                         <NormalizeStyles/>
                         <GlobalStyles/>

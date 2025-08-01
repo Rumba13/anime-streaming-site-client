@@ -9,15 +9,15 @@ import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
 import {Anime} from "../../../../shared/types";
 import {ErrorMessage} from "../../../../shared/ui";
-import {PatternError} from "../../../../shared/model";
+import {BaseError, PatternError} from "../../../../shared/model";
 import {FC} from "react";
 
 type SearchResultPropsType = {
     data: Anime[];
     AnimeCard: FC<Anime>;
 }
-const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map((anime, index) => <AnimeCard
-    key={anime.mal_id + anime.title + index} {...anime} />)}</>
+const SearchResults = ({data, AnimeCard}: SearchResultPropsType) => <>{data.map((anime, index) =>
+    <AnimeCard key={anime.mal_id + anime.title + index} {...anime} />)}</>
 
 type PropsType = {
     searchAnimeStore: SearchAnimeStore;
@@ -35,28 +35,25 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
 
     const AnimeCard = getCardComponent();
 
-    const loadingFirstState = {isLoading: true, isFirstLoad: true}
-    const subsequentLoadingState = {isLoading: true, isFirstLoad: false, pagination:P.not(null) }
+    const firstLoadingState = {isFirstLoad: true}
+    const secondLoadingState = {isLoading: true, isFirstLoad: false}
     const loadedState = {isLoading: false, pagination: P.not(null).and(P.not([]))}
     const nothingFoundState = {isLoading: false, pagination: {data: []}}
-    const errorState = {isError: true, error: P.not(null)}
+    const errorState = {isError: true}
 
     const content = match(searchAnimeStore)
-        .with(loadingFirstState, () =>
+        .with(errorState, ({error}) =>
+            <ErrorMessage styles={errorMessageStyles} error={error || new BaseError("Unknown Error")}/>)
+        .with(firstLoadingState, () =>
             <Loading styles={loadingStyles}/>)
         .with(nothingFoundState, () =>
             <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
-        .with(subsequentLoadingState , ({pagination}) =>
-            <SearchResults data={pagination.data || []} AnimeCard={AnimeCard}/>)
-        .with(loadedState, ({pagination}) => {
-            return <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>
-        })
-        .with(errorState, ({error}) =>
-            <ErrorMessage styles={errorMessageStyles} error={error}/>
-        )
-        .otherwise(() =>
-            <ErrorMessage styles={errorMessageStyles}
-                          error={new PatternError("Pattern matching error in search results")}/>);
+        .with(secondLoadingState, ({pagination}) =>
+            <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
+        .with(loadedState, ({pagination}) =>
+            <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>)
+        .otherwise((store) =>
+            <ErrorMessage styles={errorMessageStyles} error={new PatternError("Pattern matching error in search results", store)}/>);
 
     return <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })

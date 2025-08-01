@@ -6,7 +6,7 @@ import {observer} from "mobx-react";
 import {selectExcludeGenresStyles} from "./exclude-genre-filter.styles";
 import {ExcludeGenreFilterStore} from "../model/exclude-genre-filter.store";
 import {genresToSelectOptions} from "../../../shared/lib";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
     genreIdsToHide: ID[]
@@ -15,7 +15,7 @@ type PropsType = {
 export const SelectExcludeGenres = observer(({genreIdsToHide}: PropsType) => {
     const genresStore = useInjection(GenresStore);
     const excludeGenreFilterStore = useInjection(ExcludeGenreFilterStore)
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     const filteredGenres: Genre[] = genresStore.genres.filter(({mal_id}) => !genreIdsToHide.includes(mal_id));
 

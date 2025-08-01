@@ -11,7 +11,7 @@ export const GlobalStyles = () =>
 
             html {
                 background-color: #000000;
-
+                min-height: 100vh;
                 ${hideScrollbar}
             }
 

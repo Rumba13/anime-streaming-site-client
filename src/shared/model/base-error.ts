@@ -5,19 +5,17 @@ export class BaseError extends Error {
 
     constructor(
         message: string,
-        type: ErrorType,
+        type?: ErrorType,
     ) {
         super(message);
-        this.type = type;
+        this.type = type || "UnknownError";
 
         Object.setPrototypeOf(this, BaseError.prototype);
     }
 
-    public toJSON() {
-        return {
-            type: this.type,
-            message: this.message,
-            stack: this.stack
-        };
+    public log() {
+        console.error(`${this.type}: ${this.message}
+        ${JSON.stringify(this, null, 4)}
+        Stack: ${this.stack}`)
     }
 }

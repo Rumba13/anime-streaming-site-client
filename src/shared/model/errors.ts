@@ -1,10 +1,13 @@
 import {BaseError} from "./base-error";
 
 export class PatternError extends BaseError {
+    public pattern?: object;
     constructor(
         message: string,
+        pattern?: object
     ) {
         super(message, "PatternError");
+        this.pattern = pattern;
     }
 }
 

@@ -31,13 +31,34 @@ export const fadeOut = keyframes`
 
 export const popupStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Theme) => css`
     position: absolute;
-    top: calc(100% + 5px);
-    padding: 20px 0 20px 30px;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
     border: 1px solid ${theme.borderColor};
-    border-radius: 20px;
+    border-radius: 12px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
-    animation: ${isOpened ? fadeIn : (  wasOpened ? fadeOut: "none")} ${theme.fastAnimationTime} forwards;
+    animation: ${isOpened ? fadeIn : (wasOpened ? fadeOut : "none")} ${theme.fastAnimationTime} forwards;
     will-change: opacity, transform;
+    color: white;
     ${hiddenStyles}
 `
+export const modalContainerStyles = (theme: Theme) => css`
+    position: relative;
+    padding: 20px 30px;
+    color: white;
+`;
+export const crossStyles = (theme: Theme) => css`
+    width: 16px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+
+    border-radius: 50%;
+    cursor: pointer;
+    & > * {
+        stroke-width: 8px;
+    }
+`;
+
+

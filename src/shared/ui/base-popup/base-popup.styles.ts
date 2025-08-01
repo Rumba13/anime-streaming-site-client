@@ -32,12 +32,13 @@ export const fadeOut = keyframes`
 export const popupStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Theme) => css`
     position: absolute;
     top: calc(100% + 5px);
-    padding: 20px 0 20px 30px;
+    padding: 20px 30px 20px 30px;
     border: 1px solid ${theme.borderColor};
     border-radius: 20px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
     animation: ${isOpened ? fadeIn : (  wasOpened ? fadeOut: "none")} ${theme.fastAnimationTime} forwards;
     will-change: opacity, transform;
+    color:white;
     ${hiddenStyles}
 `

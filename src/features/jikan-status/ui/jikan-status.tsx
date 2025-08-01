@@ -10,9 +10,8 @@ type PropsType = {
 }
 
 export const JikanStatus = observer(({styles}: PropsType) => {
-    const {t} = useTranslation();
     const jikanStatusStore = useInjection(JikanStatusStore);
-
+    const {t} = useTranslation();
     const isConnected = jikanStatusStore.getStatus();
 
     return <div css={[jikanStatusStyle, styles]}>

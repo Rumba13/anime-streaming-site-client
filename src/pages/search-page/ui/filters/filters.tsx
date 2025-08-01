@@ -9,7 +9,7 @@ import {
     resetButtonStyles,
     searchStyles
 } from "./filters.styles";
-import {useEffect, useMemo} from "react";
+import {useCallback, useEffect, useMemo} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";
@@ -21,7 +21,7 @@ import {Search} from "../../../../features/search";
 import {SearchQueryStore} from "../../../../features/search";
 import {SearchAnimeStore} from "../../../../features/search";
 import {debounce} from "ts-debounce";
-import { URLSearchParamsParser} from "../../../../shared/lib";
+import {URLSearchParamsParser} from "../../../../shared/lib";
 import {RatingFilterStore} from "../../../../features/rating-filter";
 import {RatingRange} from "../../../../features/rating-filter";
 import {AnimeStatusFilterStore} from "../../../../features/anime-status-filter";
@@ -65,24 +65,20 @@ export const Filters = observer(({styles}: PropsType) => {
         pageStore
     ])
 
-    const search = async (searchParams: URLSearchParams) => {
+    const search = useCallback(async (searchParams: URLSearchParams) => {
         await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
-    }
+    }, [])
 
     useEffect(() => {
         void genresStore.loadGenres();
     }, []);
 
-    const debouncedSearch = useMemo(() => debounce(search, 200), [search])
+    const debouncedSearch = useCallback(debounce(search, 200), [])
 
     useEffect(() => {
         void debouncedSearch(searchParams)
         return () => debouncedSearch.cancel();
-    }, [searchParams]);
-
-    useEffect(() => {
-        void search(searchParams)
-    }, []);
+    }, [searchParams,debouncedSearch]);
 
     useEffect(() => {
         filterManager.syncStoresFromURLParams(searchParams);
