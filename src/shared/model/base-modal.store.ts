@@ -15,6 +15,14 @@ export class BaseModalStore {
     private cleanupHandler?: () => void;
 
     static activeModal: BaseModalStore | null = null;
+    static setActiveModal = (activeModal: BaseModalStore | null) => BaseModalStore.activeModal = activeModal;
+
+    static {
+        makeObservable(BaseModalStore, {
+            activeModal: observable,
+            setActiveModal: action
+        });
+    }
 
     constructor() {
         makeObservable(this, {
@@ -61,17 +69,15 @@ export class BaseModalStore {
             BaseModalStore.activeModal.close();
         }
 
-        BaseModalStore.activeModal = this;
+        BaseModalStore.setActiveModal(this)
         this.setIsOpened(true);
         this.setWasOpened(true);
     };
 
     public close = () => {
         if (BaseModalStore.activeModal === this) {
-            BaseModalStore.activeModal = null;
+            BaseModalStore.setActiveModal(null)
         }
         this.setIsOpened(false);
     };
-
-
 }

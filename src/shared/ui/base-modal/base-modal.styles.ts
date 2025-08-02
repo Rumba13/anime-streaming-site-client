@@ -33,6 +33,7 @@ export const modalStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Th
     position: absolute;
     top: 50%;
     right: 50%;
+    z-index: 100;
     transform: translate(-50%, -50%);
     border: 1px solid ${theme.borderColor};
     border-radius: 12px;

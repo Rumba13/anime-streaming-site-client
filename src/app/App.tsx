@@ -8,9 +8,12 @@ import {GlobalStyles} from "./styles/global.styles";
 import {FontStyles} from "./styles/fonts.styles";
 import {Providers} from "./providers";
 import "./firebase"
+import {Overlay} from "./overlay/overlay.tsx";
+import {BaseModalStore} from "../shared/model";
 
 function App() {
     return <Providers>
+        <Overlay/>
         <NormalizeStyles/>
         <GlobalStyles/>
         <FontStyles/>

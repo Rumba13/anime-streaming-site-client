@@ -7,6 +7,8 @@ import {themes} from "storybook/theming"
 import {addons} from "storybook/manager-api";
 import '../src/app/i18n/i18n';
 import {Providers} from "../src/app/providers.tsx";
+import {Overlay} from "../src/app/overlay/overlay.tsx";
+import {BaseModalStore} from "../src/shared/model";
 
 const preview: Preview = {
     parameters: {
@@ -26,6 +28,7 @@ const preview: Preview = {
         (Story) =>
         <Providers>
             <MemoryRouter>
+                <Overlay/>
                 <NormalizeStyles/>
                 <GlobalStyles/>
                 <FontStyles/>
