@@ -1,27 +1,27 @@
 import {observer} from "mobx-react";
-import {BasePopupStore} from "../../model";
 import {ReactNode, useEffect, useRef} from "react";
-import {crossStyles, modalContainerStyles, popupStyles} from "./base-modal.styles";
+import {crossStyles, modalContainerStyles, modalStyles} from "./base-modal.styles";
 import {Interpolation, Theme} from "@emotion/react";
 import CrossIcon from "../../../assets/images/cross.svg?react"
+import {BaseModalStore} from "../../model";
 
 type PropsType = {
-    popupStore: BasePopupStore,
+    modalStore: BaseModalStore,
     children: ReactNode,
     styles?: Interpolation<Theme>
 }
 
-export const BaseModal = observer(({popupStore, children, styles}: PropsType) => {
+export const BaseModal = observer(({modalStore, children, styles}: PropsType) => {
     const popupRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        popupStore.setPopupRef(popupRef.current);
-        return popupStore.dispose;
+        modalStore.setModalRef(popupRef.current);
+        return modalStore.dispose;
     }, []);
 
-    return <div ref={popupRef} css={[popupStyles(popupStore.isOpened, popupStore.wasOpened), styles]}>
+    return <div ref={popupRef} css={[modalStyles(modalStore.isOpened, modalStore.wasOpened), styles]}>
         <div css={modalContainerStyles}>
-            <CrossIcon css={crossStyles} onClick={popupStore.close}/>
+            <CrossIcon css={crossStyles} onClick={modalStore.close}/>
             {children}
         </div>
     </div>

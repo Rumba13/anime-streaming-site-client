@@ -1,5 +1,5 @@
 import {Meta, type StoryObj} from "@storybook/react-vite";
-import {BasePopupStore} from "../../model";
+import {BaseModalStore, BasePopupStore} from "../../model";
 import {BaseModal} from "./base-modal.tsx";
 
 const meta = {
@@ -13,18 +13,18 @@ export default meta
 
 type Story = StoryObj<typeof meta>;
 
-const basePopupStore = new BasePopupStore();
+const baseModalStore = new BaseModalStore();
 
 export const Default: Story = {
     args: {
-        popupStore: basePopupStore,
+        modalStore: baseModalStore,
         children: <>
             Base Modal
         </>
     },
     decorators: [
         (Story) => <div>
-            <button onClick={basePopupStore.open} style={{color:"white"}}>open modal</button>
+            <button onClick={baseModalStore.open} style={{color:"white"}}>open modal</button>
             <Story/>
         </div>
     ]

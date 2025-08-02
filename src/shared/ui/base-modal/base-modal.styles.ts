@@ -29,7 +29,7 @@ export const fadeOut = keyframes`
     }
 `
 
-export const popupStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Theme) => css`
+export const modalStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Theme) => css`
     position: absolute;
     top: 50%;
     right: 50%;
