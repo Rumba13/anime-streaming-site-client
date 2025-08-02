@@ -1,5 +1,5 @@
 import {Meta, type StoryObj} from "@storybook/react-vite";
-import {BaseModalStore, BasePopupStore} from "../../model";
+import {BaseModalStore} from "../../model";
 import {BaseModal} from "./base-modal.tsx";
 
 const meta = {
