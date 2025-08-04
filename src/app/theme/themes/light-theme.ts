@@ -16,5 +16,7 @@ export const lightTheme = {
     veryWeakFontColor: '#bdbdbd',
     veryFastAnimationTime: '70ms',
     mediumAnimationTime: "200ms",
-    contentWidth: '1690px'
+    contentWidth: '1690px',
+    weakBorderColor: "#333333",
+    weakBackgroundColor: "#333333"
 };

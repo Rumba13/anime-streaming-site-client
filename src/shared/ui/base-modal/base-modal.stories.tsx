@@ -20,11 +20,13 @@ export const Default: Story = {
         modalStore: baseModalStore,
         children: <>
             Base Modal
-        </>
+        </>,
+        footer: <>Base modal Footer</>,
+        title: <>Base modal title</>
     },
     decorators: [
         (Story) => <div>
-            <button onClick={baseModalStore.open} style={{color:"white"}}>open modal</button>
+            <button onClick={baseModalStore.open} style={{color: "white"}}>open modal</button>
             <Story/>
         </div>
     ]

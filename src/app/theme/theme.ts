@@ -16,4 +16,7 @@ export type Theme = {
     veryFastAnimationTime: string;
     contentWidth: string;
     smallBorderRadius: string,
+    weakBorderColor: string,
+    weakBackgroundColor: string
+
 }

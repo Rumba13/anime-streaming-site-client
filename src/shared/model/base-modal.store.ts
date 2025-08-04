@@ -62,8 +62,8 @@ export class BaseModalStore {
         };
     };
 
-    public open = (event: React.MouseEvent) => {
-        event.stopPropagation();
+    public open = (event?: React.MouseEvent) => {
+        event?.stopPropagation();
 
         if (BaseModalStore.activeModal && BaseModalStore.activeModal !== this) {
             BaseModalStore.activeModal.close();

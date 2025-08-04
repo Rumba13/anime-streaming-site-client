@@ -15,5 +15,7 @@ export const darkTheme = {
     fastAnimationTime: '110ms',
     mediumAnimationTime: '180ms',
     veryFastAnimationTime: '70ms',
-    contentWidth: '1690px'
+    contentWidth: '1690px',
+    weakBorderColor: "#333333",
+    weakBackgroundColor: "#191919"
 };

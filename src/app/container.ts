@@ -24,6 +24,7 @@ import {AnimeStatusFilterStore} from "../features/anime-status-filter";
 import {FilterManager} from "../pages/search-page";
 import {AnimeDateFilterStore} from "../features/anime-date-filter";
 import {PageStore} from "../features/page";
+import {SignInModalStore} from "../features/auth/sign-in-modal";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -51,6 +52,7 @@ container.bind(AnimeStatusFilterStore).toSelf().inSingletonScope()
 container.bind(FilterManager).toSelf().inSingletonScope()
 container.bind(AnimeDateFilterStore).toSelf().inSingletonScope()
 container.bind(PageStore).toSelf().inSingletonScope()
+container.bind(SignInModalStore).toSelf().inSingletonScope()
 
 
 

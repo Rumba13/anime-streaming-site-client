@@ -30,6 +30,9 @@ export default tseslint.config({ignores: ['dist']}, {
         ],
         'react-hooks/exhaustive-deps': [
             'off',
+        ],
+        "@typescript-eslint/no-misused-promises": [
+            "off"
         ]
     },
 

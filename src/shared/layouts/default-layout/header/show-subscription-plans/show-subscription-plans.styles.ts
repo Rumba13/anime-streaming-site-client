@@ -4,14 +4,10 @@ export const showSubscriptionPlansButton = css`
   display: flex;
 `;
 
-export const showSubscriptionPlansButtonIcon = css`
-  /* Add icon-specific styles here if needed */
-`;
-
 export const showSubscriptionPlansButtonTitle = (theme: Theme) => css`
-  align-self: end;
-  margin-left: 10px;
-  font-family: ${theme.primaryFontFamily};
-  font-size: 12px;
-  white-space: nowrap;
+    align-self: end;
+    font-family: ${theme.primaryFontFamily};
+    padding: 0 5px;
+    font-size: 12px;
+    white-space: nowrap;
 `;
