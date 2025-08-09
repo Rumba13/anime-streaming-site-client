@@ -25,3 +25,15 @@ export const Filled: Story = {
         }
     }
 }
+
+export const FilledWithDifferentPasswords: Story = {
+    args: {
+        initialValues: {
+            email: "senderium1@gmail.com",
+            firstName: "Kirill",
+            lastName: "Tsar",
+            password: "password1",
+            repeatedPassword: "password2",
+        }
+    }
+}

@@ -217,6 +217,9 @@
   "emailInvalid": "Email is invalid",
   "(optional)": "(optional)",
   "Successful Login Message": "Login successful",
-  "Successful Registration Message": "Registration successful"
+  "Successful Registration Message": "Registration successful",
+  "Passwords do not match": "Passwords do not match",
+  "This email is already registered": "This email is already registered",
+  "An unknown error has occurred": "An unknown error has occurred"
 
 }

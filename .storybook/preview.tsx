@@ -37,7 +37,6 @@ const preview: Preview = {
     ],
 };
 
-
 addons.setConfig({
     theme: themes.dark,
 });

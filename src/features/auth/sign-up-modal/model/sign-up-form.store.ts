@@ -44,6 +44,7 @@ class SignUpFormStore extends BaseLoadingStore {
             } else {
                 this.setError(new UnknownError())
             }
+            this.error?.log()
         }
         this.setIsLoading(false);
         this.setIsLoaded(true);
