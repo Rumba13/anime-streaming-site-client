@@ -7,6 +7,7 @@ import {successfulSignUpNotificationConfig} from "./successful-sign-up-notificat
 import {unknownSignUpErrorNotificationConfig} from "./unknown-sign-up-error-notification-config.tsx";
 import {BaseError} from "../../../../../shared/model";
 import {Fields} from "./sign-up-form.types.ts";
+import {useState} from "react";
 
 const handleFormError = (error: BaseError, setFieldError: UseFormSetError<Fields>, handleUnknownError: () => void) => {
     if (error.type === "EmailAlreadyExistsError") {
@@ -29,7 +30,8 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
     const {t} = useTranslation();
     const [api, contextHolder] = notification.useNotification();
     const openSuccessSignUpNotification = () => api.open(successfulSignUpNotificationConfig);
-    const openUnknownSignUpErrorNotification = () => api.open(unknownSignUpErrorNotificationConfig);
+    const openUnknownSignUpErrorNotification = () => api.open(unknownSignUpErrorNotificationConfig)
+    const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
 
     const onSubmit: SubmitHandler<Fields> = async (data: Fields) => {
         if (data.password !== data.repeatedPassword) {
@@ -48,5 +50,5 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
         openSuccessSignUpNotification()
     }
 
-    return {register, handleSubmit, errors, setError, onSubmit, contextHolder};
+    return {register, handleSubmit, errors, setError, onSubmit, contextHolder,isPasswordShown, setIsPasswordShown};
 }

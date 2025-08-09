@@ -220,5 +220,6 @@
   "Successful Registration Message": "Регистрация прошла успешно",
   "Passwords do not match": "Пароли не совпадают",
   "This email is already registered": "Эта почта уже зарегистрирована",
-  "An unknown error has occurred": "Произошла неизвестная ошибка"
+  "An unknown error has occurred": "Произошла неизвестная ошибка",
+  "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру"
 }

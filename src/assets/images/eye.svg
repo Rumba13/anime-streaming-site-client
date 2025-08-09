@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Sym" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.91 67.93">
+  <g id="Sym-2" data-name="Sym">
+    <path d="m2,33.96v.02c67.17,71.86,133.91,0,133.91,0v-.02" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="4"/>
+    <path d="m2,33.96v-.02c67.17-71.86,133.91,0,133.91,0v.02" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="4"/>
+  </g>
+  <circle cx="68.96" cy="33.96" r="21.51" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="4"/>
+</svg>

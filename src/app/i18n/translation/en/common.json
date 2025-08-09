@@ -220,6 +220,7 @@
   "Successful Registration Message": "Registration successful",
   "Passwords do not match": "Passwords do not match",
   "This email is already registered": "This email is already registered",
-  "An unknown error has occurred": "An unknown error has occurred"
+  "An unknown error has occurred": "An unknown error has occurred",
+  "Password must contain at least one number": "Password must contain at least one number"
 
 }

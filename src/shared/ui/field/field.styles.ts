@@ -1,6 +1,7 @@
 import {css, Theme} from "@emotion/react";
 
 export const fieldStyles = (isError: boolean)  => (theme:Theme) => css`
+    display: flex;
     position: relative;
     border-radius: 8px;
     border: 1px solid ${theme.borderColor};

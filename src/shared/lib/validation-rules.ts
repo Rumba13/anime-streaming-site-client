@@ -1,4 +1,4 @@
-import {RegisterOptions } from "react-hook-form";
+import {RegisterOptions} from "react-hook-form";
 import {t} from "i18next";
 
 
@@ -52,20 +52,15 @@ export const passwordValidationRule: RegisterOptions = {
     required: {
         value: true,
         message: t("passwordRequired")
+    },
+    validate: {
+        hasNumber: (value: string) => /\d/.test(value) || t("Password must contain at least one number"),
     }
 }
 
 export const repeatPasswordValidationRule: RegisterOptions = {
-    minLength: {
-        value: 8,
-        message: t("passwordTooShort", {count: 8})
-    },
-    maxLength: {
-        value: 30,
-        message: t("passwordTooLong", {count: 30})
-    },
     required: {
         value: true,
         message: t("passwordRequired")
-    }
+    },
 }
