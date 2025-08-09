@@ -8,6 +8,7 @@ export const darkTheme = {
     borderColor: '#666666',
     weakFontColor: '#8D8D8D',
     smallBorderRadius: "6px",
+    mediumBorderRadius: "12px",
     veryWeakFontColor: '#bdbdbd',
     primaryFontFamily: 'Nunito',
     secondaryFontFamily: 'Limelight',
@@ -17,5 +18,5 @@ export const darkTheme = {
     veryFastAnimationTime: '70ms',
     contentWidth: '1690px',
     weakBorderColor: "#333333",
-    weakBackgroundColor: "#191919"
+    weakBackgroundColor: "#191919",
 };

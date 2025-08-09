@@ -10,10 +10,12 @@ import {headerMiddleStyles, headerRightStyles, headerStyles} from "./header.styl
 type PropsType = {
     SearchSlot: ReactNode,
     JikanStatusSlot:ReactNode
-    AnimationsSwitchSlot:ReactNode
+    AnimationsSwitchSlot:ReactNode,
+    openSignInModal: () => void,
+
 }
 
-export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot}: PropsType) {
+export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot,openSignInModal}: PropsType) {
     return <header css={headerStyles}>
         <Logo/>
 
@@ -25,7 +27,7 @@ export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot}: PropsT
         <div css={headerRightStyles}>
             <ShowFavoritesButton/>
             <ShowProfile JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
-            <ShowSubscriptionPlans/>
+            <ShowSubscriptionPlans openSignInModal={openSignInModal}/>
         </div>
     </header>
 }

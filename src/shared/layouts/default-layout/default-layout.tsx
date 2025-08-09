@@ -11,7 +11,10 @@ type PropsType = {
     styles?: Interpolation<Theme>,
     LanguageSelectorSlot: ReactNode,
     JikanStatusSlot: ReactNode,
-    AnimationsSwitchSlot: ReactNode
+    AnimationsSwitchSlot: ReactNode,
+    SignInModalSlot: ReactNode,
+    SignUpModalSlot: ReactNode,
+    openSignInModal: () => void,
 }
 
 export function DefaultLayout({
@@ -20,10 +23,15 @@ export function DefaultLayout({
                                   styles,
                                   LanguageSelectorSlot,
                                   JikanStatusSlot,
-                                  AnimationsSwitchSlot
+                                  AnimationsSwitchSlot,
+                                  SignInModalSlot,
+                                  SignUpModalSlot,
+                                  openSignInModal
                               }: PropsType) {
     return <div css={[defaultLayoutStyles, styles]}>
-        <Header SearchSlot={SearchSlot} JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
+        <Header openSignInModal={openSignInModal} SearchSlot={SearchSlot} JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
+        {SignUpModalSlot}
+        {SignInModalSlot}
         {children}
         <Footer LanguageSelectorSlot={LanguageSelectorSlot}/>
     </div>

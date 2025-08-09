@@ -156,5 +156,67 @@
   "Upcoming": "Upcoming",
   "Reset Filters": "Reset",
   "Select Status": "Select anime status",
-  "Select Dates": "Select dates"
+  "Select Dates": "Select dates",
+  "Sign Out": "Sign Out",
+  "Sign in": "Sign in",
+  "New to our platform?": "New to our platform?",
+  "Sign up now!": "Sign up now!",
+  "Get Started!": "Get Started!",
+  "Create your Account": "Create your Account",
+  "Log in or sign up": "Log in or sign up",
+  "Email": "Email",
+  "Welcome to EpicAnime": "Welcome to EpicAnime",
+  "Continue with Google": "Continue with Google",
+  "Continue with Apple": "Continue with Apple",
+  "Continue": "Continue",
+  "Last Name": "Last Name",
+  "First Name": "First Name",
+  "or": "or",
+  "Have an account?": "Have an account?",
+  "Log in here!": "Log in here!",
+  "Enter Email ID": "Enter Email ID",
+  "Create Password": "Create Password",
+  "Confirm Password": "Confirm Password",
+  "Enter Password": "Enter Password",
+
+  "firstNameTooShort_one": "First name must be at least 1 character long",
+  "firstNameTooShort_few": "First name must be at least {count} characters long",
+  "firstNameTooShort_many": "First name must be at least {count} characters long",
+  "firstNameTooShort_other": "First name is too short",
+
+  "firstNameTooLong_one": "First name must be no more than 1 character long",
+  "firstNameTooLong_few": "First name must be no more than {count} characters long",
+  "firstNameTooLong_many": "First name must be no more than {count} characters long",
+  "firstNameTooLong_other": "First name is too long",
+
+  "firstNameRequired": "First name is required",
+
+  "lastNameTooShort_one": "Last name must be at least 1 character long",
+  "lastNameTooShort_few": "Last name must be at least {count} characters long",
+  "lastNameTooShort_many": "Last name must be at least {count} characters long",
+  "lastNameTooShort_other": "Last name is too short",
+
+  "lastNameTooLong_one": "Last name must be no more than 1 character long",
+  "lastNameTooLong_few": "Last name must be no more than {count} characters long",
+  "lastNameTooLong_many": "Last name must be no more than {count} characters long",
+  "lastNameTooLong_other": "Last name is too long",
+
+  "passwordWeak": "Password is too weak",
+
+  "passwordTooShort_one": "Password must be at least 1 character long",
+  "passwordTooShort_few": "Password must be at least {count} characters long",
+  "passwordTooShort_many": "Password must be at least {count} characters long",
+  "passwordTooShort_other": "Password is too short",
+
+  "passwordTooLong_one": "Password must be no more than 1 character long",
+  "passwordTooLong_few": "Password must be no more than {count} characters long",
+  "passwordTooLong_many": "Password must be no more than {count} characters long",
+  "passwordTooLong_other": "Password is too long",
+  "emailRequired": "Email is required",
+  "passwordRequired": "Password is required",
+  "emailInvalid": "Email is invalid",
+  "(optional)": "(optional)",
+  "Successful Login Message": "Login successful",
+  "Successful Registration Message": "Registration successful"
+
 }

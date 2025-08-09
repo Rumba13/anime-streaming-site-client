@@ -6,10 +6,14 @@ import {
     showSubscriptionPlansButtonTitle
 } from "./show-subscription-plans.styles";
 
-export function ShowSubscriptionPlans() {
+type PropsType = {
+    openSignInModal: () => void,
+}
+
+export function ShowSubscriptionPlans({openSignInModal}:PropsType) {
     const {t} = useTranslation()
 
-    return <GradientBorderedButton css={showSubscriptionPlansButton}>
+    return <GradientBorderedButton css={showSubscriptionPlansButton} onClick={openSignInModal}>
         <span css={showSubscriptionPlansButtonTitle}>{t("Log In")}</span>
     </GradientBorderedButton>
 }

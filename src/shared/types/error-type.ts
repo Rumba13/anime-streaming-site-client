@@ -1,1 +1,1 @@
-export type ErrorType = "PatternError" | "NetworkError" | "CanceledError" | "AbortError" | "UnknownError";
+export type ErrorType = "PatternError" | "NetworkError" | "CanceledError" | "AbortError" | "UnknownError" | "EmailAlreadyExistsError";

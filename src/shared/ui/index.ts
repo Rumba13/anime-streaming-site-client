@@ -12,3 +12,4 @@ export {ToggleButtonGroupItem} from "./toggle-button-group/toggle-button-group-i
 export {HorizontalLine} from "./horizontal-line"
 export {Select} from "./select"
 export {QuickNavigation} from "./quick-navigation"
+export {modalHighlightTextStyles, modalSubtitleStyles, BaseModal,separatorStyles,modalSubmitButtonStyles} from "./base-modal"

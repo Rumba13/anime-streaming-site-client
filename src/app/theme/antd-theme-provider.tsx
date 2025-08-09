@@ -30,11 +30,25 @@ export const AntdThemeProvider = ({theme, children}: PropsType) => {
                     handleSize: 11,
                     handleSizeHover: 11,
                 },
-                Select: {
-
-                },
-                RangePicker: {
-
+                Select: {},
+                RangePicker: {},
+                Notification: {
+                    // zIndexPopup: 1050,       // z-index of notification container
+                    // width: 400,              // notification width
+                    padding: 0,            // padding of notification box
+                    // marginBlockEnd: 24,     // margin between notifications
+                    // borderRadius: 8,        // border radius
+                    // boxShadow: '0 6px 16px 0 rgba(0, 0, 0, 0.08)', // box shadow
+                    // colorBgElevated: '#ffffff', // background color
+                    // colorText: 'rgba(0, 0, 0, 0.85)', // text color
+                    // fontSize: 14,           // font size
+                    // lineHeight: 1.5715,     // line height
+                    margin: 0,
+                    fontFamily: theme.thirdFontFamily,
+                    colorPrimary: theme.primaryColor,
+                    colorBgBase: theme.backgroundColor,
+                    borderRadius: theme.smallBorderRadius,
+                    colorBgElevated: theme.backgroundColor,
                 }
             }
         }}

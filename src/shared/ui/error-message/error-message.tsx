@@ -1,4 +1,4 @@
-import {BaseError, PatternError} from "../../model";
+import {BaseError} from "../../model";
 import {errorMessageStyles} from "./error-message.styles";
 import {Interpolation, Theme} from "@emotion/react";
 

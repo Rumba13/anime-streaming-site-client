@@ -36,7 +36,7 @@ export const modalStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Th
     left: 50%;
     z-index: 100;
     border: 1px solid ${theme.borderColor};
-    border-radius: 12px;
+    border-radius: ${theme.mediumBorderRadius};
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
     animation: ${isOpened ? fadeIn : (wasOpened ? fadeOut : "none")} ${theme.fastAnimationTime} forwards;
@@ -63,6 +63,7 @@ export const crossStyles = (theme: Theme) => css`
     width: 24px;
     height: 24px;
     position: absolute;
+    z-index: 300;
     top: 50%;
     transform: translateY(-50%);
     left: 16px;
@@ -96,4 +97,38 @@ export const footerStyles = (theme: Theme) => css`
     display: flex;
     width: 100%;
     justify-content: center;
+    font-family: ${theme.thirdFontFamily};
+    font-size: 16px;
 `;
+export const modalHighlightTextStyles = (theme: Theme) => css`
+    color: ${theme.primaryColor};
+    font-family: ${theme.thirdFontFamily};
+    font-size: 14px;
+`;
+export const modalSubtitleStyles = (theme:Theme)=> css`
+    font-family: ${theme.thirdFontFamily};
+    font-size: 26px;
+    margin-bottom: 25px;
+`
+export const separatorStyles = (theme: Theme) => css`
+    margin-top: 20px;
+    margin-bottom: 20px;
+`
+export const modalSubmitButtonStyles = (theme: Theme) => css`
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid ${theme.primaryColor};
+    background-color: ${theme.primaryColor};
+    color: white;
+    font-family: ${theme.thirdFontFamily};
+    font-weight: 600;
+    flex-grow: 1;
+    min-height: 46px;
+    font-size: 16px;
+    transition: opacity ${theme.veryFastAnimationTime};
+
+    &:hover,
+    &:focus {
+        opacity: 0.9;
+    }
+`

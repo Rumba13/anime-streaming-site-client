@@ -3,7 +3,7 @@ import {hideScrollbar} from "./hide-scrollbar.styles";
 
 export const GlobalStyles = () =>
     <Global
-        styles={css`
+        styles={(theme) => css`
             #root {
                 padding-top: 20px;
                 color: #ffffff;
@@ -17,6 +17,10 @@ export const GlobalStyles = () =>
 
             .ant-tooltip-inner {
                 text-align: center !important;
+            }
+            .ant-notification-notice-wrapper {
+                background-color: ${theme.modalBackgroundColor} !important;
+                backdrop-filter: blur(5px) !important;
             }
         `}
     />

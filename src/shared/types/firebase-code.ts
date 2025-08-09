@@ -1,0 +1,1 @@
+export type FirebaseCode = "auth/email-already-in-use";

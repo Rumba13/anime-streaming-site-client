@@ -18,3 +18,15 @@ export class AbortError extends BaseError {
         super(message, "AbortError");
     }
 }
+export class UnknownError extends BaseError {
+    constructor(
+    ) {
+        super("UnknownError", "UnknownError");
+    }
+}
+export class EmailAlreadyExistsError extends BaseError {
+    constructor(
+    ) {
+        super("Email already exists", "EmailAlreadyExistsError");
+    }
+}

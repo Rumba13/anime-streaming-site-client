@@ -30,4 +30,6 @@ export const separatorWithTitleStyles = (theme:Theme) => css`
 export const titleStyles = (theme:Theme) => css`
     font-family: ${theme.thirdFontFamily};
     font-size: 20px;
+    //transform: translateX(50%);
+    
 `

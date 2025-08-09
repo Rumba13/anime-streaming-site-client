@@ -18,5 +18,5 @@ export type Theme = {
     smallBorderRadius: string,
     weakBorderColor: string,
     weakBackgroundColor: string
-
+    mediumBorderRadius: string,
 }

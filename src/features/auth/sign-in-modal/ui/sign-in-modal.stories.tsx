@@ -8,14 +8,12 @@ const isOpenByDefault = true;
 const meta = {
     component: SignInModal,
     title: "Sign in modal",
-    args: {
-
-    },
+    args: {},
     decorators: [
         (Story) => {
             const signInModalStore = useInjection(SignInModalStore)
 
-            if(isOpenByDefault) signInModalStore.open();
+            if (isOpenByDefault) signInModalStore.open();
 
             return <div style={{color: "white"}}>
                 <button onClick={signInModalStore.open}>Open Modal</button>
@@ -31,6 +29,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
     args: {
-
+        openSignUpModal: () => void 0
     }
 }

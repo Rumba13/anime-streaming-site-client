@@ -10,16 +10,23 @@ import {useNavigate} from "react-router-dom";
 import {JikanStatus} from "../../../features/jikan-status";
 import {AnimationsSwitch, AnimationsSwitchStore} from "../../../features/animations-switch";
 import {useInjection} from "inversify-react";
+import {SignUpModal, SignUpModalStore} from "../../../features/auth/sign-up-modal";
+import {SignInModal, SignInModalStore} from "../../../features/auth/sign-in-modal";
 
 export function HomePage() {
     const navigate = useNavigate()
     const animationsSwitchStore = useInjection(AnimationsSwitchStore);
+    const signUpModalStore = useInjection(SignUpModalStore);
+    const signInModalStore = useInjection(SignInModalStore);
 
     const handleSearch = (searchValue: string) => {
         void navigate(ROUTES.SEARCH_PAGE_SEARCH_QUERY(searchValue));
     }
 
     return <DefaultLayout
+        openSignInModal={signInModalStore.open}
+        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.open}/>}
+        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.open}/>}
         SearchSlot={<Search styles={searchStyles} onSearch={handleSearch}/>}
         LanguageSelectorSlot={<LanguageSelector/>}
         JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}

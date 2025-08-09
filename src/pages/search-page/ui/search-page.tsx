@@ -19,6 +19,8 @@ import {URLSearchParamsParser} from "../../../shared/lib";
 import {JikanStatus} from "../../../features/jikan-status";
 import {AnimationsSwitch, AnimationsSwitchStore} from "../../../features/animations-switch";
 import {noBackgroundStyles} from "../../home-page/ui/home-page.styles.ts";
+import {SignUpModal, SignUpModalStore} from "../../../features/auth/sign-up-modal";
+import {SignInModal, SignInModalStore} from "../../../features/auth/sign-in-modal";
 
 export const SearchPage = observer(() => {
     const searchAnimeStore = useInjection(SearchAnimeStore);
@@ -26,12 +28,17 @@ export const SearchPage = observer(() => {
     const orderByStore = useInjection(OrderByStore);
     const animationsSwitchStore = useInjection(AnimationsSwitchStore);
     const animeCardSwitchStore = useInjection(AnimeCardSwitchStore);
+    const signInModalStore = useInjection(SignInModalStore);
+    const signUpModalStore = useInjection(SignUpModalStore);
 
     const [searchParams] = useSearchParams();
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
 
 //TODO make ss unnecessary
     return <DefaultLayout
+        openSignInModal={signInModalStore.open}
+        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.open}/>}
+        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.open}/>}
         SearchSlot={<></>}
         LanguageSelectorSlot={<LanguageSelector/>}
         JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}

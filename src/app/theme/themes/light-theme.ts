@@ -6,7 +6,7 @@ export const lightTheme = {
     weakColor: "dark",
     thirdColor: "#424242",
     smallBorderRadius: "6px",
-
+    mediumBorderRadius: "12px",
     modalBackgroundColor: "",
     weakFontColor: '#8D8D8D',
     primaryFontFamily: 'Nunito',

@@ -1,65 +1,85 @@
-import {BaseModal} from "../../../../shared/ui/base-modal/base-modal.tsx";
+import {BaseModal, modalSubtitleStyles} from "../../../../shared/ui";
 import {useInjection} from "inversify-react";
 import {Interpolation, Theme} from "@emotion/react";
 import {
-    fieldStyles,
-    fieldWrapperStyles,
-    footerStyles, formButtonStyles,
-    formStyles,
-    highlightTextStyles,
-    modalSubtitleStyles, separatorStyles,
-    signInModalStyles
+    footerStyles, wrapperStyles, signInModalStyles
 } from "./sign-in-modal.styles.ts";
 import {SignInModalStore} from "../model/sign-in-modal.store.ts";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {Field} from "../../../../shared/ui/field";
 import {SeparatorWithTitle} from "../../../../shared/ui/separator-with-title";
+import {SignInOptions} from "./sign-in-options/sign-in-options";
+import {useTranslation} from "react-i18next";
+import {modalHighlightTextStyles} from "../../../../shared/ui";
+import {separatorStyles} from "../../../../shared/ui";
+import {SignInStepOne} from "./sign-in-step-one/sign-in-step-one.tsx";
+import {SignInFormStore} from "../model/sign-in-form.store.ts";
+import {observer} from "mobx-react";
+import {SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
+import {AnimatePresence, motion} from "framer-motion"
 
-const SignInModalFooter = () => {
+type SignInFooterPropsType = {
+    openSignUpModal: () => void,
+}
+
+const SignInModalFooter = ({openSignUpModal}:SignInFooterPropsType) => {
+    const {t} = useTranslation()
+
     return <div css={footerStyles}>
-        New to our platform?
+        {t("New to our platform?")}
         &nbsp;
-        <button css={highlightTextStyles}>Sign up now!</button>
+        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{t("Sign up now!")}</button>
     </div>
 }
 
 type PropsType = {
-    styles?: Interpolation<Theme>
+    styles?: Interpolation<Theme>,
+    openSignUpModal: () => void,
 }
 
-type Inputs = {
-    email: string
-}
-
-export const SignInModal = ({styles}: PropsType) => {
+export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
+    const {setStep, step, sendForm, setSignInDto} = useInjection(SignInFormStore)
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: {errors},
-    } = useForm<Inputs>()
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+    const {t} = useTranslation()
 
-    console.log(watch("email"))
+    return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles, styles]} title={t("Log in or sign up")}
+                      footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
+        <div css={wrapperStyles}>
+            <span css={modalSubtitleStyles}>{t("Welcome to EpicAnime")}</span>
+            <AnimatePresence mode="wait">
 
-    return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles, styles]} title={"Log in or sign up"}
-                      footer={<SignInModalFooter/>}>
-        <form css={formStyles} onSubmit={handleSubmit(onSubmit)}>
-            <span css={modalSubtitleStyles}>Welcome to EpicAnime</span>
+                {step === 1 &&
+                    <motion.div
+                        key="step1"
+                        initial={{ opacity: 1, x: 0 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                    <SignInStepOne onSubmit={(data) => {
+                        setSignInDto(data);
+                        setStep(2)
+                    }}/>
+                </motion.div>}
+                {step === 2 &&
+                    <motion.div
+                        key="step2"
+                        initial={{ opacity: 0, x: 0 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                    <SignInStepTwo onSubmit={(data) => {
+                    setSignInDto(data);
+                    sendForm()
+                }}/>
+                </motion.div>}
 
-            <div css={fieldWrapperStyles}>
-                <Field css={fieldStyles} type="email" placeholder="Email" {...register("email")} />
-
-                {errors.email && <span>This field is required</span>}
-
-                <button css={formButtonStyles} type="submit">Continue</button>
-            </div>
+            </AnimatePresence>
             <div>
-                <SeparatorWithTitle styles={separatorStyles} title="or"/>
+                <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
+                <SignInOptions/>
             </div>
-        </form>
+        </div>
 
     </BaseModal>
-}
+})
