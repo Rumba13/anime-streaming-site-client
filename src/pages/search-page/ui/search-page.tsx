@@ -34,7 +34,6 @@ export const SearchPage = observer(() => {
     const [searchParams] = useSearchParams();
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
 
-//TODO make ss unnecessary
     return <DefaultLayout
         openSignInModal={signInModalStore.open}
         SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.open}/>}

@@ -21,12 +21,12 @@ type PropsType = {
     title: ReactNode | string,
 }
 
-export const BaseModal = observer(({modalStore, children, styles, footer,title,contentStyles}: PropsType) => {
+export const BaseModal = observer(({modalStore, children, styles, footer, title, contentStyles}: PropsType) => {
     const popupRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         modalStore.setModalRef(popupRef.current);
-        return modalStore.dispose;
+        return modalStore.dispose
     }, []);
 
     return <div ref={popupRef} css={[modalStyles(modalStore.isOpened, modalStore.wasOpened), styles]}>
@@ -37,7 +37,7 @@ export const BaseModal = observer(({modalStore, children, styles, footer,title,c
                     {title}
                 </h2>
             </div>
-            <div css={[modalContentStyles,contentStyles]}>
+            <div css={[modalContentStyles, contentStyles]}>
                 {children}
             </div>
             <div css={footerStyles}>

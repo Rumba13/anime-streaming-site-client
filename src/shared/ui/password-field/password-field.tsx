@@ -22,7 +22,7 @@ export const PasswordField = ({isPasswordShown, onPasswordVisibilityIconClick, .
 
     return <div css={passwordFieldStyles}>
         <button css={buttonStyles} onClick={handleButtonClick} type="button">
-            {isPasswordShown ? <EyeIcon/> : <CrossedEyeIcon/>}
+            {isPasswordShown ? <CrossedEyeIcon/> : <EyeIcon/>}
         </button>
         <Field type={isPasswordShown ? "text" : "password"} {...props}/>
     </div>

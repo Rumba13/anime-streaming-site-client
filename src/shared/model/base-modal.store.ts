@@ -12,7 +12,15 @@ export class BaseModalStore {
     };
 
     private modalRef: HTMLElement | null = null;
+    public setModalRef = (ref: HTMLElement | null) => {
+        this.modalRef = ref;
+        if (ref) {
+            this.setCleanupHandler(this.setupGlobalCloseHandler())
+        }
+    };
+
     private cleanupHandler?: () => void;
+    private setCleanupHandler  = (handler?: () => void) => this.cleanupHandler = handler;
 
     static activeModal: BaseModalStore | null = null;
     static setActiveModal = (activeModal: BaseModalStore | null) => BaseModalStore.activeModal = activeModal;
@@ -34,19 +42,14 @@ export class BaseModalStore {
             setIsOpened: action,
             dispose: flow,
             setModalRef: action,
+            setCleanupHandler: action,
+            cleanupHandler: observable
         });
     }
 
-    public setModalRef = (ref: HTMLElement | null) => {
-        this.modalRef = ref;
-        if (ref) {
-            this.cleanupHandler = this.setupGlobalCloseHandler();
-        }
-    };
-
     public dispose = () => {
         this.cleanupHandler?.();
-        this.cleanupHandler = undefined;
+        this.setCleanupHandler(undefined)
     }
 
     private setupGlobalCloseHandler = () => {

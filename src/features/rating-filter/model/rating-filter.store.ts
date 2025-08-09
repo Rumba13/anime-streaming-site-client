@@ -14,13 +14,15 @@ class RatingFilterStore implements FilterStoreI {
         makeAutoObservable(this);
     }
 
+    private readonly DEFAULT_MINIMAL_RATING = null;
+    private readonly DEFAULT_MAXIMUM_RATING = null;
 
-    public minimalRating: number | null = 0;
-    public maximumRating: number | null = 10;
+    public minimalRating: number | null = this.DEFAULT_MINIMAL_RATING;
+    public maximumRating: number | null = this.DEFAULT_MAXIMUM_RATING;
 
     public setRating = (minimalRating: number | null, maximumRating: number | null) => {
-        this.minimalRating = minimalRating;
-        this.maximumRating = maximumRating;
+        this.minimalRating = minimalRating === MIN_RATING ? null : minimalRating;
+        this.maximumRating = maximumRating === MAX_RATING ? null : maximumRating;
     }
 
     public stateToURLParams() {
@@ -39,12 +41,12 @@ class RatingFilterStore implements FilterStoreI {
     public setStateFromURLParams(searchParams: URLSearchParams) {
         const minimalRating = this.urlSearchParamsParser.parseMinimalRating(searchParams);
         const maximalRating = this.urlSearchParamsParser.parseMaximumRating(searchParams);
-
         this.setRating(minimalRating, maximalRating);
     }
 
     public resetFilter = () => {
-        this.setRating(0, 10);
+        this.setRating(this.DEFAULT_MINIMAL_RATING, this.DEFAULT_MAXIMUM_RATING);
     }
 }
+
 export {RatingFilterStore}

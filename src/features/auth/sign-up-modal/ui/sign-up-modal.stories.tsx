@@ -2,6 +2,7 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import {SignUpModal} from "./sign-up-modal";
 import {useInjection} from "inversify-react";
 import {SignUpModalStore} from "../model/sign-up-modal.store";
+import { useEffect } from "react";
 
 const isOpenByDefault = true;
 
@@ -13,6 +14,9 @@ const meta = {
             const signUpModalStore = useInjection(SignUpModalStore)
 
             if (isOpenByDefault) signUpModalStore.open();
+
+            useEffect(() => {
+            }, []);
 
             return <div style={{color: "white"}}>
                 <button onClick={signUpModalStore.open}>Open Modal</button>

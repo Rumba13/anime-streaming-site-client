@@ -15,7 +15,6 @@ export const buttonStyles = (theme:Theme) => css`
     visibility: hidden;
     transition: color ${theme.veryFastAnimationTime};
     
-
     & > svg {
         width: 100%;
         height: 100%;
@@ -30,16 +29,15 @@ export const buttonStyles = (theme:Theme) => css`
     }
 `
 
-
 export const passwordFieldStyles = (theme:Theme) => css`
     position: relative;
 
     &:hover,
     &:focus-within {
-       & button {
+        & button {
             visibility: visible;
-        }   
-    } 
-    
-   
+        }
+    }
+
+
 `

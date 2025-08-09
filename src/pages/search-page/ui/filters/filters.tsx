@@ -78,7 +78,7 @@ export const Filters = observer(({styles}: PropsType) => {
     useEffect(() => {
         void debouncedSearch(searchParams)
         return () => debouncedSearch.cancel();
-    }, [searchParams,debouncedSearch]);
+    }, [searchParams, debouncedSearch]);
 
     useEffect(() => {
         filterManager.syncStoresFromURLParams(searchParams);
@@ -99,6 +99,21 @@ export const Filters = observer(({styles}: PropsType) => {
         animeDateFilterStore.startDate,
         animeDateFilterStore.endDate,
         pageStore.page
+    ]);
+    useDeepCompareEffect(() => {
+        pageStore.resetFilter()
+    }, [
+        genreFilterStore.selectedGenres,
+        excludeGenreFilterStore.selectedGenres,
+        animeTypeFilterStore.selectedAnimeType,
+        orderByStore.orderBy,
+        orderByStore.sortType,
+        searchQueryStore.searchQuery,
+        ratingFilterStore.minimalRating,
+        ratingFilterStore.maximumRating,
+        animeStatusFilterStore.animeStatus,
+        animeDateFilterStore.startDate,
+        animeDateFilterStore.endDate,
     ]);
 
     return <div css={[filtersStyles, styles]}>
