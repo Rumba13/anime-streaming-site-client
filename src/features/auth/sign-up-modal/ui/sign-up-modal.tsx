@@ -41,7 +41,7 @@ export const SignUpModal = ({styles, openSignInModal}: PropsType) => {
         <SignUpForm onSuccess={signUpModalStore.close}/>
         <div>
             <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
-            <SignInOptions/>
+            <SignInOptions onSuccess={signUpModalStore.close}/>
         </div>
     </BaseModal>
 }

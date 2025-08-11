@@ -13,8 +13,11 @@ import {separatorStyles} from "../../../../shared/ui";
 import {SignInStepOne} from "./sign-in-step-one/sign-in-step-one.tsx";
 import {SignInFormStore} from "../model/sign-in-form.store.ts";
 import {observer} from "mobx-react";
-import {SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
+import {Fields, SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
 import {AnimatePresence, motion} from "framer-motion"
+import {notification} from "antd";
+import {successfulSignInNotificationConfig} from "./successful-sign-in-notification-config.tsx";
+import {SignInDto} from "../../../../shared/types/sign-in.dto.ts";
 
 type SignInFooterPropsType = {
     openSignUpModal: () => void,
@@ -37,16 +40,27 @@ type PropsType = {
 
 export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
-    const {setStep, step, sendForm, setSignInDto} = useInjection(SignInFormStore)
-
+    const {setStep, step, signIn, setSignInDto, } = useInjection(SignInFormStore)
     const {t} = useTranslation()
+    const [api, contextHolder] = notification.useNotification();
+
+    const onSignInSuccess = () => {
+        signInModalStore.close()
+        api.open(successfulSignInNotificationConfig)
+    }
+
+    const onFormSubmit = async (data: Fields) => {
+        setSignInDto(data);
+        await signIn(onSignInSuccess)
+
+    }
 
     return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles, styles]} title={t("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
+        {contextHolder}
         <div css={wrapperStyles}>
             <span css={modalSubtitleStyles}>{t("Welcome to EpicAnime")}</span>
             <AnimatePresence mode="wait">
-
                 {step === 1 &&
                     <motion.div
                         key="step1"
@@ -68,16 +82,13 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
                         exit={{ opacity: 0, x: 0 }}
                         transition={{ duration: 0.2 }}
                     >
-                    <SignInStepTwo onSubmit={(data) => {
-                    setSignInDto(data);
-                    sendForm()
-                }}/>
+                    <SignInStepTwo onSubmit={onFormSubmit}/>
                 </motion.div>}
 
             </AnimatePresence>
             <div>
                 <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
-                <SignInOptions/>
+                <SignInOptions onSuccess={signInModalStore.close}/>
             </div>
         </div>
 

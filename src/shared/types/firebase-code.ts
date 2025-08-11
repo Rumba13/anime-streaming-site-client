@@ -1,1 +1,1 @@
-export type FirebaseCode = "auth/email-already-in-use";
+export type FirebaseCode = "auth/email-already-in-use" | "auth/invalid-credential";

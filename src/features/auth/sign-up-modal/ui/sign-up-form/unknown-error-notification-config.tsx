@@ -1,7 +1,7 @@
 import {ArgsProps} from "antd/es/notification/interface";
 import {t} from "i18next"
 
-export const unknownSignUpErrorNotificationConfig: ArgsProps = {
+export const unknownErrorNotificationConfig: ArgsProps = {
     message: t("An unknown error has occurred"),
     description: "",
     placement: "bottomRight",

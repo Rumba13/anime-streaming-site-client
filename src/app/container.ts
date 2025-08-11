@@ -26,6 +26,7 @@ import {AnimeDateFilterStore} from "../features/anime-date-filter";
 import {PageStore} from "../features/page";
 import {SignInFormStore, SignInModalStore} from "../features/auth/sign-in-modal";
 import {SignUpFormStore, SignUpModalStore} from "../features/auth/sign-up-modal";
+import {UserStore} from "../entities/user";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -57,6 +58,7 @@ container.bind(SignInModalStore).toSelf().inSingletonScope()
 container.bind(SignUpModalStore).toSelf().inSingletonScope()
 container.bind(SignInFormStore).toSelf().inSingletonScope()
 container.bind(SignUpFormStore).toSelf().inSingletonScope()
+container.bind(UserStore).toSelf().inSingletonScope()
 
 
 

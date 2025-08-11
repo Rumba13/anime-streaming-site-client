@@ -4,7 +4,7 @@ import {SignUpFormStore} from "../../model/sign-up-form.store.ts";
 import {useTranslation} from "react-i18next";
 import {notification} from "antd";
 import {successfulSignUpNotificationConfig} from "./successful-sign-up-notification-config.tsx";
-import {unknownSignUpErrorNotificationConfig} from "./unknown-sign-up-error-notification-config.tsx";
+import {unknownErrorNotificationConfig} from "./unknown-error-notification-config.tsx";
 import {BaseError} from "../../../../../shared/model";
 import {Fields} from "./sign-up-form.types.ts";
 import {useState} from "react";
@@ -30,7 +30,7 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
     const {t} = useTranslation();
     const [api, contextHolder] = notification.useNotification();
     const openSuccessSignUpNotification = () => api.open(successfulSignUpNotificationConfig);
-    const openUnknownSignUpErrorNotification = () => api.open(unknownSignUpErrorNotificationConfig)
+    const openUnknownSignUpErrorNotification = () => api.open(unknownErrorNotificationConfig)
     const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
 
     const onSubmit: SubmitHandler<Fields> = async (data: Fields) => {

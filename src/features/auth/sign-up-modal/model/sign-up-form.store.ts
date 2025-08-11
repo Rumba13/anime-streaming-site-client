@@ -1,4 +1,4 @@
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 import {makeObservable, override} from "mobx";
 import {BaseError, BaseLoadingStore} from "../../../../shared/model";
 import {SignUpDto} from "../../../../shared/types/sign-up.dto.ts";
@@ -6,9 +6,13 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../../../shared/api/firebase.ts";
 import {EmailAlreadyExistsError, UnknownError} from "../../../../shared/model/errors.ts";
 import {isFirebaseError} from "../../../../shared/lib/is-firebase-error.ts";
+import {UserCredential} from "@firebase/auth";
+import {UserStore} from "../../../../entities/user";
 
 @injectable()
 class SignUpFormStore extends BaseLoadingStore {
+    @inject(UserStore) private readonly userStore!: UserStore;
+
     constructor() {
         super()
         makeObservable(this, {
@@ -31,8 +35,8 @@ class SignUpFormStore extends BaseLoadingStore {
             this.setIsLoading(true);
             this.setIsLoaded(false);
 
-            const userCredential = await createUserWithEmailAndPassword(auth, signUpDto.email, signUpDto.password)
-            console.log(userCredential)
+            const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, signUpDto.email, signUpDto.password)
+            this.userStore.setUser(userCredential.user)
         } catch (error) {
             this.setIsError(true)
             if (isFirebaseError(error)) {

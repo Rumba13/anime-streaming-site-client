@@ -30,3 +30,9 @@ export class EmailAlreadyExistsError extends BaseError {
         super("Email already exists", "EmailAlreadyExistsError");
     }
 }
+export class InvalidEmailOrPasswordError extends BaseError {
+    constructor(
+    ) {
+        super("Invalid Email Or Password Error", "InvalidEmailOrPasswordError");
+    }
+}
