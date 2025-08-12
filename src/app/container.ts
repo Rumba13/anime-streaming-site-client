@@ -27,6 +27,7 @@ import {PageStore} from "../features/page";
 import {SignInFormStore, SignInModalStore} from "../features/auth/sign-in-modal";
 import {SignUpFormStore, SignUpModalStore} from "../features/auth/sign-up-modal";
 import {UserStore} from "../entities/user";
+import {ConfirmModalStore} from "../shared/model/confirm-modal.store.ts";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -59,6 +60,7 @@ container.bind(SignUpModalStore).toSelf().inSingletonScope()
 container.bind(SignInFormStore).toSelf().inSingletonScope()
 container.bind(SignUpFormStore).toSelf().inSingletonScope()
 container.bind(UserStore).toSelf().inSingletonScope()
+container.bind(ConfirmModalStore).toSelf().inSingletonScope()
 
 
 

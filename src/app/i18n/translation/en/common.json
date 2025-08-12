@@ -221,6 +221,8 @@
   "Passwords do not match": "Passwords do not match",
   "This email is already registered": "This email is already registered",
   "An unknown error has occurred": "An unknown error has occurred",
-  "Password must contain at least one number": "Password must contain at least one number"
-
+  "Password must contain at least one number": "Password must contain at least one number",
+  "Confirm logout": "Confirm logout",
+  "Log out": "Log out",
+  "You have logged out": "You have logged out"
 }

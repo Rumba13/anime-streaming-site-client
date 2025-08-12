@@ -221,5 +221,8 @@
   "Passwords do not match": "Пароли не совпадают",
   "This email is already registered": "Эта почта уже зарегистрирована",
   "An unknown error has occurred": "Произошла неизвестная ошибка",
-  "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру"
+  "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
+  "Confirm logout": "Точно выйти из аккаунта",
+  "Log out": "Выйти",
+  "You have logged out": "Вы вышли из аккаунта"
 }

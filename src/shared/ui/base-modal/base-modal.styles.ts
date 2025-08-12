@@ -76,8 +76,7 @@ export const headerStyles = (theme: Theme) => css`
     justify-content: center;
     width: 100%;
     border-bottom: 1px solid ${theme.weakBorderColor};
-    min-height: 50px;
-    padding: 25px 30px 20px 30px;
+    padding: 18px 30px 18px 30px;
 `;
 
 export const modalContentStyles = (theme: Theme) => css`
