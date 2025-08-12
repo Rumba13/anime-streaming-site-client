@@ -9,10 +9,12 @@ import {FontStyles} from "./styles/fonts.styles";
 import {Providers} from "./providers";
 import "../shared/api/firebase.ts"
 import {Overlay} from "./overlay/overlay";
+import {ConfirmModal} from "../shared/ui/confirm-modal/confirm-modal.tsx";
 
 function App() {
     return <Providers>
         <Overlay/>
+        <ConfirmModal/>
         <NormalizeStyles/>
         <GlobalStyles/>
         <FontStyles/>

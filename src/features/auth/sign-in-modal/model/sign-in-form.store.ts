@@ -1,5 +1,5 @@
 import {injectable} from "inversify";
-import {action, makeObservable, observable, override} from "mobx";
+import {action, flow, makeObservable, observable, override} from "mobx";
 import {SignInDto} from "../../../../shared/types/sign-in.dto.ts";
 import {BaseLoadingStore} from "../../../../shared/model";
 import {UserCredential} from "@firebase/auth";
@@ -29,6 +29,7 @@ class SignInFormStore extends BaseLoadingStore {
             setStep: action,
             signInDto: observable,
             setSignInDto: action,
+            signIn: flow
         });
     }
 
@@ -40,7 +41,7 @@ class SignInFormStore extends BaseLoadingStore {
         this.signInDto = {...this.signInDto, ...signInDto}
     };
 
-    public signIn = async (onSuccess?: () => void) => {
+    public* signIn(onSuccess?: () => void) {
 
         if (!this.signInDto.email || !this.signInDto.password) {
             this.setIsError(true)
@@ -55,7 +56,7 @@ class SignInFormStore extends BaseLoadingStore {
             this.setIsLoading(true);
             this.setIsLoaded(false);
 
-            const userCredential: UserCredential = await signInWithEmailAndPassword(auth, this.signInDto.email, this.signInDto.password)
+            const userCredential: UserCredential = yield signInWithEmailAndPassword(auth, this.signInDto.email, this.signInDto.password)
             this.userStore.setUser(userCredential.user)
             onSuccess?.()
         } catch (error) {

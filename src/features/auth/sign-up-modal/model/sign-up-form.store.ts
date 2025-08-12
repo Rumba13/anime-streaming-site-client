@@ -1,5 +1,5 @@
 import {inject, injectable} from "inversify";
-import {makeObservable, override} from "mobx";
+import {flow, makeObservable, override} from "mobx";
 import {BaseError, BaseLoadingStore} from "../../../../shared/model";
 import {SignUpDto} from "../../../../shared/types/sign-up.dto.ts";
 import {createUserWithEmailAndPassword} from "firebase/auth";
@@ -24,18 +24,24 @@ class SignUpFormStore extends BaseLoadingStore {
             setIsLoading: override,
             isLoading: override,
             setIsError: override,
+            signUp: flow
         });
 
     }
 
-    public signUp = async (signUpDto: SignUpDto) => {
+    public *signUp(signUpDto: SignUpDto) {
         try {
             this.setIsError(false)
             this.setError(null)
             this.setIsLoading(true);
             this.setIsLoaded(false);
 
-            const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, signUpDto.email, signUpDto.password)
+            const userCredential: UserCredential = yield createUserWithEmailAndPassword(
+                auth,
+                signUpDto.email,
+                signUpDto.password
+            )
+
             this.userStore.setUser(userCredential.user)
         } catch (error) {
             this.setIsError(true)

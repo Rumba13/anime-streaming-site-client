@@ -1,4 +1,4 @@
-import {action, flow, makeObservable, observable} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 
 export class BaseModalStore {
     public isOpened: boolean = false;
@@ -37,13 +37,13 @@ export class BaseModalStore {
             isOpened: observable,
             wasOpened: observable,
             setWasOpened: action,
+            cleanupHandler: observable,
             open: action,
             close: action,
             setIsOpened: action,
-            dispose: flow,
+            dispose: action,
             setModalRef: action,
             setCleanupHandler: action,
-            cleanupHandler: observable
         });
     }
 

@@ -36,7 +36,6 @@ class AnimeDateFilterStore implements FilterStoreI {
             urlParams[URL_PARAMS.END_DATE] = this.endDate.format(jikanDateFormat);
         }
 
-
         return new URLSearchParams(urlParams);
     }
     public setStateFromURLParams = (urlParams: URLSearchParams) => {

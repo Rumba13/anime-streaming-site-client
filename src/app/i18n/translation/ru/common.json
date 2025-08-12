@@ -224,5 +224,7 @@
   "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
   "Confirm logout": "Точно выйти из аккаунта",
   "Log out": "Выйти",
-  "You have logged out": "Вы вышли из аккаунта"
+  "You have logged out": "Вы вышли из аккаунта",
+  "Are you sure you want to sign out?": "Вы точно хотите выйти?"
+
 }

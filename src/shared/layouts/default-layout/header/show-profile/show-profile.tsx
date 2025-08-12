@@ -13,7 +13,7 @@ import {
 import {BasePopup} from "../../../../ui";
 import { ReactNode} from "react";
 import {UserStore} from "../../../../../entities/user";
-import { signOut } from "../../../../../features/auth/sign-out-modal";
+import {signOut, SignOutButton} from "../../../../../features/auth/sign-out-modal";
 
 type PropsType = {
     JikanStatusSlot: ReactNode,
@@ -36,7 +36,7 @@ export const ShowProfile = observer(({JikanStatusSlot,AnimationsSwitchSlot}:Prop
             <div>
             {userStore.user?.email || "no email"}
             </div>
-            <button onClick={signOut}>signOut</button>
+           <SignOutButton/>
         </BasePopup>
     </div>
 })

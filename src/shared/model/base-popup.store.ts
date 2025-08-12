@@ -1,4 +1,4 @@
-import {action, flow, makeObservable, observable} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 
 export class BasePopupStore {
     public isOpened: boolean = false;
@@ -13,6 +13,7 @@ export class BasePopupStore {
 
     private popupRef: HTMLElement | null = null;
     private cleanupHandler?: () => void;
+    private setCleanupHandler = (handler?: () => void) => this.cleanupHandler = handler;
 
     static activePopup: BasePopupStore | null = null;
 
@@ -24,7 +25,7 @@ export class BasePopupStore {
             open: action,
             close: action,
             setIsOpened: action,
-            dispose: flow,
+            dispose: action,
             setPopupRef: action,
         });
     }
@@ -32,13 +33,13 @@ export class BasePopupStore {
     public setPopupRef = (ref: HTMLElement | null) => {
         this.popupRef = ref;
         if (ref) {
-            this.cleanupHandler = this.setupGlobalCloseHandler();
+            this.setCleanupHandler(this.setupGlobalCloseHandler())
         }
     };
 
     public dispose = () => {
         this.cleanupHandler?.();
-        this.cleanupHandler = undefined;
+        this.setCleanupHandler(undefined);
     }
 
     private setupGlobalCloseHandler = () => {

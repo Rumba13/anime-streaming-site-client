@@ -7,10 +7,10 @@ export class BaseLoadingStore {
             error: observable,
             isError: observable,
             isLoaded: observable,
+            isLoading: observable,
             setError: action,
             setIsLoaded: action,
             setIsLoading: action,
-            isLoading: observable,
             setIsError: action,
         })
     }

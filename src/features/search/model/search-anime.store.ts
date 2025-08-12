@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
 import {AnimeService} from "../../../shared/api";
-import {computed, makeObservable, observable, override, action} from "mobx";
+import {computed, makeObservable, observable, override, action, flow} from "mobx";
 import {JikanPagination} from "../../../shared/types";
 import {Anime} from "../../../shared/types";
 import {scrollToTop} from "../../../shared/ui/scroll-to-top";
@@ -31,6 +31,7 @@ class SearchAnimeStore extends BaseLoadingStore {
             setPagination: action,
             isFirstLoad: observable,
             setIsFirstLoad: action,
+            search: flow
         });
     }
 
@@ -53,7 +54,7 @@ class SearchAnimeStore extends BaseLoadingStore {
         }
     }
 
-    public async search(searchDto: SearchDto) {
+    public* search(searchDto: SearchDto) {
         if (this.currentAbortController) this.currentAbortController.abort();
 
         this.currentAbortController = new AbortController();
@@ -62,8 +63,8 @@ class SearchAnimeStore extends BaseLoadingStore {
 
         try {
             scrollToTop()
-            const pagination = await this.animeService.search(searchDto, this.currentAbortController.signal);
-            await this.preloadImages(pagination);
+            const pagination: JikanPagination<Anime> | null = yield this.animeService.search(searchDto, this.currentAbortController.signal);
+            yield this.preloadImages(pagination);
 
             this.setPagination(pagination)
         } catch (err) {
