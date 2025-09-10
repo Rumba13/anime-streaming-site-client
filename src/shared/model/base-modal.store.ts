@@ -60,6 +60,10 @@ export class BaseModalStore {
         };
 
         document.addEventListener("click", handleClickOutside);
+        document.addEventListener("keydown", (event: KeyboardEvent) => {
+            if(event.key === "Escape") this.close();
+        });
+
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };

@@ -18,6 +18,9 @@ import {AnimatePresence, motion} from "framer-motion"
 import {notification} from "antd";
 import {successfulSignInNotificationConfig} from "./successful-sign-in-notification-config.tsx";
 import {loadingStyles} from "../../sign-up-modal/ui/sign-up-form/sign-up-form.styles.ts";
+import {BaseError} from "../../../../shared/model";
+import {UseFormSetError} from "react-hook-form";
+
 
 type SignInFooterPropsType = {
     openSignUpModal: () => void,
@@ -38,9 +41,10 @@ type PropsType = {
     openSignUpModal: () => void,
 }
 
+
 export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
-    const {setStep, step, signIn, updateSignInDto,isLoading } = useInjection(SignInFormStore)
+    const {setStep, step, signIn, updateSignInDto,isLoading,error } = useInjection(SignInFormStore)
     const {t} = useTranslation()
     const [api, contextHolder] = notification.useNotification();
 
@@ -53,6 +57,9 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
         updateSignInDto(data);
         void signIn(onSignInSuccess)
     }
+
+
+
 
     return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles(isLoading), styles]} title={t("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
@@ -72,7 +79,7 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
                     <SignInStepOne onSubmit={(data) => {
                         updateSignInDto(data);
                         setStep(2)
-                    }}/>
+                    }} emailError={error?.message}/>
                 </motion.div>}
                 {step === 2 &&
                     <motion.div

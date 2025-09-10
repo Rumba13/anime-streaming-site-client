@@ -1,18 +1,11 @@
 import {css, Theme} from "@emotion/react";
+import {overlayStyles} from "../../../../shared/ui/overlay.styles.ts";
 
 export const signInModalStyles = (isLoading: boolean) => (theme:Theme) => css`
     min-height: 400px;
     overflow: hidden;
     
-    ${isLoading && css`
-        &:after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: ${theme.mediumBorderRadius};
-        }
-    `}
+    ${isLoading && overlayStyles(theme)}
 `
 
 export const footerStyles = (theme:Theme)=> css`

@@ -1,7 +1,8 @@
 import {FirebaseCode} from "../types/firebase-code.ts";
 
 const codes:FirebaseCode[] = [
-    "auth/email-already-in-use"
+    "auth/email-already-in-use",
+    "auth/invalid-credential"
 ]
 
 export const isFireBaseErrorCode = (code:string): code is FirebaseCode => {

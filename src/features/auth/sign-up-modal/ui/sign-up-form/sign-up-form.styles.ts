@@ -1,16 +1,9 @@
 import {css, Theme} from "@emotion/react";
+import {overlayStyles} from "../../../../../shared/ui/overlay.styles.ts";
 
 export const formStyles = (isLoading:boolean) => (theme: Theme) => css`
 
-    ${isLoading && css`
-        &:after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: ${theme.mediumBorderRadius};
-        }
-    `}
+    ${isLoading && overlayStyles(theme)}
 `
 export const formContainerStyles = (theme: Theme) => css`
     margin-top: 26px;

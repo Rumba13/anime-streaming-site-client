@@ -26,7 +26,7 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
     const signUpFormStore = useInjection(SignUpFormStore)
     const {t} = useTranslation();
 
-    const {register, handleSubmit, errors, onSubmit, contextHolder, setIsPasswordShown,isPasswordShown} = useSignUpForm(initialValues, onSuccess)
+    const {register, handleSubmit, errors, onSubmit, contextHolder, setIsPasswordShown, isPasswordShown} = useSignUpForm(initialValues, onSuccess)
 
     const togglePasswordVisibility = () => setIsPasswordShown(value => !value)
 
