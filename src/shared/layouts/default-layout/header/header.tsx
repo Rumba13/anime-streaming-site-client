@@ -21,15 +21,8 @@ type PropsType = {
 export const Header = observer(({SearchSlot, JikanStatusSlot, AnimationsSwitchSlot, openSignInModal}: PropsType) => {
     const userStore = useInjection(UserStore);
 
-    console.log(userStore)
-
-    useEffect(() => {
-
-    }, [userStore.user]);
-
     return <header css={headerStyles}>
         <Logo/>
-
         <div css={headerMiddleStyles}>
             <Navigation/>
             {SearchSlot}
@@ -37,7 +30,6 @@ export const Header = observer(({SearchSlot, JikanStatusSlot, AnimationsSwitchSl
 
         <div css={headerRightStyles}>
             <ShowFavoritesButton/>
-
             {userStore.isSignedIn
                 ? <ShowProfile JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
                 : <OpenSignInModalButton openSignInModal={openSignInModal}/>
