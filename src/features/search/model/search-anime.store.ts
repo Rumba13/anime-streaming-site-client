@@ -8,7 +8,7 @@ import {SearchDto} from "../../../shared/types";
 import {BaseLoadingStore} from "../../../shared/model";
 import {BaseError} from "../../../shared/model";
 import {getAnimeImage} from "../../../entities/anime";
-import {preloadImage} from "../../../shared/lib";
+import {preloadImage, wait} from "../../../shared/lib";
 
 @injectable()
 class SearchAnimeStore extends BaseLoadingStore {
@@ -65,6 +65,7 @@ class SearchAnimeStore extends BaseLoadingStore {
             scrollToTop()
             const pagination: JikanPagination<Anime> | null = yield this.animeService.search(searchDto, this.currentAbortController.signal);
             yield this.preloadImages(pagination);
+
 
             this.setPagination(pagination)
         } catch (err) {

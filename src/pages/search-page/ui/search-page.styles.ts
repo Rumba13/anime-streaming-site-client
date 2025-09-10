@@ -32,7 +32,15 @@ export const searchBarStyles = (theme: Theme) => css`
     background-color: ${theme.backgroundColor};
 `
 export const loadingStyles = () => css`
-    margin: auto;
+    grid-column: 1 / -1;
+    place-self: center;
+    height: 100%;
+    display: flex;
+
+    & > img {
+        align-self: center;
+        justify-self: center;
+    }
 `;
 export const paginationStyles = () => css`
     grid-area: pagination;

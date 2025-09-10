@@ -46,14 +46,15 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
             <ErrorMessage styles={errorMessageStyles} error={error || new BaseError("Unknown Error")}/>)
         .with(firstLoadingState, () =>
             <Loading styles={loadingStyles}/>)
-        .with(nothingFoundState, () =>
-            <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
+        .with(nothingFoundState, () => <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
         .with(secondLoadingState, ({pagination}) =>
             <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
         .with(loadedState, ({pagination}) =>
             <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>)
         .otherwise((store) =>
             <ErrorMessage styles={errorMessageStyles} error={new PatternError("Pattern matching error in search results", store)}/>);
+
+    console.log(content)
 
     return <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })
