@@ -1,10 +1,10 @@
 import { css, Theme } from "@emotion/react";
 
-export const showSubscriptionPlansButton = css`
+export const openSignInModalButtonStyles = css`
   display: flex;
 `;
 
-export const showSubscriptionPlansButtonTitle = (theme: Theme) => css`
+export const buttonTitleStyles = (theme: Theme) => css`
     align-self: end;
     font-family: ${theme.primaryFontFamily};
     padding: 0 5px;

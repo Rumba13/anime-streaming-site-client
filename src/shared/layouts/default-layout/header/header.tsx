@@ -1,21 +1,32 @@
 import "./header.styles";
-import { ReactNode} from "react";
+import {ReactNode, useEffect} from "react";
 import {Navigation} from "./navigation/navigation";
 import {ShowFavoritesButton} from "./show-favorites-button/show-favorites-button";
 import {ShowProfile} from "./show-profile/show-profile";
-import {ShowSubscriptionPlans} from "./show-subscription-plans/show-log-in-popup";
+import {OpenSignInModalButton} from "./show-subscription-plans/show-log-in-popup";
 import {Logo} from "../../../ui";
 import {headerMiddleStyles, headerRightStyles, headerStyles} from "./header.styles";
+import {useInjection} from "inversify-react";
+import {UserStore} from "../../../../entities/user";
+import {observer} from "mobx-react";
 
 type PropsType = {
     SearchSlot: ReactNode,
-    JikanStatusSlot:ReactNode
-    AnimationsSwitchSlot:ReactNode,
+    JikanStatusSlot: ReactNode
+    AnimationsSwitchSlot: ReactNode,
     openSignInModal: () => void,
 
 }
 
-export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot,openSignInModal}: PropsType) {
+export const Header = observer(({SearchSlot, JikanStatusSlot, AnimationsSwitchSlot, openSignInModal}: PropsType) => {
+    const userStore = useInjection(UserStore);
+
+    console.log(userStore)
+
+    useEffect(() => {
+
+    }, [userStore.user]);
+
     return <header css={headerStyles}>
         <Logo/>
 
@@ -26,8 +37,11 @@ export function Header({SearchSlot,JikanStatusSlot,AnimationsSwitchSlot,openSign
 
         <div css={headerRightStyles}>
             <ShowFavoritesButton/>
-            <ShowProfile JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
-            <ShowSubscriptionPlans openSignInModal={openSignInModal}/>
+
+            {userStore.isSignedIn
+                ? <ShowProfile JikanStatusSlot={JikanStatusSlot} AnimationsSwitchSlot={AnimationsSwitchSlot}/>
+                : <OpenSignInModalButton openSignInModal={openSignInModal}/>
+            }
         </div>
     </header>
-}
+})

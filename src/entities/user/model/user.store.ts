@@ -8,8 +8,12 @@ class UserStore {
         makeAutoObservable(this)
     }
 
-    public user:User| null = null;
+    public user: User | null = null;
     public setUser = (user: User | null) => this.user = user;
+
+    public get isSignedIn() {
+        return !!this.user;
+    }
 }
 
 export {UserStore}
