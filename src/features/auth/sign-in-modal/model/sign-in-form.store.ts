@@ -29,7 +29,8 @@ class SignInFormStore extends BaseLoadingStore {
             setStep: action,
             signInDto: observable,
             setSignInDto: action,
-            signIn: flow
+            updateSignInDto: action,
+            signIn: flow.bound
         });
     }
 
@@ -37,8 +38,11 @@ class SignInFormStore extends BaseLoadingStore {
     public setStep = (step: number) => this.step = step;
 
     public signInDto: Partial<SignInDto> = {}
-    public setSignInDto = (signInDto: Partial<SignInDto>) => {
+    public updateSignInDto = (signInDto: Partial<SignInDto>) => {
         this.signInDto = {...this.signInDto, ...signInDto}
+    };
+    public setSignInDto = (signInDto: Partial<SignInDto>) => {
+        this.signInDto = signInDto
     };
 
     public* signIn(onSuccess?: () => void) {
@@ -75,11 +79,16 @@ class SignInFormStore extends BaseLoadingStore {
             }
             this.error?.log()
         }
+        this.reset()
         this.setIsLoading(false);
         this.setIsLoaded(true);
-
-
     }
+
+    private reset() {
+        this.setSignInDto({})
+        this.setStep(1)
+    }
+
 }
 
 export {SignInFormStore}

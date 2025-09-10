@@ -1,8 +1,9 @@
 import LoadingGif from "@src/assets/images/loading.gif"
 import {Interpolation, Theme} from "@emotion/react";
 
+
 type PropsType = {
-    styles?:Interpolation<Theme>
+    styles?:Interpolation<Theme>,
 }
 
 export function Loading({styles}:PropsType) {

@@ -1,4 +1,4 @@
-import {BaseModal, modalSubtitleStyles} from "../../../../shared/ui";
+import {BaseModal, Loading, modalSubtitleStyles} from "../../../../shared/ui";
 import {useInjection} from "inversify-react";
 import {Interpolation, Theme} from "@emotion/react";
 import {
@@ -17,7 +17,7 @@ import {Fields, SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
 import {AnimatePresence, motion} from "framer-motion"
 import {notification} from "antd";
 import {successfulSignInNotificationConfig} from "./successful-sign-in-notification-config.tsx";
-import {SignInDto} from "../../../../shared/types/sign-in.dto.ts";
+import {loadingStyles} from "../../sign-up-modal/ui/sign-up-form/sign-up-form.styles.ts";
 
 type SignInFooterPropsType = {
     openSignUpModal: () => void,
@@ -40,7 +40,7 @@ type PropsType = {
 
 export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
-    const {setStep, step, signIn, setSignInDto, } = useInjection(SignInFormStore)
+    const {setStep, step, signIn, updateSignInDto,isLoading } = useInjection(SignInFormStore)
     const {t} = useTranslation()
     const [api, contextHolder] = notification.useNotification();
 
@@ -49,17 +49,17 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
         api.open(successfulSignInNotificationConfig)
     }
 
-    const onFormSubmit = async (data: Fields) => {
-        setSignInDto(data);
-        await signIn(onSignInSuccess)
-
+    const onFormSubmit =  (data: Fields) => {
+        updateSignInDto(data);
+        void signIn(onSignInSuccess)
     }
 
-    return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles, styles]} title={t("Log in or sign up")}
+    return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles(isLoading), styles]} title={t("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
         {contextHolder}
         <div css={wrapperStyles}>
             <span css={modalSubtitleStyles}>{t("Welcome to EpicAnime")}</span>
+            {isLoading && <Loading styles={loadingStyles}/>}
             <AnimatePresence mode="wait">
                 {step === 1 &&
                     <motion.div
@@ -70,7 +70,7 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
                         transition={{ duration: 0.2 }}
                     >
                     <SignInStepOne onSubmit={(data) => {
-                        setSignInDto(data);
+                        updateSignInDto(data);
                         setStep(2)
                     }}/>
                 </motion.div>}

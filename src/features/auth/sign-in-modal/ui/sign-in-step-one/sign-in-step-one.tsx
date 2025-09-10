@@ -23,7 +23,7 @@ export const SignInStepOne = ({onSubmit}:PropsType) => {
     } = useForm<Fields>()
 
     return <form css={signInStepOneStyles} onSubmit={handleSubmit(onSubmit)}>
-        <Field errorMessage={errors.email?.message} styles={fieldStyles} type="email"
+        <Field errorMessage={errors.email?.message} styles={fieldStyles} type="email" autoFocus
                placeholder={t("Email")} {...register("email", emailValidationRule as RegisterOptions<Fields, "email">)} />
 
         <button css={[modalSubmitButtonStyles,submitButtonStyles]} type="submit">{t("Continue")}</button>
