@@ -1,5 +1,5 @@
 import {inject, injectable} from "inversify";
-import {flow, makeObservable, override} from "mobx";
+import {flow, makeAutoObservable, makeObservable, override} from "mobx";
 import {BaseError, BaseLoadingStore} from "../../../../shared/model";
 import {SignUpDto} from "../../../../shared/types/sign-up.dto.ts";
 import {createUserWithEmailAndPassword} from "firebase/auth";
@@ -10,31 +10,21 @@ import {UserCredential} from "@firebase/auth";
 import {UserStore} from "../../../../entities/user";
 
 @injectable()
-class SignUpFormStore extends BaseLoadingStore {
+class SignUpFormStore  {
     @inject(UserStore) private readonly userStore!: UserStore;
+    @inject(BaseLoadingStore) public readonly loadingStore!: BaseLoadingStore;
 
     constructor() {
-        super()
-        makeObservable(this, {
-            error: override,
-            isError: override,
-            isLoaded: override,
-            setError: override,
-            setIsLoaded: override,
-            setIsLoading: override,
-            isLoading: override,
-            setIsError: override,
-            signUp: flow
-        });
+        makeAutoObservable(this);
 
     }
 
     public *signUp(signUpDto: SignUpDto) {
         try {
-            this.setIsError(false)
-            this.setError(null)
-            this.setIsLoading(true);
-            this.setIsLoaded(false);
+            this.loadingStore.setIsError(false)
+            this.loadingStore.setError(null)
+            this.loadingStore.setIsLoading(true);
+            this.loadingStore.setIsLoaded(false);
 
             const userCredential: UserCredential = yield createUserWithEmailAndPassword(
                 auth,
@@ -44,20 +34,20 @@ class SignUpFormStore extends BaseLoadingStore {
 
             this.userStore.setUser(userCredential.user)
         } catch (error) {
-            this.setIsError(true)
+            this.loadingStore.setIsError(true)
             if (isFirebaseError(error)) {
                 if (error.code === "auth/email-already-in-use") {
-                    this.setError(new EmailAlreadyExistsError())
+                    this.loadingStore.setError(new EmailAlreadyExistsError())
                 } else {
-                    this.setError(new UnknownError())
+                    this.loadingStore.setError(new UnknownError())
                 }
             } else {
-                this.setError(new UnknownError())
+                this.loadingStore.setError(new UnknownError())
             }
-            this.error?.log()
+            this.loadingStore.error?.log()
         }
-        this.setIsLoading(false);
-        this.setIsLoaded(true);
+        this.loadingStore.setIsLoading(false);
+        this.loadingStore.setIsLoaded(true);
     }
 }
 

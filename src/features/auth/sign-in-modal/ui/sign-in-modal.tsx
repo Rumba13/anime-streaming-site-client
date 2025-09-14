@@ -44,12 +44,12 @@ type PropsType = {
 
 export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
-    const {setStep, step, signIn, updateSignInDto,isLoading,error } = useInjection(SignInFormStore)
+    const {setStep, step, signIn, updateSignInDto, loadingStore: {isLoading,error} } = useInjection(SignInFormStore)
     const {t} = useTranslation()
     const [api, contextHolder] = notification.useNotification();
 
     const onSignInSuccess = () => {
-        signInModalStore.close()
+        signInModalStore.modalStore.close()
         api.open(successfulSignInNotificationConfig)
     }
 
@@ -59,9 +59,7 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
     }
 
 
-
-
-    return <BaseModal modalStore={signInModalStore} styles={[signInModalStyles(isLoading), styles]} title={t("Log in or sign up")}
+    return <BaseModal modalStore={signInModalStore.modalStore} styles={[signInModalStyles(isLoading), styles]} title={t("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
         {contextHolder}
         <div css={wrapperStyles}>
@@ -95,7 +93,7 @@ export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
             </AnimatePresence>
             <div>
                 <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
-                <SignInOptions onSuccess={signInModalStore.close}/>
+                <SignInOptions onSuccess={signInModalStore.modalStore.close}/>
             </div>
         </div>
 

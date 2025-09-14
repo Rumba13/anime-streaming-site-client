@@ -25,7 +25,9 @@ type PropsType = {
 
 export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
     const animeCardSwitchStore = useInjection(AnimeCardSwitchStore);
-    const {isLoading, isFirstLoad} = searchAnimeStore
+    const {isFirstLoad} = searchAnimeStore
+    const {isLoading} = searchAnimeStore.loadingStore
+
     const {currentAnimeCardType, getCardComponent} = animeCardSwitchStore
     const {t} = useTranslation();
 
@@ -36,13 +38,32 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
     const AnimeCard = getCardComponent();
 
     const firstLoadingState = {isFirstLoad: true}
-    const secondLoadingState = {isLoading: true, isFirstLoad: false}
-    const loadedState = {isLoading: false, pagination: P.not(null).and(P.not([]))}
-    const nothingFoundState = {isLoading: false, pagination: {data: []}}
-    const errorState = {isError: true}
+    const secondLoadingState = {
+        isFirstLoad: false,
+        loadingStore: {
+            isLoading: true,
+        }
+    }
+    const loadedState = {
+        pagination: P.not(null).and(P.not([])),
+        loadingStore: {
+            isLoading: false,
+        }
+    }
+    const nothingFoundState = {
+        pagination: {data: []},
+        loadingStore: {
+            isLoading: false,
+        }
+    }
+    const errorState = {
+        loadingStore: {
+            isError: true
+        }
+    }
 
     const content = match(searchAnimeStore)
-        .with(errorState, ({error}) =>
+        .with(errorState, ({loadingStore: {error}}) =>
             <ErrorMessage styles={errorMessageStyles} error={error || new BaseError("Unknown Error")}/>)
         .with(firstLoadingState, () =>
             <Loading styles={loadingStyles}/>)
@@ -52,7 +73,8 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
         .with(loadedState, ({pagination}) =>
             <SearchResults data={pagination.data} AnimeCard={AnimeCard}/>)
         .otherwise((store) =>
-            <ErrorMessage styles={errorMessageStyles} error={new PatternError("Pattern matching error in search results", store)}/>);
+            <ErrorMessage styles={errorMessageStyles}
+                          error={new PatternError("Pattern matching error in search results", store)}/>);
 
     console.log(content)
 

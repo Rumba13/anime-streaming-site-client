@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
 import {AnimeService} from "../../../shared/api";
-import {computed, makeObservable, observable, override, action, flow} from "mobx";
+import { makeAutoObservable} from "mobx";
 import {JikanPagination} from "../../../shared/types";
 import {Anime} from "../../../shared/types";
 import {scrollToTop} from "../../../shared/ui/scroll-to-top";
@@ -8,31 +8,15 @@ import {SearchDto} from "../../../shared/types";
 import {BaseLoadingStore} from "../../../shared/model";
 import {BaseError} from "../../../shared/model";
 import {getAnimeImage} from "../../../entities/anime";
-import {preloadImage, wait} from "../../../shared/lib";
+import {preloadImage} from "../../../shared/lib";
 
 @injectable()
-class SearchAnimeStore extends BaseLoadingStore {
+class SearchAnimeStore {
     @inject(AnimeService) private readonly animeService!: AnimeService
+    @inject(BaseLoadingStore) public readonly loadingStore!: BaseLoadingStore
 
     constructor() {
-        super()
-
-        makeObservable(this, {
-            error: override,
-            isError: override,
-            isLoaded: override,
-            setError: override,
-            setIsLoaded: override,
-            setIsLoading: override,
-            isLoading: override,
-            setIsError: override,
-            totalPageCount: computed,
-            pagination: observable,
-            setPagination: action,
-            isFirstLoad: observable,
-            setIsFirstLoad: action,
-            search: flow
-        });
+        makeAutoObservable(this);
     }
 
     private readonly IMAGE_COUNT_TO_PRELOAD: number = 10;
@@ -58,8 +42,8 @@ class SearchAnimeStore extends BaseLoadingStore {
         if (this.currentAbortController) this.currentAbortController.abort();
 
         this.currentAbortController = new AbortController();
-        this.setIsLoading(true);
-        this.setIsLoaded(false);
+        this.loadingStore.setIsLoading(true);
+        this.loadingStore.setIsLoaded(false);
 
         try {
             scrollToTop()
@@ -76,14 +60,14 @@ class SearchAnimeStore extends BaseLoadingStore {
             }
 
             console.error(err);
-            this.setIsError(true);
+            this.loadingStore.setIsError(true);
             if (err instanceof BaseError) {
                 console.log(err)
-                this.setError(err);
+                this.loadingStore.setError(err);
             }
         } finally {
-            this.setIsLoading(false);
-            this.setIsLoaded(true);
+            this.loadingStore.setIsLoading(false);
+            this.loadingStore.setIsLoaded(true);
             this.setIsFirstLoad(false);
 
             this.currentAbortController = null;

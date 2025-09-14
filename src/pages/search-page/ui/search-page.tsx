@@ -35,9 +35,9 @@ export const SearchPage = observer(() => {
     const currentPage = urlSearchParamsParser.parsePage(searchParams)
 
     return <DefaultLayout
-        openSignInModal={signInModalStore.open}
-        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.open}/>}
-        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.open}/>}
+        openSignInModal={signInModalStore.modalStore.open}
+        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.modalStore.open}/>}
+        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.modalStore.open}/>}
         SearchSlot={<></>}
         LanguageSelectorSlot={<LanguageSelector/>}
         JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}

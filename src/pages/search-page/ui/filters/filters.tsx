@@ -65,8 +65,8 @@ export const Filters = observer(({styles}: PropsType) => {
         pageStore
     ])
 
-    const search = useCallback(async (searchParams: URLSearchParams) => {
-        await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
+    const search = useCallback( (searchParams: URLSearchParams) => {
+        searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
     }, [])
 
     useEffect(() => {

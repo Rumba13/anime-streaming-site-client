@@ -13,10 +13,10 @@ const meta = {
         (Story) => {
             const signInModalStore = useInjection(SignInModalStore)
 
-            if (isOpenByDefault) signInModalStore.open();
+            if (isOpenByDefault) signInModalStore.modalStore.open();
 
             return <div style={{color: "white"}}>
-                <button onClick={signInModalStore.open}>Open Modal</button>
+                <button onClick={signInModalStore.modalStore.open}>Open Modal</button>
                 <Story/>
             </div>
         }

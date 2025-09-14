@@ -36,12 +36,12 @@ export const SignUpModal = ({styles, openSignInModal}: PropsType) => {
     const {t} = useTranslation();
     const signUpModalStore = useInjection(SignUpModalStore)
 
-    return <BaseModal modalStore={signUpModalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={t("Sign up now!")}
+    return <BaseModal modalStore={signUpModalStore.modalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={t("Sign up now!")}
                       footer={<SignUpModalFooter openSignInModal={openSignInModal}/>}>
-        <SignUpForm onSuccess={signUpModalStore.close}/>
+        <SignUpForm onSuccess={signUpModalStore.modalStore.close}/>
         <div>
             <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
-            <SignInOptions onSuccess={signUpModalStore.close}/>
+            <SignInOptions onSuccess={signUpModalStore.modalStore.close}/>
         </div>
     </BaseModal>
 }

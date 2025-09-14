@@ -24,9 +24,9 @@ export function HomePage() {
     }
 
     return <DefaultLayout
-        openSignInModal={signInModalStore.open}
-        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.open}/>}
-        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.open}/>}
+        openSignInModal={signInModalStore.modalStore.open}
+        SignUpModalSlot={<SignUpModal openSignInModal={signInModalStore.modalStore.open}/>}
+        SignInModalSlot={<SignInModal openSignUpModal={signUpModalStore.modalStore.open}/>}
         SearchSlot={<Search styles={searchStyles} onSearch={handleSearch}/>}
         LanguageSelectorSlot={<LanguageSelector/>}
         JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}

@@ -1,6 +1,6 @@
 import {Container} from "inversify";
 import {GenresService} from "../shared/api";
-import {ShortGenresStore} from "../shared/model";
+import {BaseLoadingStore, BaseModalStore, BasePopupStore, ShortGenresStore} from "../shared/model";
 import {BrowseGenresPopupStore} from "../shared/layouts";
 import {AnimeService} from "../shared/api";
 import {JikanStatusStore} from "../features/jikan-status";
@@ -61,6 +61,7 @@ container.bind(SignInFormStore).toSelf().inSingletonScope()
 container.bind(SignUpFormStore).toSelf().inSingletonScope()
 container.bind(UserStore).toSelf().inSingletonScope()
 container.bind(ConfirmModalStore).toSelf().inSingletonScope()
-
-
+container.bind(BasePopupStore).toSelf()
+container.bind(BaseLoadingStore).toSelf()
+container.bind(BaseModalStore).toSelf()
 

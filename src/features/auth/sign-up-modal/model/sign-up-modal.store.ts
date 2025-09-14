@@ -1,21 +1,12 @@
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 import {BaseModalStore} from "../../../../shared/model";
-import {makeObservable, override} from "mobx";
+import {makeAutoObservable} from "mobx";
 
 @injectable()
-class SignUpModalStore extends BaseModalStore {
+class SignUpModalStore {
+    @inject(BaseModalStore) public readonly modalStore!:BaseModalStore;
     constructor() {
-        super();
-        makeObservable(this, {
-            isOpened: override,
-            wasOpened: override,
-            setWasOpened: override,
-            open: override,
-            close: override,
-            setIsOpened: override,
-            dispose: override,
-            setModalRef: override,
-        })
+        makeAutoObservable(this)
     }
 }
 

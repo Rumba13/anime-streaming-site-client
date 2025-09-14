@@ -42,8 +42,8 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
 
         await signUpFormStore.signUp(data)
 
-        if (signUpFormStore.isError && signUpFormStore.error) {
-            return handleFormError(signUpFormStore.error, setError, openUnknownSignUpErrorNotification)
+        if (signUpFormStore.loadingStore.isError && signUpFormStore.loadingStore.error) {
+            return handleFormError(signUpFormStore.loadingStore.error, setError, openUnknownSignUpErrorNotification)
         }
 
         onSuccess?.()

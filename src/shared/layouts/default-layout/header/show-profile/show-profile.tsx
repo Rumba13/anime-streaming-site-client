@@ -13,7 +13,7 @@ import {
 import {BasePopup} from "../../../../ui";
 import { ReactNode} from "react";
 import {UserStore} from "../../../../../entities/user";
-import {signOut, SignOutButton} from "../../../../../features/auth/sign-out-modal";
+import { SignOutButton} from "../../../../../features/auth/sign-out-modal";
 
 type PropsType = {
     JikanStatusSlot: ReactNode,
@@ -25,11 +25,11 @@ export const ShowProfile = observer(({JikanStatusSlot,AnimationsSwitchSlot}:Prop
     const userStore = useInjection(UserStore);
 
     return <div css={showProfileButtonWrapper}>
-        <GradientBorderedButton css={showProfileButton} onClick={profilePopupStore.open}>
+        <GradientBorderedButton css={showProfileButton} onClick={profilePopupStore.popupStore.open}>
             <UserIcon/>
         </GradientBorderedButton>
 
-        <BasePopup styles={profile} popupStore={profilePopupStore}>
+        <BasePopup styles={profile} popupStore={profilePopupStore.popupStore}>
             <h2 css={profileTitle}>Profile</h2>
             {JikanStatusSlot}
             {AnimationsSwitchSlot}

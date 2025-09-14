@@ -30,9 +30,9 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
 
     const togglePasswordVisibility = () => setIsPasswordShown(value => !value)
 
-    return <form css={formStyles(signUpFormStore.isLoading)} onSubmit={handleSubmit(onSubmit)}>
+    return <form css={formStyles(signUpFormStore.loadingStore.isLoading)} onSubmit={handleSubmit(onSubmit)}>
         {contextHolder}
-        {signUpFormStore.isLoading && <Loading styles={loadingStyles}/>}
+        {signUpFormStore.loadingStore.isLoading && <Loading styles={loadingStyles}/>}
 
         <span css={modalSubtitleStyles}>{t("Get Started!")}</span>
 
