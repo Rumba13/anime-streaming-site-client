@@ -2,38 +2,45 @@ import {BaseModal, Loading, modalSubtitleStyles} from "../../../../shared/ui";
 import {useInjection} from "inversify-react";
 import {Interpolation, Theme} from "@emotion/react";
 import {
-    footerStyles, wrapperStyles, signInModalStyles
+    wrapperStyles, signInModalStyles
 } from "./sign-in-modal.styles.ts";
 import {SignInModalStore} from "../model/sign-in-modal.store.ts";
 import {SeparatorWithTitle} from "../../../../shared/ui/separator-with-title";
 import {SignInOptions} from "./sign-in-options/sign-in-options";
 import {useTranslation} from "react-i18next";
-import {modalHighlightTextStyles} from "../../../../shared/ui";
 import {separatorStyles} from "../../../../shared/ui";
 import {SignInStepOne} from "./sign-in-step-one/sign-in-step-one.tsx";
 import {SignInFormStore} from "../model/sign-in-form.store.ts";
 import {observer} from "mobx-react";
-import {Fields, SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
+import {SignInStepTwoFields, SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
 import {AnimatePresence, motion} from "framer-motion"
 import {notification} from "antd";
 import {successfulSignInNotificationConfig} from "./successful-sign-in-notification-config.tsx";
 import {loadingStyles} from "../../sign-up-modal/ui/sign-up-form/sign-up-form.styles.ts";
+import {SignInFormStepsStore} from "../model/sign-in-form-steps.store.ts";
+import {STEPS} from "../lib/steps.ts";
+import {SignInModalFooter} from "./sign-in-modal-footer/sign-in-modal-footer.tsx";
+import {useCallback, useEffect} from "react";
+import {useForm} from "react-hook-form";
 import {BaseError} from "../../../../shared/model";
-import {UseFormSetError} from "react-hook-form";
 
-
-type SignInFooterPropsType = {
-    openSignUpModal: () => void,
+const basicAnimationConfig = {
+    animate: {opacity: 1, x: 0},
+    exit: {opacity: 0, x: 0},
+    transition: {duration: 0.2}
+}
+const stepOneAnimationConfig = {
+    ...basicAnimationConfig,
+    initial: {opacity: 1, x: 0},
+}
+const stepTwoAnimationConfig = {
+    ...basicAnimationConfig,
+    initial: {opacity: 0, x: 0},
 }
 
-const SignInModalFooter = ({openSignUpModal}:SignInFooterPropsType) => {
-    const {t} = useTranslation()
-
-    return <div css={footerStyles}>
-        {t("New to our platform?")}
-        &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{t("Sign up now!")}</button>
-    </div>
+export type SignInFormFields = {
+    email: string
+    password: string
 }
 
 type PropsType = {
@@ -41,56 +48,58 @@ type PropsType = {
     openSignUpModal: () => void,
 }
 
-
-export const SignInModal = observer(({styles,openSignUpModal}: PropsType) => {
+export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
-    const {setStep, step, signIn, updateSignInDto, loadingStore: {isLoading,error} } = useInjection(SignInFormStore)
+    const {step, resetSteps, nextStep} = useInjection(SignInFormStepsStore)
+    const {signIn, loadingStore: {isLoading}} = useInjection(SignInFormStore)
     const {t} = useTranslation()
     const [api, contextHolder] = notification.useNotification();
+    const signInForm = useForm<SignInFormFields>()
 
-    const onSignInSuccess = () => {
-        signInModalStore.modalStore.close()
-        api.open(successfulSignInNotificationConfig)
-    }
+    const onFormSubmit = useCallback((signInDto: SignInFormFields) => {
+        void signIn(signInDto)
+            .then(() => {
+                signInModalStore.modalStore.close()
+                api.open(successfulSignInNotificationConfig)
+            })
+            .catch((error: BaseError) => {
+                if (error?.message) {
+                    signInForm.setError("email", {
+                        message: error?.message
+                    })
+                }
+            })
+            .finally(() => {
+                resetSteps()
+                signInForm.reset(undefined, {
+                    keepErrors: true
+                });
+            })
 
-    const onFormSubmit =  (data: Fields) => {
-        updateSignInDto(data);
-        void signIn(onSignInSuccess)
-    }
+    }, [signIn])
 
-
-    return <BaseModal modalStore={signInModalStore.modalStore} styles={[signInModalStyles(isLoading), styles]} title={t("Log in or sign up")}
+    return <BaseModal modalStore={signInModalStore.modalStore} styles={[signInModalStyles(isLoading), styles]}
+                      title={t("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
         {contextHolder}
+
         <div css={wrapperStyles}>
             <span css={modalSubtitleStyles}>{t("Welcome to EpicAnime")}</span>
-            {isLoading && <Loading styles={loadingStyles}/>}
-            <AnimatePresence mode="wait">
-                {step === 1 &&
-                    <motion.div
-                        key="step1"
-                        initial={{ opacity: 1, x: 0 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 0 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                    <SignInStepOne onSubmit={(data) => {
-                        updateSignInDto(data);
-                        setStep(2)
-                    }} emailError={error?.message}/>
-                </motion.div>}
-                {step === 2 &&
-                    <motion.div
-                        key="step2"
-                        initial={{ opacity: 0, x: 0 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 0 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                    <SignInStepTwo onSubmit={onFormSubmit}/>
-                </motion.div>}
-
-            </AnimatePresence>
+            <form onSubmit={signInForm.handleSubmit(onFormSubmit)}>
+                {isLoading && <Loading styles={loadingStyles}/>}
+                <AnimatePresence mode="wait">
+                    {step === STEPS.EMAIL &&
+                        <motion.div key="step1" {...stepOneAnimationConfig}>
+                            <SignInStepOne signInForm={signInForm} nextStep={nextStep}/>
+                        </motion.div>
+                    }
+                    {step === STEPS.PASSWORD &&
+                        <motion.div key="step2" {...stepTwoAnimationConfig}>
+                            <SignInStepTwo signInForm={signInForm} onSubmit={onFormSubmit}/>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+            </form>
             <div>
                 <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
                 <SignInOptions onSuccess={signInModalStore.modalStore.close}/>

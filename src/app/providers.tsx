@@ -22,6 +22,7 @@ export const Providers = ({children}:PropsType) => {
     }, []);
 
     return <Provider container={container} key={container.id}>
+
         <ThemeProvider>
             <AntdThemeProvider theme={themeStore.getCurrentTheme()}>
                 {children}

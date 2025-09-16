@@ -1,5 +1,5 @@
 import {inject, injectable} from "inversify";
-import {BasePopupStore} from "../../../../model";
+import {BasePopupStore} from "../../../../../model";
 import {makeAutoObservable} from "mobx";
 
 @injectable()

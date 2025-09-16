@@ -24,7 +24,7 @@ import {AnimeStatusFilterStore} from "../features/anime-status-filter";
 import {FilterManager} from "../pages/search-page";
 import {AnimeDateFilterStore} from "../features/anime-date-filter";
 import {PageStore} from "../features/page";
-import {SignInFormStore, SignInModalStore} from "../features/auth/sign-in-modal";
+import {SignInFormStepsStore, SignInFormStore, SignInModalStore} from "../features/auth/sign-in-modal";
 import {SignUpFormStore, SignUpModalStore} from "../features/auth/sign-up-modal";
 import {UserStore} from "../entities/user";
 import {ConfirmModalStore} from "../shared/model/confirm-modal.store.ts";
@@ -64,4 +64,5 @@ container.bind(ConfirmModalStore).toSelf().inSingletonScope()
 container.bind(BasePopupStore).toSelf()
 container.bind(BaseLoadingStore).toSelf()
 container.bind(BaseModalStore).toSelf()
+container.bind(SignInFormStepsStore).toSelf().inSingletonScope()
 

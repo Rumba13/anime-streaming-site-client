@@ -109,6 +109,8 @@ export const modalSubtitleStyles = (theme:Theme)=> css`
     font-size: 26px;
     margin-bottom: 25px;
 `
+
+
 export const separatorStyles = (theme: Theme) => css`
     margin-top: 20px;
     margin-bottom: 20px;

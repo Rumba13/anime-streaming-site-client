@@ -31,7 +31,6 @@ export const SignOutButton = () => {
         void confirmModalStore.askForConfirm(confirmSignOutModalConfig, event)
             .then(signOut)
             .then(showSuccessfulSignOutNotification)
-        
     }
 
     return <button onClick={askForSignOut}>

@@ -1,5 +1,5 @@
 import {injectable} from "inversify";
-import {flow, makeAutoObservable, } from "mobx";
+import {flow, makeAutoObservable,} from "mobx";
 import {SignInDto} from "../../../../shared/types/sign-in.dto.ts";
 import {BaseLoadingStore} from "../../../../shared/model";
 import {UserCredential} from "@firebase/auth";
@@ -9,11 +9,13 @@ import {InvalidEmailOrPasswordError, UnknownError} from "../../../../shared/mode
 import {inject} from "inversify";
 import {UserStore} from "../../../../entities/user";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import {SignInFormStepsStore} from "./sign-in-form-steps.store.ts";
 
 @injectable()
 class SignInFormStore {
     @inject(UserStore) private readonly userStore!: UserStore;
     @inject(BaseLoadingStore) public readonly loadingStore!: BaseLoadingStore;
+    @inject(SignInFormStepsStore) public readonly signInFormStepsStore!: SignInFormStepsStore;
 
     constructor() {
         makeAutoObservable(this, {
@@ -21,59 +23,54 @@ class SignInFormStore {
         });
     }
 
-    public step: number = 1;
-    public setStep = (step: number) => this.step = step;
-
-    public signInDto: Partial<SignInDto> = {}
-    public updateSignInDto = (signInDto: Partial<SignInDto>) => {
-        this.signInDto = {...this.signInDto, ...signInDto}
-    };
-    public setSignInDto = (signInDto: Partial<SignInDto>) => {
-        this.signInDto = signInDto
-    };
-
-    public* signIn(onSuccess?: () => void) {
-
-        if (!this.signInDto.email || !this.signInDto.password) {
-            this.loadingStore.setIsError(true)
-            this.loadingStore.setError(new UnknownError())
+    public * signIn(signInDto: SignInDto): Promise<void> {
+        if (!signInDto.email || !signInDto.password) {
+            this.loadingStore.setIsError(true);
+            this.loadingStore.setError(new UnknownError());
             console.log("Missing email or password");
-            return;
+            throw new Error("Missing email or password");
         }
 
         try {
-            this.loadingStore.setIsError(false)
-            this.loadingStore.setError(null)
+            this.loadingStore.setIsError(false);
+            this.loadingStore.setError(null);
             this.loadingStore.setIsLoading(true);
             this.loadingStore.setIsLoaded(false);
 
-            const userCredential: UserCredential = yield signInWithEmailAndPassword(auth, this.signInDto.email, this.signInDto.password)
-            this.userStore.setUser(userCredential.user)
-            onSuccess?.()
+            const userCredential: UserCredential = yield signInWithEmailAndPassword(
+                auth,
+                signInDto.email,
+                signInDto.password
+            );
+            this.userStore.setUser(userCredential.user);
+
+            return Promise.resolve();
         } catch (error) {
-            this.loadingStore.setIsError(true)
-            this.setStep(1)
+            this.loadingStore.setIsError(true);
 
             if (isFirebaseError(error)) {
                 if (error.code === "auth/invalid-credential") {
-                    this.loadingStore.setError(new InvalidEmailOrPasswordError())
+                    this.loadingStore.setError(new InvalidEmailOrPasswordError());
                 } else {
-                    console.log(error)
-                    this.loadingStore.setError(new UnknownError())
+                    console.log(error);
+                    this.loadingStore.setError(new UnknownError());
                 }
             } else {
-                this.loadingStore.setError(new UnknownError())
+                this.loadingStore.setError(new UnknownError());
             }
-            this.loadingStore.error?.log()
+
+            this.loadingStore.error?.log();
+            throw this.loadingStore.error!;
+        } finally {
+            this.reset();
+            this.loadingStore.setIsLoading(false);
+            this.loadingStore.setIsLoaded(true);
         }
-        this.reset()
-        this.loadingStore.setIsLoading(false);
-        this.loadingStore.setIsLoaded(true);
     }
 
     private reset() {
-        this.setSignInDto({})
-        this.setStep(1)
+        this.signInFormStepsStore.resetSteps()
+        //reset form values
     }
 
 }

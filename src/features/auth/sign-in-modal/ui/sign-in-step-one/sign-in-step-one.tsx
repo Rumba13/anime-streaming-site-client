@@ -1,42 +1,36 @@
 import {Field} from "../../../../../shared/ui/field";
 import {emailValidationRule} from "../../../../../shared/lib";
-import {RegisterOptions, useForm} from "react-hook-form";
+import {RegisterOptions, UseFormReturn} from "react-hook-form";
 import {modalSubmitButtonStyles} from "../../../../../shared/ui";
 import {useTranslation} from "react-i18next";
 import {fieldStyles, signInStepOneStyles, submitButtonStyles} from "./sign-in-step-one.styles.ts";
-import {useEffect} from "react";
-
-export type Fields = {
-    email: string
-}
+import {SignInFormFields} from "../sign-in-modal.tsx";
 
 type PropsType = {
-    onSubmit: (data: Fields) => void,
-    emailError?: string
+    signInForm: UseFormReturn<SignInFormFields, any, SignInFormFields>,
+    nextStep: () => void
 }
 
-export const SignInStepOne = ({onSubmit, emailError}: PropsType) => {
+export const SignInStepOne = ({
+                                  signInForm: {register, formState: {errors}, trigger},
+                                  nextStep
+                              }: PropsType) => {
     const {t} = useTranslation()
 
-    const {
-        register,
-        handleSubmit,
-        formState: {errors},
-        setError
-    } = useForm<Fields>()
+    const tryNextStep = (e: Event) => {
+        e.preventDefault()
 
-    useEffect(() => {
-        if (emailError) {
-            setError("email", {
-                message: emailError
-            })
-        }
-    }, [emailError]);
+        void trigger('email', {shouldFocus: true}).then((isValid) => {
+            if (isValid) nextStep();
+        });
+    }
 
-    return <form css={signInStepOneStyles} onSubmit={handleSubmit(onSubmit)}>
+    return <div css={signInStepOneStyles}>
         <Field errorMessage={errors.email?.message} styles={fieldStyles} type="email" autoFocus
-               placeholder={t("Email")} {...register("email", emailValidationRule as RegisterOptions<Fields, "email">)} />
+               onKeyDown={(e) => e.key === "Enter" && tryNextStep(e)}
+               placeholder={t("Email")} {...register("email", emailValidationRule as RegisterOptions<SignInFormFields, "email">)} />
 
-        <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="submit">{t("Continue")}</button>
-    </form>
+        <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="button"
+                onClick={tryNextStep}>{t("Continue")}</button>
+    </div>
 }
