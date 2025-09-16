@@ -2,7 +2,7 @@ import {SearchResultsList} from "./search-results-list";
 import type {Meta, StoryObj} from '@storybook/react-vite';
 import {SearchAnimeStore} from "../../../../features/search";
 import {Anime} from "../../../../shared/types";
-import {BaseError} from "../../../../shared/model";
+import {BaseError, BaseLoadingStore} from "../../../../shared/model";
 
 const meta = {
     component: SearchResultsList,
@@ -136,22 +136,25 @@ const mockAnime = {
     "explicit_genres": [],
 } as unknown as Anime
 
-const mockDefaultSearchAnimeStore = new SearchAnimeStore();
-mockDefaultSearchAnimeStore.isLoading = false;
-mockDefaultSearchAnimeStore.isFirstLoad = false;
-mockDefaultSearchAnimeStore.pagination = {
+const mockDefaultSearchAnimeStore = Object.assign(new SearchAnimeStore(), {
+    loadingStore: Object.assign(new BaseLoadingStore(), {
+        isLoading: false,
+    } as Partial<BaseLoadingStore>),
+    isFirstLoad: false,
     pagination: {
-        last_visible_page: 1,
-        has_next_page: false,
-        current_page: 1,
-        items: {
-            count: 1,
-            total: 1,
-            per_page: 1,
-        }
-    },
-    data: Array(25).fill(mockAnime)
-}
+        pagination: {
+            last_visible_page: 1,
+            has_next_page: false,
+            current_page: 1,
+            items: {
+                count: 1,
+                total: 1,
+                per_page: 1,
+            }
+        },
+        data: Array(25).fill(mockAnime)
+    }
+} as Partial<SearchAnimeStore>)
 
 export const Default: Story = {
     args: {
@@ -159,9 +162,12 @@ export const Default: Story = {
     },
 };
 
-const mockLoadingSearchAnimeStore = new SearchAnimeStore();
-mockLoadingSearchAnimeStore.isLoading = true;
-mockLoadingSearchAnimeStore.isFirstLoad = true;
+const mockLoadingSearchAnimeStore = Object.assign(new SearchAnimeStore(), {
+    loadingStore: Object.assign(new BaseLoadingStore(), {
+        isLoading: true,
+    } as Partial<BaseLoadingStore>),
+    isFirstLoad: true
+} as Partial<SearchAnimeStore>)
 
 export const Loading: Story = {
     args: {
@@ -169,48 +175,53 @@ export const Loading: Story = {
     },
 };
 
-const mockNothingFoundSearchAnimeStore = new SearchAnimeStore();
-mockNothingFoundSearchAnimeStore.isLoading = false;
-mockNothingFoundSearchAnimeStore.isLoaded = true;
-mockNothingFoundSearchAnimeStore.isFirstLoad = false;
-mockNothingFoundSearchAnimeStore.isFirstLoad = false;
-
-mockNothingFoundSearchAnimeStore.pagination = {
+const mockSecondLoadingSearchAnimeStore = Object.assign(new SearchAnimeStore(), {
+    loadingStore: Object.assign(new BaseLoadingStore(), {
+        isLoading: true,
+        isLoaded: false
+    } as Partial<BaseLoadingStore>),
+    isFirstLoad: false,
     pagination: {
-        last_visible_page: 1,
-        has_next_page: false,
-        current_page: 1,
-        items: {
-            count: 0,
-            total: 0,
-            per_page: 25,
-        }
-    },
-    data: []
-}
-const mockSecondLoadingSearchAnimeStore = new SearchAnimeStore();
-mockSecondLoadingSearchAnimeStore.isLoading = true;
-mockSecondLoadingSearchAnimeStore.isLoaded = false;
-mockSecondLoadingSearchAnimeStore.isFirstLoad = false;
+        pagination: {
+            last_visible_page: 1,
+            has_next_page: false,
+            current_page: 1,
+            items: {
+                count: 0,
+                total: 0,
+                per_page: 25,
+            }
+        },
+        data: Array(25).fill(mockAnime)
+    }
+} as Partial<SearchAnimeStore>)
 
-mockSecondLoadingSearchAnimeStore.pagination = {
-    pagination: {
-        last_visible_page: 1,
-        has_next_page: false,
-        current_page: 1,
-        items: {
-            count: 0,
-            total: 0,
-            per_page: 25,
-        }
-    },
-    data: Array(25).fill(mockAnime)
-}
 export const SecondLoading: Story = {
     args: {
         searchAnimeStore: mockSecondLoadingSearchAnimeStore
     },
 };
+
+const mockNothingFoundSearchAnimeStore = Object.assign(new SearchAnimeStore(), {
+    loadingStore: Object.assign(new BaseLoadingStore(), {
+        isLoading: false,
+        isLoaded: true
+    } as Partial<BaseLoadingStore>),
+    isFirstLoad: false,
+    pagination: {
+        pagination: {
+            last_visible_page: 1,
+            has_next_page: false,
+            current_page: 1,
+            items: {
+                count: 0,
+                total: 0,
+                per_page: 25,
+            }
+        },
+        data: []
+    }
+} as Partial<SearchAnimeStore>)
 
 export const NothingFound: Story = {
     args: {
@@ -218,9 +229,26 @@ export const NothingFound: Story = {
     },
 };
 
-const mockErrorSearchAnimeStore = new SearchAnimeStore();
-mockErrorSearchAnimeStore.isError = true;
-mockErrorSearchAnimeStore.error = new BaseError("Error", "NetworkError");
+const mockErrorSearchAnimeStore = Object.assign(new SearchAnimeStore(), {
+    loadingStore: Object.assign(new BaseLoadingStore(), {
+        error: new BaseError("Error", "NetworkError"),
+        isError: true
+    } as Partial<BaseLoadingStore>),
+    isFirstLoad: false,
+    pagination: {
+        pagination: {
+            last_visible_page: 1,
+            has_next_page: false,
+            current_page: 1,
+            items: {
+                count: 0,
+                total: 0,
+                per_page: 25,
+            }
+        },
+        data: []
+    }
+} as Partial<SearchAnimeStore>)
 
 export const Error: Story = {
     args: {
