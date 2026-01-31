@@ -11,8 +11,8 @@ type PropsType = {
 }
 
 export const AnimeStatusSelect = observer(({animeStatusFilterStore}: PropsType) => {
-    const {t} = useTranslation();
-    const animeStatusToSelectOption = (status: AnimeStatus) => ({value: status, label: t(animeStatusToTranslationKey[status])});
+    const {t:tSearch} = useTranslation("search");
+    const animeStatusToSelectOption = (status: AnimeStatus) => ({value: status, label: tSearch(animeStatusToTranslationKey[status])});
     const selectOptions = animeStatusList.map(animeStatusToSelectOption)
 
     return <ToggleButtonGroup

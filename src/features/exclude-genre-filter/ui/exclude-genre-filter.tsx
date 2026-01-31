@@ -15,7 +15,7 @@ type PropsType = {
 export const SelectExcludeGenres = observer(({genreIdsToHide}: PropsType) => {
     const genresStore = useInjection(GenresStore);
     const excludeGenreFilterStore = useInjection(ExcludeGenreFilterStore)
-    const {t} = useTranslation();
+    const {t:tSearch} = useTranslation("search");
 
     const filteredGenres: Genre[] = genresStore.genres.filter(({mal_id}) => !genreIdsToHide.includes(mal_id));
 
@@ -36,7 +36,7 @@ export const SelectExcludeGenres = observer(({genreIdsToHide}: PropsType) => {
         allowClear
         loading={genresStore.isLoading}
         value={selectedOptions}
-        placeholder={t("Select Excluded Genres Placeholder")}
+        placeholder={tSearch("Select Excluded Genres Placeholder")}
         onChange={excludeGenreFilterStore.setSelectedGenres}
         options={options}
     />

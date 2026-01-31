@@ -51,7 +51,7 @@ export const Filters = observer(({styles}: PropsType) => {
     const animeDateFilterStore = useInjection(AnimeDateFilterStore);
     const pageStore = useInjection(PageStore);
     const [searchParams, setSearchParams] = useSearchParams();
-    const {t} = useTranslation();
+    const {t:tSearch} = useTranslation("search");
 
     filterManager.setFilters([
         genreFilterStore,
@@ -121,33 +121,33 @@ export const Filters = observer(({styles}: PropsType) => {
             <Search styles={searchStyles}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Genres")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Genres")}</span>
             <SelectGenres genreIdsToHide={excludeGenreFilterStore.selectedGenres}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Excluded Genres")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Excluded Genres")}</span>
             <SelectExcludeGenres genreIdsToHide={genreFilterStore.selectedGenres}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Anime Types")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Anime Types")}</span>
             <AnimeTypeFilter animeTypeFilterStore={animeTypeFilterStore}/>
         </div>
 
         <div css={[filterWrapperStyles]}>
-            <span css={filterTitleStyles}>{t("Select Rating")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Rating")}</span>
             <RatingRange ratingFilterStore={ratingFilterStore}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Status")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Status")}</span>
             <AnimeStatusSelect animeStatusFilterStore={animeStatusFilterStore}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{t("Select Dates")}</span>
+            <span css={filterTitleStyles}>{tSearch("Select Dates")}</span>
             <AnimeDateFilter animeDateFilterStore={animeDateFilterStore}/>
         </div>
 
         <button css={resetButtonStyles} onClick={filterManager.resetFilters}>
-            {t("Reset Filters")}
+            {tSearch("Reset Filters")}
         </button>
     </div>
 })

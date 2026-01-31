@@ -21,13 +21,13 @@ type SelectOptionType = {
 }
 
 export const OrderBySelect = observer(({ orderByStore, styles }: PropsType) => {
-    const { t } = useTranslation();
+    const { t:tSearch } = useTranslation("search");
 
     const orderByTypeToSelectOption = (orderBy: OrderBy, sortType: SortType): SelectOptionType => ({
         value: `${orderBy}-${sortType}`,
         orderBy,
         sortType,
-        label: `${t(orderByTypeToTitle[orderBy])} (${t(sortType === "asc" ? "Ascending" : "Descending")})`
+        label: `${tSearch(orderByTypeToTitle[orderBy])} (${tSearch(sortType === "asc" ? "Ascending" : "Descending")})`
     })
 
     const selectOrderByTypes: OrderBy[] = [

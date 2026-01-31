@@ -7,6 +7,8 @@ import ruGenresTranslation from "./translation/ru/genres.json"
 import enGenresTranslation from "./translation/en/genres.json"
 import ruAuthTranslation from "./translation/ru/auth.json"
 import enAuthTranslation from "./translation/en/auth.json"
+import ruSearchTranslation from "./translation/ru/search.json"
+import enSearchTranslation from "./translation/en/search.json"
 
 import XHR from "i18next-http-backend"
 
@@ -14,12 +16,14 @@ export const resources = {
     en: {
         common: enCommonTranslation,
         genres: enGenresTranslation,
-        auth: enAuthTranslation
+        auth: enAuthTranslation,
+        search: enSearchTranslation,
     },
     ru: {
         common: ruCommonTranslation,
         genres: ruGenresTranslation,
-        auth: ruAuthTranslation
+        auth: ruAuthTranslation,
+        search: ruSearchTranslation
     }
 } as const;
 
@@ -31,7 +35,7 @@ void i18n
         debug: true,
         lng: "ru",
         supportedLngs: ['ru', 'en'],
-        ns: ["common", "genres", "auth"],
+        ns: ["common", "genres", "auth", "search"],
         detection: {
             order: ["localStorage", "cookie", "navigator", "htmlTag"],
         },

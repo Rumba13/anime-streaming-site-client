@@ -16,7 +16,7 @@ export const SelectGenres = observer(({genreIdsToHide}:PropsType) => {
     const genresStore = useInjection(GenresStore);
     const genreFilterStore = useInjection(GenreFilterStore)
     const filteredGenres: Genre[] = genresStore.genres.filter(({mal_id}) => !genreIdsToHide.includes(mal_id));
-    const { t } = useTranslation();
+    const { t:tSearch } = useTranslation("search");
 
     const getSelectedGenres = (): Genre[] => {
         if (genresStore.isLoading) return []
@@ -35,7 +35,7 @@ export const SelectGenres = observer(({genreIdsToHide}:PropsType) => {
             optionFilterProp="label"
             loading={genresStore.isLoading}
             value={selectedOptions}
-            placeholder={t("Select Genres Placeholder")}
+            placeholder={tSearch("Select Genres Placeholder")}
             onChange={genreFilterStore.setSelectedGenres}
             options={options}
         />

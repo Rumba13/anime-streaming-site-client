@@ -29,7 +29,7 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
     const {isLoading} = searchAnimeStore.loadingStore
 
     const {currentAnimeCardType, getCardComponent} = animeCardSwitchStore
-    const {t} = useTranslation();
+    const {t:tSearch} = useTranslation("search");
 
     const isFirstLoadingShown = isLoading && isFirstLoad
     const isDarkened = isLoading && !isFirstLoad;
@@ -67,7 +67,7 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
             <ErrorMessage styles={errorMessageStyles} error={error || new BaseError("Unknown Error")}/>)
         .with(firstLoadingState, () =>
             <Loading styles={loadingStyles}/>)
-        .with(nothingFoundState, () => <div css={nothingFoundStyles}>{t("Nothing Found")}</div>)
+        .with(nothingFoundState, () => <div css={nothingFoundStyles}>{tSearch("Nothing Found")}</div>)
         .with(secondLoadingState, ({pagination}) =>
             <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
         .with(loadedState, ({pagination}) =>
