@@ -9,10 +9,9 @@ import {
 
 export function AccountActions() {
     const {t:tAuth} = useTranslation("auth")
-    const {t:tCommon} = useTranslation("common")
 
     return <div css={accountActionsStyles}>
-        <span css={accountActionsTitleStyles}>{tCommon("Account")}</span>
+        <span css={accountActionsTitleStyles}>{tAuth("Account")}</span>
         <ul css={accountActionsListStyles}>
             <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Create Account")}</ListItem>
             <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Log In")}</ListItem>

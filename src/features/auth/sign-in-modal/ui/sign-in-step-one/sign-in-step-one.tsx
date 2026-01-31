@@ -15,7 +15,7 @@ export const SignInStepOne = ({
                                   signInForm: {register, formState: {errors}, trigger},
                                   nextStep
                               }: PropsType) => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
 
     const tryNextStep = (e: Event) => {
         e.preventDefault()
@@ -28,9 +28,9 @@ export const SignInStepOne = ({
     return <div css={signInStepOneStyles}>
         <Field errorMessage={errors.email?.message} styles={fieldStyles} type="email" autoFocus
                onKeyDown={(e) => e.key === "Enter" && tryNextStep(e)}
-               placeholder={t("Email")} {...register("email", emailValidationRule as RegisterOptions<SignInFormFields, "email">)} />
+               placeholder={tAuth("Email")} {...register("email", emailValidationRule as RegisterOptions<SignInFormFields, "email">)} />
 
         <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="button"
-                onClick={tryNextStep}>{t("Continue")}</button>
+                onClick={tryNextStep}>{tAuth("Continue")}</button>
     </div>
 }
