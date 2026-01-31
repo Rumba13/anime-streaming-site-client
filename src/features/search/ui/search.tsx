@@ -13,7 +13,7 @@ type PropsType = {
 }
 
 export const Search = observer(({styles, onSearch}: PropsType) => {
-    const {t} = useTranslation();
+    const {t:tSearch} = useTranslation("search");
     const searchQueryStore = useInjection(SearchQueryStore)
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ export const Search = observer(({styles, onSearch}: PropsType) => {
                 css={searchField}
                 id="search"
                 type="text"
-                placeholder={t("search")}
+                placeholder={tSearch("search")}
                 value={searchQueryStore.searchQuery}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

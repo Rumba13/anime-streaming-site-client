@@ -18,7 +18,7 @@ import {
 
 export const Genres = observer(() => {
     const genresStore = useInjection(ShortGenresStore)
-    const {t} = useTranslation()
+    const {t:tGenres} = useTranslation("genres")
 
     useEffect(() => {
         void genresStore.loadGenres()
@@ -33,7 +33,7 @@ export const Genres = observer(() => {
         .exhaustive();
 
     return <div css={[genresStyles, genresStore.isLoading && genresLoadingStyles ]}>
-        <span css={genresTitleStyles}>{t("Genres")}</span>
+        <span css={genresTitleStyles}>{tGenres("Genres")}</span>
         {content}
     </div>
 })
