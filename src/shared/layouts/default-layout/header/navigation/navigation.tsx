@@ -21,16 +21,16 @@ export const Navigation = observer(() => {
     }
 
     return <nav css={navigationStyles}>
-        <NavigationItem title={t('Home')} link={ROUTES.HOME_PAGE}/>
+        <NavigationItem title={t('navigation_home')} link={ROUTES.HOME_PAGE}/>
         <NavigationItem
             styles={browseGenresPopupStore.isOpened && navigationItemHighlightStyles}
-            title={t('Browse')}
+            title={t('navigation_search')}
             link={ROUTES.SEARCH_PAGE}
             onClick={handleOpenPopupClick}
         >
             <ArrowIcon css={navigationItemIconStyles}/>
             <BrowseGenresPopup/>
         </NavigationItem>
-        <NavigationItem title={t('Trailers')} link={ROUTES.TRAILERS_PAGE}/>
+        <NavigationItem title={t('navigation_trailers')} link={ROUTES.TRAILERS_PAGE}/>
     </nav>
 })

@@ -33,7 +33,7 @@ export const Search = observer(({styles, onSearch}: PropsType) => {
                 css={searchField}
                 id="search"
                 type="text"
-                placeholder={t("Search Button")}
+                placeholder={t("search")}
                 value={searchQueryStore.searchQuery}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

@@ -13,10 +13,10 @@ export function SocialLinks() {
     return <div>
         <span css={socialLinksTitle}>{t("Connect with us")}</span>
         <ul css={socialLinksList}>
-            <SocialLinksItem icon={<FacebookIcon/>} title={t("Facebook")} link="1"/>
-            <SocialLinksItem icon={<TwitterLogo/>} title={t("X App")} link="1"/>
-            <SocialLinksItem icon={<YoutubeLogo/>} title={t("Youtube")} link="1"/>
-            <SocialLinksItem icon={<InstagramLogo/>} title={t("Instagram")} link="1"/>
+            <SocialLinksItem icon={<FacebookIcon/>} title={t("social_facebook")} link="1"/>
+            <SocialLinksItem icon={<TwitterLogo/>} title={t("social_twitter")} link="1"/>
+            <SocialLinksItem icon={<YoutubeLogo/>} title={t("social_youtube")} link="1"/>
+            <SocialLinksItem icon={<InstagramLogo/>} title={t("social_instagram")} link="1"/>
         </ul>
     </div>
 }
