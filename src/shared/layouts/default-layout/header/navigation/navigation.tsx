@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 import {navigationItemHighlightStyles, navigationItemIconStyles, navigationStyles} from "./navigation.styles";
 
 export const Navigation = observer(() => {
-    const { t } = useTranslation();
+    const { t:tNavigation } = useTranslation("navigation");
 
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
@@ -22,16 +22,16 @@ export const Navigation = observer(() => {
     }
 
     return <nav css={navigationStyles}>
-        <NavigationItem title={t('navigation_home')} link={ROUTES.HOME_PAGE}/>
+        <NavigationItem title={tNavigation('navigation_home')} link={ROUTES.HOME_PAGE}/>
         <NavigationItem
             styles={browseGenresPopupStore.isOpened && navigationItemHighlightStyles}
-            title={t('navigation_search')}
+            title={tNavigation('navigation_search')}
             link={ROUTES.SEARCH_PAGE}
             onClick={handleOpenPopupClick}
         >
             <ArrowIcon css={navigationItemIconStyles}/>
             <BrowseGenresPopup/>
         </NavigationItem>
-        <NavigationItem title={t('navigation_trailers')} link={ROUTES.TRAILERS_PAGE}/>
+        <NavigationItem title={tNavigation('navigation_trailers')} link={ROUTES.TRAILERS_PAGE}/>
     </nav>
 })

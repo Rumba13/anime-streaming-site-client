@@ -20,10 +20,10 @@
   "Order By Favorites": "Favorites",
   "Descending": "Descending",
   "Ascending": "Ascending",
-  "Airing": "Airing",
-  "Complete": "Complete",
-  "Upcoming": "Upcoming",
   "Reset Filters": "Reset",
   "Select Status": "Select anime status",
-  "Select Dates": "Select dates"
+  "Select Dates": "Select dates",
+  "Airing": "Airing",
+  "Complete": "Complete",
+  "Upcoming": "Upcoming"
 }

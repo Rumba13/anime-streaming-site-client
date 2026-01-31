@@ -19,18 +19,18 @@ type PropsType = {
 }
 
 export function QuickNavigation({title, style, titleStyle, listStyle, listItemStyle}: PropsType) {
-    const {t} = useTranslation();
+    const {t:tNavigation} = useTranslation("navigation");
 
     return <div css={[quickNavigation, style]}>
-        <span css={[quickNavigationTitle, titleStyle]}>{title || t('Quick Navigation')}</span>
+        <span css={[quickNavigationTitle, titleStyle]}>{title || tNavigation('Quick Navigation')}</span>
         <ul css={[quickNavigationList, listStyle]}>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="1">{t('Browse Popular')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="2">{t('Browse News')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="3">{t('Interviews')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="4">{t('Guides')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="5">{t('Announcements')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="1">{tNavigation('Browse Popular')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="2">{tNavigation('Browse News')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="3">{tNavigation('Interviews')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="4">{tNavigation('Guides')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="5">{tNavigation('Announcements')}</ListItem>
             <ListItem styles={[quickNavigationItem, listItemStyle]}
-                      link={ROUTES.TRAILERS_PAGE}>{t('Trailers')}</ListItem>
+                      link={ROUTES.TRAILERS_PAGE}>{tNavigation('navigation_trailers')}</ListItem>
         </ul>
     </div>
 }

@@ -1,35 +1,19 @@
 {
   "Welcome to React": "Добро пожаловать в React и react-i18next",
-  "navigation_home": "Главная",
-  "navigation_search": "Обзор",
-  "navigation_trailers": "Трейлеры",
-  "Try Premium": "Попробуйте Премиум",
-  "Quick Navigation": "Быстрая навигация",
-  "Browse Popular": "Популярное",
-  "Browse News": "Новости",
-  "Interviews": "Интервью",
-  "Guides": "Гайды",
-  "Announcements": "Анонсы",
-  "Connect with us": "Свяжитесь с нами",
+
+
+  "Page Not Found": "Страница не найдена",
 
   "social_facebook": "Facebook",
   "social_twitter": "X (Twitter)",
   "social_youtube": "YouTube",
   "social_instagram": "Instagram",
 
-  "About Us": "О нас",
-  "Contact": "Контакты",
-  "FAQ": "Частые вопросы",
-  "Terms & Conditions": "Условия использования",
-  "Privacy Policy": "Политика конфиденциальности",
-  "Help": "Помощь",
-  "Support": "Поддержка",
   "Account": "Аккаунт",
   "Email": "Электронная почта",
 
   "Featured": "Рекомендуем",
 
-  "Page Not Found": "Страница не найдена",
   "Epic Feed": "Epic Feed",
   "Read More": "Читать далее",
   "Welcome to": "Добро пожаловать в",
@@ -41,14 +25,7 @@
   "Connected": "Соединено",
   "Not Connected": "Не соединено",
 
-  "TV Series": "ТВ-сериал",
-  "ONA": "ONА",
-  "OVA": "ОВА",
-  "Movie": "Фильм",
-  "Special": "Спешл",
-  "PV": "ПВ",
-  "CM": "КМ",
-  "TV Special": "ТВ-спешл",
+
 
   "Get Started!": "Начать!",
   "Welcome to EpicAnime": "Добро пожаловать в EpicAnime",

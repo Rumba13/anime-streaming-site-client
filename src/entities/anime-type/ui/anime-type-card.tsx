@@ -10,11 +10,11 @@ type PropsType = {
 }
 
 export const AnimeTypeCard = ({animeType,onClick}:PropsType) => {
-    const {t} = useTranslation();
+    const {t:tGenres} = useTranslation("genres");
 
     return <div css={animeTypeCardStyles} onClick={() => onClick?.(animeType)}>
         <span css={titleStyles}>
-            {t(animeTypeToTitle[animeType])}
+            {tGenres(animeTypeToTitle[animeType])}
         </span>
     </div>
 }
