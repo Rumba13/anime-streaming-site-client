@@ -45,7 +45,6 @@
   "Connected": "Соединено",
   "Not Connected": "Не соединено",
 
-  "Error": "Ошибка",
   "TV Series": "ТВ-сериал",
   "ONA": "ONА",
   "OVA": "ОВА",
@@ -57,8 +56,5 @@
 
   "Get Started!": "Начать!",
   "Welcome to EpicAnime": "Добро пожаловать в EpicAnime",
-
-  "(optional)": "(необязательно)",
-  "This email is already registered": "Эта почта уже зарегистрирована",
-  "An unknown error has occurred": "Произошла неизвестная ошибка"
+  "(optional)": "(необязательно)"
 }

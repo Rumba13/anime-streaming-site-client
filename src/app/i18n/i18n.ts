@@ -11,6 +11,10 @@ import ruSearchTranslation from "./translation/ru/search.json"
 import enSearchTranslation from "./translation/en/search.json"
 import ruValidationTranslation from "./translation/ru/validation.json"
 import enValidationTranslation from "./translation/en/validation.json"
+import ruNavigationTranslation from "./translation/ru/navigation.json"
+import enNavigationTranslation from "./translation/en/navigation.json"
+import ruErrorsTranslation from "./translation/ru/errors.json"
+import enErrorsTranslation from "./translation/en/errors.json"
 
 import XHR from "i18next-http-backend"
 
@@ -20,14 +24,18 @@ export const resources = {
         genres: enGenresTranslation,
         auth: enAuthTranslation,
         search: enSearchTranslation,
-        validation: enValidationTranslation
+        validation: enValidationTranslation,
+        navigation: enNavigationTranslation,
+        errors: enErrorsTranslation
     },
     ru: {
         common: ruCommonTranslation,
         genres: ruGenresTranslation,
         auth: ruAuthTranslation,
         search: ruSearchTranslation,
-        validation: ruValidationTranslation
+        validation: ruValidationTranslation,
+        navigation: ruNavigationTranslation,
+        errors: ruErrorsTranslation
     }
 } as const;
 
@@ -39,13 +47,13 @@ void i18n
         debug: true,
         lng: "ru",
         supportedLngs: ['ru', 'en'],
-        ns: ["common", "genres", "auth", "search", "validation"],
+        ns: ["common", "genres", "auth", "search", "validation", "navigation", "errors"],
         detection: {
             order: ["localStorage", "cookie", "navigator", "htmlTag"],
         },
         fallbackLng: "en",
         resources,
-        defaultNS:"common",
+        defaultNS: "common",
         interpolation: {
             escapeValue: false
         },
