@@ -7,18 +7,18 @@ import {signOut} from "../api/sign-out.ts";
 import {notification} from "antd";
 
 export const SignOutButton = () => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
     const [api, contextHolder] = notification.useNotification()
     const confirmModalStore = useInjection(ConfirmModalStore)
 
     const confirmSignOutModalConfig: ConfirmModalConfig = {
-        title: t("Confirm logout"),
-        confirmTitle: t("Log out"),
-        description: t("Are you sure you want to sign out?")
+        title: tAuth("Confirm logout"),
+        confirmTitle: tAuth("Log out"),
+        description: tAuth("Are you sure you want to sign out?")
     }
 
     const showSuccessfulSignOutNotification = () => api.open({
-        message: t("You have logged out"),
+        message: tAuth("You have logged out"),
         description: "",
         placement: "bottomRight",
         duration: 3.5,
@@ -35,6 +35,6 @@ export const SignOutButton = () => {
 
     return <button onClick={askForSignOut}>
         {contextHolder}
-        Sign out
+        {tAuth("Sign Out")}
     </button>
 }

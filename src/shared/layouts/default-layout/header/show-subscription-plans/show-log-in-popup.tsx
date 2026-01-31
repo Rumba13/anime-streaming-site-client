@@ -11,9 +11,9 @@ type PropsType = {
 }
 
 export function OpenSignInModalButton({openSignInModal}:PropsType) {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
 
     return <GradientBorderedButton css={openSignInModalButtonStyles} onClick={openSignInModal}>
-        <span css={buttonTitleStyles}>{t("Log In")}</span>
+        <span css={buttonTitleStyles}>{tAuth("Log In")}</span>
     </GradientBorderedButton>
 }

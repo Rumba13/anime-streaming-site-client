@@ -26,17 +26,17 @@ type PropsType = {
 }
 
 export const SignInOptions = ({onSuccess}: PropsType) => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
     const userStore = useInjection(UserStore)
 
     return <div css={signInOptionsStyles}>
         <button css={optionStyles} onClick={() => signInWithGoogle(userStore.setUser, onSuccess)}>
             <GoogleIcon/>
-            <span css={titleStyles}>{t("Continue with Google")}</span>
+            <span css={titleStyles}>{tAuth("Continue with Google")}</span>
         </button>
         <button css={optionStyles}>
             <AppleIcon/>
-            <span css={titleStyles}>{t("Continue with Apple")}</span>
+            <span css={titleStyles}>{tAuth("Continue with Apple")}</span>
         </button>
     </div>
 }

@@ -18,12 +18,12 @@ type SignUpModalFooterPropsType = {
 }
 
 const SignUpModalFooter = ({openSignInModal}: SignUpModalFooterPropsType) => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
 
     return <div>
-        {t("Have an account?")}
+        {tAuth("Have an account?")}
         &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{t("Log in here!")}</button>
+        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{tAuth("Log in here!")}</button>
     </div>
 }
 
@@ -33,14 +33,14 @@ type PropsType = {
 }
 
 export const SignUpModal = ({styles, openSignInModal}: PropsType) => {
-    const {t} = useTranslation();
+    const {t:tAuth} = useTranslation("auth");
     const signUpModalStore = useInjection(SignUpModalStore)
 
-    return <BaseModal modalStore={signUpModalStore.modalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={t("Sign up now!")}
+    return <BaseModal modalStore={signUpModalStore.modalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={tAuth("Sign up now!")}
                       footer={<SignUpModalFooter openSignInModal={openSignInModal}/>}>
         <SignUpForm onSuccess={signUpModalStore.modalStore.close}/>
         <div>
-            <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
+            <SeparatorWithTitle styles={separatorStyles} title={tAuth("or")}/>
             <SignInOptions onSuccess={signUpModalStore.modalStore.close}/>
         </div>
     </BaseModal>

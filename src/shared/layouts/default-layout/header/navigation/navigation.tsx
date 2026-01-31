@@ -11,6 +11,7 @@ import {navigationItemHighlightStyles, navigationItemIconStyles, navigationStyle
 
 export const Navigation = observer(() => {
     const { t } = useTranslation();
+
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
     const handleOpenPopupClick = (e: React.MouseEvent) => {

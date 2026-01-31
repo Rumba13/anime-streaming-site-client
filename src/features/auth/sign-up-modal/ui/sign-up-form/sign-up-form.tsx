@@ -24,7 +24,8 @@ type PropsType = {
 
 export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
     const signUpFormStore = useInjection(SignUpFormStore)
-    const {t} = useTranslation();
+    const {t: tAuth} = useTranslation("auth");
+    const {t: tCommon} = useTranslation("common");
 
     const {register, handleSubmit, errors, onSubmit, contextHolder, setIsPasswordShown, isPasswordShown} = useSignUpForm(initialValues, onSuccess)
 
@@ -34,22 +35,22 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
         {contextHolder}
         {signUpFormStore.loadingStore.isLoading && <Loading styles={loadingStyles}/>}
 
-        <span css={modalSubtitleStyles}>{t("Get Started!")}</span>
+        <span css={modalSubtitleStyles}>{tCommon("Get Started!")}</span>
 
         <div css={formContainerStyles}>
             <Field errorMessage={errors.firstName?.message}
-                   placeholder={t("First Name")}
+                   placeholder={tAuth("First Name")}
                    type="text"  {...register("firstName", firstNameValidationRule as RegisterOptions<Fields, "firstName">)}/>
-            <Field errorMessage={errors.lastName?.message} placeholder={t("Last Name")}
+            <Field errorMessage={errors.lastName?.message} placeholder={tAuth("Last Name")}
                    type="text" {...register("lastName", lastNameValidationRule as RegisterOptions<Fields, "lastName">)}/>
-            <Field errorMessage={errors.email?.message} css={emailFieldStyles} placeholder={t("Enter Email ID")}
+            <Field errorMessage={errors.email?.message} css={emailFieldStyles} placeholder={tAuth("Enter Email ID")}
                    type="email" {...register("email", emailValidationRule as RegisterOptions<Fields, "email">)}/>
-            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.password?.message} placeholder={t("Create Password")}
+            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.password?.message} placeholder={tAuth("Create Password")}
                      {...register("password", passwordValidationRule as RegisterOptions<Fields, "password">)}/>
-            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.repeatedPassword?.message} placeholder={t("Confirm Password")}
+            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.repeatedPassword?.message} placeholder={tAuth("Confirm Password")}
                      {...register("repeatedPassword", repeatPasswordValidationRule as RegisterOptions<Fields, "repeatedPassword">)}/>
 
-            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{t("Continue")}</button>
+            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{tCommon("Continue")}</button>
         </div>
     </form>
 })

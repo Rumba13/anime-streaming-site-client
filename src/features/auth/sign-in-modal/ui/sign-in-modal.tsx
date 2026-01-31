@@ -52,7 +52,8 @@ export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
     const signInModalStore = useInjection(SignInModalStore)
     const {step, resetSteps, nextStep} = useInjection(SignInFormStepsStore)
     const {signIn, loadingStore: {isLoading}} = useInjection(SignInFormStore)
-    const {t} = useTranslation()
+    const {t:tCommon} = useTranslation("common")
+    const {t:tAuth} = useTranslation("auth")
     const [api, contextHolder] = notification.useNotification();
     const signInForm = useForm<SignInFormFields>()
 
@@ -79,12 +80,12 @@ export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
     }, [signIn])
 
     return <BaseModal modalStore={signInModalStore.modalStore} styles={[signInModalStyles(isLoading), styles]}
-                      title={t("Log in or sign up")}
+                      title={tAuth("Log in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
         {contextHolder}
 
         <div css={wrapperStyles}>
-            <span css={modalSubtitleStyles}>{t("Welcome to EpicAnime")}</span>
+            <span css={modalSubtitleStyles}>{tCommon("Welcome to EpicAnime")}</span>
             <form onSubmit={signInForm.handleSubmit(onFormSubmit)}>
                 {isLoading && <Loading styles={loadingStyles}/>}
                 <AnimatePresence mode="wait">
@@ -101,7 +102,7 @@ export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
                 </AnimatePresence>
             </form>
             <div>
-                <SeparatorWithTitle styles={separatorStyles} title={t("or")}/>
+                <SeparatorWithTitle styles={separatorStyles} title={tAuth("or")}/>
                 <SignInOptions onSuccess={signInModalStore.modalStore.close}/>
             </div>
         </div>

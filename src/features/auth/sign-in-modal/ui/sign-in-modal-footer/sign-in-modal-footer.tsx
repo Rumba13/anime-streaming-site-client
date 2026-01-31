@@ -8,11 +8,11 @@ type PropsType = {
 }
 
 export const SignInModalFooter = memo(({openSignUpModal}: PropsType) => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
 
     return <div css={footerStyles}>
-        {t("New to our platform?")}
+        {tAuth("New to our platform?")}
         &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{t("Sign up now!")}</button>
+        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{tAuth("Sign up now!")}</button>
     </div>
 })

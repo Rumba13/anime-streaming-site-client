@@ -1,4 +1,4 @@
-import {profile, profileTitle} from "../show-profile.styles.ts";
+import {profile} from "../show-profile.styles.ts";
 import {BasePopup} from "../../../../../ui";
 import {useInjection} from "inversify-react";
 import {ProfilePopupStore} from "./profile-popup.store.ts";
@@ -11,14 +11,15 @@ import SettingsIcon from "../../../../../../assets/images/settings-icon.svg?reac
 
 import {buttonsStyles} from "./profile-popup.styles.ts";
 import {ROUTES} from "../../../../../lib";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
     JikanStatusSlot: ReactNode,
     AnimationsSwitchSlot: ReactNode
 }
 
-
 export const ProfilePopup = observer(({}: PropsType) => {
+    const {t:tAuth} = useTranslation("auth")
     const profilePopupStore = useInjection(ProfilePopupStore)
     const userStore = useInjection(UserStore);
 
@@ -30,7 +31,7 @@ export const ProfilePopup = observer(({}: PropsType) => {
 
         <div css={buttonsStyles}>
 
-            <ProfilePopupButton icon={<UserIcon/>} >Sign out</ProfilePopupButton>
+            <ProfilePopupButton icon={<UserIcon/>} >{tAuth("Sign Out")}</ProfilePopupButton>
             <ProfilePopupButton icon={<SettingsIcon/>} link={ROUTES.SETTINGS_PAGE}>Settings</ProfilePopupButton>
             <ProfilePopupButton icon={<SettingsIcon/>} link={ROUTES.HOME_PAGE}>Collections</ProfilePopupButton>
 

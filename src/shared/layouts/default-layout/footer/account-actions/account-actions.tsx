@@ -8,13 +8,14 @@ import {
 } from "./account-actions.styles";
 
 export function AccountActions() {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
+    const {t:tCommon} = useTranslation("common")
 
     return <div css={accountActionsStyles}>
-        <span css={accountActionsTitleStyles}>{t("Account")}</span>
+        <span css={accountActionsTitleStyles}>{tCommon("Account")}</span>
         <ul css={accountActionsListStyles}>
-            <ListItem styles={accountActionsItemStyles} link="1">{t("Create Account")}</ListItem>
-            <ListItem styles={accountActionsItemStyles} link="1">{t("Log In")}</ListItem>
+            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Create Account")}</ListItem>
+            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Log In")}</ListItem>
         </ul>
     </div>
 }

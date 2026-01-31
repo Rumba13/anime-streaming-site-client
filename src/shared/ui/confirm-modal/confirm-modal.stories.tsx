@@ -4,6 +4,7 @@ import {ConfirmModalStore} from "../../model/confirm-modal.store.ts";
 import {useInjection} from "inversify-react";
 import {ConfirmModalConfig} from "../../types/confirm-modal-config.ts";
 import React, {useState} from "react";
+import i18n from "i18next";
 
 const meta = {
     component: ConfirmModal,
@@ -37,7 +38,7 @@ export const Default: Story = {
     args: {
         title: "Confirm sign out ",
         description: "Are you sure that you want to sign out?",
-        confirmTitle: "Sign out",
+        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
     },
 }
 
@@ -45,7 +46,7 @@ export const LongContent: Story = {
     args: {
         title: "Confirm sign out",
         description: "Are you sure that you want to sign out? lorem ipsum dolor sit amen. You cannot cancel this",
-        confirmTitle: "Sign out",
+        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
     },
 }
 
@@ -53,7 +54,7 @@ export const LongTitle: Story = {
     args: {
         title: "Confirm sign out Very long Confirm sign out title to make sure it's visible",
         description: "Are you sure that you want to sign out?",
-        confirmTitle: "Sign out",
+        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
     },
 }
 

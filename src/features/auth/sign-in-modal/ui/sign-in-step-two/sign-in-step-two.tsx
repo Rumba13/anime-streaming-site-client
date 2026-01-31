@@ -13,11 +13,12 @@ type PropsType = {
 export const SignInStepTwo = ({
                                   signInForm: {register, formState: {errors}}
                               }: PropsType) => {
-    const {t} = useTranslation()
+    const {t:tAuth} = useTranslation("auth")
+    const {t:tCommon} = useTranslation("common")
 
     return <div css={signInStepTwoStyles}>
-        <Field styles={fieldStyles} placeholder={t("Enter Password")} autoFocus errorMessage={errors.password?.message}
+        <Field styles={fieldStyles} placeholder={tAuth("Enter Password")} autoFocus errorMessage={errors.password?.message}
                type="password" {...register("password", passwordValidationRule as RegisterOptions<SignInFormFields, "password">)}/>
-        <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="submit">{t("Continue")}</button>
+        <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="submit">{tCommon("Continue")}</button>
     </div>
 }
