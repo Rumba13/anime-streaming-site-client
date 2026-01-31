@@ -27,7 +27,7 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
         setError
     } = useForm<Fields>({defaultValues: initialValues})
     const signUpFormStore = useInjection(SignUpFormStore)
-    const {t} = useTranslation();
+    const {t:tValidation} = useTranslation("validation");
     const [api, contextHolder] = notification.useNotification();
     const openSuccessSignUpNotification = () => api.open(successfulSignUpNotificationConfig);
     const openUnknownSignUpErrorNotification = () => api.open(unknownErrorNotificationConfig)
@@ -35,8 +35,8 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
 
     const onSubmit: SubmitHandler<Fields> = async (data: Fields) => {
         if (data.password !== data.repeatedPassword) {
-            setError("repeatedPassword", {message: t("Passwords do not match")})
-            setError("password", {message: t("Passwords do not match")})
+            setError("repeatedPassword", {message: tValidation("Passwords do not match")})
+            setError("password", {message: tValidation("Passwords do not match")})
             return;
         }
 

@@ -57,46 +57,7 @@
   "CM": "CM",
   "TV Special": "TV Special",
 
-  "firstNameTooShort_one": "First name must be at least 1 character long",
-  "firstNameTooShort_few": "First name must be at least {count} characters long",
-  "firstNameTooShort_many": "First name must be at least {count} characters long",
-  "firstNameTooShort_other": "First name is too short",
-
-  "firstNameTooLong_one": "First name must be no more than 1 character long",
-  "firstNameTooLong_few": "First name must be no more than {count} characters long",
-  "firstNameTooLong_many": "First name must be no more than {count} characters long",
-  "firstNameTooLong_other": "First name is too long",
-
-  "firstNameRequired": "First name is required",
-
-  "lastNameTooShort_one": "Last name must be at least 1 character long",
-  "lastNameTooShort_few": "Last name must be at least {count} characters long",
-  "lastNameTooShort_many": "Last name must be at least {count} characters long",
-  "lastNameTooShort_other": "Last name is too short",
-
-  "lastNameTooLong_one": "Last name must be no more than 1 character long",
-  "lastNameTooLong_few": "Last name must be no more than {count} characters long",
-  "lastNameTooLong_many": "Last name must be no more than {count} characters long",
-  "lastNameTooLong_other": "Last name is too long",
-
-  "passwordWeak": "Password is too weak",
-
-  "passwordTooShort_one": "Password must be at least 1 character long",
-  "passwordTooShort_few": "Password must be at least {count} characters long",
-  "passwordTooShort_many": "Password must be at least {count} characters long",
-  "passwordTooShort_other": "Password is too short",
-
-  "passwordTooLong_one": "Password must be no more than 1 character long",
-  "passwordTooLong_few": "Password must be no more than {count} characters long",
-  "passwordTooLong_many": "Password must be no more than {count} characters long",
-  "passwordTooLong_other": "Password is too long",
-
-  "emailRequired": "Email is required",
-  "passwordRequired": "Password is required",
-  "emailInvalid": "Email is invalid",
-  "(optional)": "(optional)",
-  "Passwords do not match": "Passwords do not match",
   "An unknown error has occurred": "An unknown error has occurred",
-  "Password must contain at least one number": "Password must contain at least one number",
+  "(optional)": "(optional)",
   "This email is already registered": "This email is already registered"
 }
