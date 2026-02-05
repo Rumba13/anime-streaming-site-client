@@ -88,5 +88,10 @@
   "Special": "Спешл",
   "PV": "ПВ",
   "CM": "КМ",
-  "TV Special": "ТВ-спешл"
+  "TV Special": "ТВ-спешл",
+
+  "japanese_title": "На японском",
+  "synonyms": "Синонимы",
+  "aired": "Дата выхода",
+  "status": "Статус"
 }

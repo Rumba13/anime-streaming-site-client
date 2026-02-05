@@ -89,5 +89,10 @@
   "PV": "PV",
   "CM": "CM",
   "TV Special": "TV Special",
-  "(optional)": "(optional)"
+  "(optional)": "(optional)",
+
+  "japanese_title": "Japanese",
+  "synonyms": "Synonyms",
+  "aired": "Aired",
+  "status": "Status"
 }

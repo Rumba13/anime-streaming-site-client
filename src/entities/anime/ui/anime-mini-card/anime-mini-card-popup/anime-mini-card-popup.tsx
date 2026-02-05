@@ -11,6 +11,7 @@ import PlayButtonIcon from "../../../../../assets/images/play-icon.svg?react"
 import {Genre} from "../../../../../shared/types";
 import PlusIcon from "../../../../../assets/images/plus.svg?react"
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
     synopsis: string;
@@ -35,7 +36,7 @@ const usePopupPosition = (popupRef: RefObject<HTMLDivElement | null>) => {
             const rect = popup.getBoundingClientRect();
             if (rect.right > window.innerWidth) {
                 setPopupPosition('right');
-            } else  {
+            } else {
                 setPopupPosition('left');
             }
         };
@@ -58,6 +59,9 @@ export function AnimeMiniCardPopup({
                                        genres,
                                        airedFrom
                                    }: PropsType) {
+    const {t: tGenres} = useTranslation("genres");
+    const {t: tCommon} = useTranslation("common");
+
     const popupRef = useRef<HTMLDivElement>(null);
     const {popupPosition} = usePopupPosition(popupRef)
 
@@ -70,26 +74,26 @@ export function AnimeMiniCardPopup({
 
         <p css={animeInformationStyles}>
             <span css={informationFieldStyles}>
-                Japanese:<span css={informationValueStyles}>{japaneseTitle}</span>
+                {tGenres("japanese_title")}:<span css={informationValueStyles}>{japaneseTitle}</span>
             </span>
             {titleSynonyms.length > 0 && <span css={informationFieldStyles}>
-                Synonyms: <span css={informationValueStyles}>{formattedTitleSynonyms}</span>
+                {tGenres("synonyms")}: <span css={informationValueStyles}>{formattedTitleSynonyms}</span>
             </span>}
             <span css={informationFieldStyles}>
-                Aired: <span css={informationValueStyles}>{airedFrom}</span>
+                {tGenres("aired")}: <span css={informationValueStyles}>{airedFrom}</span>
             </span>
             <span css={informationFieldStyles}>
-                Status: <span css={informationValueStyles}>{status}</span>
+                {tGenres("status")}: <span css={informationValueStyles}>{status}</span>
             </span>
             <span css={informationFieldStyles}>
-                Genres: <span css={informationValueStyles}>{formattedGenres}</span>
+                {tGenres("Genres")}: <span css={informationValueStyles}>{formattedGenres}</span>
             </span>
         </p>
 
         <div css={actionsStyles}>
             <Link css={watchNowButtonStyles} to={ROUTES.WATCH_ANIME_PAGE_WATCH(+animeId)}>
                 <PlayButtonIcon/>
-                <span>Watch now</span>
+                <span>{tCommon("Start Watching")}</span>
             </Link>
             <button css={openUserActionButtonStyles}>
                 <PlusIcon/>
