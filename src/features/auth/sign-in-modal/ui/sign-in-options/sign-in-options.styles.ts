@@ -1,6 +1,6 @@
 import {css, Theme} from "@emotion/react";
 
-export const signInOptionsStyles = (theme:Theme) => css`
+export const signInOptionsStyles = () => css`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +26,7 @@ export const optionStyles = (theme:Theme) => css`
         border-color: ${theme.primaryColor};
     }
 `
-export const titleStyles = (theme:Theme) => css`
+export const titleStyles = () => css`
     margin-left: 10px;
     text-align: center;
 `

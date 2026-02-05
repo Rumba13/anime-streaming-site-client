@@ -1,6 +1,6 @@
 import {Theme,css} from "@emotion/react";
 
-export const animeCardSwitcherStyles = (theme:Theme) => css`
+export const animeCardSwitcherStyles = () => css`
 display: flex;
 `
 export const buttonStyles = (isActive: boolean) => (theme:Theme) => css`

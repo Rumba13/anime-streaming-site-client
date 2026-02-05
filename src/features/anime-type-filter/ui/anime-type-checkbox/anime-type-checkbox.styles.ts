@@ -39,5 +39,5 @@ export const checkboxStyles = (isSelected: boolean) => (theme: Theme) => css`
     
 
 `
-export const checkboxWrapperStyles = (theme: Theme) => css`
+export const checkboxWrapperStyles = () => css`
 `

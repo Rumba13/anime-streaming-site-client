@@ -1,6 +1,6 @@
-import {css, Theme} from "@emotion/react";
+import {css} from "@emotion/react";
 
-export const socialLinksTitle = (theme: Theme) => css`
+export const socialLinksTitle = () => css`
     display: block;
     margin-bottom: 26px;
     font-family: $third-font-family;

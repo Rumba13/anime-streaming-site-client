@@ -5,7 +5,7 @@ export const formStyles = (isLoading:boolean) => (theme: Theme) => css`
 
     ${isLoading && overlayStyles(theme)}
 `
-export const formContainerStyles = (theme: Theme) => css`
+export const formContainerStyles = () => css`
     margin-top: 26px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -17,7 +17,7 @@ export const formContainerStyles = (theme: Theme) => css`
         grid-template-columns: 1fr;
     }
 `
-export const buttonStyles = (theme: Theme) => css`
+export const buttonStyles = () => css`
     max-width: 277px;
     width: 100%;
     flex-grow: 1;
@@ -25,13 +25,13 @@ export const buttonStyles = (theme: Theme) => css`
     grid-column-start: 1;
     grid-column-end: -1;
 `
-export const emailFieldStyles = (theme: Theme) => css`
+export const emailFieldStyles = () => css`
     display: grid;
     grid-column-start: 1;
     grid-column-end: -1;
     
 `
-export const loadingStyles = (theme: Theme) => css`
+export const loadingStyles = () => css`
     position: absolute;
     top: 50%;
     left: 50%;

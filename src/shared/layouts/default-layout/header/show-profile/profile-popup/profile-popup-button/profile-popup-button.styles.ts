@@ -21,7 +21,7 @@ export const profilePopupButtonStyles = (theme:Theme) => css`
     
     }
 `
-export const iconStyles = (theme:Theme) => css`
+export const iconStyles = () => css`
     stroke-width: 1.3;
     margin-left: 5px;
 

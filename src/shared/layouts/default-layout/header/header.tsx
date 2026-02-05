@@ -1,5 +1,5 @@
 import "./header.styles";
-import {ReactNode, useEffect} from "react";
+import {ReactNode} from "react";
 import {Navigation} from "./navigation/navigation";
 import {ShowFavoritesButton} from "./show-favorites-button/show-favorites-button";
 import {ShowProfile} from "./show-profile/show-profile";

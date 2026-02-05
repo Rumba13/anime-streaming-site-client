@@ -29,7 +29,7 @@ export const buttonStyles = (theme:Theme) => css`
     }
 `
 
-export const passwordFieldStyles = (theme:Theme) => css`
+export const passwordFieldStyles = () => css`
     position: relative;
 
     &:hover,

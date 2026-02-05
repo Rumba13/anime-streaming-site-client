@@ -1,13 +1,13 @@
-import {css, Theme} from "@emotion/react";
+import {css} from "@emotion/react";
 
-export const signInStepOneStyles = (theme:Theme) => css`
+export const signInStepOneStyles = () => css`
     display: flex;
     width: 100%;
     gap: 24px;
 `
-export const fieldStyles = (theme:Theme) => css`
+export const fieldStyles = () => css`
     flex: 2;
 `
-export const submitButtonStyles = (theme:Theme) => css`
+export const submitButtonStyles = () => css`
     flex: 1;
 `

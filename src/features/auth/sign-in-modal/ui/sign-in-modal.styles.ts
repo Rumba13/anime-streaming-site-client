@@ -8,7 +8,7 @@ export const signInModalStyles = (isLoading: boolean) => (theme:Theme) => css`
     ${isLoading && overlayStyles(theme)}
 `
 
-export const footerStyles = (theme:Theme)=> css`
+export const footerStyles = ()=> css`
 
 `
 export const modalSubtitleStyles = (theme:Theme)=> css`
@@ -16,17 +16,17 @@ export const modalSubtitleStyles = (theme:Theme)=> css`
     font-size: 26px;
     margin-bottom: 25px;
 `
-export const wrapperStyles = (theme:Theme)=> css`
+export const wrapperStyles = ()=> css`
     display: flex;
     flex-direction: column;
     width: 100%;
 `
-export const fieldWrapperStyles = (theme:Theme)=> css`
+export const fieldWrapperStyles = ()=> css`
     width: 100%;
     display: flex;
     gap: 24px;
 `
-export const loadingStyles = (theme: Theme) => css`
+export const loadingStyles = () => css`
     position: absolute;
     top: 50%;
     left: 50%;

@@ -1,6 +1,6 @@
-import {css, Theme} from "@emotion/react";
+import {css} from "@emotion/react";
 
-export const orderBySelectStyles = (theme:Theme) => css`
+export const orderBySelectStyles = () => css`
 
     & > .ant-select-arrow {
         color: white;

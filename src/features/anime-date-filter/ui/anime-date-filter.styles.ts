@@ -1,5 +1,5 @@
-import {Theme, css} from "@emotion/react";
+import {css} from "@emotion/react";
 
-export const animeDateFilterStyles = (theme: Theme) => css`
+export const animeDateFilterStyles = () => css`
 width: 100%;
 `

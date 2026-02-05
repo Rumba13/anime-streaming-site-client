@@ -49,7 +49,7 @@ export const modalStyles = (isOpened: boolean, wasOpened: boolean) => (theme: Th
     ${hiddenStyles}
 
 `
-export const modalContainerStyles = (theme: Theme) => css`
+export const modalContainerStyles = () => css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,7 @@ export const modalContainerStyles = (theme: Theme) => css`
     flex-grow: 1;
     padding-bottom: 32px;
 `;
-export const crossStyles = (theme: Theme) => css`
+export const crossStyles = () => css`
     width: 24px;
     height: 24px;
     position: absolute;
@@ -79,7 +79,7 @@ export const headerStyles = (theme: Theme) => css`
     padding: 18px 30px 18px 30px;
 `;
 
-export const modalContentStyles = (theme: Theme) => css`
+export const modalContentStyles = () => css`
     display: flex;
     padding: 20px 30px;
     width: 100%;
@@ -111,7 +111,7 @@ export const modalSubtitleStyles = (theme:Theme)=> css`
 `
 
 
-export const separatorStyles = (theme: Theme) => css`
+export const separatorStyles = () => css`
     margin-top: 20px;
     margin-bottom: 20px;
 `

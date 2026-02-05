@@ -1,6 +1,6 @@
 import {css, Theme} from "@emotion/react";
 
-export const filtersStyles = (theme: Theme) => css`
+export const filtersStyles = () => css`
     position: sticky;
     top: 10px;
     display: flex;

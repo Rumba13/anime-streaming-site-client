@@ -37,6 +37,6 @@ export const nothingFoundStyles = (theme:Theme) => css`
     font-family: ${theme.primaryFontFamily};
 `
 
-export const errorMessageStyles = (theme:Theme) => css`
+export const errorMessageStyles = () => css`
   color: white;
 `

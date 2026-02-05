@@ -1,5 +1,4 @@
 import {Meta, type StoryObj} from "@storybook/react-vite";
-import {SelectGenres} from "./select-genres.tsx";
 import {SelectExcludeGenres} from "./exclude-genre-filter.tsx";
 
 const meta = {

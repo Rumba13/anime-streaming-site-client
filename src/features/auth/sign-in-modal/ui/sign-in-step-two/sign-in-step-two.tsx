@@ -22,3 +22,6 @@ export const SignInStepTwo = ({
         <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="submit">{tCommon("Continue")}</button>
     </div>
 }
+
+export class SignInStepTwoFields {
+}

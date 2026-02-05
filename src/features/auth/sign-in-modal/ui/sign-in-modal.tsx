@@ -12,7 +12,7 @@ import {separatorStyles} from "../../../../shared/ui";
 import {SignInStepOne} from "./sign-in-step-one/sign-in-step-one.tsx";
 import {SignInFormStore} from "../model/sign-in-form.store.ts";
 import {observer} from "mobx-react";
-import {SignInStepTwoFields, SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
+import {SignInStepTwo} from "./sign-in-step-two/sign-in-step-two.tsx";
 import {AnimatePresence, motion} from "framer-motion"
 import {notification} from "antd";
 import {successfulSignInNotificationConfig} from "./successful-sign-in-notification-config.tsx";
@@ -20,7 +20,7 @@ import {loadingStyles} from "../../sign-up-modal/ui/sign-up-form/sign-up-form.st
 import {SignInFormStepsStore} from "../model/sign-in-form-steps.store.ts";
 import {STEPS} from "../lib/steps.ts";
 import {SignInModalFooter} from "./sign-in-modal-footer/sign-in-modal-footer.tsx";
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 import {useForm} from "react-hook-form";
 import {BaseError} from "../../../../shared/model";
 

@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
-import {flow, makeAutoObservable, makeObservable, override} from "mobx";
-import {BaseError, BaseLoadingStore} from "../../../../shared/model";
+import {makeAutoObservable} from "mobx";
+import {BaseLoadingStore} from "../../../../shared/model";
 import {SignUpDto} from "../../../../shared/types/sign-up.dto.ts";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../../../shared/api/firebase.ts";

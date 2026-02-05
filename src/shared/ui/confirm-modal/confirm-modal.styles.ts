@@ -1,6 +1,6 @@
 import {css, Theme} from "@emotion/react";
 
-export const confirmModalStyles = (theme: Theme) => css`
+export const confirmModalStyles = () => css`
    max-width: fit-content;
    
     & > div {
@@ -15,7 +15,7 @@ export const contentStyles = (theme: Theme) => css`
     
 `
 
-export const buttonContainerStyles = (theme: Theme) => css`
+export const buttonContainerStyles = () => css`
     display: flex;
     gap: 15px;
     margin-top: 15px;

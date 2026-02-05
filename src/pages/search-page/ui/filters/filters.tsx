@@ -9,7 +9,7 @@ import {
     resetButtonStyles,
     searchStyles
 } from "./filters.styles";
-import {useCallback, useEffect, useMemo} from "react";
+import {useCallback, useEffect} from "react";
 import {ExcludeGenreFilterStore, SelectExcludeGenres} from "../../../../features/exclude-genre-filter";
 import {useTranslation} from "react-i18next";
 import {observer} from "mobx-react";

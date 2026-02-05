@@ -32,12 +32,12 @@ export const searchField = (theme: Theme) => css`
     padding: 10px 15px 10px 10px;
 
 `
-export const labelStyles = (theme: Theme) => css`
+export const labelStyles = () => css`
     display: flex;
     align-items: baseline;
 `
 
-export const iconStyles = (theme: Theme) => css`
+export const iconStyles = () => css`
     margin: 10px;
     min-width: 18px;
 `
