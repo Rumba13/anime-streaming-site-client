@@ -12,13 +12,13 @@ export const SignOutButton = () => {
     const confirmModalStore = useInjection(ConfirmModalStore)
 
     const confirmSignOutModalConfig: ConfirmModalConfig = {
-        title: tAuth("Confirm logout"),
-        confirmTitle: tAuth("Log out"),
+        title: tAuth("Confirm sign out"),
+        confirmTitle: tAuth("Sign out"),
         description: tAuth("Are you sure you want to sign out?")
     }
 
     const showSuccessfulSignOutNotification = () => api.open({
-        message: tAuth("You have logged out"),
+        message: tAuth("You have signed out"),
         description: "",
         placement: "bottomRight",
         duration: 3.5,

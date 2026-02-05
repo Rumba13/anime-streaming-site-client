@@ -14,6 +14,6 @@ export function OpenSignInModalButton({openSignInModal}:PropsType) {
     const {t:tAuth} = useTranslation("auth")
 
     return <GradientBorderedButton css={openSignInModalButtonStyles} onClick={openSignInModal}>
-        <span css={buttonTitleStyles}>{tAuth("Log In")}</span>
+        <span css={buttonTitleStyles}>{tAuth("Sign In")}</span>
     </GradientBorderedButton>
 }

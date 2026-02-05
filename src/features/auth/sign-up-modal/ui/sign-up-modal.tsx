@@ -23,7 +23,7 @@ const SignUpModalFooter = ({openSignInModal}: SignUpModalFooterPropsType) => {
     return <div>
         {tAuth("Have an account?")}
         &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{tAuth("Log in here!")}</button>
+        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{tAuth("Sign in here!")}</button>
     </div>
 }
 

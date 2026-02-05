@@ -14,7 +14,7 @@ export function AccountActions() {
         <span css={accountActionsTitleStyles}>{tAuth("Account")}</span>
         <ul css={accountActionsListStyles}>
             <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Create Account")}</ListItem>
-            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Log In")}</ListItem>
+            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Sign In")}</ListItem>
         </ul>
     </div>
 }

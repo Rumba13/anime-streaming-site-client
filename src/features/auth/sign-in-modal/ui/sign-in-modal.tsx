@@ -80,7 +80,7 @@ export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
     }, [signIn])
 
     return <BaseModal modalStore={signInModalStore.modalStore} styles={[signInModalStyles(isLoading), styles]}
-                      title={tAuth("Log in or sign up")}
+                      title={tAuth("Sign in or sign up")}
                       footer={<SignInModalFooter openSignUpModal={openSignUpModal}/>}>
         {contextHolder}
 
