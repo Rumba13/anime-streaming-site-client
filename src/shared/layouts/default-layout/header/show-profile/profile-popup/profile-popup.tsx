@@ -12,6 +12,7 @@ import SettingsIcon from "../../../../../../assets/images/settings-icon.svg?reac
 import {buttonsStyles} from "./profile-popup.styles.ts";
 import {ROUTES} from "../../../../../lib";
 import {useTranslation} from "react-i18next";
+import {SignOutButton} from "../../../../../../features/auth/sign-out-modal";
 
 type PropsType = {
     JikanStatusSlot: ReactNode,
@@ -35,7 +36,7 @@ export const ProfilePopup = observer(({}: PropsType) => {
             <ProfilePopupButton icon={<SettingsIcon/>} link={ROUTES.SETTINGS_PAGE}>Settings</ProfilePopupButton>
             <ProfilePopupButton icon={<SettingsIcon/>} link={ROUTES.HOME_PAGE}>Collections</ProfilePopupButton>
 
-            {/*<SignOutButton/>*/}
+            <SignOutButton/>
         </div>
     </BasePopup>
 })
