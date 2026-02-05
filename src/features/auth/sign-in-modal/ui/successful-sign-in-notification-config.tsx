@@ -3,7 +3,7 @@ import UserIcon from "../../../../assets/images/user.svg?react"
 import {t} from "i18next"
 
 export const successfulSignInNotificationConfig: ArgsProps = {
-    message: t("Successful Sign-in Message", {ns:"auth"}),
+    message: t("successful_sign_in_message", {ns:"auth"}),
     description: t("Welcome to EpicAnime"),
     placement: "bottomRight",
     duration: 3.5,

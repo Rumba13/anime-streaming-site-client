@@ -23,7 +23,7 @@ const SignUpModalFooter = ({openSignInModal}: SignUpModalFooterPropsType) => {
     return <div>
         {tAuth("Have an account?")}
         &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{tAuth("Sign in here!")}</button>
+        <button css={modalHighlightTextStyles} onClick={openSignInModal}>{tAuth("sign_in_here")}</button>
     </div>
 }
 
@@ -36,7 +36,7 @@ export const SignUpModal = ({styles, openSignInModal}: PropsType) => {
     const {t:tAuth} = useTranslation("auth");
     const signUpModalStore = useInjection(SignUpModalStore)
 
-    return <BaseModal modalStore={signUpModalStore.modalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={tAuth("Sign up now!")}
+    return <BaseModal modalStore={signUpModalStore.modalStore} contentStyles={modalContentStyles} styles={[signUpModalStyles, styles]} title={tAuth("sign_up_now")}
                       footer={<SignUpModalFooter openSignInModal={openSignInModal}/>}>
         <SignUpForm onSuccess={signUpModalStore.modalStore.close}/>
         <div>

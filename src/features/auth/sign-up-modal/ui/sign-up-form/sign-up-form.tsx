@@ -39,18 +39,18 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
 
         <div css={formContainerStyles}>
             <Field errorMessage={errors.firstName?.message}
-                   placeholder={tAuth("First Name")}
+                   placeholder={tAuth("first_name")}
                    type="text"  {...register("firstName", firstNameValidationRule as RegisterOptions<Fields, "firstName">)}/>
-            <Field errorMessage={errors.lastName?.message} placeholder={tAuth("Last Name")}
+            <Field errorMessage={errors.lastName?.message} placeholder={tAuth("last_name")}
                    type="text" {...register("lastName", lastNameValidationRule as RegisterOptions<Fields, "lastName">)}/>
-            <Field errorMessage={errors.email?.message} css={emailFieldStyles} placeholder={tAuth("Enter Email ID")}
+            <Field errorMessage={errors.email?.message} css={emailFieldStyles} placeholder={tAuth("enter_email_id")}
                    type="email" {...register("email", emailValidationRule as RegisterOptions<Fields, "email">)}/>
-            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.password?.message} placeholder={tAuth("Create Password")}
+            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.password?.message} placeholder={tAuth("create_password")}
                      {...register("password", passwordValidationRule as RegisterOptions<Fields, "password">)}/>
-            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.repeatedPassword?.message} placeholder={tAuth("Confirm Password")}
+            <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.repeatedPassword?.message} placeholder={tAuth("confirm_password")}
                      {...register("repeatedPassword", repeatPasswordValidationRule as RegisterOptions<Fields, "repeatedPassword">)}/>
 
-            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{tAuth("Continue")}</button>
+            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{tAuth("continue")}</button>
         </div>
     </form>
 })

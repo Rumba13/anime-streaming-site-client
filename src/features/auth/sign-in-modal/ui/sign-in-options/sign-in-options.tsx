@@ -32,11 +32,11 @@ export const SignInOptions = ({onSuccess}: PropsType) => {
     return <div css={signInOptionsStyles}>
         <button css={optionStyles} onClick={() => signInWithGoogle(userStore.setUser, onSuccess)}>
             <GoogleIcon/>
-            <span css={titleStyles}>{tAuth("Continue with Google")}</span>
+            <span css={titleStyles}>{tAuth("continue_with_google")}</span>
         </button>
         <button css={optionStyles}>
             <AppleIcon/>
-            <span css={titleStyles}>{tAuth("Continue with Apple")}</span>
+            <span css={titleStyles}>{tAuth("continue_with_apple")}</span>
         </button>
     </div>
 }

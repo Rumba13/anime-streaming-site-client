@@ -28,7 +28,7 @@ export const SignInStepOne = ({
     return <div css={signInStepOneStyles}>
         <Field errorMessage={errors.email?.message} styles={fieldStyles} type="email" autoFocus
                onKeyDown={(e) => e.key === "Enter" && tryNextStep(e)}
-               placeholder={tAuth("Email")} {...register("email", emailValidationRule as RegisterOptions<SignInFormFields, "email">)} />
+               placeholder={tAuth("email")} {...register("email", emailValidationRule as RegisterOptions<SignInFormFields, "email">)} />
 
         <button css={[modalSubmitButtonStyles, submitButtonStyles]} type="button"
                 onClick={tryNextStep}>{tAuth("Continue")}</button>

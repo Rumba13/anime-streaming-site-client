@@ -11,8 +11,8 @@ export const SignInModalFooter = memo(({openSignUpModal}: PropsType) => {
     const {t:tAuth} = useTranslation("auth")
 
     return <div css={footerStyles}>
-        {tAuth("New to our platform?")}
+        {tAuth("new_to_our_platform")}
         &nbsp;
-        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{tAuth("Sign up now!")}</button>
+        <button css={modalHighlightTextStyles} onClick={openSignUpModal}>{tAuth("sign_up_now")}</button>
     </div>
 })

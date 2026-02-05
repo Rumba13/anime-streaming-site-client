@@ -11,10 +11,10 @@ export function AccountActions() {
     const {t:tAuth} = useTranslation("auth")
 
     return <div css={accountActionsStyles}>
-        <span css={accountActionsTitleStyles}>{tAuth("Account")}</span>
+        <span css={accountActionsTitleStyles}>{tAuth("account")}</span>
         <ul css={accountActionsListStyles}>
-            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Create Account")}</ListItem>
-            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("Sign In")}</ListItem>
+            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("create_account")}</ListItem>
+            <ListItem styles={accountActionsItemStyles} link="1">{tAuth("sign_in")}</ListItem>
         </ul>
     </div>
 }

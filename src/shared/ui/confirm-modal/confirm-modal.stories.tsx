@@ -38,7 +38,7 @@ export const Default: Story = {
     args: {
         title: "Confirm sign out ",
         description: "Are you sure that you want to sign out?",
-        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
+        confirmTitle: i18n.t("sign_out", {ns: "auth"}),
     },
 }
 
@@ -46,7 +46,7 @@ export const LongContent: Story = {
     args: {
         title: "Confirm sign out",
         description: "Are you sure that you want to sign out? lorem ipsum dolor sit amen. You cannot cancel this",
-        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
+        confirmTitle: i18n.t("sign_out", {ns: "auth"}),
     },
 }
 
@@ -54,7 +54,7 @@ export const LongTitle: Story = {
     args: {
         title: "Confirm sign out Very long Confirm sign out title to make sure it's visible",
         description: "Are you sure that you want to sign out?",
-        confirmTitle: i18n.t("Sign Out", {ns: "auth"}),
+        confirmTitle: i18n.t("sign_out", {ns: "auth"}),
     },
 }
 
