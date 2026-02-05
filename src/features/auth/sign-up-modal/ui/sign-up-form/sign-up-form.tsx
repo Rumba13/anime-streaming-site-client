@@ -50,7 +50,7 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
             <PasswordField isPasswordShown={isPasswordShown} onPasswordVisibilityIconClick={togglePasswordVisibility} errorMessage={errors.repeatedPassword?.message} placeholder={tAuth("Confirm Password")}
                      {...register("repeatedPassword", repeatPasswordValidationRule as RegisterOptions<Fields, "repeatedPassword">)}/>
 
-            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{tCommon("Continue")}</button>
+            <button css={[modalSubmitButtonStyles, buttonStyles]} type="submit">{tAuth("Continue")}</button>
         </div>
     </form>
 })
