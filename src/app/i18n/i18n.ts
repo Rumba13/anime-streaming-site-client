@@ -19,6 +19,7 @@ import ruLanguagesTranslation from "./translation/ru/languages.json"
 import enLanguagesTranslation from "./translation/en/languages.json"
 
 import XHR from "i18next-http-backend"
+export const defaultNS = "common";
 
 export const resources = {
     en: {
@@ -57,7 +58,7 @@ void i18n
         },
         fallbackLng: "en",
         resources,
-        defaultNS: "common",
+        defaultNS,
         interpolation: {
             escapeValue: false
         },
