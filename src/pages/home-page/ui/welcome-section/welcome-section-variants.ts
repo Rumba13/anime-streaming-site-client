@@ -17,19 +17,19 @@ export const welcomeSectionVariants: WelcomeSectionVariant[] = [
     {
         welcomeImage: WelcomeIcon1,
         welcomeTitleImage: WelcomeTitleIcon1,
-        title: t("Welcome to"),
-        subTitle: t("Embark on a Journey of Endless Stories and Epic Adventures.")
+        title: t("welcome_to"),
+        subTitle: t("embark_on_a_journey_of_endless_stories_and_epic_adventures")
     },
     {
         welcomeImage: WelcomeIcon2,
         welcomeTitleImage: WelcomeTitleIcon2,
-        title: t("Welcome to"),
-        subTitle: t("Embark on a Journey of Endless Stories and Epic Adventures.")
+        title: t("welcome_to"),
+        subTitle: t("embark_on_a_journey_of_endless_stories_and_epic_adventures")
     },
     {
         welcomeImage: WelcomeIcon3,
         welcomeTitleImage: WelcomeTitleIcon3,
-        title: t("Welcome to"),
-        subTitle: t("Embark on a Journey of Endless Stories and Epic Adventures.")
+        title: t("welcome_to"),
+        subTitle: t("embark_on_a_journey_of_endless_stories_and_epic_adventures")
     }
 ]

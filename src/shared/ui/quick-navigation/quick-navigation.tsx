@@ -22,13 +22,13 @@ export function QuickNavigation({title, style, titleStyle, listStyle, listItemSt
     const {t:tNavigation} = useTranslation("navigation");
 
     return <div css={[quickNavigation, style]}>
-        <span css={[quickNavigationTitle, titleStyle]}>{title || tNavigation('Quick Navigation')}</span>
+        <span css={[quickNavigationTitle, titleStyle]}>{title || tNavigation('quick_navigation')}</span>
         <ul css={[quickNavigationList, listStyle]}>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="1">{tNavigation('Browse Popular')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="2">{tNavigation('Browse News')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="3">{tNavigation('Interviews')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="4">{tNavigation('Guides')}</ListItem>
-            <ListItem styles={[quickNavigationItem, listItemStyle]} link="5">{tNavigation('Announcements')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="1">{tNavigation('browse_popular')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="2">{tNavigation('browse_news')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="3">{tNavigation('interviews')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="4">{tNavigation('guides')}</ListItem>
+            <ListItem styles={[quickNavigationItem, listItemStyle]} link="5">{tNavigation('announcements')}</ListItem>
             <ListItem styles={[quickNavigationItem, listItemStyle]}
                       link={ROUTES.TRAILERS_PAGE}>{tNavigation('navigation_trailers')}</ListItem>
         </ul>

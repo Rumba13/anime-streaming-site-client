@@ -85,7 +85,7 @@ export const SignInModal = observer(({styles, openSignUpModal}: PropsType) => {
         {contextHolder}
 
         <div css={wrapperStyles}>
-            <span css={modalSubtitleStyles}>{tCommon("Welcome to EpicAnime")}</span>
+            <span css={modalSubtitleStyles}>{tCommon("welcome_to_epic_anime")}</span>
             <form onSubmit={signInForm.handleSubmit(onFormSubmit)}>
                 {isLoading && <Loading styles={loadingStyles}/>}
                 <AnimatePresence mode="wait">

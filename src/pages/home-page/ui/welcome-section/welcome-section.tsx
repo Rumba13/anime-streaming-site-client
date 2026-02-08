@@ -24,7 +24,7 @@ import {WelcomeBackground} from "./welcome-background/welcome-background";
 import {ROUTES} from "../../../../shared/lib";
 
 export const WelcomeSection = observer(() => {
-    const {t} = useTranslation();
+    const {t:tCommon} = useTranslation("common");
     const {title, subTitle, welcomeImage, welcomeTitleImage} = welcomeSectionVariants[0];
 
     return (
@@ -35,8 +35,8 @@ export const WelcomeSection = observer(() => {
                 <span css={titleStyle}>{title}<span css={highlightStyle}> EpicAnime</span></span>
                 <span css={subTitleStyle}>{subTitle}</span>
                 <div css={buttonsStyle}>
-                    <NavigateButton styles={buttonStyle} title={t("Explore Now")} href={ROUTES.SEARCH_PAGE} icon={<DiagonalArrowIcon/>}/>
-                    <NavigateButton styles={[buttonStyle, buttonRedStyle]} title={t("Start Watching")} href="#"
+                    <NavigateButton styles={buttonStyle} title={tCommon("explore_now")} href={ROUTES.SEARCH_PAGE} icon={<DiagonalArrowIcon/>}/>
+                    <NavigateButton styles={[buttonStyle, buttonRedStyle]} title={tCommon("start_watching")} href="#"
                                     icon={<TriangleIcon/>}/>
                 </div>
                 <ReviewPreview styles={reviewPreviewStyle}/>

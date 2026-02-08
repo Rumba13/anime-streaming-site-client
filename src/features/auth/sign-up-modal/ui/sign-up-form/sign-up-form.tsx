@@ -35,7 +35,7 @@ export const SignUpForm = observer(({onSuccess, initialValues}: PropsType) => {
         {contextHolder}
         {signUpFormStore.loadingStore.isLoading && <Loading styles={loadingStyles}/>}
 
-        <span css={modalSubtitleStyles}>{tCommon("Get Started!")}</span>
+        <span css={modalSubtitleStyles}>{tCommon("get_started")}</span>
 
         <div css={formContainerStyles}>
             <Field errorMessage={errors.firstName?.message}

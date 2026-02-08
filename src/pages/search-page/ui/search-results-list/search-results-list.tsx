@@ -67,7 +67,7 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
             <ErrorMessage styles={errorMessageStyles} error={error || new BaseError("Unknown Error")}/>)
         .with(firstLoadingState, () =>
             <Loading styles={loadingStyles}/>)
-        .with(nothingFoundState, () => <div css={nothingFoundStyles}>{tSearch("Nothing Found")}</div>)
+        .with(nothingFoundState, () => <div css={nothingFoundStyles}>{tSearch("nothing_found")}</div>)
         .with(secondLoadingState, ({pagination}) =>
             <SearchResults data={pagination?.data || []} AnimeCard={AnimeCard}/>)
         .with(loadedState, ({pagination}) =>

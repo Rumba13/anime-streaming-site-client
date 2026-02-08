@@ -15,8 +15,8 @@ export function ExploreMoreSection({styles}:PropsType) {
 
     return <section css={[exploreMoreSectionStyle, styles]}>
         <img css={exploreMoreSectionImage} src={ExploreMoreImage} alt={"ExploreMoreImage"}/>
-        <h2 css={exploreMoreSectionTitle}>{t("Wondering What's Beyond?")}</h2>
-        <NavigateButton styles={exploreMoreSectionButton} title={t("Explore Now")}
+        <h2 css={exploreMoreSectionTitle}>{t("wondering_what_is_beyond")}</h2>
+        <NavigateButton styles={exploreMoreSectionButton} title={t("explore_now")}
                         href={ROUTES.SEARCH_PAGE} icon={<DiagonalArrowIcon/>}/>
     </section>
 }

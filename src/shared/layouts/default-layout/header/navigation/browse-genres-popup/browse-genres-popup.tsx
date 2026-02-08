@@ -17,7 +17,7 @@ export const BrowseGenresPopup = observer(() => {
     const browseGenresPopupStore = useInjection(BrowseGenresPopupStore);
 
     return <BasePopup popupStore={browseGenresPopupStore} styles={browseGenresStyles}>
-        <QuickNavigation title={t('Featured')} />
+        <QuickNavigation title={t('featured')} />
         <VerticalLine styles={verticalLineStyles} />
         <Genres />
     </BasePopup>

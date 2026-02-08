@@ -35,8 +35,8 @@ export const useSignUpForm = (initialValues?: Partial<Fields>, onSuccess?: () =>
 
     const onSubmit: SubmitHandler<Fields> = async (data: Fields) => {
         if (data.password !== data.repeatedPassword) {
-            setError("repeatedPassword", {message: tValidation("Passwords do not match")})
-            setError("password", {message: tValidation("Passwords do not match")})
+            setError("repeatedPassword", {message: tValidation("passwords_do_not_match")})
+            setError("password", {message: tValidation("passwords_do_not_match")})
             return;
         }
 

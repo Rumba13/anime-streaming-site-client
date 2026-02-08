@@ -17,9 +17,9 @@ export function ReviewPreview({styles}:PropsType) {
     }
 
     return <div css={[reviewPreviewStyle,styles]}>
-        <h2 css={reviewPreviewTitle}>{t("Epic Feed")}</h2>
+        <h2 css={reviewPreviewTitle}>{t("epic_feed")}</h2>
         <h3 css={reviewPreviewSubTitle}>{review.title}</h3>
         <p css={reviewPreviewContent}>{review.content}</p>
-        <Link css={reviewPreviewLink} to="">{t("Read More")}</Link>
+        <Link css={reviewPreviewLink} to="">{t("read_more")}</Link>
     </div>
 }

@@ -9,11 +9,11 @@ export function LanguageSelector() {
     const languageOptions: SelectOptionType[] = [
         {
             value: "ru",
-            label: tLanguages("RUSSIAN"),
+            label: tLanguages("russian"),
         },
         {
             value: "en",
-            label: tLanguages("ENGLISH (UK)"),
+            label: tLanguages("english_uk"),
         }
     ]
 

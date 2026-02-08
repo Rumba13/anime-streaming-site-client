@@ -1,28 +1,28 @@
 import {OrderBy} from "../../../shared/types";
 
 type OrderByTypeTranslationKeys =
-    | "Order By Mal Id"
-    | "Order By Title"
-    | "Order By Start Date"
-    | "Order By End Date"
-    | "Order By Episodes"
-    | "Order By Score"
-    | "Order By Scored By"
-    | "Order By Rank"
-    | "Order By Popularity"
-    | "Order By Members"
-    | "Order By Favorites";
+    | "order_by_id"
+    | "order_by_title"
+    | "order_by_start_date"
+    | "order_by_end_date"
+    | "order_by_episodes"
+    | "order_by_score"
+    | "order_by_scored_by"
+    | "order_by_rank"
+    | "order_by_popularity"
+    | "order_by_members"
+    | "order_by_favorites";
 
 export const orderByTypeToTitle: Record<OrderBy, OrderByTypeTranslationKeys> = {
-    mal_id: "Order By Mal Id",
-    title: "Order By Title",
-    start_date: "Order By Start Date",
-    end_date: "Order By End Date",
-    episodes: "Order By Episodes",
-    score: "Order By Score",
-    scored_by: "Order By Scored By",
-    rank: "Order By Rank",
-    popularity: "Order By Popularity",
-    members: "Order By Members",
-    favorites: "Order By Favorites",
+    mal_id: "order_by_id",
+    title: "order_by_title",
+    start_date: "order_by_start_date",
+    end_date: "order_by_end_date",
+    episodes: "order_by_episodes",
+    score: "order_by_score",
+    scored_by: "order_by_scored_by",
+    rank: "order_by_rank",
+    popularity: "order_by_popularity",
+    members: "order_by_members",
+    favorites: "order_by_favorites",
 };

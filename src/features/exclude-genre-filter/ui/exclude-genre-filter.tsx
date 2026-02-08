@@ -36,7 +36,7 @@ export const SelectExcludeGenres = observer(({genreIdsToHide}: PropsType) => {
         allowClear
         loading={genresStore.isLoading}
         value={selectedOptions}
-        placeholder={tSearch("Select Excluded Genres Placeholder")}
+        placeholder={tSearch("select_excluded_genres_placeholder")}
         onChange={excludeGenreFilterStore.setSelectedGenres}
         options={options}
     />

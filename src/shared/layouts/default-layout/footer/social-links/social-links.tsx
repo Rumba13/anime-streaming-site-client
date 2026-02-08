@@ -12,7 +12,7 @@ export function SocialLinks() {
     const {t:tCommon} = useTranslation("common")
 
     return <div>
-        <span css={socialLinksTitle}>{tNavigation("Connect with us")}</span>
+        <span css={socialLinksTitle}>{tNavigation("connect_with_us")}</span>
         <ul css={socialLinksList}>
             <SocialLinksItem icon={<FacebookIcon/>} title={tCommon("social_facebook")} link="1"/>
             <SocialLinksItem icon={<TwitterLogo/>} title={tCommon("social_twitter")} link="1"/>

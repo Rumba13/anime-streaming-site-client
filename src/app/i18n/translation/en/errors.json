@@ -1,5 +1,3 @@
 {
-  "Error": "Error",
-  "An unknown error has occurred": "An unknown error has occurred",
-  "This email is already registered": "This email is already registered"
+  "an_unknown_error_has_occurred": "An unknown error has occurred"
 }

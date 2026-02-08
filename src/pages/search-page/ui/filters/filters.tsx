@@ -121,33 +121,33 @@ export const Filters = observer(({styles}: PropsType) => {
             <Search styles={searchStyles}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{tSearch("Select Genres")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_genres")}</span>
             <SelectGenres genreIdsToHide={excludeGenreFilterStore.selectedGenres}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{tSearch("Select Excluded Genres")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_excluded_genres")}</span>
             <SelectExcludeGenres genreIdsToHide={genreFilterStore.selectedGenres}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{tSearch("Select Anime Types")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_anime_types")}</span>
             <AnimeTypeFilter animeTypeFilterStore={animeTypeFilterStore}/>
         </div>
 
         <div css={[filterWrapperStyles]}>
-            <span css={filterTitleStyles}>{tSearch("Select Rating")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_rating")}</span>
             <RatingRange ratingFilterStore={ratingFilterStore}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{tSearch("Select Status")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_status")}</span>
             <AnimeStatusSelect animeStatusFilterStore={animeStatusFilterStore}/>
         </div>
         <div css={filterWrapperStyles}>
-            <span css={filterTitleStyles}>{tSearch("Select Dates")}</span>
+            <span css={filterTitleStyles}>{tSearch("select_dates")}</span>
             <AnimeDateFilter animeDateFilterStore={animeDateFilterStore}/>
         </div>
 
         <button css={resetButtonStyles} onClick={filterManager.resetFilters}>
-            {tSearch("Reset Filters")}
+            {tSearch("reset_filters")}
         </button>
     </div>
 })

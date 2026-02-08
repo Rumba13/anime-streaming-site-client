@@ -27,7 +27,7 @@ export const OrderBySelect = observer(({ orderByStore, styles }: PropsType) => {
         value: `${orderBy}-${sortType}`,
         orderBy,
         sortType,
-        label: `${tSearch(orderByTypeToTitle[orderBy])} (${tSearch(sortType === "asc" ? "Ascending" : "Descending")})`
+        label: `${tSearch(orderByTypeToTitle[orderBy])} (${tSearch(sortType === "asc" ? "ascending" : "descending")})`
     })
 
     const selectOrderByTypes: OrderBy[] = [

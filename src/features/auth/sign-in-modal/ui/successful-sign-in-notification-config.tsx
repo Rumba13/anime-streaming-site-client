@@ -4,7 +4,7 @@ import {t} from "i18next"
 
 export const successfulSignInNotificationConfig: ArgsProps = {
     message: t("successful_sign_in_message", {ns:"auth"}),
-    description: t("Welcome to EpicAnime"),
+    description: t("welcome_to_epic_anime"),
     placement: "bottomRight",
     duration: 3.5,
     pauseOnHover: false,

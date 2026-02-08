@@ -93,7 +93,7 @@ export function AnimeMiniCardPopup({
         <div css={actionsStyles}>
             <Link css={watchNowButtonStyles} to={ROUTES.WATCH_ANIME_PAGE_WATCH(+animeId)}>
                 <PlayButtonIcon/>
-                <span>{tCommon("Start Watching")}</span>
+                <span>{tCommon("start_watching")}</span>
             </Link>
             <button css={openUserActionButtonStyles}>
                 <PlusIcon/>

@@ -16,9 +16,9 @@ export const JikanStatus = observer(({styles}: PropsType) => {
 
     return <div css={[jikanStatusStyle, styles]}>
         <div css={jikanStatusMark(isConnected)}></div>
-        <h2 css={jikanStatusTitle}>{t("Jikan Connection")}: </h2>
+        <h2 css={jikanStatusTitle}>{t("jikan_connection")}: </h2>
         <span css={jikanStatusStatus}>
-             {isConnected ? t("Connected") : t("Not Connected")}
+             {isConnected ? t("connected") : t("not_connected")}
         </span>
     </div>
 });

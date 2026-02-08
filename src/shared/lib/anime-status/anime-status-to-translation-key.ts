@@ -1,9 +1,9 @@
 import {AnimeStatus} from "../../types";
 
-export type animeStatusTranslationKeys = "Complete" | "Airing" | "Upcoming"
+export type animeStatusTranslationKeys = "complete" | "airing" | "upcoming"
 
 export const animeStatusToTranslationKey: { [key in AnimeStatus]: animeStatusTranslationKeys } = {
-    complete: "Complete",
-    airing: "Airing",
-    upcoming: "Upcoming"
+    complete: "complete",
+    airing: "airing",
+    upcoming: "upcoming"
 }

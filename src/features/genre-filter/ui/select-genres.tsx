@@ -35,7 +35,7 @@ export const SelectGenres = observer(({genreIdsToHide}:PropsType) => {
             optionFilterProp="label"
             loading={genresStore.isLoading}
             value={selectedOptions}
-            placeholder={tSearch("Select Genres Placeholder")}
+            placeholder={tSearch("select_genres_placeholder")}
             onChange={genreFilterStore.setSelectedGenres}
             options={options}
         />
