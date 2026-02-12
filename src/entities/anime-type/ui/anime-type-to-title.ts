@@ -1,24 +1,24 @@
 import {AnimeType} from "../../../shared/types";
 
 type AnimeTypeTranslationKeys =
-    "TV Series"
-    | "ONA"
-    | "OVA"
-    | "Movie"
+    "tv_series"
+    | "ona"
+    | "ova"
+    | "movie"
     | "Music"
-    | "Special"
-    | "PV"
-    | "CM"
-    | "TV Special"
+    | "special"
+    | "pv"
+    | "cm"
+    | "tv_special"
 
 export const animeTypeToTitle: Record<AnimeType, AnimeTypeTranslationKeys> = {
-    tv: "TV Series",
-    ona: "ONA",
-    ova: "OVA",
-    movie: "Movie",
+    tv: "tv_series",
+    ona: "ona",
+    ova: "ova",
+    movie: "movie",
     music: "Music",
-    special: "Special",
-    pv: "PV",
-    cm: "CM",
-    tv_special: "TV Special"
+    special: "special",
+    pv: "pv",
+    cm: "cm",
+    tv_special: "tv_special"
 }

@@ -86,7 +86,7 @@ export function AnimeMiniCardPopup({
                 {tGenres("status")}: <span css={informationValueStyles}>{status}</span>
             </span>
             <span css={informationFieldStyles}>
-                {tGenres("Genres")}: <span css={informationValueStyles}>{formattedGenres}</span>
+                {tGenres("genres")}: <span css={informationValueStyles}>{formattedGenres}</span>
             </span>
         </p>
 

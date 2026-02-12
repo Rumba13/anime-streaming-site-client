@@ -33,7 +33,7 @@ export const Genres = observer(() => {
         .exhaustive();
 
     return <div css={[genresStyles, genresStore.isLoading && genresLoadingStyles ]}>
-        <span css={genresTitleStyles}>{tGenres("Genres")}</span>
+        <span css={genresTitleStyles}>{tGenres("genres")}</span>
         {content}
     </div>
 })
