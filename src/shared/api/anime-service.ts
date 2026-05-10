@@ -16,9 +16,7 @@ class AnimeService {
     @inject(JikanClient)
     private readonly jikanClient!: JikanClient;
 
-    constructor() {
-
-    }
+    constructor() {}
 
     async loadBanners(): Promise<string[] | undefined> {
         try {
@@ -92,6 +90,9 @@ class AnimeService {
                 "/anime",
                 { params, signal }
             );
+
+            console.log("response", response.data)
+
             return response.data;
         } catch (error) {
 

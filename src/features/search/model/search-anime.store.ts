@@ -38,7 +38,7 @@ class SearchAnimeStore {
         }
     }
 
-    public* search(searchDto: SearchDto) {
+    public async search(searchDto: SearchDto) {
         if (this.currentAbortController) this.currentAbortController.abort();
 
         this.currentAbortController = new AbortController();
@@ -47,11 +47,12 @@ class SearchAnimeStore {
 
         try {
             scrollToTop()
-            const pagination: JikanPagination<Anime> | null = yield this.animeService.search(searchDto, this.currentAbortController.signal);
-            yield this.preloadImages(pagination);
+            const pagination: JikanPagination<Anime> | null = await this.animeService.search(searchDto, this.currentAbortController.signal);
 
 
             this.setPagination(pagination)
+            // await this.preloadImages(pagination);
+
         } catch (err) {
             const error = err as Error;
 

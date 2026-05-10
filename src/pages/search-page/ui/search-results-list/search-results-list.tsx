@@ -76,7 +76,6 @@ export const SearchResultsList = observer(({searchAnimeStore}: PropsType) => {
             <ErrorMessage styles={errorMessageStyles}
                           error={new PatternError("Pattern matching error in search results", store)}/>);
 
-    console.log(content)
 
     return <div css={searchResultListStyles(isFlexLayout, isDarkened)}>{content}</div>
 })

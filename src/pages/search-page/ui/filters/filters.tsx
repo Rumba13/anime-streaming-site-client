@@ -51,7 +51,7 @@ export const Filters = observer(({styles}: PropsType) => {
     const animeDateFilterStore = useInjection(AnimeDateFilterStore);
     const pageStore = useInjection(PageStore);
     const [searchParams, setSearchParams] = useSearchParams();
-    const {t:tSearch} = useTranslation("search");
+    const {t: tSearch} = useTranslation("search");
 
     filterManager.setFilters([
         genreFilterStore,
@@ -65,8 +65,8 @@ export const Filters = observer(({styles}: PropsType) => {
         pageStore
     ])
 
-    const search = useCallback( (searchParams: URLSearchParams) => {
-        searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
+    const search = useCallback(async (searchParams: URLSearchParams) => {
+        await searchAnimeStore.search(urlSearchParamsParser.parseSearchDto(searchParams));
     }, [])
 
     useEffect(() => {

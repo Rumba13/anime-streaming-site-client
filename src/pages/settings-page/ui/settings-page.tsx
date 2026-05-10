@@ -7,12 +7,14 @@ import {AnimationsSwitch, AnimationsSwitchStore} from "../../../features/animati
 import {noBackgroundStyles} from "../../home-page/ui/home-page.styles.ts";
 import {SignUpModal, SignUpModalStore} from "../../../features/auth/sign-up-modal";
 import {SignInModal, SignInModalStore} from "../../../features/auth/sign-in-modal";
-import {contentStyles} from "./settings-page.styles.ts";
+import {contentStyles, titleStyles} from "./settings-page.styles.ts";
+import {useTranslation} from "react-i18next";
 
 export const SettingsPage = observer(() => {
     const animationsSwitchStore = useInjection(AnimationsSwitchStore);
     const signInModalStore = useInjection(SignInModalStore);
     const signUpModalStore = useInjection(SignUpModalStore);
+    const {t:tCommon} = useTranslation("common")
 
     return <DefaultLayout
         openSignInModal={signInModalStore.modalStore.open}
@@ -23,9 +25,7 @@ export const SettingsPage = observer(() => {
         JikanStatusSlot={<JikanStatus styles={noBackgroundStyles}/>}
         AnimationsSwitchSlot={<AnimationsSwitch styles={noBackgroundStyles} animationsSwitchStore={animationsSwitchStore}/>}>
         <div css={contentStyles}>
-        <h2>
-            Settings page
-        </h2>
+        <h2 css={titleStyles}>{tCommon("settings")}</h2>
             <JikanStatus styles={noBackgroundStyles}/>
             <AnimationsSwitch styles={noBackgroundStyles} animationsSwitchStore={animationsSwitchStore}/>
         </div>

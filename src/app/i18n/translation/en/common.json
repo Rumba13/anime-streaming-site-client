@@ -19,5 +19,6 @@
   "connected": "Connected",
   "not_connected": "Not Connected",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "settings": "Settings"
 }
