@@ -7,6 +7,7 @@ export const animeMiniCardStyles = () => css`
 export const bottomStyles = () => css`
 `
 export const imageStyles = () => css`
+    position: relative;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -48,7 +49,7 @@ export const imageWrapperStyles = (isBottomGradientShown: boolean) => (theme: Th
             content: "";
             position: absolute;
             inset: 40% 0 0 0;
-            background: linear-gradient(0deg, #2a2c31 0, #2A2C3100 40%);
+            background: linear-gradient(0deg, #2a2c31 0, #2a2c3100 40%);
             transition: opacity ${theme.mediumAnimationTime};
             opacity: 1;
             border-radius: inherit;
@@ -62,6 +63,10 @@ export const imageWrapperStyles = (isBottomGradientShown: boolean) => (theme: Th
         border-radius: inherit;
     }
 
+    &:after {
+        pointer-events: none
+    }
+    
     &:hover {
         &::before {
             backdrop-filter: blur(10px);

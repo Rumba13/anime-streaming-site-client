@@ -10,5 +10,5 @@ export const URL_PARAMS = {
     MAXIMUM_RATING: "max_rate",
     ANIME_STATUS: "status",
     START_DATE: "from",
-    END_DATE: "to"
+    END_DATE: "to",
 }

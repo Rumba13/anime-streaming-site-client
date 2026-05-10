@@ -28,6 +28,7 @@ import {SignInFormStepsStore, SignInFormStore, SignInModalStore} from "../featur
 import {SignUpFormStore, SignUpModalStore} from "../features/auth/sign-up-modal";
 import {UserStore} from "../entities/user";
 import {ConfirmModalStore} from "../shared/model/confirm-modal.store.ts";
+import {AnimeDetailsStore} from "../entities/anime";
 
 export const container = new Container();
 container.bind(BrowseGenresPopupStore).toSelf().inSingletonScope()
@@ -65,4 +66,5 @@ container.bind(BasePopupStore).toSelf()
 container.bind(BaseLoadingStore).toSelf()
 container.bind(BaseModalStore).toSelf()
 container.bind(SignInFormStepsStore).toSelf().inSingletonScope()
+container.bind(AnimeDetailsStore).toSelf().inSingletonScope()
 

@@ -17,6 +17,7 @@ import {useEffect, useState} from "react";
 import LoadingIcon from "../../../../assets/images/loading.gif"
 import {preloadImage} from "../../../../shared/lib";
 import {AgeRestriction} from "./age-restriction/age-restriction";
+import {scrollToTop} from "../../../../shared/ui/scroll-to-top.ts";
 
 type PropsType = Anime
 
@@ -71,7 +72,9 @@ export function AnimeMiniCard({
 
     return <div css={animeMiniCardStyles}>
         <div css={imageWrapperStyles(true)}>
-            <img css={imageStyles} src={animeImage} alt=""/>
+            <Link to={ROUTES.ANIME_DETAILS_PAGE(mal_id)} title={title} onClick={scrollToTop}>
+                <img css={imageStyles} src={animeImage} alt=""/>
+            </Link>
             <PlayButtonIcon css={playButtonStyles}/>
             <AgeRestriction pgRating={rating}/>
             <AnimeMiniCardPopup synopsis={synopsis} title={title} animeId={mal_id.toString()} genres={genres}

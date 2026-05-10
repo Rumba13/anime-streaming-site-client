@@ -1,0 +1,1 @@
+export {AnimeDetailsPage} from "./ui/anime-details-page.tsx"

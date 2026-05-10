@@ -1,3 +1,5 @@
 export {AnimeCard} from "./ui/anime-card/anime-card"
 export {AnimeMiniCard} from "./ui/anime-mini-card/anime-mini-card"
 export {getAnimeImage} from "./ui/get-anime-image"
+export {AnimeDetailsCard} from "./ui/anime-details-card/anime-details"
+export {AnimeDetailsStore} from "./model/anime-details-store/anime-details-store.store"

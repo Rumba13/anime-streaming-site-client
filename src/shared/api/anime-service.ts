@@ -1,5 +1,5 @@
 import {inject, injectable} from "inversify";
-import {JikanPagination} from "../types";
+import {ID, JikanPagination} from "../types";
 import {Anime} from "../types";
 import {JikanClient} from "./jikan-client";
 import {BaseError} from "../model";
@@ -9,6 +9,8 @@ import {DEFAULT_SORT_TYPE} from "../lib";
 import {DEFAULT_ORDER_BY} from "../lib";
 import {MAX_RATING, MIN_RATING} from "../lib";
 import {Dayjs} from "dayjs";
+import {GetAnimeByIdDto} from "../types/get-anime-by-id.dto.ts";
+import {GetAnimeByIdResponse} from "../types/get-anime-by-id-response.ts";
 
 @injectable()
 class AnimeService {
@@ -36,6 +38,22 @@ class AnimeService {
             return images
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async getAnimeById(getAnimeByIdDto:GetAnimeByIdDto): Promise<GetAnimeByIdResponse> {
+        const {id} = getAnimeByIdDto
+
+        try {
+            const response = await this.jikanClient.connection.get<GetAnimeByIdResponse>(
+                `/anime/${id}`
+            );
+
+            console.log("response", response.data)
+            return response.data;
+        } catch (error) {
+            console.error("[Anime Service] getAnimeById Error:", error);
+            throw new BaseError("GetAnimeById Error", "NetworkError");
         }
     }
 
