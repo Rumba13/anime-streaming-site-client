@@ -3,7 +3,7 @@ import { css, Theme } from "@emotion/react";
 export const footerStyles = (theme: Theme) => css`
   width: 100%;
   max-width: ${theme.contentWidth};
-  padding-bottom: 30px;
+  padding: 0 15px 30px 15px;
   margin: 0 auto 70px;
 `;
 
@@ -25,7 +25,6 @@ export const quickNavigationItemStyles = (theme: Theme) => css`
         font-size: 18px;
     }
 `;
-
 
 export const horizontalLineStyles = css`
   margin-top: 20px;

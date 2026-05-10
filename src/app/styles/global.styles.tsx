@@ -9,6 +9,11 @@ export const GlobalStyles = () =>
                 color: #ffffff;
             }
 
+            html, body {
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+            
             html {
                 background-color: #000000;
                 min-height: 100vh;

@@ -11,6 +11,8 @@ export const browseGenresStyles = (theme: Theme) => css`
     border-radius: 20px;
     background-color: ${theme.modalBackgroundColor};
     backdrop-filter: blur(5px);
+
+  
 `;
 
 export const verticalLineStyles =  css`

@@ -1,4 +1,3 @@
-// Emotion styles
 import {css, Theme} from "@emotion/react";
 
 export const sectionStyle = () => css`
@@ -12,10 +11,16 @@ export const sectionStyle = () => css`
 `;
 
 export const leftSectionStyle = css`
-  display: flex;
-  width: 50%;
-  flex-direction: column;
-  align-self: center;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-self: center;
+    padding: 0 10px 0 30px;
+
+    @media (max-width: 600px) {
+        width: 100%;
+        max-width: 200px;
+    }
 `;
 
 export const titleStyle = (theme: Theme) => css`
@@ -74,14 +79,6 @@ export const iconStyle = css`
   width: 100%;
   max-height: 70vh;
     
-  @media (max-width: 900px) {
-    width: 70%;
-    max-width: 300px;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
-    max-width: 200px;
-  }
 `;
 
 export const titleIconStyle = css`

@@ -5,6 +5,8 @@ export const genresStyles = css`
     flex: 1;
     flex-direction: column;
     min-width: 100px;
+
+  
 `;
 
 export const genresLoadingStyles = css`
@@ -30,4 +32,13 @@ export const genresContainerStyles = css`
     margin-bottom: 5px;
     gap: 40px;
     grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+
+    @media (max-width: 1600px) {
+        grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr;
+        gap: 25px;
+    }
+    @media (max-width: 1050px) {
+        grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr;
+        gap: 25px;
+    }
 `;
